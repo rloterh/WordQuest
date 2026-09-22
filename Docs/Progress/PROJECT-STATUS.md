@@ -1,49 +1,59 @@
-# Project status
+﻿# Project status
 
-## Current stage: structure only
+## Current stage: kickoff foundation; G proof incomplete
 
-The initial directory skeleton and root documentation are present. Both supplied ZIP
-packages were extracted into `Planning` without changing their contents. The combined
-Markdown guides and original planning session were also copied there for reference.
-Six G/H/I reference images remain inside the UI Realms Addendum.
+Owner authorized P00/UI00 inventory, UI01/UI02 G proof and appropriate PRs on
+2026-09-22. Working branch: `kickoff/g-visual-proof`, based on clean `dev` at
+`ebc3059`. No merge, game deployment or release is authorized.
 
-The session transcript remains local and is excluded from Git. The curated planning
-packages provide the shared reference. The owner has clarified that the proposed
-structure may evolve according to suitable conventions and project needs.
+## Completed work
 
-`Game/` already exists as the Unreal project destination, with `Config`, `Content`,
-`Source`, `Plugins` and `Build` subdirectories. Unreal project generation is deferred.
+- Read governing indexes, precedence and milestone specifications; visually inspected
+  original G/H/I gameplay images. Six original hashes verified against the manifest.
+- Verified UE 5.8.2 CL 56702186, Blender 5.1.0, Windows C++/SDK and Android tooling.
+- Unreal's New Project dialog generated Blank C++ / Mobile / Scalable project in
+  `Artifacts/ProjectGeneration/WordQuest`. Its ten source/config/project files were
+  copied without overwriting existing work into `Game`; staging retained locally.
+- Changed generated EngineAssociation from a local GUID to portable `5.8`; the build
+  helper checks exact 5.8.2/CL. Original module/target code remains intact.
+- Created environment, companion and panel reconstruction candidates in `ArtSource`.
+  No candidate is approved or imported; identity and edge issues remain.
+- Transcribed EQUIVOCAL prototype fixture, with review pending and no release claim.
+- Retained Git exclusions/LFS handling; added `.slnx` exclusion.
+- Standalone Win64 Development game target compiled and linked successfully with
+  MSVC 14.44.35222 / Windows SDK 10.0.26100.0. Output:
+  `Game/Binaries/Win64/WordQuest.exe` (ignored). This is the blank generated module,
+  not a playable G screen, cooked package or runtime test.
 
-Empty directories use `.gitkeep` files. Git ignore and LFS attribute declarations are
-present. Git LFS 3.7.1 was verified and repository-local configuration and hooks were
-initialized before the initial scaffold commit.
+## Blocking evidence
 
-## Structure verification completed
+1. Actual Unreal editor compile failed: SwarmInterface cannot find NetFxSDK.
+   Add .NET Framework 4.8 SDK and targeting pack via Visual Studio Installer.
+   Installed .NET 10 does not replace this dependency.
+2. Android engine binaries/target receipt are absent. Turnkey accepted Win64, but
+   Android-only verification found no platform to check despite returning exit 0.
+   This is not an Android pass. SDK/JDK compatibility remains unresolved.
+3. No adb-connected phone; Mac/iPhone access and target device models unknown.
+4. Static art fidelity, font identification/licensing and fixture approval remain open.
 
-- All 58 directories from the initial proposed structure were verified at scaffolding.
-- All 89 extracted files match their ZIP entries byte for byte using SHA-256.
-- Both combined guides and the copied session match their original downloads.
-- Root README links resolve, and the existing LICENSE is unchanged.
-- Ignore rules exclude generated outputs while retaining directory placeholders and
-  `Game/Build`; LFS attributes apply to the reference images and Unreal asset paths.
-- All four deferred Unreal project/build/target files remain absent.
+The firewall dialog triggered by initial UBA execution needs user handling; automation
+has not changed security settings. Subsequent builds use `-NoUBA`. PowerShell script
+execution is restricted; helpers use installed Python without changing that policy.
+The successful game build still reported UBA local execution; no firewall-policy
+change or complete removal of UBA internals is claimed.
 
-No application tests or builds were run because there is no implementation yet.
+## Gate state
 
-## Not started
+P00/UI00 inventory is recorded with missing resources. P01 mobile feasibility,
+UI01 static fidelity, UI02 motion and physical-device acceptance are **not passed**.
+No G gameplay screen, interaction, motion, runtime capture, package or device test
+has been implemented/executed. Generated images are working art only.
 
-- P00 or UI00 environment inventory, tool installation and engine version selection.
-- Unreal project generation, C++ modules, gameplay, UI, motion and content pipelines.
-- Asset reconstruction, vocabulary editorial review, builds and device testing.
+## Resume
 
-There are no `.uproject`, `.Build.cs`, `.Target.cs` or Unreal binary asset placeholders.
-Supplied examples are planning fixtures only.
-
-## Later work, when requested
-
-1. Run UI00 with the original P00 environment checks and record actual evidence.
-2. Generate the Unreal project using the verified installation.
-3. Prove a faithful G gameplay screen with real controls, gentle motion and physical
-   phone verification before extending the shared system to H/I.
-
-No execution prompt is authorized merely by being listed here.
+Read [environment](../Setup/ENVIRONMENT.md), [toolchain](../Setup/TOOLCHAIN-LOCK.md),
+[decisions](../Decisions/DECISIONS.md), [UI00 inventory](../QA/UI00/INVENTORY.md) and
+[asset handoff](../../ArtSource/G-ASSET-HANDOFF.md). Resolve NetFxSDK and run
+`python Tools/BuildScripts/build_wordquest.py`; inspect the real editor before UI01.
+Keep missing mobile evidence explicit. Finish G static proof before UI02 or H/I.
+Preserve all supplied planning packages and original images unchanged.
