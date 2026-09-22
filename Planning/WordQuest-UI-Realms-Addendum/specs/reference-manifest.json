@@ -1,0 +1,68 @@
+[
+  {
+    "file": "references/G-Celestial-Reverie-Gameplay.png",
+    "realm": "G",
+    "screen": "gameplay",
+    "status": "user-selected visual reference",
+    "width": 884,
+    "height": 1780,
+    "sha256": "306dae4f6352749edcf1d8edf73f26339a4ba6407b4a394ec50b5898418bedae",
+    "origin": "GPT image generation in this conversation",
+    "production_asset": false
+  },
+  {
+    "file": "references/H-Moonlit-Wisteria-Gameplay.png",
+    "realm": "H",
+    "screen": "gameplay",
+    "status": "user-selected visual reference",
+    "width": 916,
+    "height": 1717,
+    "sha256": "76ca568a4bc325446bcebf83bb127f40a013197bcf27b979dceb3eab7ccfe25a",
+    "origin": "GPT image generation in this conversation",
+    "production_asset": false
+  },
+  {
+    "file": "references/I-Starlight-Library-Gameplay.png",
+    "realm": "I",
+    "screen": "gameplay",
+    "status": "user-selected visual reference",
+    "width": 914,
+    "height": 1721,
+    "sha256": "c63a0548f8762a829f833361ded6b566c6359443dfed9b853705415f846353bb",
+    "origin": "GPT image generation in this conversation",
+    "production_asset": false
+  },
+  {
+    "file": "references/G-Celestial-Reverie-Home-Draft.png",
+    "realm": "G",
+    "screen": "home",
+    "status": "new concept; pending owner selection",
+    "width": 884,
+    "height": 1779,
+    "sha256": "1198d67ba590b6a86b07d7bae1bb5d38326e85d2ed7459cd3a177e51114d851f",
+    "origin": "GPT image generation in this conversation",
+    "production_asset": false
+  },
+  {
+    "file": "references/H-Moonlit-Wisteria-Home-Draft.png",
+    "realm": "H",
+    "screen": "home",
+    "status": "new concept; pending owner selection",
+    "width": 916,
+    "height": 1716,
+    "sha256": "f86e9e76855bb44116acb2d6992accaf8b509287059b8fd407abb55098caf1fa",
+    "origin": "GPT image generation in this conversation",
+    "production_asset": false
+  },
+  {
+    "file": "references/I-Starlight-Library-Home-Draft.png",
+    "realm": "I",
+    "screen": "home",
+    "status": "new concept; pending owner selection",
+    "width": 914,
+    "height": 1721,
+    "sha256": "b5ce135e0195c46c57dde1238ed44affeee11bfddabd90189476838f24c9ed72",
+    "origin": "GPT image generation in this conversation",
+    "production_asset": false
+  }
+]

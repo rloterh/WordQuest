@@ -1,0 +1,43 @@
+# Creative asset and motion prompt library
+
+Use these during authorized production after reading the art bible. Keep the chosen art direction and reference assets attached. Produce drafts, select, inspect, revise and record provenance. Generated images are visual proposals, not functioning UI or automatically production-ready 3D assets. Exact word content and UI text must be rebuilt as live text in the engine.
+
+## C01 — World key art
+
+Create original premium mobile-game concept art for WordQuest: The Living Lexicon, an advanced vocabulary adventure for adults. Show the Amber Archive: a warm architectural library of walnut, amber glass and aged brass, with a broken luminous-ink mechanism at the focal point. A small expressive brass-and-ink lantern companion hovers nearby. Stylized dimensional forms, meticulous material design, restrained atmospheric depth, inviting cinematic lighting, strong silhouette and rich but controlled colour. The image should feel enchanting and intelligent. Reserve a quiet central/lower region for a readable mobile challenge panel. No text, logos, watermarks, copied franchise characters, candy motifs or excessive visual clutter. Generate a portrait composition and a separate landscape environment keyframe with consistent design language. Deliver each as a concept reference with palette and focal hierarchy notes; do not claim mobile performance from a rendered image.
+
+## C02 — Actual gameplay screen reference
+
+Design one polished portrait vocabulary challenge screen at a 390×844 logical reference ratio, using the attached approved Amber Archive direction. Show a small progress header, a restrained dimensional archive scene, a warm ivory reading panel, four generously spaced answer controls and a bottom submit/hint area above the safe margin. Prioritize adult readability, clear hierarchy, tactile materials and thumb reach. Target word: equivocal. Example sentence: 'The witness neither confirmed the meeting nor denied attending.' The intended meaning is ambiguous or noncommittal. Treat all text as layout reference to be typeset accurately in-engine; preserve ample space rather than cramming. Supply default, selected, explanation and large-text composition references separately. Include spacing/type/colour annotations in a companion spec rather than cluttering the visual. Avoid decorative borders around every element and avoid particles over text.
+
+## C03 — Pip turnaround and expressions
+
+Using the approved character reference, develop Pip as an original small floating lantern made from warm aged brass and a contained ink-like light. Its personality is curious, helpful and quietly humorous; readable at phone scale. Produce consistent front/side/back/three-quarter views, scale comparison, material breakdown and eight expression/action poses: idle, inspect, anticipate, delight, thoughtful near-miss, point to clue, carry fragment and settle. Maintain identical proportions and construction across views. Limit tiny surface details that disappear on phones. Design a riggable silhouette with clear movement pivots; avoid unbuildable changing topology. Separate the concept sheet from any claim of a final rig or animation.
+
+## C04 — Blender production asset
+
+Inspect the pinned Blender installation and approved character/prop sheets. Create an editable, sensibly organized source scene with named collections, objects, materials, units and origins. Build a mobile-conscious mesh and simple rig matching the reference. Start with a greybox for silhouette review before detailing. Provide UVs, texture strategy, material slots, LOD proposal, animation actions and deterministic export script where supported. Verify the export in the pinned Unreal build using the established scale/axis/material recipe. Record triangle/texture counts and actual in-engine appearance. Do not add dense geometry where a baked normal or texture suffices. Deliver the .blend, source textures, exports, importer settings and capture of the real imported object; a generated picture is not the deliverable for this task.
+
+## C05 — Motion and interaction implementation
+
+Implement the attached interaction storyboard in the current Unreal project using its existing design tokens and event contracts. Create button compression, tile placement, correct-answer alignment, gentle near-miss return, explanation transition and landmark reveal with the timing ranges in the art bible. Prioritize anticipation, clear causality, restrained overshoot and responsive cancellation. Gameplay/persistence owns the outcome; animation observes it. Handle rapid repeated taps, pause, screen changes and reduced motion. Use the cheapest appropriate engine-native method for each effect, and profile actual CPU/GPU cost. Deliver normal-speed and slow-motion device captures, interruption cases and a concise explanation of any timing deviation. Do not substitute a web animation library for Unreal implementation.
+
+## C06 — Niagara effect
+
+Create a localized luminous-ink fragment trail and a short landmark-restoration burst for the approved Amber Archive scene. Use Niagara only where it adds value over a simple material/UI effect. Provide a restrained colour range, readable direction, short lifetime, bounded particle count, pooling/culling policy, low-tier variant and reduced-motion substitute. Prevent overlap with clue text and avoid large translucent full-screen layers. Verify materials and simulation behavior on the actual mobile renderer. Deliver editable system/material sources, parameter documentation, screen-coverage measurements, peak/average cost captures and cancellation behavior. Do not claim desktop-preview performance as phone performance.
+
+## C07 — Sound identity
+
+Compose or source original commercially usable audio for the approved world: a warm scholarly-adventure motif, quiet archive ambience, tactile tile placement, distinct but subtle correct/near-miss cues, and a brief restoration flourish. Use felt piano, delicate plucked textures, soft mechanical detail and restrained bells as direction, not a requirement to copy any existing soundtrack. Avoid harsh repetitive treble and casino-like celebration. Provide clean loop points, consistent perceived loudness, separate stems where useful, naming/bus metadata and documented rights. In-engine, duck music during pronunciation, prevent overlapping spoken words and support all mute settings. Deliver actual audio files and an implementation audition, not only prose describing sounds.
+
+## C08 — District expansion kit
+
+Extend the approved art system into the Verdant Conservatory and Astral Court. Preserve shared character proportions, UI material vocabulary and icon language while changing architecture, lighting, composition and story objects. Conservatory: jade glass, moss, ivory stone and warm sunlight. Court: indigo, porcelain, silver and restrained starlight. Produce modular kit plans, hero landmarks in unrestored/restored states, layer breakdown, reusable material inventory and mobile budgets. Design transitions and restoration reveals with skip/reduced-motion behavior. Review a phone-scale composite before producing every asset. Avoid merely recolouring the Archive kit or introducing a conflicting art style.
+
+## C09 — Curriculum batch generation
+
+Act as a vocabulary-content drafter working under a human editor. Use the approved 20–30-sense selection and source notes. For each intended sense, create an original plain-English definition, natural collocations, three distinct examples, a non-example, plausible confusables, and six challenge items covering the required skills. Reserve one new-context item for delayed transfer. Use the current schema exactly. Do not copy dictionary prose, invent etymology, label unverified CEFR levels, or claim editorial approval. Explain each distractor's flaw; flag any defensible alternative. Keep all output in DRAFT. Run structural checks, then produce a reviewer queue highlighting semantic uncertainty. Never bulk-publish the output.
+
+## C10 — Store visuals from the real build
+
+Use only the approved release candidate and its actual captures. Create a coherent icon proposal, screenshot sequence and short gameplay trailer showing the central interaction, visual restoration and advanced learning. Keep descriptions truthful: do not label first exposure as mastery or promise examination results. Rebuild promotional typography cleanly rather than trusting generated text. Match current target-store size/format requirements after verifying them. Include rights/provenance, editable source, exports and comparison against the running build. No fabricated reviews, award badges, user counts or chart positions.

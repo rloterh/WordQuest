@@ -1,0 +1,53 @@
+{
+  "status": "proposed prototype defaults; not engine implementation",
+  "schema_version": 1,
+  "default_mode": "surprise",
+  "modes": [
+    "surprise",
+    "fixed",
+    "companion"
+  ],
+  "fresh_visit_background_minutes": 30,
+  "pin_realm_during_mission": true,
+  "shuffle_bag": {
+    "persist": true,
+    "avoid_boundary_repeat": true,
+    "available_verified_realms_only": true
+  },
+  "fallback_realm": "G",
+  "realm_ids": [
+    "G",
+    "H",
+    "I"
+  ],
+  "motion": {
+    "default": "system_preference_else_full",
+    "modes": [
+      "full",
+      "subtle",
+      "reduced",
+      "battery"
+    ],
+    "sparkles_independent": true,
+    "transition_ms": 400
+  },
+  "companions": [
+    {
+      "id": "companion_g",
+      "working_name": "Aster",
+      "preferred_realm": "G"
+    },
+    {
+      "id": "companion_h",
+      "working_name": "Luma",
+      "preferred_realm": "H"
+    },
+    {
+      "id": "companion_i",
+      "working_name": "Quill",
+      "preferred_realm": "I"
+    }
+  ],
+  "learning_modifiers": false,
+  "remote_live_art_generation": false
+}

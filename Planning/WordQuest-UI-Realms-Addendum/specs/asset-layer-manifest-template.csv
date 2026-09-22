@@ -1,0 +1,8 @@
+asset_id,realm,role,source_reference,alpha_required,motion_mask_required,status,source_license,owner,engine_path,review_evidence
+G_sky,G,static_far_background,references/G-Celestial-Reverie-Gameplay.png,false,false,not_prepared,,,,
+G_clouds,G,drifting_clouds,references/G-Celestial-Reverie-Gameplay.png,true,true,not_prepared,,,,
+H_wisteria,H,canopy,references/H-Moonlit-Wisteria-Gameplay.png,true,true,not_prepared,,,,
+H_water,H,water_shimmer,references/H-Moonlit-Wisteria-Gameplay.png,false,true,not_prepared,,,,
+I_crystals,I,masked_glints,references/I-Starlight-Library-Gameplay.png,true,true,not_prepared,,,,
+I_books,I,floating_prop,references/I-Starlight-Library-Gameplay.png,true,true,not_prepared,,,,
+shared_reading_mask,ALL,effects_exclusion,,true,true,not_prepared,,,,

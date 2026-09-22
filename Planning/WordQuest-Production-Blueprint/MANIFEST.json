@@ -1,0 +1,288 @@
+{
+  "title": "WordQuest Production Blueprint",
+  "version": "1.0",
+  "date": "2026-09-20",
+  "implementation_status": "planning_only",
+  "files": [
+    {
+      "path": "PACKAGE-VALIDATION.md",
+      "bytes": 1830,
+      "sha256": "ad8fcdbf5ed84de794de9e5199d741d76c452707cc40450ea9fc38b6f0fca9ac"
+    },
+    {
+      "path": "README.md",
+      "bytes": 6175,
+      "sha256": "a8d316a2e04eb1a324d4c8c60037ea8cfc462764b25df2e572288bf638187165"
+    },
+    {
+      "path": "docs/00-Executive-Direction.md",
+      "bytes": 5301,
+      "sha256": "c8f0cbcb703954690815a0e9c2a1453e839db4d2b53f3b31539bd3ad21d20ecf"
+    },
+    {
+      "path": "docs/01-Product-Requirements.md",
+      "bytes": 6715,
+      "sha256": "6b299db41cf2307072de2c79bc88f18734542d63616ddc46eb268b3f470b1e34"
+    },
+    {
+      "path": "docs/02-Game-Design.md",
+      "bytes": 7798,
+      "sha256": "b6bcc7e1881073d9b42b34f9980b5eca6428be7eaf987b77c1eff2899a131e98"
+    },
+    {
+      "path": "docs/03-Curriculum-and-Mastery.md",
+      "bytes": 7258,
+      "sha256": "31ea298f4508cb378150cbace86a703a71a3bd128e22c10e5966427c45c19617"
+    },
+    {
+      "path": "docs/04-Narrative-and-Level-Design.md",
+      "bytes": 5767,
+      "sha256": "da2a011fc217f6306f0c19d6bcb0b6e1024186d7812d3413e7bc5cb2e6ab01bf"
+    },
+    {
+      "path": "docs/05-UX-and-Accessibility.md",
+      "bytes": 5995,
+      "sha256": "5202b7d10ad2493b77d590a227cd7bedb07277d67fb1ede97cd7df287b3959ef"
+    },
+    {
+      "path": "docs/06-Art-Motion-and-Sound.md",
+      "bytes": 7563,
+      "sha256": "ef3bcc774aee2c51ecc31764fb7edfd17d348ae68c41176c7783d91c7beb69a0"
+    },
+    {
+      "path": "docs/07-Engine-and-Tools.md",
+      "bytes": 6251,
+      "sha256": "b60c2670bd1d50041ba9c25b1ae8795f166ddf5855dc6f1ca21d6b6d7738b336"
+    },
+    {
+      "path": "docs/08-Technical-Architecture.md",
+      "bytes": 7976,
+      "sha256": "54a328de7ad4ec8a202d71fce8a5d13f09e6f9a0687bddc6a509f274e566ae94"
+    },
+    {
+      "path": "docs/09-Data-and-Content-Pipeline.md",
+      "bytes": 5390,
+      "sha256": "3ec0036f1081bed9bdbe0e3aa044c77ba0a1ca1d856e175a211036da15372c90"
+    },
+    {
+      "path": "docs/10-AI-Production-Workflow.md",
+      "bytes": 6130,
+      "sha256": "49f9fd278f980594d87b3a7e9ec63f90126d07fd8f45649b829779833977df59"
+    },
+    {
+      "path": "docs/11-QA-Performance-and-Research.md",
+      "bytes": 6501,
+      "sha256": "65d0264c7febab1d4487ec735177892314c124a8beb1fb9293323eb9e016b025"
+    },
+    {
+      "path": "docs/12-Production-Roadmap.md",
+      "bytes": 5641,
+      "sha256": "05324d2ce84bd4ca5532eab79c080439f37db548474cf5aaf40ef1265693bd5c"
+    },
+    {
+      "path": "docs/13-Business-and-LiveOps.md",
+      "bytes": 4644,
+      "sha256": "c398dffcc3c5b991db84a9695dafc63a60f9c219590997e55e7d078eec36bc51"
+    },
+    {
+      "path": "docs/14-Release-and-Operations.md",
+      "bytes": 5485,
+      "sha256": "f550905aaad9ed5781bc2970797fd82012ccddd85a6c4248404923fb5cd0be2c"
+    },
+    {
+      "path": "docs/15-Decisions-and-Risks.md",
+      "bytes": 4416,
+      "sha256": "7fd8c661e9ea22fd465d4a9e771c9ae2e3791899f8e60d36f2e618546d43fca6"
+    },
+    {
+      "path": "docs/16-Source-Register.md",
+      "bytes": 4059,
+      "sha256": "dcba23d9e942a5b39ec70a7fae093f775ebcbc462d7d1764810a057970e2b595"
+    },
+    {
+      "path": "docs/17-Requirements-Traceability.md",
+      "bytes": 5414,
+      "sha256": "d6cffcc479f5e79ab9793e0ffc8ac82db3b5ac6f60d3f146c1567e0532692145"
+    },
+    {
+      "path": "docs/18-First-Ten-Working-Days.md",
+      "bytes": 1761,
+      "sha256": "345cb5ce21ae7e4108c34cca4f0fa32f799844aa0265a71e7a9ee79832113ae4"
+    },
+    {
+      "path": "examples/README.md",
+      "bytes": 617,
+      "sha256": "ca5d6017061d24ae8e75ec1e2ced9b4a6c67eabd22865a4aacaea14f89c78f33"
+    },
+    {
+      "path": "examples/draft-content.json",
+      "bytes": 6893,
+      "sha256": "d79d8923fa28d57acc7f754696d10830d5e884c34c4bafdaebbd0dcda569973c"
+    },
+    {
+      "path": "examples/planning-example.schema.json",
+      "bytes": 3225,
+      "sha256": "8660e26bb694e043713dbc2791ca4a6290b7554481b59e67ac4a359a55b43cb7"
+    },
+    {
+      "path": "prompts/00-Execution-Index.md",
+      "bytes": 4397,
+      "sha256": "0ac217c38dee61038ee0afb6f2e5ee3930a3655e41129f7edec6af17b43f9a2a"
+    },
+    {
+      "path": "prompts/Creative-Asset-Prompts.md",
+      "bytes": 8713,
+      "sha256": "9bcb440004380d16654987671ad7ecdd9973b2c24cedb5d6993246aabc979e14"
+    },
+    {
+      "path": "prompts/P00-Environment-and-Evidence.md",
+      "bytes": 2922,
+      "sha256": "49edf4fe7b9f076f04c3868e9065463929e9f2f7192ba8634281e7a200a0d904"
+    },
+    {
+      "path": "prompts/P01-Mobile-Feasibility.md",
+      "bytes": 2924,
+      "sha256": "e85dee5ef7731bc402714c112adb0558b36ebb7711e98492a5ce120210fba4d6"
+    },
+    {
+      "path": "prompts/P02-Project-Foundation.md",
+      "bytes": 2606,
+      "sha256": "927420d4c6df20d30342f4554a8aa6e5e5b3da5ce6165face2e99b45960e57ae"
+    },
+    {
+      "path": "prompts/P03-Content-Schemas-and-Validation.md",
+      "bytes": 2690,
+      "sha256": "472e9c84b4964d65b1b4aca1e210c8877d09c8fb8e7843d4daf9be4a7ae68265"
+    },
+    {
+      "path": "prompts/P04-Core-Challenge-Modes.md",
+      "bytes": 2747,
+      "sha256": "5f3e8d152a95cdec9a7986b9e7c62788d0bdb529db6a5c34c101885b0391e88f"
+    },
+    {
+      "path": "prompts/P05-Learning-and-Durable-Saves.md",
+      "bytes": 2609,
+      "sha256": "f3e7276c83c379c45a3e9869c8fb372ff599110867680149bd5ff8ffe73a2bf5"
+    },
+    {
+      "path": "prompts/P06-UX-and-Design-System.md",
+      "bytes": 2560,
+      "sha256": "c03ef39b9c5059101068ebb3ace4b48212872e08c0ba1a8e07349f48ea16bcc0"
+    },
+    {
+      "path": "prompts/P07-Hero-Art-and-Motion-Pipeline.md",
+      "bytes": 2583,
+      "sha256": "a6b18ebcf3b711addbbde507bd3c0f0aa5d86c83fa00e04065e5d27f5acc41a8"
+    },
+    {
+      "path": "prompts/P08-Narrative-and-Slice-Campaign.md",
+      "bytes": 2598,
+      "sha256": "d49b6c619c0da01c0b9625fd00ce9a9a1aea120b834bc365042f87e4b54e00cb"
+    },
+    {
+      "path": "prompts/P09-Accessibility-and-Device-Polish.md",
+      "bytes": 2411,
+      "sha256": "f053f74c538bb3f88289420a6ed9ceceb0e7c4eafeed641d8c0bbd2ab5783353"
+    },
+    {
+      "path": "prompts/P10-Slice-Research-and-Go-No-Go.md",
+      "bytes": 2595,
+      "sha256": "99007a63234fe508fe9610f19ae8c95d916d4c1e3ccb49f240f94fcaa10a2170"
+    },
+    {
+      "path": "prompts/P11-Backend-and-Cloud-Sync.md",
+      "bytes": 2534,
+      "sha256": "f7cc3dfff842e8b013fb88060843ddd0be5f539981683f5d7322875e243c2c98"
+    },
+    {
+      "path": "prompts/P12-Purchases-and-Entitlements.md",
+      "bytes": 2534,
+      "sha256": "d7b5276554627c84367f1bc4601990de9a69a09b63daaa450ca19bf85b4d39cf"
+    },
+    {
+      "path": "prompts/P13-Editorial-Publishing-Toolchain.md",
+      "bytes": 2486,
+      "sha256": "e69ee09b1b0d67d17f9b63b6d1c29705cb985a27db15d8c1284a0ef22f05f0db"
+    },
+    {
+      "path": "prompts/P14-Analytics-and-Operational-Controls.md",
+      "bytes": 2521,
+      "sha256": "5e7ff4c2814f5325ab1290dd777a1440795bd1a93977d770049e5da38da0c991"
+    },
+    {
+      "path": "prompts/P15-Full-Campaign-and-Content-Production.md",
+      "bytes": 2623,
+      "sha256": "00ed144888ae4f843fa1df363ceb451b254aec84b722e93e86ef992f53ff0b42"
+    },
+    {
+      "path": "prompts/P16-Optional-AI-Lab.md",
+      "bytes": 2457,
+      "sha256": "bf58cb3b787c6f75f08a6dd41a2ec6379d9d9f79be41c5c5db314334d31eabc7"
+    },
+    {
+      "path": "prompts/P17-Beta-Qualification.md",
+      "bytes": 2483,
+      "sha256": "4d34a23f821c2c092bf3642d42199fb8a0857eea37905bca7a570d6f2f976c23"
+    },
+    {
+      "path": "prompts/P18-Store-and-Policy-Preparation.md",
+      "bytes": 2510,
+      "sha256": "2973739eccf56fcd80fa6a1f80e0e03d742e4598fee34e75f910698446fb4e1d"
+    },
+    {
+      "path": "prompts/P19-Release-Rehearsal.md",
+      "bytes": 2381,
+      "sha256": "8c3d47adb7c6b250d61e93f855a667ab5b6d3016879379a7916f0aa0c4722f4e"
+    },
+    {
+      "path": "prompts/P20-Independent-Release-Review.md",
+      "bytes": 2477,
+      "sha256": "4221f18585477de9fe3a802d6925b40d48d98c75d2f448eedbcdaac1a81d5280"
+    },
+    {
+      "path": "prompts/P21-Authorized-Launch-and-First-Month.md",
+      "bytes": 2535,
+      "sha256": "537526084ae6185b0c9ac5125328dc9a39c60d81e9d6e37f8ee3d058624478f2"
+    },
+    {
+      "path": "prompts/Review-and-Recovery-Prompts.md",
+      "bytes": 4913,
+      "sha256": "33e53271fc33cc84ffca52f60cee7776e27ba5057a0ddcf425b955974fdb1c94"
+    },
+    {
+      "path": "templates/AGENTS.template.md",
+      "bytes": 1661,
+      "sha256": "67411278eb67451770ed785ac68a5ff40626765ae40f61af5397ad09a80e283e"
+    },
+    {
+      "path": "templates/ASSET-MANIFEST.md",
+      "bytes": 651,
+      "sha256": "45d735970cbd93dc7c6af96b083501ebfed746b0eb5eb410cfc62da542b1dd88"
+    },
+    {
+      "path": "templates/DECISION-RECORD.md",
+      "bytes": 265,
+      "sha256": "3de4b0821a755a0711a89d62386b365b481ba9d7b17a21ada3c4d1c4ede43037"
+    },
+    {
+      "path": "templates/EDITORIAL-REVIEW.md",
+      "bytes": 825,
+      "sha256": "80a704e62d96310d8eec5c7a6b3b6f649704094182612187a3f89132f6fcb62f"
+    },
+    {
+      "path": "templates/EVIDENCE-REPORT.md",
+      "bytes": 840,
+      "sha256": "4137f4ce0cd6018d5414d5fa986c4176ec043e81aaaed955605b91a837adc2c9"
+    },
+    {
+      "path": "templates/PROJECT-STATUS.md",
+      "bytes": 872,
+      "sha256": "be0d507d368618a100f15f336e5dcf9b109d7de6e4f136a60b0cdd3b76efa9d2"
+    },
+    {
+      "path": "templates/RELEASE-CHECKLIST.md",
+      "bytes": 1191,
+      "sha256": "8980e41f55411ab9598348d3bbe4fe0fd669f37625020696d1da100536b7881f"
+    }
+  ]
+}

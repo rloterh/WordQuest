@@ -1,0 +1,249 @@
+{
+  "schema_version": 1,
+  "release_ready": false,
+  "senses": [
+    {
+      "id": "sense.equivocal.adj.ambiguous.v1",
+      "lemma": "equivocal",
+      "part_of_speech": "adjective",
+      "definition": "Open to more than one interpretation; not giving a clear or definite position.",
+      "register": "neutral/formal",
+      "examples": [
+        "The witness gave an equivocal reply, neither confirming nor denying the meeting.",
+        "The study produced equivocal results that supported no clear conclusion.",
+        "Her equivocal response left the committee unsure of her position."
+      ],
+      "collocations": [
+        "equivocal response",
+        "equivocal evidence"
+      ],
+      "confusables": [
+        "ambivalent",
+        "unequivocal"
+      ],
+      "category": "reasoning",
+      "difficulty_band": "advanced-candidate",
+      "pronunciation_refs": [],
+      "provenance": {
+        "origin": "Original illustrative draft for this planning package",
+        "reviewer": null,
+        "rights_status": "pending-review"
+      },
+      "status": "draft",
+      "revision": 1
+    },
+    {
+      "id": "sense.laconic.adj.concise.v1",
+      "lemma": "laconic",
+      "part_of_speech": "adjective",
+      "definition": "Using very few words.",
+      "register": "formal/literary",
+      "examples": [
+        "His laconic reply was a single word: no.",
+        "The usually talkative guide became laconic when the subject arose.",
+        "Her laconic note conveyed the decision in one short sentence."
+      ],
+      "collocations": [
+        "laconic reply",
+        "laconic style"
+      ],
+      "confusables": [
+        "reticent",
+        "terse"
+      ],
+      "category": "expression",
+      "difficulty_band": "advanced-candidate",
+      "pronunciation_refs": [],
+      "provenance": {
+        "origin": "Original illustrative draft for this planning package",
+        "reviewer": null,
+        "rights_status": "pending-review"
+      },
+      "status": "draft",
+      "revision": 1
+    },
+    {
+      "id": "sense.corroborate.verb.support.v1",
+      "lemma": "corroborate",
+      "part_of_speech": "verb",
+      "definition": "To support a statement or account by providing additional evidence.",
+      "register": "formal",
+      "examples": [
+        "The receipt corroborated her account of the purchase.",
+        "A second witness corroborated the description given by the driver.",
+        "The records corroborate the claim that the office was closed."
+      ],
+      "collocations": [
+        "corroborate an account",
+        "corroborate a claim"
+      ],
+      "confusables": [
+        "refute",
+        "substantiate"
+      ],
+      "category": "reasoning",
+      "difficulty_band": "advanced-candidate",
+      "pronunciation_refs": [],
+      "provenance": {
+        "origin": "Original illustrative draft for this planning package",
+        "reviewer": null,
+        "rights_status": "pending-review"
+      },
+      "status": "draft",
+      "revision": 1
+    }
+  ],
+  "challenges": [
+    {
+      "id": "item.equivocal.context.001",
+      "sense_ids": [
+        "sense.equivocal.adj.ambiguous.v1"
+      ],
+      "mode": "context",
+      "skill": "recognition",
+      "prompt": "The witness neither confirmed the meeting nor denied attending. Her reply was equivocal. What does equivocal mean here?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Ambiguous or noncommittal"
+        },
+        {
+          "id": "b",
+          "text": "Openly hostile"
+        },
+        {
+          "id": "c",
+          "text": "Extremely detailed"
+        },
+        {
+          "id": "d",
+          "text": "Expressing certainty"
+        }
+      ],
+      "answer_rule": {
+        "kind": "option_ids",
+        "accepted": [
+          "a"
+        ]
+      },
+      "rationale": "The reply does not give a clear yes or no.",
+      "hint_steps": [
+        "Look at what the witness does not confirm or deny."
+      ],
+      "difficulty": "supported",
+      "held_out_transfer": false,
+      "status": "draft",
+      "reviewer": null,
+      "revision": 1
+    },
+    {
+      "id": "item.laconic.forge.001",
+      "sense_ids": [
+        "sense.laconic.adj.concise.v1"
+      ],
+      "mode": "forge",
+      "skill": "recall",
+      "prompt": "Build the adjective meaning using very few words.",
+      "tiles": [
+        "l",
+        "a",
+        "c",
+        "o",
+        "n",
+        "i",
+        "c"
+      ],
+      "answer_rule": {
+        "kind": "exact_words",
+        "accepted": [
+          "laconic"
+        ]
+      },
+      "rationale": "A laconic response uses very few words.",
+      "hint_steps": [
+        "It begins with l."
+      ],
+      "difficulty": "supported",
+      "held_out_transfer": false,
+      "status": "draft",
+      "reviewer": null,
+      "revision": 1
+    },
+    {
+      "id": "item.corroborate.precision.001",
+      "sense_ids": [
+        "sense.corroborate.verb.support.v1"
+      ],
+      "mode": "precision",
+      "skill": "precision",
+      "prompt": "A second independent witness gives an account consistent with the first. Which verb describes what the new account does to the first?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Corroborates"
+        },
+        {
+          "id": "b",
+          "text": "Refutes"
+        },
+        {
+          "id": "c",
+          "text": "Obscures"
+        }
+      ],
+      "answer_rule": {
+        "kind": "option_ids",
+        "accepted": [
+          "a"
+        ]
+      },
+      "rationale": "Consistent additional evidence supports the first account.",
+      "hint_steps": [
+        "Decide whether the second account supports or contradicts the first."
+      ],
+      "difficulty": "supported",
+      "held_out_transfer": false,
+      "status": "draft",
+      "reviewer": null,
+      "revision": 1
+    },
+    {
+      "id": "item.corroborate.repair.001",
+      "sense_ids": [
+        "sense.corroborate.verb.support.v1"
+      ],
+      "mode": "repair",
+      "skill": "usage",
+      "prompt": "Both witnesses described the same events. Repair this sentence: The second account refuted the first.",
+      "options": [
+        {
+          "id": "a",
+          "text": "Replace refuted with corroborated"
+        },
+        {
+          "id": "b",
+          "text": "Replace refuted with contradicted"
+        },
+        {
+          "id": "c",
+          "text": "Keep the sentence unchanged"
+        }
+      ],
+      "answer_rule": {
+        "kind": "option_ids",
+        "accepted": [
+          "a"
+        ]
+      },
+      "rationale": "The accounts agree, so the second supports rather than disproves the first.",
+      "hint_steps": [
+        "The opening sentence says the accounts agree."
+      ],
+      "difficulty": "supported",
+      "held_out_transfer": false,
+      "status": "draft",
+      "reviewer": null,
+      "revision": 1
+    }
+  ]
+}
