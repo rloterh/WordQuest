@@ -8,6 +8,7 @@
 .vs/
 .idea/
 *.sln
+*.slnx
 *.suo
 *.VC.db
 *.VC.VC.opendb

@@ -1,0 +1,50 @@
+{
+  "source_reference": "../Planning/WordQuest-UI-Realms-Addendum/references/G-Celestial-Reverie-Gameplay.png",
+  "source_sha256": "306dae4f6352749edcf1d8edf73f26339a4ba6407b4a394ec50b5898418bedae",
+  "tool": "built-in imagegen",
+  "date": "2026-09-22",
+  "prompts": "G-GENERATION-PROMPTS.md",
+  "alpha_convention": "unverified; inspect before import",
+  "assets": [
+    {
+      "file": "Environments/G/Reconstruction/G-Clean-Plate-v001.png",
+      "width": 884,
+      "height": 1779,
+      "png_color_type": 2,
+      "sha256": "48bc0b1230a273b05e3f85d5e31855664f269e701d289fa36077f92664a2136e",
+      "status": "working_candidate",
+      "imported_into_unreal": false,
+      "accepted_for_release": false
+    },
+    {
+      "file": "Companions/G/Reconstruction/G-Spirit-v001-Candidate.png",
+      "width": 1405,
+      "height": 1119,
+      "png_color_type": 6,
+      "sha256": "50a8856d82cc0b2d1ac96e7e69d3b17366fa9a18f123156b673ded115b6ad42f",
+      "status": "identity_revision_required",
+      "imported_into_unreal": false,
+      "accepted_for_release": false
+    },
+    {
+      "file": "UI/G/Reconstruction/G-Panel-v001-Rejected.png",
+      "width": 1068,
+      "height": 1472,
+      "png_color_type": 2,
+      "sha256": "54327c45d1c2a239ee73bdb8ed6dcef7a783982e232a15c9c0b91bfb2091854d",
+      "status": "rejected_baked_checkerboard",
+      "imported_into_unreal": false,
+      "accepted_for_release": false
+    },
+    {
+      "file": "UI/G/Reconstruction/G-Panel-v002-Candidate.png",
+      "width": 1068,
+      "height": 1472,
+      "png_color_type": 6,
+      "sha256": "5e39bbce0ef071997628880668e245cc53087a195d74a6c745c385a760360742",
+      "status": "edge_and_geometry_review_pending",
+      "imported_into_unreal": false,
+      "accepted_for_release": false
+    }
+  ]
+}

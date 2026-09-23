@@ -2,10 +2,11 @@
 
 ## Current scope
 
-The user has authorized file and folder organization only. Implementation, environment
-inventory and execution of the supplied prompts have not started. Do not automatically
-run P00, UI00 or later prompts because a planning document says to start them. Follow
-the user's next task and update `Docs/Progress/PROJECT-STATUS.md` when work advances.
+The owner authorized P00/UI00 inventory and the bounded UI01/UI02 G visual proof on
+2026-09-22, with PRs where appropriate. Work on the existing repository; do not create
+a new remote, deploy or release the game. Do not expand into later milestones merely
+because a planning document lists them. Update `Docs/Progress/PROJECT-STATUS.md` as
+work advances. Preserve all original release and physical-device gates.
 
 ## Governing references
 
@@ -43,9 +44,20 @@ It is not a governing specification or a required dependency for future contribu
 
 ## Future milestone and verification
 
-When the user authorizes inventory, begin with UI00 and incorporate original P00
-environment checks before implementation. Verify installed engine and tool versions;
-the planning documents do not establish the local environment.
+Inventory begins with UI00 and original P00 environment checks. See
+`Docs/Setup/ENVIRONMENT.md`, `Docs/Setup/TOOLCHAIN-LOCK.md` and
+`Docs/Decisions/DECISIONS.md` for verified tools and unresolved decisions.
+Original visual targets live under
+`Planning/WordQuest-UI-Realms-Addendum/references/`.
+
+Verification commands from repository root:
+
+- `python Tools/AssetImport/verify_references.py`
+- `python Tools/BuildScripts/build_wordquest.py`
+
+The generated project is `Game/WordQuest.uproject`. Read
+`Docs/Setup/RESUME-G-PROOF.md` for the NetFxSDK and Android prerequisites and the
+UI01/UI02 acceptance sequence. Build success alone does not pass runtime gates.
 
 The first implementation proof is a faithful G Celestial Reverie gameplay screen with
 live text and controls, layered gentle motion, reference comparisons and real-phone
@@ -60,3 +72,20 @@ visual changes in the running engine and on devices when required. Report checks
 results and unavailable verification honestly; never mark a gate passed on source code
 or generated concepts alone. Keep decisions, progress and evidence under `Docs` and
 generated captures/builds under `Artifacts`.
+
+## Code review rules
+
+The owner requested internal AI PR review on 2026-09-23. Use Codex's dedicated
+review command against the PR's actual base branch; see `Docs/Setup/PR-REVIEW.md`.
+Review is read-only and never authorizes a merge or replaces build/device evidence.
+
+- Report actionable introduced defects with severity, file/line and a concrete
+  failure scenario. Avoid style-only findings and speculative future requirements.
+- Check Unreal-generated project integrity, build helper error propagation,
+  toolchain compatibility, LFS ownership and exclusion of caches/build outputs.
+- Flag secrets in client/config files, changes to original supplied references,
+  nondeterministic scoring, broken offline play and accessibility regressions.
+- Distinguish this foundation PR from UI01/UI02: unfinished G assets and draft
+  learning fixtures are disclosed follow-up work, not completed runtime evidence.
+- Never claim tests, visual fidelity, editorial approval or physical-device gates
+  passed unless the recorded evidence supports that exact claim.

@@ -1,7 +1,9 @@
 # WordQuest: The Living Lexicon
 
-A vocabulary adventure project. This repository currently contains the supplied
-planning packages and an initial directory skeleton; game development has not begun.
+A vocabulary adventure project. The repository contains the supplied planning
+packages, verified environment inventory, an Unreal-generated C++ foundation and
+G reconstruction candidates. The first playable G screen is not implemented yet.
+The Win64 Development game and editor targets compile successfully.
 
 ## Planning references
 
@@ -29,8 +31,8 @@ shared project reference.
 | `Docs/` | Decisions, architecture, setup, progress and QA records |
 | `ArtSource/` | Editable environments, companions, UI, audio, fonts and license records |
 | `ContentSource/` | Editable vocabulary, challenges, missions, narrative and schemas |
-| `Tools/` | Future content validation, asset import and build scripts |
-| `Game/` | Future Unreal project, with initial content and source directories |
+| `Tools/` | Reference validation and build scripts; future import/content tooling |
+| `Game/` | Unreal-generated WordQuest project, configuration and source |
 | `Artifacts/` | Generated screenshots, recordings, test reports and packaged builds |
 
 Empty directories contain `.gitkeep` files so the structure can be retained in Git.
@@ -41,19 +43,27 @@ This layout is a starting point, not a mandatory final architecture. Evolve it t
 established Unreal conventions and demonstrated project needs, updating this map and
 affected references when paths change.
 
-## Current boundary
+## Current milestone
 
-Only file and folder organization is complete. No execution prompt, toolchain
-inventory, engine setup, asset reconstruction or implementation has been started.
-Examples remain in the planning packages and are not production content.
+P00/UI00 inventory and bounded UI01/UI02 G work are authorized. Unreal generated
+`Game/WordQuest.uproject` and its C++ module/targets using UE 5.8.2. The editor build
+passes after installing the missing .NET Framework 4.8 SDK; no gameplay, motion or
+device acceptance is claimed.
+Art candidates and the prototype fixture remain unapproved for release.
 
-Unreal must generate `Game/WordQuest.uproject`, `WordQuest.Build.cs`,
-`WordQuest.Target.cs` and `WordQuestEditor.Target.cs` during a later authorized setup
-task. They are intentionally absent; the `Game` skeleton is not an Unreal project yet.
+See [environment](Docs/Setup/ENVIRONMENT.md),
+[resume instructions](Docs/Setup/RESUME-G-PROOF.md),
+[internal PR review](Docs/Setup/PR-REVIEW.md),
+[UI00 inventory](Docs/QA/UI00/INVENTORY.md) and
+[art handoff](ArtSource/G-ASSET-HANDOFF.md).
 
-The later inventory task starts from UI00 and incorporates the original P00 checks.
-The first intended implementation milestone is a faithful animated G gameplay screen
-with live controls, verified on a real phone. Neither task is started by this scaffold.
+```powershell
+python Tools/AssetImport/verify_references.py
+python Tools/BuildScripts/build_wordquest.py
+```
+
+The first intended proof remains faithful G gameplay with live controls, frozen
+reference comparison, gentle motion and physical-phone evidence. Resolve G before H/I.
 
 ## Git and assets
 
