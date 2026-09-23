@@ -66,5 +66,11 @@ On relaunch Unreal normalized the hardware-targeting enum strings to `Mobile` an
 `Scalable`, adding matching `Applied*` values. These engine-written changes are
 retained. This does not establish mobile performance or SDK compatibility.
 
+The standalone Win64 Development game target was rebuilt after the plugin/config
+changes: `python Tools/BuildScripts/build_wordquest.py --target Game`, exit 0,
+220.94 seconds (link and metadata actions). Log:
+`Artifacts/Logs/Build/WordQuest-20260923-040124.log`. This verifies compilation/link,
+not a cooked package or standalone gameplay launch.
+
 No G gameplay, packaged game, Android build, phone acceptance or UI01/UI02 gate is
 claimed. The generated template still needs its documented mobile-renderer setup.
