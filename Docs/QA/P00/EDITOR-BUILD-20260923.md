@@ -39,9 +39,24 @@ Command: `python Tools/BuildScripts/build_wordquest.py` from repository root.
 
 Launched the verified engine executable with the repository's
 `Game/WordQuest.uproject`, recording a dedicated log at
-`Artifacts/Logs/Runtime/Editor-20260923.log`. Startup verification is in progress
-while the engine compiles its initial shaders; a successful build alone does not
-establish an editor-open or runtime pass.
+`Artifacts/Logs/Runtime/Editor-20260923.log`. The compiled `WordQuest` DLL loaded
+at 02:32:39 UTC, engine initialization completed, and map checking reported
+**0 errors and 0 warnings**. Initial startup took 1156.66 seconds while compiling
+the first shader cache. The running editor was visually inspected with its
+template world, normal toolbar and no blocking dialog.
+
+Captured evidence: `Artifacts/Captures/P00/WordQuest-Editor-20260923.png` (ignored).
+
+First startup expanded the generated renderer/map defaults in `DefaultEngine.ini`;
+those settings are retained. It also generated Android File Server settings with
+a development token. The unused `AndroidFileServer` plugin is now explicitly
+disabled in the project descriptor and its generated config section removed before
+commit. Engine source confirms `PostInitProperties` otherwise writes a new token
+to default config. No token is committed and no firewall setting was changed.
+
+After this fix, the editor build passed again (18.85 seconds, exit 0), with log
+`Artifacts/Logs/Build/WordQuestEditor-20260923-035659.log`. A fresh editor startup
+is being verified separately in `Artifacts/Logs/Runtime/Editor-20260923-Verified.log`.
 
 No G gameplay, packaged game, Android build, phone acceptance or UI01/UI02 gate is
 claimed. The generated template still needs its documented mobile-renderer setup.

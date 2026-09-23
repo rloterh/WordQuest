@@ -29,6 +29,12 @@ Owner authorized P00/UI00 inventory, UI01/UI02 G proof and appropriate PRs on
   7 actions, 189.25 seconds, exit 0. No engine dependency checks were bypassed.
 - Added repository-specific internal PR review rules and a local Codex workflow.
   Initial dedicated review reported no actionable introduced defects.
+- The real editor loaded the compiled WordQuest module and template world;
+  map checking reported zero errors/warnings. Editor-open evidence is recorded in
+  `Docs/QA/P00/EDITOR-BUILD-20260923.md`. Initial shader compilation took about
+  19 minutes. This is a foundation smoke check, not a G gameplay acceptance test.
+- Disabled the unused Android File Server plugin and removed its automatically
+  generated token/settings before commit. The editor build passed again.
 
 ## Blocking evidence
 
@@ -48,7 +54,7 @@ change or complete removal of UBA internals is claimed.
 
 P00/UI00 inventory is recorded with missing resources. P01 mobile feasibility,
 UI01 static fidelity, UI02 motion and physical-device acceptance are **not passed**.
-No G gameplay screen, interaction, motion, runtime capture, package or device test
+No G gameplay screen, interaction, motion, G runtime capture, package or device test
 has been implemented/executed. Generated images are working art only.
 
 ## Resume

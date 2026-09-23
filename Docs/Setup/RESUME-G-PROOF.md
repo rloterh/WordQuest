@@ -3,7 +3,7 @@
 ## Editor prerequisite resolved
 
 The **.NET Framework 4.8 SDK** and targeting pack were installed on 2026-09-23.
-The real editor build now passes. Other machines need those Individual components
+The real editor build passes and the project opens in Unreal. Other machines need those Individual components
 in Visual Studio Installer / Build Tools 2022; the bundled .NET 10 SDK does not
 replace them. Do not edit SwarmInterface to bypass its dependency check. Handle
 Windows security dialogs directly; automation has not granted inbound network access.
@@ -28,6 +28,10 @@ Inspect generated renderer settings before the first scene: the New Project UI
 recorded Mobile/Scalable but the template still contains ray-tracing/Lumen settings.
 Apply and verify the mobile rendering choices in the actual editor; this template
 configuration is not a performance qualification.
+
+Android File Server is explicitly disabled: its first-run defaults wrote a development
+token into shared config. Use ordinary adb tooling for future device work unless
+there is a documented need to re-enable that plugin with local credential handling.
 
 ## UI01 then UI02
 
