@@ -72,3 +72,20 @@ visual changes in the running engine and on devices when required. Report checks
 results and unavailable verification honestly; never mark a gate passed on source code
 or generated concepts alone. Keep decisions, progress and evidence under `Docs` and
 generated captures/builds under `Artifacts`.
+
+## Code review rules
+
+The owner requested internal AI PR review on 2026-09-23. Use Codex's dedicated
+review command against the PR's actual base branch; see `Docs/Setup/PR-REVIEW.md`.
+Review is read-only and never authorizes a merge or replaces build/device evidence.
+
+- Report actionable introduced defects with severity, file/line and a concrete
+  failure scenario. Avoid style-only findings and speculative future requirements.
+- Check Unreal-generated project integrity, build helper error propagation,
+  toolchain compatibility, LFS ownership and exclusion of caches/build outputs.
+- Flag secrets in client/config files, changes to original supplied references,
+  nondeterministic scoring, broken offline play and accessibility regressions.
+- Distinguish this foundation PR from UI01/UI02: unfinished G assets and draft
+  learning fixtures are disclosed follow-up work, not completed runtime evidence.
+- Never claim tests, visual fidelity, editorial approval or physical-device gates
+  passed unless the recorded evidence supports that exact claim.

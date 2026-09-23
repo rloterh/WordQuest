@@ -2,8 +2,8 @@
 
 A vocabulary adventure project. The repository contains the supplied planning
 packages, verified environment inventory, an Unreal-generated C++ foundation and
-G reconstruction candidates. The first playable G screen is not implemented yet;
-the editor build is blocked by the missing .NET Framework SDK.
+G reconstruction candidates. The first playable G screen is not implemented yet.
+The Win64 Development game and editor targets compile successfully.
 
 ## Planning references
 
@@ -47,11 +47,13 @@ affected references when paths change.
 
 P00/UI00 inventory and bounded UI01/UI02 G work are authorized. Unreal generated
 `Game/WordQuest.uproject` and its C++ module/targets using UE 5.8.2. The editor build
-failed because NetFxSDK is missing; no gameplay, motion or device acceptance is claimed.
+passes after installing the missing .NET Framework 4.8 SDK; no gameplay, motion or
+device acceptance is claimed.
 Art candidates and the prototype fixture remain unapproved for release.
 
 See [environment](Docs/Setup/ENVIRONMENT.md),
 [resume instructions](Docs/Setup/RESUME-G-PROOF.md),
+[internal PR review](Docs/Setup/PR-REVIEW.md),
 [UI00 inventory](Docs/QA/UI00/INVENTORY.md) and
 [art handoff](ArtSource/G-ASSET-HANDOFF.md).
 

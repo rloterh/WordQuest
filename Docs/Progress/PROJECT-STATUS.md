@@ -24,17 +24,19 @@ Owner authorized P00/UI00 inventory, UI01/UI02 G proof and appropriate PRs on
   MSVC 14.44.35222 / Windows SDK 10.0.26100.0. Output:
   `Game/Binaries/Win64/WordQuest.exe` (ignored). This is the blank generated module,
   not a playable G screen, cooked package or runtime test.
+- On 2026-09-23, installed .NET Framework 4.8 SDK and targeting pack with VS
+  Installer (exit 0). The real Win64 Development editor build then passed:
+  7 actions, 189.25 seconds, exit 0. No engine dependency checks were bypassed.
+- Added repository-specific internal PR review rules and a local Codex workflow.
+  Initial dedicated review reported no actionable introduced defects.
 
 ## Blocking evidence
 
-1. Actual Unreal editor compile failed: SwarmInterface cannot find NetFxSDK.
-   Add .NET Framework 4.8 SDK and targeting pack via Visual Studio Installer.
-   Installed .NET 10 does not replace this dependency.
-2. Android engine binaries/target receipt are absent. Turnkey accepted Win64, but
+1. Android engine binaries/target receipt are absent. Turnkey accepted Win64, but
    Android-only verification found no platform to check despite returning exit 0.
    This is not an Android pass. SDK/JDK compatibility remains unresolved.
-3. No adb-connected phone; Mac/iPhone access and target device models unknown.
-4. Static art fidelity, font identification/licensing and fixture approval remain open.
+2. No adb-connected phone; Mac/iPhone access and target device models unknown.
+3. Static art fidelity, font identification/licensing and fixture approval remain open.
 
 The firewall dialog triggered by initial UBA execution needs user handling; automation
 has not changed security settings. Subsequent builds use `-NoUBA`. PowerShell script
@@ -53,7 +55,7 @@ has been implemented/executed. Generated images are working art only.
 
 Read [environment](../Setup/ENVIRONMENT.md), [toolchain](../Setup/TOOLCHAIN-LOCK.md),
 [decisions](../Decisions/DECISIONS.md), [UI00 inventory](../QA/UI00/INVENTORY.md) and
-[asset handoff](../../ArtSource/G-ASSET-HANDOFF.md). Resolve NetFxSDK and run
-`python Tools/BuildScripts/build_wordquest.py`; inspect the real editor before UI01.
+[asset handoff](../../ArtSource/G-ASSET-HANDOFF.md). Use
+`python Tools/BuildScripts/build_wordquest.py` to reproduce the editor build.
 Keep missing mobile evidence explicit. Finish G static proof before UI02 or H/I.
 Preserve all supplied planning packages and original images unchanged.

@@ -1,13 +1,12 @@
 # Resume the bounded G proof
 
-## Immediate manual prerequisite
+## Editor prerequisite resolved
 
-Open Visual Studio Installer, modify **Build Tools 2022**, choose **Individual
-components**, and add **.NET Framework 4.8 SDK** and its targeting pack. The initial
-editor build failed with `Could not find NetFxSDK install dir` in SwarmInterface.
-Do not confuse this with the already present .NET 10 SDK. Do not edit Unreal's
-SwarmInterface or bypass its dependency check. Handle any Windows security dialog
-directly; the agent has not granted inbound network access.
+The **.NET Framework 4.8 SDK** and targeting pack were installed on 2026-09-23.
+The real editor build now passes. Other machines need those Individual components
+in Visual Studio Installer / Build Tools 2022; the bundled .NET 10 SDK does not
+replace them. Do not edit SwarmInterface to bypass its dependency check. Handle
+Windows security dialogs directly; automation has not granted inbound network access.
 
 From repository root:
 

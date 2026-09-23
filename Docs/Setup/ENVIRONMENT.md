@@ -12,9 +12,10 @@ Working branch: `kickoff/g-visual-proof`, based on `dev`.
 | Unreal | `C:\Program Files\Epic Games\UE_5.8`; Build.version: 5.8.2, changelist 56702186, compatible 55116800, `++UE5+Release-5.8` | Candidate retained; production/mobile gate pending |
 | Blender | `C:\Program Files\Blender Foundation\Blender 5.1\blender.exe --version`: 5.1.0, hash adfe2921d5f3 | Executable verified; export round trip pending |
 | VS Build Tools | vswhere: 2022 17.14.26, installation 17.14.36930.0 | Installed |
-| C++ | `VC\Tools\MSVC\14.44.35207\bin\Hostx64\x64\cl.exe`: compiler 19.44.35222 | Actual patch exceeds banned 14.44.35210; build still required |
+| C++ | `VC\Tools\MSVC\14.44.35207\bin\Hostx64\x64\cl.exe`: compiler 19.44.35222 | Actual patch exceeds banned 14.44.35210; game and editor builds passed |
 | Windows SDK | Includes 10.0.26100.0 | Within installed engine SDK range |
 | Bundled .NET | Engine `Binaries\ThirdParty\DotNet\10.0\win-x64\dotnet.exe --version`: 10.0.203 | Use engine bundled runtime |
+| .NET Framework SDK | 4.8 SDK and targeting pack installed 2026-09-23; NETFXSDK registry and v4.8 reference assemblies verified | Editor dependency resolved |
 | Git / LFS | 2.53.0.windows.1 / 3.7.1; filters and pre-push hook present | Existing configuration retained |
 | GitHub CLI | Authenticated; no open repository PRs at inventory | Existing remote available for requested PR |
 | Android Studio | Product metadata AI-261.26222.65.2614.16204760 | Installed; not a packaging pass |
@@ -62,13 +63,15 @@ engine-generated. EngineAssociation was normalized to `5.8` for other checkouts;
 the build helper verifies exact patch and changelist.
 
 The initial editor compile and repository build helper both failed in SwarmInterface:
-`Could not find NetFxSDK install dir`. Add the .NET Framework SDK (4.8) and targeting
-pack via Visual Studio Installer. The .NET 10 SDK is a distinct component.
+`Could not find NetFxSDK install dir`. On 2026-09-23, Visual Studio Installer added
+the .NET Framework SDK (4.8) and targeting pack successfully (exit 0). The .NET 10
+SDK is a distinct component. A subsequent editor build passed: 7 actions, exit 0,
+189.25 seconds. See `Docs/QA/P00/EDITOR-BUILD-20260923.md` for follow-up evidence.
 
 The separate Win64 Development **game** target compiled and linked successfully:
 11 actions, MSVC 14.44.35222, Windows SDK 10.0.26100.0, exit 0. The blank module's
 executable exists under ignored `Game/Binaries/Win64`. It has not been run or packaged;
-editor compilation and gameplay implementation remain blocked by the SDK dependency.
+gameplay implementation remains pending; editor compilation now passes.
 
 Turnkey reports Win64 SDK valid. Android-only verification selected no platform and
 returned 0; inspection confirmed missing engine Android binaries/target receipt.
@@ -79,6 +82,6 @@ without changing system execution policy. Python 3.14 is available; Pillow is ab
 and no package was installed. PNG inspection used System.Drawing and standard-library
 header parsing; originals were never edited.
 
-Immediate needs: NetFxSDK, successful native editor build, accepted art layers/fonts
-and prototype fixture review. Later needs: engine Android platform support, resolved
+Immediate needs: accepted art layers/fonts and prototype fixture review.
+Later needs: engine Android platform support, resolved
 SDK/JDK packaging, named physical phones, iOS resources and release checks.
