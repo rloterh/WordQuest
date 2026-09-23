@@ -56,7 +56,15 @@ to default config. No token is committed and no firewall setting was changed.
 
 After this fix, the editor build passed again (18.85 seconds, exit 0), with log
 `Artifacts/Logs/Build/WordQuestEditor-20260923-035659.log`. A fresh editor startup
-is being verified separately in `Artifacts/Logs/Runtime/Editor-20260923-Verified.log`.
+passed in 79.98 seconds, loaded the WordQuest module, and reported zero map-check
+errors/warnings. Log: `Artifacts/Logs/Runtime/Editor-20260923-Verified.log`.
+The project window was visually inspected again; capture:
+`Artifacts/Captures/P00/WordQuest-Editor-Verified-20260923.png`.
+Neither the Android File Server config section nor its token regenerated.
+
+On relaunch Unreal normalized the hardware-targeting enum strings to `Mobile` and
+`Scalable`, adding matching `Applied*` values. These engine-written changes are
+retained. This does not establish mobile performance or SDK compatibility.
 
 No G gameplay, packaged game, Android build, phone acceptance or UI01/UI02 gate is
 claimed. The generated template still needs its documented mobile-renderer setup.

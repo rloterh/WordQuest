@@ -35,6 +35,8 @@ Owner authorized P00/UI00 inventory, UI01/UI02 G proof and appropriate PRs on
   19 minutes. This is a foundation smoke check, not a G gameplay acceptance test.
 - Disabled the unused Android File Server plugin and removed its automatically
   generated token/settings before commit. The editor build passed again.
+- Fresh editor launch passed in 79.98 seconds, with zero map-check errors/warnings
+  and no regenerated token. Unreal's normalized Mobile/Scalable settings are retained.
 
 ## Blocking evidence
 

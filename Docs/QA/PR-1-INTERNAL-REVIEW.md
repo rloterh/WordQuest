@@ -24,3 +24,11 @@ be confused with the reviewed SHA. Re-review if implementation changes.
 
 The earlier direct CLI review of `94224bd` plus initial review guidance also found
 no actionable defects; the timestamped helper run above is the reproducible result.
+
+## Configuration follow-up
+
+Review of `f1c6ded0126361d345f70fea87a562ff5bf4397e` also completed with exit 0 and
+no actionable findings after disabling Android File Server. Evidence:
+`Artifacts/Reviews/20260923-035811/`. During that run, the editor finished relaunching
+and normalized four hardware-targeting fields, so its worktree-status guard correctly
+reported a change. The final review must include that small engine-generated delta.
