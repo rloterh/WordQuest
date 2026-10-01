@@ -125,6 +125,16 @@ and remaining icon/art differences are recorded in
 against actual `dev` base `8c105ac` completed with exit 0 and no actionable
 introduced defects. No static-art, motion, editorial or device gate is passed.
 
+After the owner merged PR #6, separate hand-authored SVG Hint/Check candidates
+were added beside live labels. Complete-group measurement preserves enlarged and
+narrow action layouts; narrow mode words no longer split decorative lettering.
+Both builds and both Unreal tests pass at clean source `82a9ec8`. Native normal,
+200%, disabled and narrow-focus captures were inspected; an intentional missing-SVG
+test preserved labels/focus, then both resources were restored and parity checked.
+See [action icons](../QA/UI01/G-ACTION-ICONS.md). Dedicated review is pending.
+Raw SVG staging is declared but packaging is unverified. Android receipt absence
+and no connected adb phone were rechecked. No art, motion or device gate is passed.
+
 ## Resume
 
 Read [environment](../Setup/ENVIRONMENT.md), [toolchain](../Setup/TOOLCHAIN-LOCK.md),
