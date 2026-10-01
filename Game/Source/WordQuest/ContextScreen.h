@@ -84,6 +84,7 @@ private:
     UPROPERTY(Transient) TObjectPtr<UImage> PanelBody;
     UPROPERTY(Transient) TObjectPtr<UImage> PanelBottom;
     UPROPERTY(Transient) TObjectPtr<UImage> Spirit;
+    UPROPERTY(Transient) TObjectPtr<UImage> ProgressPlaque;
     UPROPERTY(Transient) TObjectPtr<UImage> ModalShade;
     UPROPERTY(Transient) TObjectPtr<UTextBlock> Brand;
     UPROPERTY(Transient) TObjectPtr<UTextBlock> Progress;

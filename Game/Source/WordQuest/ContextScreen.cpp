@@ -156,6 +156,12 @@ void UContextScreen::Build()
     Brand->SetShadowOffset(FVector2D(1, 2));
     Brand->SetShadowColorAndOpacity(Violet);
     Canvas->AddChild(Brand);
+    ProgressPlaque = Picture(TEXT("ProgressPlaque"), TEXT("/Game/UI/G/G_ProgressPlaque.G_ProgressPlaque"));
+    auto PlaqueBrush = ProgressPlaque->GetBrush();
+    // Frame the generated core without editing its raster master.
+    PlaqueBrush.SetUVRegion(FBox2f(FVector2f(34.f / 2141, 94.f / 734), FVector2f(2108.f / 2141, 608.f / 734)));
+    ProgressPlaque->SetBrush(PlaqueBrush);
+    Canvas->AddChild(ProgressPlaque);
     Progress = Text(TEXT("Progress"), TEXT("3 / 7"));
     Progress->SetColorAndOpacity(FLinearColor::White);
     Progress->SetShadowOffset(FVector2D(1, 2));
@@ -288,13 +294,18 @@ void UContextScreen::Layout(FVector2D Size)
     Bounds(Background, (RootSize.X - 884 * BGScale) / 2, 0, 884 * BGScale, 1779 * BGScale);
     Place(Brand, 211, 16, 465, 137);
     Font(Brand, 108 * S, false, DisplayFont);
-    Place(Progress, 352, 169, 178, 61);
+    Place(ProgressPlaque, 352, 169, 178, 61);
     Font(Progress, 35 * S, true);
+    Progress->ForceLayoutPrepass();
+    const float ProgressHeight = Progress->GetDesiredSize().Y;
+    Bounds(Progress, X + 352 * S, 169 * S + FMath::Max(0.f, (61 * S - ProgressHeight) * .5f), 178 * S, ProgressHeight);
     const float PauseW = FMath::Max(71 * S, 48.f);
     Bounds(PauseButton, X + Width - PauseW - 25 * S, 31 * S, PauseW, FMath::Max(75 * S, 48.f));
     Font(CastChecked<UTextBlock>(PauseButton->GetContent()), 36 * S, true);
     Place(Spirit, 82, Hero == 521 ? 276 : 85, 207, 165);
     Spirit->SetVisibility(Hero == 521 ? ESlateVisibility::HitTestInvisible : ESlateVisibility::Collapsed);
+    ProgressPlaque->SetVisibility(Hero == 521 && ProgressPlaque->GetBrush().GetResourceObject()
+        ? ESlateVisibility::HitTestInvisible : ESlateVisibility::Collapsed);
     Progress->SetVisibility(Hero == 521 ? ESlateVisibility::HitTestInvisible : ESlateVisibility::Collapsed);
     auto Measure = [this, S](UTextBlock* Label, float Pixels, float W, float MinHeight, bool Bold = false)
     {

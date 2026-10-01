@@ -1,0 +1,39 @@
+{
+  "status": "unapproved_reconstruction_candidate",
+  "generated_date": "2026-10-01",
+  "mode": "built_in_imagegen",
+  "original_reference": "Planning/WordQuest-UI-Realms-Addendum/references/G-Celestial-Reverie-Gameplay.png",
+  "original_sha256": "306dae4f6352749edcf1d8edf73f26339a4ba6407b4a394ec50b5898418bedae",
+  "generated_output": "exec-92d499aa-7c5a-448b-afce-8210856e6699.png",
+  "source": "G-Progress-Plaque-v002-Candidate.png",
+  "source_sha256": "ceca26d93eeb5568b956bdbffdad56298f61659dc7d80ba6387ee5f6cedc8c30",
+  "dimensions": [2141, 734],
+  "format": "RGBA, 8 bits per channel",
+  "corner_alpha": [0, 0, 0, 0],
+  "alpha_bounds_half_open": {
+    "1": [34, 19, 2108, 699],
+    "128": [38, 98, 2103, 604],
+    "250": [40, 99, 2102, 603]
+  },
+  "runtime_uv_pixels_half_open": [34, 94, 2108, 608],
+  "reference_widget_bounds": [352, 169, 178, 61],
+  "unreal_asset": "/Game/UI/G/G_ProgressPlaque",
+  "unreal_import": {
+    "script": "Tools/AssetImport/import_g_progress_plaque.py",
+    "srgb": true,
+    "compression": "TC_EDITOR_ICON",
+    "group": "TEXTUREGROUP_UI",
+    "mips": "none",
+    "never_stream": true,
+    "filter": "bilinear",
+    "max_texture_size": 512
+  },
+  "limits": [
+    "Copied unchanged from built-in output; no manual raster or alpha editing",
+    "UV framing excludes large empty margins and distant stray fringe, not all edge noise",
+    "Core is wider than requested; runtime drawing adapts it to reference bounds",
+    "Generated gold thickness, bevel, purple lighting and corners differ from reference",
+    "No layered paint document, original-pixel extraction or release rights clearance claimed",
+    "Live 3 / 7 remains a draft prototype value, not persisted campaign progress"
+  ]
+}
