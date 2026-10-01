@@ -68,8 +68,11 @@ Both editor and game targets compiled; two Unreal automation tests passed. Nativ
 captures exercised selection, evaluation, assistance, pause and responsive layouts.
 Visual QA found panel stretching and modal draw-order defects; both were fixed and
 rechecked in native captures. Manual desktop scrolling and answer clicks worked at
-200% reading text with extended content. Internal review and draft PR preparation
-are underway. See [native proof](../QA/UI01/NATIVE-G-PROOF.md).
+200% reading text with extended content. On 2026-10-01 the clean implementation
+commit `4b3ed79` passed a fresh editor build, both automation tests and a native
+390x844 correct-answer capture. Internal review completed with no actionable
+findings; draft PR preparation is underway. See [native proof](../QA/UI01/NATIVE-G-PROOF.md)
+and [review](../QA/UI01/INTERNAL-REVIEW.md).
 No UI01 acceptance, motion, package or device-test pass is claimed.
 
 ## Resume

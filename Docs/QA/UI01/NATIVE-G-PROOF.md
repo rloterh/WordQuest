@@ -133,3 +133,13 @@ Raw native log: `Artifacts/Logs/UI01/Manual-Long-Fixed.log`. This manual interac
 was observed on desktop; no phone or accessibility-service pass is inferred.
 The long-text proof adds artificial stress strings only in non-shipping proof code;
 those strings are not additional editorial content.
+
+On 2026-10-01 the clean implementation commit `4b3ed79` was rebuilt successfully,
+and both Unreal tests passed again with zero failures/skips. A fresh 390x844 native
+correct-answer capture also passed its expected tuple (selected A, submitted,
+correct, unassisted, unpaused, exactly one evaluation) and was visually inspected.
+Its complete feedback is visible below the disabled controls:
+`Artifacts/QA/UI01/20261001-154529-capture-correct/native.png`.
+The editor log is `Artifacts/Logs/Build/WordQuestEditor-20261001-154427.log`; the
+new automation report is under `20261001-154439-automation-initial/Report`.
+The [internal review](INTERNAL-REVIEW.md) completed without actionable findings.
