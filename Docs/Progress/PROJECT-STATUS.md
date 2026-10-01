@@ -11,6 +11,8 @@ merged [PR #4](https://github.com/rloterh/WordQuest/pull/4) at `70a8af0` on
 2026-10-01; its pearl answer-skin candidate is now on `dev`. Working branch:
 `feature/g-progress-plaque`, based on that merge, for the bounded progress-plaque
 candidate with separate live prototype text.
+Published as [PR #5](https://github.com/rloterh/WordQuest/pull/5), ready for owner
+review as a candidate increment.
 No agent merge, game deployment or release is authorized.
 
 ## Completed work
