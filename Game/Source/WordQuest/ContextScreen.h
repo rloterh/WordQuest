@@ -43,6 +43,7 @@ public:
     void SetProofTextScale(float Value);
     void SetProofLongText();
     void FocusProofAnswer();
+    void FocusProofAction();
 #endif
 protected:
     virtual TSharedRef<SWidget> RebuildWidget() override;
@@ -59,6 +60,7 @@ private:
     void Refresh();
     void StyleButtons();
     UTextBlock* ButtonLabel(UButton* Target) const;
+    UImage* ButtonSkin(UButton* Target) const;
     void SetButtonLabel(UButton* Target, const FString& Label);
     UFUNCTION() void ChooseA() { Choose(0); }
     UFUNCTION() void ChooseB() { Choose(1); }
@@ -85,6 +87,9 @@ private:
     UPROPERTY(Transient) TObjectPtr<UImage> PanelBottom;
     UPROPERTY(Transient) TObjectPtr<UImage> Spirit;
     UPROPERTY(Transient) TObjectPtr<UImage> ProgressPlaque;
+    UPROPERTY(Transient) TObjectPtr<UImage> HintSkin;
+    UPROPERTY(Transient) TObjectPtr<UImage> SubmitSkin;
+    UPROPERTY(Transient) TObjectPtr<UImage> PauseSkin;
     UPROPERTY(Transient) TObjectPtr<UImage> ModalShade;
     UPROPERTY(Transient) TObjectPtr<UTextBlock> Brand;
     UPROPERTY(Transient) TObjectPtr<UTextBlock> Progress;

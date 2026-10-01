@@ -1,0 +1,63 @@
+{
+  "status": "unapproved_reconstruction_candidates",
+  "generated_date": "2026-10-01",
+  "mode": "built_in_imagegen",
+  "original_reference": "Planning/WordQuest-UI-Realms-Addendum/references/G-Celestial-Reverie-Gameplay.png",
+  "original_sha256": "306dae4f6352749edcf1d8edf73f26339a4ba6407b4a394ec50b5898418bedae",
+  "format": "RGBA, 8 bits per channel",
+  "sources": [
+    {
+      "name": "Hint",
+      "source": "G-Hint-Skin-v001-Candidate.png",
+      "generated_output": "exec-f76b06fb-ebdb-48e1-855b-2b5a9af71208.png",
+      "sha256": "ca7fbd9de2193534e2e8e98fd6e692f4b7db3eed039d1bbcf30e7bed3fff9b89",
+      "dimensions": [1998, 787], "corner_alpha": [0, 0, 0, 0],
+      "alpha_bounds_half_open": {"1": [0, 16, 1926, 779], "128": [90, 129, 1904, 641], "250": [91, 130, 1903, 640]},
+      "runtime_uv_pixels_half_open": [86, 125, 1908, 646],
+      "reference_bounds": [99, 1454, 287, 113],
+      "runtime_box_margin": [0.195, 0.45, 0.195, 0.45],
+      "unreal_asset": "/Game/UI/G/G_HintSkin", "max_texture_size": 1024
+    },
+    {
+      "name": "Check",
+      "source": "G-Check-Skin-v001-Candidate.png",
+      "generated_output": "exec-3146aa25-b0c6-46c4-84f3-c1fb8c0510a7.png",
+      "sha256": "45a237ed49cab0385fadd70649f3c775271cd2fe2f2ae82bc0dfbb03ca8e33ec",
+      "dimensions": [1983, 793], "corner_alpha": [0, 0, 0, 0],
+      "alpha_bounds_half_open": {"1": [0, 15, 1943, 793], "128": [113, 153, 1871, 635], "250": [114, 157, 1870, 623]},
+      "runtime_uv_pixels_half_open": [108, 151, 1876, 627],
+      "reference_bounds": [399, 1454, 388, 113],
+      "runtime_box_margin": [0.145, 0.45, 0.145, 0.45],
+      "unreal_asset": "/Game/UI/G/G_CheckSkin", "max_texture_size": 1024
+    },
+    {
+      "name": "Pause",
+      "source": "G-Pause-Skin-v001-Candidate.png",
+      "generated_output": "exec-58503388-d357-47ed-bf0f-cf9097e1a28b.png",
+      "sha256": "0f4d3636c830ce7993f5ae2efb4f5fc3aa128846aa2e83424da437030fb38ccc",
+      "dimensions": [1254, 1254], "corner_alpha": [0, 0, 0, 0],
+      "alpha_bounds_half_open": {"1": [0, 16, 1222, 1254], "128": [98, 102, 1156, 1126], "250": [100, 105, 1155, 1125]},
+      "runtime_uv_pixels_half_open": [96, 100, 1159, 1129],
+      "reference_bounds": [787, 31, 71, 75],
+      "unreal_asset": "/Game/UI/G/G_PauseSkin", "max_texture_size": 512
+    }
+  ],
+  "rejected_cleanups": [
+    {"name": "Check v002", "generated_output": "exec-aed74d13-fabe-41e0-9ea5-7f44b46e5ad9.png"},
+    {"name": "Pause v002", "generated_output": "exec-27cd45d6-fd28-461d-8239-42f1a7be413c.png"}
+  ],
+  "unreal_import": {
+    "script": "Tools/AssetImport/import_g_action_skins.py", "srgb": true,
+    "compression": "TC_EDITOR_ICON", "group": "TEXTUREGROUP_UI",
+    "mips": "none", "never_stream": true, "filter": "bilinear"
+  },
+  "limits": [
+    "Masters copied unchanged; no manual raster/alpha editing or layered paint document",
+    "Cleanup attempts rejected; selected v001 candidates still have edge noise/fringe",
+    "Runtime framing omits empty margins/excess shadow, not complete perimeter cleanup",
+    "Gold/bevel, interior light, gloss, proportions and shadow differ from reference",
+    "Reference bounds describe the supplied image; runtime Y reflows with content",
+    "Hint bulb and large Check star icons remain unfinished; labels are separate live widgets",
+    "No visual acceptance, rights clearance, memory/performance or device qualification"
+  ]
+}

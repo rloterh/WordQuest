@@ -228,7 +228,35 @@ void UContextScreen::Build()
     HintButton = Button(TEXT("Hint"), TEXT("Hint"));
     SubmitButton = Button(TEXT("Submit"), TEXT("Check answer"));
     PauseButton = Button(TEXT("Pause"), TEXT("II"));
-    for (auto* B : {HintButton.Get(), SubmitButton.Get(), PauseButton.Get()}) Canvas->AddChild(B);
+    HintSkin = Picture(TEXT("HintSkin"), TEXT("/Game/UI/G/G_HintSkin.G_HintSkin"));
+    SubmitSkin = Picture(TEXT("SubmitSkin"), TEXT("/Game/UI/G/G_CheckSkin.G_CheckSkin"));
+    PauseSkin = Picture(TEXT("PauseSkin"), TEXT("/Game/UI/G/G_PauseSkin.G_PauseSkin"));
+    auto ActionBox = [](UImage* Image, float HorizontalMargin)
+    {
+        auto Brush = Image->GetBrush();
+        Brush.DrawAs = ESlateBrushDrawType::Box;
+        Brush.Margin = FMargin(HorizontalMargin, .45f);
+        Image->SetBrush(Brush);
+        Image->SetRenderTransformPivot(FVector2D::ZeroVector);
+    };
+    ActionBox(HintSkin, .195f);
+    ActionBox(SubmitSkin, .145f);
+    auto FrameSkin = [](UImage* Image, FVector2f TopLeft, FVector2f BottomRight)
+    {
+        auto Brush = Image->GetBrush();
+        Brush.SetUVRegion(FBox2f(TopLeft, BottomRight));
+        Image->SetBrush(Brush);
+    };
+    // Runtime framing excludes export padding; unchanged masters/provenance live in ArtSource.
+    FrameSkin(HintSkin, FVector2f(86.f / 1998, 125.f / 787), FVector2f(1908.f / 1998, 646.f / 787));
+    FrameSkin(SubmitSkin, FVector2f(108.f / 1983, 151.f / 793), FVector2f(1876.f / 1983, 627.f / 793));
+    FrameSkin(PauseSkin, FVector2f(96.f / 1254, 100.f / 1254), FVector2f(1159.f / 1254, 1129.f / 1254));
+    Canvas->AddChild(HintSkin);
+    Canvas->AddChild(HintButton);
+    Canvas->AddChild(SubmitSkin);
+    Canvas->AddChild(SubmitButton);
+    Canvas->AddChild(PauseSkin);
+    Canvas->AddChild(PauseButton);
     HintButton->OnClicked.AddDynamic(this, &UContextScreen::Hint);
     SubmitButton->OnClicked.AddDynamic(this, &UContextScreen::Submit);
     PauseButton->OnClicked.AddDynamic(this, &UContextScreen::TogglePause);
@@ -301,6 +329,7 @@ void UContextScreen::Layout(FVector2D Size)
     Bounds(Progress, X + 352 * S, 169 * S + FMath::Max(0.f, (61 * S - ProgressHeight) * .5f), 178 * S, ProgressHeight);
     const float PauseW = FMath::Max(71 * S, 48.f);
     Bounds(PauseButton, X + Width - PauseW - 25 * S, 31 * S, PauseW, FMath::Max(75 * S, 48.f));
+    Bounds(PauseSkin, X + Width - PauseW - 25 * S, 31 * S, PauseW, FMath::Max(75 * S, 48.f));
     Font(CastChecked<UTextBlock>(PauseButton->GetContent()), 36 * S, true);
     Place(Spirit, 82, Hero == 521 ? 276 : 85, 207, 165);
     Spirit->SetVisibility(Hero == 521 ? ESlateVisibility::HitTestInvisible : ESlateVisibility::Collapsed);
@@ -368,6 +397,20 @@ void UContextScreen::Layout(FVector2D Size)
     const bool StackActions = TextScale > 1.2f;
     Bounds(HintButton, X + 99 * S, Y, (StackActions ? 688 : 287) * S, ActionHeight);
     Bounds(SubmitButton, X + (StackActions ? 99 : 399) * S, Y + (StackActions ? ActionHeight + 15 * S : 0), (StackActions ? 688 : 388) * S, ActionHeight);
+    auto PlaceActionSkin = [S](UImage* Image, float Left, float Top, float W, float H, float ReferenceWidth)
+    {
+        if (const auto* Texture = Cast<UTexture2D>(Image->GetBrush().GetResourceObject()))
+        {
+            const float TextureWidth = FMath::Max(Texture->GetSizeX(), 1);
+            const float TextureHeight = FMath::Max(Texture->GetSizeY(), 1);
+            const FVector2D DrawingScale(ReferenceWidth * S / TextureWidth, 113 * S / TextureHeight);
+            Bounds(Image, Left, Top, W / DrawingScale.X, H / DrawingScale.Y);
+            Image->SetRenderScale(DrawingScale);
+        }
+    };
+    PlaceActionSkin(HintSkin, X + 99 * S, Y, (StackActions ? 688 : 287) * S, ActionHeight, 287);
+    PlaceActionSkin(SubmitSkin, X + (StackActions ? 99 : 399) * S,
+        Y + (StackActions ? ActionHeight + 15 * S : 0), (StackActions ? 688 : 388) * S, ActionHeight, 388);
     Y += ActionHeight + (StackActions ? ActionHeight + 15 * S : 0);
     if (!Feedback->GetText().IsEmpty())
     {
@@ -408,6 +451,15 @@ UTextBlock* UContextScreen::ButtonLabel(UButton* Target) const
     return CastChecked<UTextBlock>(Target->GetContent());
 }
 
+UImage* UContextScreen::ButtonSkin(UButton* Target) const
+{
+    if (Target == HintButton) return HintSkin;
+    if (Target == SubmitButton) return SubmitSkin;
+    if (Target == PauseButton) return PauseSkin;
+    for (const auto& Answer : Answers) if (Answer.Button == Target) return Answer.Skin;
+    return nullptr;
+}
+
 void UContextScreen::SetButtonLabel(UButton* Target, const FString& Label)
 {
     ButtonLabel(Target)->SetText(FText::FromString(Label));
@@ -420,20 +472,32 @@ void UContextScreen::StyleButtons()
     auto Apply = [this](UButton* B, bool Primary, bool Selected)
     {
         const bool Focused = B->HasKeyboardFocus();
-        const auto* Answer = Answers.FindByPredicate([B](const FContextAnswerWidgets& Item) { return Item.Button == B; });
-        const bool HasSkin = Answer && Answer->Skin->GetBrush().GetResourceObject();
+        auto* Skin = ButtonSkin(B);
+        const bool HasSkin = Skin && Skin->GetBrush().GetResourceObject();
+        if (Skin)
+        {
+            Skin->SetVisibility(HasSkin ? ESlateVisibility::HitTestInvisible : ESlateVisibility::Collapsed);
+            Skin->SetIsEnabled(B->GetIsEnabled());
+        }
         const auto FillColor = HasSkin ? FLinearColor::Transparent : (Primary ? Violet : Pearl);
         const auto Border = Focused ? Ink : (Selected ? Violet : (Primary ? Gold : FLinearColor::White));
-        const float Radius = FMath::Max(35 * Scale, 12.f);
+        const bool SkinnedAction = HasSkin && (B == HintButton || B == SubmitButton || B == PauseButton);
+        float Radius = FMath::Max(35 * Scale, 12.f);
+        if (SkinnedAction)
+        {
+            const auto* Slot = CastChecked<UCanvasPanelSlot>(B->Slot);
+            Radius = .5f * FMath::Min(float(Slot->GetSize().X), float(Slot->GetSize().Y));
+        }
+        const float NormalOutline = SkinnedAction && !Focused ? 0.f : (Focused || Selected ? 4.f : 2.f);
         FButtonStyle Style;
-        Style.SetNormal(FSlateRoundedBoxBrush(FillColor, Radius, Border, Focused || Selected ? 4.f : 2.f));
+        Style.SetNormal(FSlateRoundedBoxBrush(FillColor, Radius, Border, NormalOutline));
         Style.SetHovered(FSlateRoundedBoxBrush(HasSkin ? FLinearColor(.9f, .86f, 1, .16f) : (Primary ? Violet * .8f : FLinearColor(.78f, .73f, 1)), Radius, Gold, 3.f));
         Style.SetPressed(FSlateRoundedBoxBrush(HasSkin ? FLinearColor(.22f, .16f, .5f, .16f) : (Primary ? Violet * .6f : FLinearColor(.64f, .58f, .91f)), Radius, Ink, 3.f));
-        Style.SetDisabled(FSlateRoundedBoxBrush(FillColor, Radius, Border, 2.f));
+        Style.SetDisabled(FSlateRoundedBoxBrush(FillColor, Radius, Border, SkinnedAction ? 0.f : 2.f));
         Style.SetNormalPadding(FMargin(24 * Scale, 5 * Scale));
         Style.SetPressedPadding(FMargin(24 * Scale, 6 * Scale, 24 * Scale, 4 * Scale));
         B->SetStyle(Style);
-        ButtonLabel(B)->SetColorAndOpacity(Primary ? FLinearColor::White : Ink);
+        ButtonLabel(B)->SetColorAndOpacity(Primary || (B == PauseButton && HasSkin) ? FLinearColor::White : Ink);
     };
     for (int32 I = 0; I < Answers.Num(); ++I)
     {
@@ -554,6 +618,7 @@ FReply UContextScreen::NativeOnKeyDown(const FGeometry& Geometry, const FKeyEven
 #if !UE_BUILD_SHIPPING
 void UContextScreen::SetProofTextScale(float Value) { TextScale = FMath::Clamp(Value, 1.f, 2.f); Refresh(); }
 void UContextScreen::FocusProofAnswer() { Answers[1].Button->SetUserFocus(GetOwningPlayer()); }
+void UContextScreen::FocusProofAction() { SubmitButton->SetUserFocus(GetOwningPlayer()); }
 void UContextScreen::SetProofLongText()
 {
     if (!bReady) return;

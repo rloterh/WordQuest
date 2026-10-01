@@ -8,11 +8,12 @@ Owner authorized P00/UI00 inventory, UI01/UI02 G proof and appropriate PRs on
 2026-10-01 into `dev` at `eff9f50`. The owner merged control PR #3 the same day
 at `8748673`; native A–D badges and answer spacing are now on `dev`. The owner
 merged [PR #4](https://github.com/rloterh/WordQuest/pull/4) at `70a8af0` on
-2026-10-01; its pearl answer-skin candidate is now on `dev`. Working branch:
-`feature/g-progress-plaque`, based on that merge, for the bounded progress-plaque
-candidate with separate live prototype text.
-Published as [PR #5](https://github.com/rloterh/WordQuest/pull/5), ready for owner
-review as a candidate increment.
+2026-10-01; its pearl answer-skin candidate is now on `dev`. The owner merged
+[PR #5](https://github.com/rloterh/WordQuest/pull/5) at `8c105ac` on 2026-10-01;
+its separate plaque and live prototype text are now on `dev`. Working branch:
+`feature/g-action-skins`, based on that merge, for Hint/Check/Pause surface candidates.
+Published as [PR #6](https://github.com/rloterh/WordQuest/pull/6), ready for owner
+review as a tested candidate increment.
 No agent merge, game deployment or release is authorized.
 
 ## Completed work
@@ -113,6 +114,16 @@ Provenance, comparisons and limitations are in
 [progress plaque](../QA/UI01/G-PROGRESS-PLAQUE.md). Dedicated review at clean
 `61fd184` against `70a8af0` completed with exit 0 and no actionable introduced
 defects. Static art, motion, editorial and physical-device gates remain open.
+
+The owner merged PR #5 at `8c105ac` on 2026-10-01. The next bounded increment adds
+separate Hint, Check and Pause skin candidates. A compilation error and extra normal
+art outlines were corrected. Both real builds and both Unreal tests pass at source
+`4e78be0`; native normal, enlarged-action focus, assisted disabled and paused captures
+were inspected from the clean commit. Exact provenance, rejected cleanup attempts
+and remaining icon/art differences are recorded in
+[action skins](../QA/UI01/G-ACTION-SKINS.md). Dedicated review of clean `e9f77f3`
+against actual `dev` base `8c105ac` completed with exit 0 and no actionable
+introduced defects. No static-art, motion, editorial or device gate is passed.
 
 ## Resume
 
