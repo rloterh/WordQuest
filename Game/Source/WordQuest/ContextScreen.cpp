@@ -184,6 +184,7 @@ void UContextScreen::Build()
         // The source PNG remains intact; coordinates are recorded in its provenance.
         SkinBrush.SetUVRegion(FBox2f(FVector2f(50.f / 2172, 168.f / 724), FVector2f(2125.f / 2172, 528.f / 724)));
         Answer.Skin->SetBrush(SkinBrush);
+        Answer.Skin->SetRenderTransformPivot(FVector2D::ZeroVector);
         if (!SkinBrush.GetResourceObject()) Answer.Skin->SetVisibility(ESlateVisibility::Collapsed);
         Answer.Button = Button(*Name, bReady ? Question.Choices[I] : TEXT("Unavailable"));
         Answer.Label = CastChecked<UTextBlock>(Answer.Button->GetContent());
@@ -336,10 +337,16 @@ void UContextScreen::Layout(FVector2D Size)
         H = Measure(Answer.Label, 35, LabelWidth, FMath::Max(95 * S, 48.f));
         H = FMath::Max3(H, float(Answer.Label->GetDesiredSize().Y) + 30 * S, BadgeDiameter + 12 * S);
         Bounds(Answer.Button, X + 109 * S, Y, 666 * S, H);
-        Bounds(Answer.Skin, X + 109 * S, Y, 666 * S, H);
-        auto SkinBrush = Answer.Skin->GetBrush();
-        SkinBrush.ImageSize = FVector2D(666 * S, 95 * S);
-        Answer.Skin->SetBrush(SkinBrush);
+        if (const auto* Texture = Cast<UTexture2D>(Answer.Skin->GetBrush().GetResourceObject()))
+        {
+            // Slate texture-box borders use actual texture pixels, not Brush.ImageSize.
+            // Scale a texture-sized image so borders keep their reference size as rows grow.
+            const float TextureWidth = FMath::Max(Texture->GetSizeX(), 1);
+            const float TextureHeight = FMath::Max(Texture->GetSizeY(), 1);
+            const FVector2D SkinScale(666 * S / TextureWidth, 95 * S / TextureHeight);
+            Bounds(Answer.Skin, X + 109 * S, Y, TextureWidth, H / SkinScale.Y);
+            Answer.Skin->SetRenderScale(SkinScale);
+        }
         Y += H + 17 * S;
     }
     Y += 16 * S;
