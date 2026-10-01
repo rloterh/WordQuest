@@ -44,6 +44,7 @@ public:
     void SetProofLongText();
     void FocusProofAnswer();
     void FocusProofAction();
+    void FocusProofPause();
 #endif
 protected:
     virtual TSharedRef<SWidget> RebuildWidget() override;
@@ -55,6 +56,7 @@ private:
     UTextBlock* Text(const TCHAR* Name, const FString& Value);
     UButton* Button(const TCHAR* Name, const FString& Label);
     UImage* Picture(const TCHAR* Name, const TCHAR* Path);
+    UImage* VectorPicture(const TCHAR* Name, const TCHAR* File, FVector2D Dimensions);
     void Build();
     void Layout(FVector2D Size);
     void Refresh();
@@ -92,10 +94,13 @@ private:
     UPROPERTY(Transient) TObjectPtr<UImage> PauseSkin;
     UPROPERTY(Transient) TObjectPtr<UImage> HintIcon;
     UPROPERTY(Transient) TObjectPtr<UImage> SubmitIcon;
+    UPROPERTY(Transient) TObjectPtr<UImage> PauseIcon;
+    UPROPERTY(Transient) TObjectPtr<USizeBox> PauseIconSize;
     UPROPERTY(Transient) TObjectPtr<USizeBox> HintIconSize;
     UPROPERTY(Transient) TObjectPtr<USizeBox> SubmitIconSize;
     UPROPERTY(Transient) TObjectPtr<UTextBlock> HintLabel;
     UPROPERTY(Transient) TObjectPtr<UTextBlock> SubmitLabel;
+    UPROPERTY(Transient) TObjectPtr<UTextBlock> PauseLabel;
     UPROPERTY(Transient) TObjectPtr<UImage> ModalShade;
     UPROPERTY(Transient) TObjectPtr<UTextBlock> Brand;
     UPROPERTY(Transient) TObjectPtr<UTextBlock> Progress;
@@ -103,8 +108,8 @@ private:
     UPROPERTY(Transient) TObjectPtr<UTextBlock> Word;
     UPROPERTY(Transient) TObjectPtr<UTextBlock> Clue;
     UPROPERTY(Transient) TObjectPtr<UTextBlock> Prompt;
-    UPROPERTY(Transient) TObjectPtr<UTextBlock> Divider;
-    UPROPERTY(Transient) TObjectPtr<UTextBlock> HeaderDivider;
+    UPROPERTY(Transient) TObjectPtr<UImage> Divider;
+    UPROPERTY(Transient) TObjectPtr<UImage> HeaderDivider;
     UPROPERTY(Transient) TObjectPtr<UTextBlock> Feedback;
     UPROPERTY(Transient) TObjectPtr<UTextBlock> PauseTitle;
     UPROPERTY(Transient) TObjectPtr<UButton> PauseButton;

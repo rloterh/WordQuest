@@ -12,8 +12,11 @@ merged [PR #4](https://github.com/rloterh/WordQuest/pull/4) at `70a8af0` on
 [PR #5](https://github.com/rloterh/WordQuest/pull/5) at `8c105ac` on 2026-10-01;
 its separate plaque and live prototype text are now on `dev`. The owner merged
 [PR #6](https://github.com/rloterh/WordQuest/pull/6) at `3acca49` on 2026-10-01;
-its action-skin candidates are now on `dev`. Working branch: `feature/g-action-icons`,
-based on that merge, for separate SVG Hint/Check icons and complete-group layout.
+its action-skin candidates are now on `dev`. The owner merged
+[PR #7](https://github.com/rloterh/WordQuest/pull/7) at `822e850` on 2026-10-01;
+its separate Hint/Check SVG candidates and group layout are now on `dev`.
+Working branch: `feature/g-vector-ornaments`, based on that merge, for separate
+divider/Pause SVG candidates and native proof checks.
 No agent merge, game deployment or release is authorized.
 
 ## Completed work
@@ -136,8 +139,8 @@ See [action icons](../QA/UI01/G-ACTION-ICONS.md). Dedicated review of clean
 actionable introduced defects.
 Raw SVG staging is declared but packaging is unverified. Android receipt absence
 and no connected adb phone were rechecked. No art, motion or device gate is passed.
-The bounded [PR #7](https://github.com/rloterh/WordQuest/pull/7) is open against
-`dev` as a tested candidate increment, awaiting the owner's review/merge decision.
+The owner merged the bounded [PR #7](https://github.com/rloterh/WordQuest/pull/7)
+on 2026-10-01 as a tested candidate increment; this does not accept unfinished gates.
 
 ## Resume
 

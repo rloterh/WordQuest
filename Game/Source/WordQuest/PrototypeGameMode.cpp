@@ -44,6 +44,11 @@ void APrototypeController::RunProof()
     else if (ProofName == TEXT("hint")) { Screen->Hint(); Screen->Choose(0); Screen->Submit(); }
     else if (ProofName == TEXT("empty")) Screen->Submit();
     else if (ProofName == TEXT("paused")) { Screen->Choose(1); Screen->TogglePause(); Screen->Choose(0); Screen->Submit(); }
+    else if (ProofName == TEXT("resumed"))
+    {
+        Screen->Choose(1); Screen->TogglePause(); Screen->Choose(0); Screen->Submit(); Screen->TogglePause();
+    }
+    else if (ProofName == TEXT("pausefocus")) Screen->FocusProofPause();
     else if (ProofName == TEXT("large")) Screen->SetProofTextScale(2);
     else if (ProofName == TEXT("actions") || ProofName == TEXT("actionfocus"))
     {
