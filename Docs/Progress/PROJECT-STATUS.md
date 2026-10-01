@@ -71,7 +71,10 @@ rechecked in native captures. Manual desktop scrolling and answer clicks worked 
 200% reading text with extended content. On 2026-10-01 the clean implementation
 commit `4b3ed79` passed a fresh editor build, both automation tests and a native
 390x844 correct-answer capture. Internal review completed with no actionable
-findings; draft PR preparation is underway. See [native proof](../QA/UI01/NATIVE-G-PROOF.md)
+findings. [Draft PR #2](https://github.com/rloterh/WordQuest/pull/2) is open against
+`dev`; the implementation remains `4b3ed79` with documentation-only follow-ups.
+Android receipt absence and no connected adb phone were rechecked on 2026-10-01.
+See [native proof](../QA/UI01/NATIVE-G-PROOF.md)
 and [review](../QA/UI01/INTERNAL-REVIEW.md).
 No UI01 acceptance, motion, package or device-test pass is claimed.
 
@@ -81,5 +84,8 @@ Read [environment](../Setup/ENVIRONMENT.md), [toolchain](../Setup/TOOLCHAIN-LOCK
 [decisions](../Decisions/DECISIONS.md), [UI00 inventory](../QA/UI00/INVENTORY.md) and
 [asset handoff](../../ArtSource/G-ASSET-HANDOFF.md). Use
 `python Tools/BuildScripts/build_wordquest.py` to reproduce the editor build.
-Keep missing mobile evidence explicit. Finish G static proof before UI02 or H/I.
+Keep missing mobile evidence explicit. Next: refine the documented G art/lettering
+differences, complete fixture review, identify the engine installation source to add
+Android support, then validate on a connected phone. Keep PR #2 draft until its
+declared acceptance criteria are satisfied. Finish G static proof before UI02 or H/I.
 Preserve all supplied planning packages and original images unchanged.
