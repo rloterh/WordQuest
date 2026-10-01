@@ -380,6 +380,13 @@ void UContextScreen::Layout(FVector2D Size)
     auto PutText = [X, this](UTextBlock* Label, float Left, float Y, float W, float H)
     { Bounds(Label, X + Left, Y, W, H); };
     float Y = PanelY + 89 * S;
+    Mode->SetText(FText::FromString(TEXT("C O N T E X T   D E T E C T I V E")));
+    Font(Mode, FMath::Max(28 * S * TextScale, 14.f));
+    Mode->SetWrapTextAt(0);
+    Mode->ForceLayoutPrepass();
+    // Drop decorative letter spacing when it would split words across lines.
+    if (Mode->GetDesiredSize().X > 660 * S)
+        Mode->SetText(FText::FromString(TEXT("CONTEXT DETECTIVE")));
     float H = Measure(Mode, 28, 660 * S, 40 * S);
     PutText(Mode, 112 * S, Y, 660 * S, H);
     PutText(HeaderDivider, 335 * S, Y + H, 214 * S, 29 * S);
