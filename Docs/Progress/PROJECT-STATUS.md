@@ -80,6 +80,13 @@ See [native proof](../QA/UI01/NATIVE-G-PROOF.md)
 and [review](../QA/UI01/INTERNAL-REVIEW.md).
 No UI01 acceptance, motion, package or device-test pass is claimed.
 
+After PR #2, the native answer-control follow-up restored separate A–D badges,
+stable selection markers and answer spacing. Normal reference-sized and enlarged
+focused-answer captures were inspected; long-word overflow and omitted native slot
+padding were corrected. Both build targets pass. Evidence and verification limits
+are recorded in [answer controls](../QA/UI01/G-ANSWER-CONTROLS.md). Internal review
+against the merged `dev` base is the next check before publishing the follow-up PR.
+
 ## Resume
 
 Read [environment](../Setup/ENVIRONMENT.md), [toolchain](../Setup/TOOLCHAIN-LOCK.md),

@@ -5,6 +5,11 @@ The prototype is a native Unreal UMG screen with separate imported backdrop,
 panel and spirit, live educational text, four answers, hint, check and pause.
 The backdrop still includes foreground clouds; separated motion layers are unfinished.
 
+The owner merged PR #2 on 2026-10-01. The later
+[answer-control follow-up](G-ANSWER-CONTROLS.md) adds native A–D badges and revises
+answer spacing/wrapping. The screenshots and discrepancy table below describe the
+original PR #2 proof; its unfinished art and acceptance limits still apply.
+
 ## Behavior and scope
 
 `FContextQuestion` validates the local JSON fixture. `FContextAttempt` owns selection,
