@@ -49,6 +49,11 @@ Build logs under `Artifacts/Logs/Build`: `WordQuestEditor-20261001-183536.log` a
 the clean commit, zero failures/skips, under
 `Artifacts/QA/UI01/20261001-183809-automation-initial/Report`.
 
+Dedicated read-only Codex review completed at clean `adcab28` against actual base
+`origin/dev` (`8748673`), exit 0, with no actionable introduced defects. Evidence:
+`Artifacts/Reviews/20261001-184424`. The review did not rerun checks or authorize
+a merge. Subsequent updates only record review/publishing status in documentation.
+
 All below exited 0 with expected tuples/dimensions; PNGs were inspected directly.
 Each `run.json` records the exact revision/worktree and command.
 

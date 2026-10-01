@@ -10,6 +10,9 @@ The owner merged PR #2 on 2026-10-01. The later
 answer spacing/wrapping. The screenshots and discrepancy table below describe the
 original PR #2 proof; its unfinished art and acceptance limits still apply.
 
+The subsequent [pearl answer-skin candidate](G-ANSWER-SKIN.md) replaces the flat
+answer fills and records native scaling/state evidence. Its art remains unapproved.
+
 ## Behavior and scope
 
 `FContextQuestion` validates the local JSON fixture. `FContextAttempt` owns selection,

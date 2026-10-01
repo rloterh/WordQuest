@@ -95,8 +95,10 @@ The next bounded increment adds a separate pearl answer-skin candidate. Native
 captures found texture-border clamping; drawing scale was corrected and captures
 retaken. Both real build targets and both Unreal tests pass. Exact asset provenance,
 import results, native evidence and remaining differences are recorded in
-[answer skin](../QA/UI01/G-ANSWER-SKIN.md). Dedicated internal review is pending
-before publishing this candidate increment; no art or device gate is passed.
+[answer skin](../QA/UI01/G-ANSWER-SKIN.md). Dedicated internal review at clean
+`adcab28` against `8748673` completed with exit 0 and no actionable introduced
+defects. This candidate increment is ready for owner review; no art or device gate
+is passed.
 
 ## Resume
 
