@@ -12,6 +12,8 @@ merged [PR #4](https://github.com/rloterh/WordQuest/pull/4) at `70a8af0` on
 [PR #5](https://github.com/rloterh/WordQuest/pull/5) at `8c105ac` on 2026-10-01;
 its separate plaque and live prototype text are now on `dev`. Working branch:
 `feature/g-action-skins`, based on that merge, for Hint/Check/Pause surface candidates.
+Published as [PR #6](https://github.com/rloterh/WordQuest/pull/6), ready for owner
+review as a tested candidate increment.
 No agent merge, game deployment or release is authorized.
 
 ## Completed work
