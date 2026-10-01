@@ -1,4 +1,4 @@
-# G action icon candidates
+# G vector icon and divider candidates
 
 These are hand-authored editable SVG reconstructions informed by the immutable
 G Celestial Reverie gameplay reference. They are not exact original-pixel
@@ -10,6 +10,9 @@ targets; shape, faceting and lighting still require visual acceptance.
 | --- | --- | --- |
 | `G-Hint-Bulb-v001.svg` | `Game/Content/UI/G/Vector/G_HintBulb.svg` | 40x56 viewBox; rounded navy bulb outline and two base bars |
 | `G-Check-Star-v001.svg` | `Game/Content/UI/G/Vector/G_CheckStar.svg` | 48x48 viewBox; curved four-point gold star with white/lilac facets |
+| `G-Header-Divider-v001.svg` | `Game/Content/UI/G/Vector/G_HeaderDivider.svg` | 214x29 viewBox; tapered short gold lines, diamond terminals and faceted central star |
+| `G-Reading-Divider-v001.svg` | `Game/Content/UI/G/Vector/G_ReadingDivider.svg` | 314x29 viewBox; longer matching lines and central star |
+| `G-Pause-Bars-v001.svg` | `Game/Content/UI/G/Vector/G_PauseBars.svg` | 24x30 viewBox; two white rounded bars, runtime tint follows skin availability |
 
 From the repository root:
 
@@ -24,10 +27,16 @@ hashes. Both copies are ordinary Git text. No `.uasset` is fabricated or require
 for this raw-resource path.
 
 UE 5.8.2's `FSlateVectorImageBrush` loads and rasterizes the runtime SVGs. UMG
-keeps the icon separate from its live button label. Missing resources collapse
-the icon and its spacing. `DefaultGame.ini` declares the vector directory for UFS
+keeps Hint/Check icons separate from their live button labels. Missing Hint/Check
+resources collapse the icon and its spacing. Missing divider resources collapse
+only their decoration while preserving reading layout. Pause retains its semantic
+name/tooltip and uses its original text fallback if its SVG is absent; its vector
+is independent of display fonts and remains at least 14x18 logical units inside
+the existing minimum 48-unit control. `DefaultGame.ini` declares the directory for UFS
 staging, but a packaged build has not verified that path. Native desktop evidence
-and remaining gates are in `Docs/QA/UI01/G-ACTION-ICONS.md`.
+and remaining gates are in `Docs/QA/UI01/G-ACTION-ICONS.md` and
+`Docs/QA/UI01/G-VECTOR-ORNAMENTS.md`. The staging helper's historical filename is
+retained; it now checks all five masters/runtime copies.
 
 No rights clearance beyond supplied-reference provenance is established. Release
 clearance and faithful-art acceptance remain open.
