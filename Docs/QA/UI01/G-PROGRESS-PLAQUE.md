@@ -63,8 +63,11 @@ PNG and original with a 50% overlay. Browser interaction remains unverified; pri
 local-navigation policy blocks were not bypassed. Direct image inspection is the
 visual evidence here.
 
-Internal review will be recorded after the dedicated command completes against
-the actual `origin/dev` base. Review does not authorize a merge.
+Dedicated read-only Codex review completed at clean `61fd184` against actual
+`origin/dev` (`70a8af0`), exit 0, with no actionable introduced defects. Evidence:
+`Artifacts/Reviews/20261001-194029`. HEAD/worktree were unchanged during review;
+builds/runtime checks were not rerun by the reviewer. Subsequent changes only
+record review/publishing status in documentation. Review does not authorize a merge.
 
 ## Differences and remaining gates
 

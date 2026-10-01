@@ -108,8 +108,9 @@ centered live prototype `3 / 7`. Initial native placement defects were corrected
 reference-size, narrow simulated safe-area and compact landscape captures were
 inspected from clean `99e724f`. Both builds and both existing Unreal tests pass.
 Provenance, comparisons and limitations are in
-[progress plaque](../QA/UI01/G-PROGRESS-PLAQUE.md). Dedicated review remains pending;
-static art, motion, editorial and physical-device gates remain open.
+[progress plaque](../QA/UI01/G-PROGRESS-PLAQUE.md). Dedicated review at clean
+`61fd184` against `70a8af0` completed with exit 0 and no actionable introduced
+defects. Static art, motion, editorial and physical-device gates remain open.
 
 ## Resume
 
