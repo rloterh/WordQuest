@@ -18,6 +18,7 @@ struct FContextAnswerWidgets
 {
     GENERATED_BODY()
     UPROPERTY(Transient) TObjectPtr<UButton> Button;
+    UPROPERTY(Transient) TObjectPtr<UImage> Skin;
     UPROPERTY(Transient) TObjectPtr<UTextBlock> Label;
     UPROPERTY(Transient) TObjectPtr<UBorder> Badge;
     UPROPERTY(Transient) TObjectPtr<UTextBlock> Letter;
