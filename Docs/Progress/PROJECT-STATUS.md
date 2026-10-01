@@ -91,6 +91,13 @@ exit 0 and no actionable introduced defects. The bounded
 [control PR #3](https://github.com/rloterh/WordQuest/pull/3) was merged by the owner
 on 2026-10-01; this does not pass the unfinished static-art or device gates.
 
+The next bounded increment adds a separate pearl answer-skin candidate. Native
+captures found texture-border clamping; drawing scale was corrected and captures
+retaken. Both real build targets and both Unreal tests pass. Exact asset provenance,
+import results, native evidence and remaining differences are recorded in
+[answer skin](../QA/UI01/G-ANSWER-SKIN.md). Dedicated internal review is pending
+before publishing this candidate increment; no art or device gate is passed.
+
 ## Resume
 
 Read [environment](../Setup/ENVIRONMENT.md), [toolchain](../Setup/TOOLCHAIN-LOCK.md),
