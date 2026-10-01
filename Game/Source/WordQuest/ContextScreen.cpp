@@ -271,9 +271,9 @@ void UContextScreen::Build()
         PauseIconSize = Make<USizeBox>(TEXT("PauseIconSize"));
         PauseIconSize->AddChild(PauseIcon);
         PauseButton->SetContent(PauseIconSize);
-        auto* Slot = CastChecked<UButtonSlot>(PauseIconSize->Slot);
-        Slot->SetHorizontalAlignment(HAlign_Center);
-        Slot->SetVerticalAlignment(VAlign_Center);
+        auto* PauseContentSlot = CastChecked<UButtonSlot>(PauseIconSize->Slot);
+        PauseContentSlot->SetHorizontalAlignment(HAlign_Center);
+        PauseContentSlot->SetVerticalAlignment(VAlign_Center);
     }
     HintSkin = Picture(TEXT("HintSkin"), TEXT("/Game/UI/G/G_HintSkin.G_HintSkin"));
     SubmitSkin = Picture(TEXT("SubmitSkin"), TEXT("/Game/UI/G/G_CheckSkin.G_CheckSkin"));
