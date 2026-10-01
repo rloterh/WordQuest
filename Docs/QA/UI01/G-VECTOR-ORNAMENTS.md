@@ -74,7 +74,13 @@ The ignored `Artifacts/QA/UI01/g-vector-ornaments-comparison.html` embeds origin
 final native PNG and a 50% overlay. Browser interaction remains unverified;
 previous local-navigation policy blocks were not bypassed.
 
-Dedicated read-only PR review is pending against actual `origin/dev`.
+Dedicated read-only Codex review of clean `e141c2f` against actual `origin/dev`
+(`822e850`) completed with exit 0 and no actionable introduced defects. Raw
+evidence: `Artifacts/Reviews/20261001-232826`. HEAD/worktree were unchanged.
+The reviewer checked SVG parity, original-reference hashes and whitespace; it did
+not independently rerun builds/runtime/device checks. Subsequent changes only
+record review/publication status in documentation. Review does not authorize
+merge or replace native/device evidence.
 
 ## Remaining gates
 
