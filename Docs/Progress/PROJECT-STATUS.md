@@ -6,8 +6,9 @@ Owner authorized P00/UI00 inventory, UI01/UI02 G proof and appropriate PRs on
 2026-09-22. The owner merged foundation PR #1 into `dev` at `6a840e0` on
 2026-09-23 and requested the next step. The owner also merged prototype PR #2 on
 2026-10-01 into `dev` at `eff9f50`. Working branch: `feature/g-control-fidelity`,
-based on that merge, restoring native A–D badges and answer spacing. No agent merge,
-game deployment or release is authorized.
+based on that merge. [PR #3](https://github.com/rloterh/WordQuest/pull/3) restores
+native A–D badges and answer spacing. No agent merge, game deployment or release
+is authorized.
 
 ## Completed work
 
@@ -86,7 +87,8 @@ focused-answer captures were inspected; long-word overflow and omitted native sl
 padding were corrected. Both build targets pass. Evidence and verification limits
 are recorded in [answer controls](../QA/UI01/G-ANSWER-CONTROLS.md). Dedicated internal
 review of clean `924ffc6` against the actual `dev` base (`eff9f50`) completed with
-exit 0 and no actionable introduced defects. The bounded control PR is ready for
+exit 0 and no actionable introduced defects. The bounded
+[control PR #3](https://github.com/rloterh/WordQuest/pull/3) is open and ready for
 owner review; this does not pass the unfinished static-art or device gates.
 
 ## Resume
