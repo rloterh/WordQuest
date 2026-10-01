@@ -43,6 +43,7 @@ public:
     void SetProofTextScale(float Value);
     void SetProofLongText();
     void FocusProofAnswer();
+    void FocusProofAction();
 #endif
 protected:
     virtual TSharedRef<SWidget> RebuildWidget() override;

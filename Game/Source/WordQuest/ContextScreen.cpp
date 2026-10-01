@@ -481,12 +481,19 @@ void UContextScreen::StyleButtons()
         }
         const auto FillColor = HasSkin ? FLinearColor::Transparent : (Primary ? Violet : Pearl);
         const auto Border = Focused ? Ink : (Selected ? Violet : (Primary ? Gold : FLinearColor::White));
-        const float Radius = FMath::Max(35 * Scale, 12.f);
+        const bool SkinnedAction = HasSkin && (B == HintButton || B == SubmitButton || B == PauseButton);
+        float Radius = FMath::Max(35 * Scale, 12.f);
+        if (SkinnedAction)
+        {
+            const auto* Slot = CastChecked<UCanvasPanelSlot>(B->Slot);
+            Radius = .5f * FMath::Min(float(Slot->GetSize().X), float(Slot->GetSize().Y));
+        }
+        const float NormalOutline = SkinnedAction && !Focused ? 0.f : (Focused || Selected ? 4.f : 2.f);
         FButtonStyle Style;
-        Style.SetNormal(FSlateRoundedBoxBrush(FillColor, Radius, Border, Focused || Selected ? 4.f : 2.f));
+        Style.SetNormal(FSlateRoundedBoxBrush(FillColor, Radius, Border, NormalOutline));
         Style.SetHovered(FSlateRoundedBoxBrush(HasSkin ? FLinearColor(.9f, .86f, 1, .16f) : (Primary ? Violet * .8f : FLinearColor(.78f, .73f, 1)), Radius, Gold, 3.f));
         Style.SetPressed(FSlateRoundedBoxBrush(HasSkin ? FLinearColor(.22f, .16f, .5f, .16f) : (Primary ? Violet * .6f : FLinearColor(.64f, .58f, .91f)), Radius, Ink, 3.f));
-        Style.SetDisabled(FSlateRoundedBoxBrush(FillColor, Radius, Border, 2.f));
+        Style.SetDisabled(FSlateRoundedBoxBrush(FillColor, Radius, Border, SkinnedAction ? 0.f : 2.f));
         Style.SetNormalPadding(FMargin(24 * Scale, 5 * Scale));
         Style.SetPressedPadding(FMargin(24 * Scale, 6 * Scale, 24 * Scale, 4 * Scale));
         B->SetStyle(Style);
@@ -611,6 +618,7 @@ FReply UContextScreen::NativeOnKeyDown(const FGeometry& Geometry, const FKeyEven
 #if !UE_BUILD_SHIPPING
 void UContextScreen::SetProofTextScale(float Value) { TextScale = FMath::Clamp(Value, 1.f, 2.f); Refresh(); }
 void UContextScreen::FocusProofAnswer() { Answers[1].Button->SetUserFocus(GetOwningPlayer()); }
+void UContextScreen::FocusProofAction() { SubmitButton->SetUserFocus(GetOwningPlayer()); }
 void UContextScreen::SetProofLongText()
 {
     if (!bReady) return;
