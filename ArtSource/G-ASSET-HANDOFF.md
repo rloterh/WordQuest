@@ -52,6 +52,14 @@ release art. Exact prompts, unchanged raster master and UV/import provenance are
 stored alongside the source PNG; no layered source is claimed. The remaining items
 below still require art work and acceptance, including the purple check skin.
 
+The subsequent blank progress-plaque v002 candidate is imported as
+`/Game/UI/G/G_ProgressPlaque`. Its unchanged RGBA master, exact prompts and UV/import
+provenance are under `UI/G/Reconstruction`. Native captures show live centered
+`3 / 7` on the separate plaque and both hidden in compact landscape. The generated
+core's proportions are adapted to the reference bounds; gold brightness/thickness,
+bevel, purple lighting and edge noise still differ. No faithful-art acceptance or
+layered source is claimed. See `Docs/QA/UI01/G-PROGRESS-PLAQUE.md`.
+
 1. Faithful spirit RGBA at the original x82–289/y276–461 placement, clean anti-aliased
    perimeter, same face and lantern. Provide separate local lantern-emission mask.
 2. Blank panel matching original x65–823/y521–1618. Supply non-stretching top/corners/

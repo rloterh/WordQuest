@@ -13,6 +13,10 @@ original PR #2 proof; its unfinished art and acceptance limits still apply.
 The subsequent [pearl answer-skin candidate](G-ANSWER-SKIN.md) replaces the flat
 answer fills and records native scaling/state evidence. Its art remains unapproved.
 
+The later [progress-plaque candidate](G-PROGRESS-PLAQUE.md) adds separate decoration
+behind centered live prototype progress, with native portrait/safe-area/landscape
+captures. It does not establish campaign persistence or art acceptance.
+
 ## Behavior and scope
 
 `FContextQuestion` validates the local JSON fixture. `FContextAttempt` owns selection,

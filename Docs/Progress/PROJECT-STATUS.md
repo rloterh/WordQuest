@@ -94,7 +94,7 @@ exit 0 and no actionable introduced defects. The bounded
 [control PR #3](https://github.com/rloterh/WordQuest/pull/3) was merged by the owner
 on 2026-10-01; this does not pass the unfinished static-art or device gates.
 
-The next bounded increment adds a separate pearl answer-skin candidate. Native
+The increment after PR #3 added a separate pearl answer-skin candidate. Native
 captures found texture-border clamping; drawing scale was corrected and captures
 retaken. Both real build targets and both Unreal tests pass. Exact asset provenance,
 import results, native evidence and remaining differences are recorded in
@@ -102,6 +102,14 @@ import results, native evidence and remaining differences are recorded in
 `adcab28` against `8748673` completed with exit 0 and no actionable introduced
 defects. The owner merged [PR #4](https://github.com/rloterh/WordQuest/pull/4);
 no art or device gate is passed.
+
+After PR #4, a separate progress-plaque candidate was imported and placed behind
+centered live prototype `3 / 7`. Initial native placement defects were corrected;
+reference-size, narrow simulated safe-area and compact landscape captures were
+inspected from clean `99e724f`. Both builds and both existing Unreal tests pass.
+Provenance, comparisons and limitations are in
+[progress plaque](../QA/UI01/G-PROGRESS-PLAQUE.md). Dedicated review remains pending;
+static art, motion, editorial and physical-device gates remain open.
 
 ## Resume
 
