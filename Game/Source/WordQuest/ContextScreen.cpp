@@ -573,8 +573,9 @@ void UContextScreen::StyleButtons()
         Style.SetHovered(FSlateRoundedBoxBrush(HasSkin ? FLinearColor(.9f, .86f, 1, .16f) : (Primary ? Violet * .8f : FLinearColor(.78f, .73f, 1)), Radius, Gold, 3.f));
         Style.SetPressed(FSlateRoundedBoxBrush(HasSkin ? FLinearColor(.22f, .16f, .5f, .16f) : (Primary ? Violet * .6f : FLinearColor(.64f, .58f, .91f)), Radius, Ink, 3.f));
         Style.SetDisabled(FSlateRoundedBoxBrush(FillColor, Radius, Border, SkinnedAction ? 0.f : 2.f));
-        Style.SetNormalPadding(FMargin(24 * Scale, 5 * Scale));
-        Style.SetPressedPadding(FMargin(24 * Scale, 6 * Scale, 24 * Scale, 4 * Scale));
+        const float HorizontalPadding = (B == PauseButton ? 8 : 24) * Scale;
+        Style.SetNormalPadding(FMargin(HorizontalPadding, 5 * Scale));
+        Style.SetPressedPadding(FMargin(HorizontalPadding, 6 * Scale, HorizontalPadding, 4 * Scale));
         B->SetStyle(Style);
         ButtonLabel(B)->SetColorAndOpacity(Primary || (B == PauseButton && HasSkin) ? FLinearColor::White : Ink);
         if (B == PauseButton) PauseIcon->SetColorAndOpacity(HasSkin ? FLinearColor::White : Ink);
