@@ -4,8 +4,10 @@
 
 Owner authorized P00/UI00 inventory, UI01/UI02 G proof and appropriate PRs on
 2026-09-22. The owner merged foundation PR #1 into `dev` at `6a840e0` on
-2026-09-23 and requested the next step. Working branch: `feature/g-static-gameplay`,
-based on that merge. No agent merge, game deployment or release is authorized.
+2026-09-23 and requested the next step. The owner also merged prototype PR #2 on
+2026-10-01 into `dev` at `eff9f50`. Working branch: `feature/g-control-fidelity`,
+based on that merge, restoring native A–D badges and answer spacing. No agent merge,
+game deployment or release is authorized.
 
 ## Completed work
 
@@ -71,8 +73,8 @@ rechecked in native captures. Manual desktop scrolling and answer clicks worked 
 200% reading text with extended content. On 2026-10-01 the clean implementation
 commit `4b3ed79` passed a fresh editor build, both automation tests and a native
 390x844 correct-answer capture. Internal review completed with no actionable
-findings. [Draft PR #2](https://github.com/rloterh/WordQuest/pull/2) is open against
-`dev`; the implementation remains `4b3ed79` with documentation-only follow-ups.
+findings. The owner merged [PR #2](https://github.com/rloterh/WordQuest/pull/2) as a
+tested prototype checkpoint; this does not accept unfinished visual or device gates.
 Android receipt absence and no connected adb phone were rechecked on 2026-10-01.
 See [native proof](../QA/UI01/NATIVE-G-PROOF.md)
 and [review](../QA/UI01/INTERNAL-REVIEW.md).
@@ -86,6 +88,7 @@ Read [environment](../Setup/ENVIRONMENT.md), [toolchain](../Setup/TOOLCHAIN-LOCK
 `python Tools/BuildScripts/build_wordquest.py` to reproduce the editor build.
 Keep missing mobile evidence explicit. Next: refine the documented G art/lettering
 differences, complete fixture review, identify the engine installation source to add
-Android support, then validate on a connected phone. Keep PR #2 draft until its
-declared acceptance criteria are satisfied. Finish G static proof before UI02 or H/I.
+Android support, then validate on a connected phone. Finish G static proof before
+UI02 or H/I. The current control follow-up preserves initial unselected state,
+keyboard focus, disabled states, long answers and the 200% reading override.
 Preserve all supplied planning packages and original images unchanged.

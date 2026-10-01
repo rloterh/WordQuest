@@ -1,11 +1,14 @@
 #include "ContextScreen.h"
 #include "Blueprint/WidgetTree.h"
 #include "Brushes/SlateRoundedBoxBrush.h"
+#include "Components/Border.h"
 #include "Components/Button.h"
 #include "Components/ButtonSlot.h"
 #include "Components/CanvasPanel.h"
 #include "Components/CanvasPanelSlot.h"
 #include "Components/Image.h"
+#include "Components/HorizontalBox.h"
+#include "Components/HorizontalBoxSlot.h"
 #include "Components/SafeZone.h"
 #include "Components/ScrollBox.h"
 #include "Components/ScrollBoxSlot.h"
@@ -26,6 +29,8 @@ const FLinearColor Ink = FLinearColor::FromSRGBColor(FColor(24, 20, 83));
 const FLinearColor Pearl = FLinearColor::FromSRGBColor(FColor(225, 220, 255));
 const FLinearColor Violet = FLinearColor::FromSRGBColor(FColor(69, 40, 157));
 const FLinearColor Gold = FLinearColor::FromSRGBColor(FColor(218, 181, 121));
+const FLinearColor BadgeFill = FLinearColor::FromSRGBColor(FColor(181, 178, 248));
+const FLinearColor BadgeEdge = FLinearColor::FromSRGBColor(FColor(158, 153, 230));
 
 void Bounds(UWidget* Widget, float X, float Y, float W, float H)
 {
@@ -170,15 +175,39 @@ void UContextScreen::Build()
     for (int32 I = 0; I < 4; ++I)
     {
         const FString Name = FString::Printf(TEXT("Answer%d"), I);
-        auto* Choice = Button(*Name, bReady ? FString::Printf(TEXT("%c    %s"), TCHAR('A' + I), *Question.Choices[I]) : TEXT("Unavailable"));
-        CastChecked<UTextBlock>(Choice->GetContent())->SetJustification(ETextJustify::Left);
-        Canvas->AddChild(Choice);
-        AnswerButtons.Add(Choice);
+        FContextAnswerWidgets Answer;
+        Answer.Button = Button(*Name, bReady ? Question.Choices[I] : TEXT("Unavailable"));
+        Answer.Label = CastChecked<UTextBlock>(Answer.Button->GetContent());
+        Answer.Label->SetJustification(ETextJustify::Left);
+        Answer.Label->SetWrappingPolicy(ETextWrappingPolicy::AllowPerCharacterWrapping);
+        Answer.Letter = Text(*(Name + TEXT("Letter")), FString::Chr(TCHAR('A' + I)));
+        Answer.Badge = Make<UBorder>(*(Name + TEXT("Badge")));
+        Answer.Badge->SetPadding(FMargin(0));
+        Answer.Badge->SetHorizontalAlignment(HAlign_Center);
+        Answer.Badge->SetVerticalAlignment(VAlign_Center);
+        Answer.Badge->AddChild(Answer.Letter);
+        Answer.BadgeSize = Make<USizeBox>(*(Name + TEXT("BadgeSize")));
+        Answer.BadgeSize->AddChild(Answer.Badge);
+        Answer.Marker = Text(*(Name + TEXT("Selection")), TEXT(""));
+        Answer.MarkerSize = Make<USizeBox>(*(Name + TEXT("SelectionSize")));
+        Answer.MarkerSize->AddChild(Answer.Marker);
+        auto* Row = Make<UHorizontalBox>(*(Name + TEXT("Row")));
+        Row->AddChildToHorizontalBox(Answer.BadgeSize)->SetVerticalAlignment(VAlign_Center);
+        Row->AddChildToHorizontalBox(Answer.MarkerSize)->SetVerticalAlignment(VAlign_Center);
+        auto* LabelSlot = Row->AddChildToHorizontalBox(Answer.Label);
+        LabelSlot->SetSize(FSlateChildSize(ESlateSizeRule::Fill));
+        LabelSlot->SetVerticalAlignment(VAlign_Center);
+        Answer.Button->SetContent(Row);
+        auto* ContentSlot = CastChecked<UButtonSlot>(Row->Slot);
+        ContentSlot->SetHorizontalAlignment(HAlign_Fill);
+        ContentSlot->SetVerticalAlignment(VAlign_Center);
+        Canvas->AddChild(Answer.Button);
+        Answers.Add(Answer);
     }
-    AnswerButtons[0]->OnClicked.AddDynamic(this, &UContextScreen::ChooseA);
-    AnswerButtons[1]->OnClicked.AddDynamic(this, &UContextScreen::ChooseB);
-    AnswerButtons[2]->OnClicked.AddDynamic(this, &UContextScreen::ChooseC);
-    AnswerButtons[3]->OnClicked.AddDynamic(this, &UContextScreen::ChooseD);
+    Answers[0].Button->OnClicked.AddDynamic(this, &UContextScreen::ChooseA);
+    Answers[1].Button->OnClicked.AddDynamic(this, &UContextScreen::ChooseB);
+    Answers[2].Button->OnClicked.AddDynamic(this, &UContextScreen::ChooseC);
+    Answers[3].Button->OnClicked.AddDynamic(this, &UContextScreen::ChooseD);
     HintButton = Button(TEXT("Hint"), TEXT("Hint"));
     SubmitButton = Button(TEXT("Submit"), TEXT("Check answer"));
     PauseButton = Button(TEXT("Pause"), TEXT("II"));
@@ -283,12 +312,19 @@ void UContextScreen::Layout(FVector2D Size)
     H = Measure(Prompt, 35, 650 * S, 55 * S, true);
     PutText(Prompt, 117 * S, Y, 650 * S, H);
     Y += H + 12 * S;
-    for (UButton* B : AnswerButtons)
+    for (const auto& Answer : Answers)
     {
-        auto* Label = CastChecked<UTextBlock>(B->GetContent());
-        H = Measure(Label, 35, 582 * S, FMath::Max(95 * S, 48.f));
-        H = FMath::Max(H, Label->GetDesiredSize().Y + 30 * S);
-        Bounds(B, X + 109 * S, Y, 666 * S, H);
+        const float BadgeDiameter = FMath::Max(70 * S * TextScale, 32.f);
+        const float MarkerWidth = FMath::Max(37 * S * TextScale, 18.f);
+        Answer.BadgeSize->SetWidthOverride(BadgeDiameter);
+        Answer.BadgeSize->SetHeightOverride(BadgeDiameter);
+        Answer.MarkerSize->SetWidthOverride(MarkerWidth);
+        Font(Answer.Letter, FMath::Max(35 * S * TextScale, 14.f), true);
+        Font(Answer.Marker, FMath::Max(24 * S * TextScale, 14.f), true);
+        const float LabelWidth = 666 * S - 48 * S - BadgeDiameter - MarkerWidth;
+        H = Measure(Answer.Label, 35, LabelWidth, FMath::Max(95 * S, 48.f));
+        H = FMath::Max3(H, float(Answer.Label->GetDesiredSize().Y) + 30 * S, BadgeDiameter + 12 * S);
+        Bounds(Answer.Button, X + 109 * S, Y, 666 * S, H);
         Y += H + 17 * S;
     }
     Y += 16 * S;
@@ -333,9 +369,15 @@ void UContextScreen::Layout(FVector2D Size)
     }
 }
 
+UTextBlock* UContextScreen::ButtonLabel(UButton* Target) const
+{
+    for (const auto& Answer : Answers) if (Answer.Button == Target) return Answer.Label;
+    return CastChecked<UTextBlock>(Target->GetContent());
+}
+
 void UContextScreen::SetButtonLabel(UButton* Target, const FString& Label)
 {
-    CastChecked<UTextBlock>(Target->GetContent())->SetText(FText::FromString(Label));
+    ButtonLabel(Target)->SetText(FText::FromString(Label));
     Accessible(Target, Label);
 }
 
@@ -356,23 +398,31 @@ void UContextScreen::StyleButtons()
         Style.SetNormalPadding(FMargin(24 * Scale, 5 * Scale));
         Style.SetPressedPadding(FMargin(24 * Scale, 6 * Scale, 24 * Scale, 4 * Scale));
         B->SetStyle(Style);
-        CastChecked<UTextBlock>(B->GetContent())->SetColorAndOpacity(Primary ? FLinearColor::White : Ink);
+        ButtonLabel(B)->SetColorAndOpacity(Primary ? FLinearColor::White : Ink);
     };
-    for (int32 I = 0; I < AnswerButtons.Num(); ++I) Apply(AnswerButtons[I], false, Attempt.SelectedIndex == I);
+    for (int32 I = 0; I < Answers.Num(); ++I)
+    {
+        const auto& Answer = Answers[I];
+        const bool Selected = Attempt.SelectedIndex == I;
+        Apply(Answer.Button, false, Selected);
+        const float Radius = FMath::Max(70 * Scale * TextScale, 32.f) * .5f;
+        Answer.Badge->SetBrush(FSlateRoundedBoxBrush(BadgeFill, Radius, Selected ? Ink : BadgeEdge, Selected ? 3.f : 1.f));
+        Answer.Marker->SetText(Selected ? FText::FromString(TEXT(">")) : FText::GetEmpty());
+    }
     Apply(SubmitButton, true, false);
     for (auto* B : {HintButton.Get(), PauseButton.Get(), ResumeButton.Get(), TextSizeButton.Get(), ResetButton.Get()}) Apply(B, false, false);
 }
 
 void UContextScreen::Refresh()
 {
-    for (int32 I = 0; I < AnswerButtons.Num(); ++I)
+    for (int32 I = 0; I < Answers.Num(); ++I)
     {
-        AnswerButtons[I]->SetIsEnabled(bReady && !Attempt.bSubmitted);
+        Answers[I].Button->SetIsEnabled(bReady && !Attempt.bSubmitted);
         if (bReady)
         {
             const FString Prefix = Attempt.SelectedIndex == I ? TEXT("Selected. ") : TEXT("");
-            SetButtonLabel(AnswerButtons[I], FString::Printf(TEXT("%s%c    %s"), Attempt.SelectedIndex == I ? TEXT("> ") : TEXT(""), TCHAR('A' + I), *Question.Choices[I]));
-            Accessible(AnswerButtons[I], FString::Printf(TEXT("%sOption %c. %s"), *Prefix, TCHAR('A' + I), *Question.Choices[I]));
+            SetButtonLabel(Answers[I].Button, Question.Choices[I]);
+            Accessible(Answers[I].Button, FString::Printf(TEXT("%sOption %c. %s"), *Prefix, TCHAR('A' + I), *Question.Choices[I]));
         }
     }
     HintButton->SetIsEnabled(bReady && !Attempt.bSubmitted && !Attempt.bHintUsed);
@@ -421,7 +471,7 @@ void UContextScreen::TogglePause()
     if (!Attempt.bPaused)
     {
         PreviousFocus = PauseButton;
-        for (UButton* B : AnswerButtons) if (B->HasKeyboardFocus()) PreviousFocus = B;
+        for (const auto& Answer : Answers) if (Answer.Button->HasKeyboardFocus()) PreviousFocus = Answer.Button;
         if (HintButton->HasKeyboardFocus()) PreviousFocus = HintButton;
         if (SubmitButton->HasKeyboardFocus()) PreviousFocus = SubmitButton;
     }
@@ -467,7 +517,7 @@ FReply UContextScreen::NativeOnKeyDown(const FGeometry& Geometry, const FKeyEven
 
 #if !UE_BUILD_SHIPPING
 void UContextScreen::SetProofTextScale(float Value) { TextScale = FMath::Clamp(Value, 1.f, 2.f); Refresh(); }
-void UContextScreen::FocusProofAnswer() { AnswerButtons[1]->SetUserFocus(GetOwningPlayer()); }
+void UContextScreen::FocusProofAnswer() { Answers[1].Button->SetUserFocus(GetOwningPlayer()); }
 void UContextScreen::SetProofLongText()
 {
     if (!bReady) return;
@@ -476,7 +526,7 @@ void UContextScreen::SetProofLongText()
     for (int32 I = 0; I < 4; ++I)
     {
         Question.Choices[I] += TEXT(" — consider the uncertainty expressed by the witness in this context.");
-        SetButtonLabel(AnswerButtons[I], FString::Printf(TEXT("%c    %s"), TCHAR('A' + I), *Question.Choices[I]));
+        SetButtonLabel(Answers[I].Button, Question.Choices[I]);
     }
     Refresh();
 }

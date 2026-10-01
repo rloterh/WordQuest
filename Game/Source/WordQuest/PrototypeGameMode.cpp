@@ -45,7 +45,18 @@ void APrototypeController::RunProof()
     else if (ProofName == TEXT("empty")) Screen->Submit();
     else if (ProofName == TEXT("paused")) { Screen->Choose(1); Screen->TogglePause(); Screen->Choose(0); Screen->Submit(); }
     else if (ProofName == TEXT("large")) Screen->SetProofTextScale(2);
-    else if (ProofName == TEXT("long")) { Screen->SetProofTextScale(2); Screen->SetProofLongText(); }
+    else if (ProofName == TEXT("long") || ProofName == TEXT("longfocus"))
+    {
+        Screen->SetProofTextScale(2);
+        Screen->SetProofLongText();
+        if (ProofName == TEXT("longfocus"))
+        {
+            // Focus after enlarged content has laid out, before the native capture.
+            FTimerHandle FocusTimer;
+            GetWorldTimerManager().SetTimer(FocusTimer, FTimerDelegate::CreateWeakLambda(this,
+                [this]() { Screen->FocusProofAnswer(); }), .5f, false);
+        }
+    }
     else if (ProofName == TEXT("focus")) Screen->FocusProofAnswer();
     const auto& A = Screen->GetAttempt();
     UE_LOG(LogTemp, Display, TEXT("WQ_STATE proof=%s selected=%d submitted=%d correct=%d hint=%d paused=%d evaluations=%d"),

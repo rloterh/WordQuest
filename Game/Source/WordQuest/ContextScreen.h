@@ -6,11 +6,25 @@
 #include "ContextScreen.generated.h"
 
 class UButton;
+class UBorder;
 class UCanvasPanel;
 class UImage;
 class UScrollBox;
 class USizeBox;
 class UTextBlock;
+
+USTRUCT()
+struct FContextAnswerWidgets
+{
+    GENERATED_BODY()
+    UPROPERTY(Transient) TObjectPtr<UButton> Button;
+    UPROPERTY(Transient) TObjectPtr<UTextBlock> Label;
+    UPROPERTY(Transient) TObjectPtr<UBorder> Badge;
+    UPROPERTY(Transient) TObjectPtr<UTextBlock> Letter;
+    UPROPERTY(Transient) TObjectPtr<USizeBox> BadgeSize;
+    UPROPERTY(Transient) TObjectPtr<UTextBlock> Marker;
+    UPROPERTY(Transient) TObjectPtr<USizeBox> MarkerSize;
+};
 
 UCLASS()
 class WORDQUEST_API UContextScreen : public UUserWidget
@@ -43,6 +57,7 @@ private:
     void Layout(FVector2D Size);
     void Refresh();
     void StyleButtons();
+    UTextBlock* ButtonLabel(UButton* Target) const;
     void SetButtonLabel(UButton* Target, const FString& Label);
     UFUNCTION() void ChooseA() { Choose(0); }
     UFUNCTION() void ChooseB() { Choose(1); }
@@ -85,7 +100,7 @@ private:
     UPROPERTY(Transient) TObjectPtr<UButton> ResumeButton;
     UPROPERTY(Transient) TObjectPtr<UButton> TextSizeButton;
     UPROPERTY(Transient) TObjectPtr<UButton> ResetButton;
-    UPROPERTY(Transient) TArray<TObjectPtr<UButton>> AnswerButtons;
+    UPROPERTY(Transient) TArray<FContextAnswerWidgets> Answers;
     UPROPERTY(Transient) TObjectPtr<UWidget> PreviousFocus;
     UPROPERTY(Transient) TObjectPtr<UObject> DisplayFont;
 };
