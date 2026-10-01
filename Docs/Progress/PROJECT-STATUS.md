@@ -8,11 +8,10 @@ Owner authorized P00/UI00 inventory, UI01/UI02 G proof and appropriate PRs on
 2026-10-01 into `dev` at `eff9f50`. The owner merged control PR #3 the same day
 at `8748673`; native A–D badges and answer spacing are now on `dev`. The owner
 merged [PR #4](https://github.com/rloterh/WordQuest/pull/4) at `70a8af0` on
-2026-10-01; its pearl answer-skin candidate is now on `dev`. Working branch:
-`feature/g-progress-plaque`, based on that merge, for the bounded progress-plaque
-candidate with separate live prototype text.
-Published as [PR #5](https://github.com/rloterh/WordQuest/pull/5), ready for owner
-review as a candidate increment.
+2026-10-01; its pearl answer-skin candidate is now on `dev`. The owner merged
+[PR #5](https://github.com/rloterh/WordQuest/pull/5) at `8c105ac` on 2026-10-01;
+its separate plaque and live prototype text are now on `dev`. Working branch:
+`feature/g-action-skins`, based on that merge, for Hint/Check/Pause surface candidates.
 No agent merge, game deployment or release is authorized.
 
 ## Completed work
