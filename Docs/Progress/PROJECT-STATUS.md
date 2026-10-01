@@ -131,7 +131,9 @@ narrow action layouts; narrow mode words no longer split decorative lettering.
 Both builds and both Unreal tests pass at clean source `82a9ec8`. Native normal,
 200%, disabled and narrow-focus captures were inspected; an intentional missing-SVG
 test preserved labels/focus, then both resources were restored and parity checked.
-See [action icons](../QA/UI01/G-ACTION-ICONS.md). Dedicated review is pending.
+See [action icons](../QA/UI01/G-ACTION-ICONS.md). Dedicated review of clean
+`b21c9fd` against actual `dev` base `3acca49` completed with exit 0 and no
+actionable introduced defects.
 Raw SVG staging is declared but packaging is unverified. Android receipt absence
 and no connected adb phone were rechecked. No art, motion or device gate is passed.
 

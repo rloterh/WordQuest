@@ -66,7 +66,13 @@ page `Artifacts/QA/UI01/g-action-icons-comparison.html` embeds the final normal 
 the original and a 50% overlay. Browser interaction is unverified; prior local
 navigation policy blocks were not bypassed.
 
-Dedicated read-only review is pending against the actual `origin/dev` base.
+Dedicated read-only Codex review of clean `b21c9fd` against actual `origin/dev`
+(`3acca49`) completed with exit 0 and no actionable introduced defects. Raw
+evidence: `Artifacts/Reviews/20261001-222720`. HEAD/worktree were unchanged;
+the reviewer independently checked SVG parity, reference hashes and whitespace,
+but did not rerun Unreal builds/runtime/device checks. Subsequent changes only
+record review/publishing status in documentation. Review does not authorize a
+merge or replace native/device evidence.
 
 ## Remaining differences and gates
 
