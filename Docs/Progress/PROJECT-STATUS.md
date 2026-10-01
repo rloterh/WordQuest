@@ -142,6 +142,15 @@ and no connected adb phone were rechecked. No art, motion or device gate is pass
 The owner merged the bounded [PR #7](https://github.com/rloterh/WordQuest/pull/7)
 on 2026-10-01 as a tested candidate increment; this does not accept unfinished gates.
 
+After PR #7, separate hand-authored short/long divider and rounded Pause-bar SVG
+candidates replace decorative font glyphs. A compile-name conflict and squeezed
+Pause content were corrected. Both builds and both Unreal tests pass at clean
+source `273b373`; native normal, 200%, narrow focus, pause/resume and landscape
+captures were inspected. Intentional missing-resource evidence retained Pause's
+text fallback and reading layout; all SVGs were restored and parity rechecked.
+See [vector ornaments](../QA/UI01/G-VECTOR-ORNAMENTS.md). Dedicated review is pending.
+No art, motion, package/device, editorial or release gate is passed.
+
 ## Resume
 
 Read [environment](../Setup/ENVIRONMENT.md), [toolchain](../Setup/TOOLCHAIN-LOCK.md),

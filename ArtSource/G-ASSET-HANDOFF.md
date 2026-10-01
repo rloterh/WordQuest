@@ -78,6 +78,13 @@ captures were inspected. Shape, faceting and lighting acceptance remain open.
 See the vector README and `Docs/QA/UI01/G-ACTION-ICONS.md`; UFS staging is declared,
 but a packaged build has not verified these raw resources.
 
+Short/long gold divider and rounded Pause-bar candidates now join the editable
+SVGs under `UI/G/Vector`. Native normal, enlarged, narrow-focus, pause/resume,
+landscape and missing-resource evidence is recorded in
+`Docs/QA/UI01/G-VECTOR-ORNAMENTS.md`. These replace font-dependent decoration;
+line taper, bevel/light and exact art acceptance remain open. Pause's actual button,
+semantic name and text fallback remain intact. No layered raster source is claimed.
+
 1. Faithful spirit RGBA at the original x82–289/y276–461 placement, clean anti-aliased
    perimeter, same face and lantern. Provide separate local lantern-emission mask.
 2. Blank panel matching original x65–823/y521–1618. Supply non-stretching top/corners/
