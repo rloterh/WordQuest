@@ -136,6 +136,8 @@ See [action icons](../QA/UI01/G-ACTION-ICONS.md). Dedicated review of clean
 actionable introduced defects.
 Raw SVG staging is declared but packaging is unverified. Android receipt absence
 and no connected adb phone were rechecked. No art, motion or device gate is passed.
+The bounded [PR #7](https://github.com/rloterh/WordQuest/pull/7) is open against
+`dev` as a tested candidate increment, awaiting the owner's review/merge decision.
 
 ## Resume
 
