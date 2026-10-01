@@ -4,8 +4,25 @@ All work derives from immutable
 `Planning/WordQuest-UI-Realms-Addendum/references/G-Celestial-Reverie-Gameplay.png`
 (884x1780; hash recorded in original manifest). Original remains unchanged.
 Built-in imagegen performed the edits. No CLI/API fallback, paid plugin, manual
-paintover, Blender layer document or Unreal import has been used or claimed.
+paintover or Blender layer document has been used or claimed. On 2026-09-23 Unreal
+imported the clean plate, panel v002 and spirit v001 for the native engineering proof;
+that import does not change their unapproved art disposition.
 Exact prompts are in `G-GENERATION-PROMPTS.md`; output metadata in `G-ASSETS.json`.
+
+A further spirit extraction attempt on 2026-09-23 was rejected: 1191x1321 RGB,
+baked checkerboard and altered face. It was neither imported nor committed. Exact
+prompt: "Precise asset extraction from the supplied original WordQuest gameplay
+image. Isolate ONLY the small flowing white/lilac lantern-carrying spirit in the
+upper-left scene (approximately x82–289, y276–461 on the original 884x1780 canvas).
+Output a tightly framed PNG on genuine transparent alpha, not black/white/checkerboard.
+Preserve the original spirit exactly: same modest eye size and spacing, small smiling
+mouth, tilted rounded face, white/lavender wisps sweeping to the left, small gold
+circlet, and the same small gold lantern hanging below-left. Preserve the original
+silhouette, face proportions, lantern-to-body scale, direction and painterly lighting.
+Do not redesign, add stars in eyes, enlarge the head/eyes/lantern, make a new mascot,
+add limbs, or add glitter. The only change is removal of every background/UI pixel
+around the original spirit. Transparent fine wisps and clean alpha edges without
+colored fringe. No text, no logo, no panel, no palace, no clouds."
 
 ## Review disposition
 

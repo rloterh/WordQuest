@@ -36,3 +36,6 @@ Desktop.ini
 !/Artifacts/**/.gitkeep
 
 # Game/Build contains source build resources; do not blanket-ignore it.
+# Python helper bytecode.
+__pycache__/
+*.py[cod]

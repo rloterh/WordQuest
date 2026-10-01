@@ -85,7 +85,8 @@ Review is read-only and never authorizes a merge or replaces build/device eviden
   toolchain compatibility, LFS ownership and exclusion of caches/build outputs.
 - Flag secrets in client/config files, changes to original supplied references,
   nondeterministic scoring, broken offline play and accessibility regressions.
-- Distinguish this foundation PR from UI01/UI02: unfinished G assets and draft
-  learning fixtures are disclosed follow-up work, not completed runtime evidence.
+- Judge the PR's declared scope against its recorded evidence. The native G proof
+  must disclose unfinished art and draft fixtures; compilation does not establish
+  UI01 fidelity, UI02 motion or device acceptance.
 - Never claim tests, visual fidelity, editorial approval or physical-device gates
   passed unless the recorded evidence supports that exact claim.

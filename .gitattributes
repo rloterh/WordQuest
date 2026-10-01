@@ -1,6 +1,8 @@
 # Stable text normalization; preserve source planning bytes and line endings.
 * text=auto
 /Planning/** -text
+/ArtSource/Fonts/CormorantGaramond/OFL.txt -text whitespace=-blank-at-eol
+/ArtSource/Licenses/ROBOTO_License.txt -text whitespace=-blank-at-eol
 .gitkeep -text
 
 # Unreal binary assets.

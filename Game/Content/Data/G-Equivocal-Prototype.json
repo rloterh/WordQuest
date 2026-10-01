@@ -1,0 +1,23 @@
+{
+  "id": "prototype.context.equivocal.001",
+  "version": 1,
+  "status": "awaiting_owner_prototype_review",
+  "release_approved": false,
+  "source": "Original G gameplay reference; wording transcribed from inspected image",
+  "lemma": "equivocal",
+  "display_word": "EQUIVOCAL",
+  "clue": "The witness neither confirmed the meeting nor denied attending.",
+  "question": "What does equivocal mean here?",
+  "choices": [
+    {"id": "A", "text": "Ambiguous or noncommittal"},
+    {"id": "B", "text": "Openly hostile"},
+    {"id": "C", "text": "Extremely detailed"},
+    {"id": "D", "text": "Expressing certainty"}
+  ],
+  "correct_choice_id": "A",
+  "draft_hint": "Does the witness give a definite yes or no?",
+  "draft_explanation": "The witness leaves the answer unclear rather than committing to a definite account.",
+  "initial_selection": null,
+  "fixture_progress": {"current": 3, "total": 7},
+  "review_notes": "Answer A follows the neither-confirmed-nor-denied clue. B concerns hostility, C concerns detail, and D contradicts the uncertainty. Hint and explanation are new drafts and need editorial review. This is not campaign or mastery data."
+}
