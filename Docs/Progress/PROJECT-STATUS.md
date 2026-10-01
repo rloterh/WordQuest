@@ -152,6 +152,8 @@ See [vector ornaments](../QA/UI01/G-VECTOR-ORNAMENTS.md). Dedicated review of cl
 `e141c2f` against actual `dev` base `822e850` completed with exit 0 and no
 actionable introduced defects.
 No art, motion, package/device, editorial or release gate is passed.
+The bounded [PR #8](https://github.com/rloterh/WordQuest/pull/8) is open against
+`dev` as a tested candidate increment, awaiting the owner's review/merge decision.
 
 ## Resume
 
