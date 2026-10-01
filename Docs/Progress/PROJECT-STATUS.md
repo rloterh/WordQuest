@@ -10,10 +10,10 @@ at `8748673`; native A–D badges and answer spacing are now on `dev`. The owner
 merged [PR #4](https://github.com/rloterh/WordQuest/pull/4) at `70a8af0` on
 2026-10-01; its pearl answer-skin candidate is now on `dev`. The owner merged
 [PR #5](https://github.com/rloterh/WordQuest/pull/5) at `8c105ac` on 2026-10-01;
-its separate plaque and live prototype text are now on `dev`. Working branch:
-`feature/g-action-skins`, based on that merge, for Hint/Check/Pause surface candidates.
-Published as [PR #6](https://github.com/rloterh/WordQuest/pull/6), ready for owner
-review as a tested candidate increment.
+its separate plaque and live prototype text are now on `dev`. The owner merged
+[PR #6](https://github.com/rloterh/WordQuest/pull/6) at `3acca49` on 2026-10-01;
+its action-skin candidates are now on `dev`. Working branch: `feature/g-action-icons`,
+based on that merge, for separate SVG Hint/Check icons and complete-group layout.
 No agent merge, game deployment or release is authorized.
 
 ## Completed work
@@ -124,6 +124,20 @@ and remaining icon/art differences are recorded in
 [action skins](../QA/UI01/G-ACTION-SKINS.md). Dedicated review of clean `e9f77f3`
 against actual `dev` base `8c105ac` completed with exit 0 and no actionable
 introduced defects. No static-art, motion, editorial or device gate is passed.
+
+After the owner merged PR #6, separate hand-authored SVG Hint/Check candidates
+were added beside live labels. Complete-group measurement preserves enlarged and
+narrow action layouts; narrow mode words no longer split decorative lettering.
+Both builds and both Unreal tests pass at clean source `82a9ec8`. Native normal,
+200%, disabled and narrow-focus captures were inspected; an intentional missing-SVG
+test preserved labels/focus, then both resources were restored and parity checked.
+See [action icons](../QA/UI01/G-ACTION-ICONS.md). Dedicated review of clean
+`b21c9fd` against actual `dev` base `3acca49` completed with exit 0 and no
+actionable introduced defects.
+Raw SVG staging is declared but packaging is unverified. Android receipt absence
+and no connected adb phone were rechecked. No art, motion or device gate is passed.
+The bounded [PR #7](https://github.com/rloterh/WordQuest/pull/7) is open against
+`dev` as a tested candidate increment, awaiting the owner's review/merge decision.
 
 ## Resume
 

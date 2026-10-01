@@ -45,9 +45,9 @@ void APrototypeController::RunProof()
     else if (ProofName == TEXT("empty")) Screen->Submit();
     else if (ProofName == TEXT("paused")) { Screen->Choose(1); Screen->TogglePause(); Screen->Choose(0); Screen->Submit(); }
     else if (ProofName == TEXT("large")) Screen->SetProofTextScale(2);
-    else if (ProofName == TEXT("actions"))
+    else if (ProofName == TEXT("actions") || ProofName == TEXT("actionfocus"))
     {
-        Screen->SetProofTextScale(2);
+        if (ProofName == TEXT("actions")) Screen->SetProofTextScale(2);
         FTimerHandle FocusTimer;
         GetWorldTimerManager().SetTimer(FocusTimer, FTimerDelegate::CreateWeakLambda(this,
             [this]() { Screen->FocusProofAction(); }), .5f, false);

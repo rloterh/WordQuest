@@ -21,6 +21,10 @@ The subsequent [action-skin candidates](G-ACTION-SKINS.md) add separate Hint,
 Check and Pause surfaces with native enlarged-focus, disabled and modal evidence.
 Their art/icons and physical-device acceptance remain unfinished.
 
+The later [separate action-icon candidates](G-ACTION-ICONS.md) restore a vector
+Hint bulb and Check star beside live text, with complete-group sizing, narrow
+heading correction and native fallback evidence. Art and device gates remain open.
+
 ## Behavior and scope
 
 `FContextQuestion` validates the local JSON fixture. `FContextAttempt` owns selection,

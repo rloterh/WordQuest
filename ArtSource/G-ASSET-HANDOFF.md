@@ -3,7 +3,7 @@
 All work derives from immutable
 `Planning/WordQuest-UI-Realms-Addendum/references/G-Celestial-Reverie-Gameplay.png`
 (884x1780; hash recorded in original manifest). Original remains unchanged.
-Built-in imagegen performed the edits. No CLI/API fallback, paid plugin, manual
+Built-in imagegen performed the raster reconstructions. No CLI/API fallback, paid plugin, manual
 paintover or Blender layer document has been used or claimed. On 2026-09-23 Unreal
 imported the clean plate, panel v002 and spirit v001 for the native engineering proof;
 that import does not change their unapproved art disposition.
@@ -65,9 +65,18 @@ imported as `G_HintSkin`, `G_CheckSkin` and `G_PauseSkin`. Check/Pause v002 clea
 attempts were rejected, not imported. Exact prompt sets and unchanged master hashes,
 alpha/UV bounds and import settings are in `G-ACTION-SKINS-*`. Native normal,
 enlarged-focus, hint-assisted disabled and paused captures were inspected. Gloss,
-gold, geometry, fringe and font metrics still differ; Hint bulb and Check star
-remain absent. These are unapproved art candidates with no layered source claimed.
+gold, geometry, fringe and font metrics still differ. Hint bulb and Check star
+were absent in that increment. These are unapproved raster art candidates with no layered source claimed.
 See `Docs/QA/UI01/G-ACTION-SKINS.md`.
+
+The subsequent separate Hint bulb and four-point Check star candidates are
+hand-authored editable SVGs under `UI/G/Vector`, copied without alteration to
+`Game/Content/UI/G/Vector`. They render through native Slate vector brushes beside
+live labels; no image generation or raster editing was used for these icons.
+Native reference-size, enlarged, disabled, narrow-focus and missing-resource
+captures were inspected. Shape, faceting and lighting acceptance remain open.
+See the vector README and `Docs/QA/UI01/G-ACTION-ICONS.md`; UFS staging is declared,
+but a packaged build has not verified these raw resources.
 
 1. Faithful spirit RGBA at the original x82–289/y276–461 placement, clean anti-aliased
    perimeter, same face and lantern. Provide separate local lantern-emission mask.
@@ -80,8 +89,9 @@ See `Docs/QA/UI01/G-ACTION-SKINS.md`.
 4. Faithful accepted answer/action skins with pressed, selected, focus and disabled
    treatment. Candidates exist; further art correction and acceptance remain open.
    Badges/letters and all instructional text remain live widgets.
-5. Clean brand mark, progress plaque, divider ornament, hint/pause icons and font
-   sources with redistribution licenses and glyph/metric evidence.
+5. Accepted brand mark, progress plaque, divider ornament, Hint/Check/Pause icons
+   and font sources with redistribution licenses and glyph/metric evidence.
+   Hint/Check SVG and plaque candidates exist; faithful-art acceptance remains open.
 
 Use sRGB exports with straight alpha unless the importer explicitly converts it.
 Retain source masks, painted hidden regions and editable layers in the artist's real

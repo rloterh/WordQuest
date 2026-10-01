@@ -90,6 +90,12 @@ private:
     UPROPERTY(Transient) TObjectPtr<UImage> HintSkin;
     UPROPERTY(Transient) TObjectPtr<UImage> SubmitSkin;
     UPROPERTY(Transient) TObjectPtr<UImage> PauseSkin;
+    UPROPERTY(Transient) TObjectPtr<UImage> HintIcon;
+    UPROPERTY(Transient) TObjectPtr<UImage> SubmitIcon;
+    UPROPERTY(Transient) TObjectPtr<USizeBox> HintIconSize;
+    UPROPERTY(Transient) TObjectPtr<USizeBox> SubmitIconSize;
+    UPROPERTY(Transient) TObjectPtr<UTextBlock> HintLabel;
+    UPROPERTY(Transient) TObjectPtr<UTextBlock> SubmitLabel;
     UPROPERTY(Transient) TObjectPtr<UImage> ModalShade;
     UPROPERTY(Transient) TObjectPtr<UTextBlock> Brand;
     UPROPERTY(Transient) TObjectPtr<UTextBlock> Progress;

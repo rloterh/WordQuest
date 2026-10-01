@@ -1,6 +1,7 @@
 #include "ContextScreen.h"
 #include "Blueprint/WidgetTree.h"
 #include "Brushes/SlateRoundedBoxBrush.h"
+#include "Brushes/SlateImageBrush.h"
 #include "Components/Border.h"
 #include "Components/Button.h"
 #include "Components/ButtonSlot.h"
@@ -21,6 +22,7 @@
 #include "Input/Reply.h"
 #include "InputCoreTypes.h"
 #include "Misc/Paths.h"
+#include "HAL/FileManager.h"
 #include "Styling/CoreStyle.h"
 
 namespace
@@ -227,6 +229,38 @@ void UContextScreen::Build()
     Answers[3].Button->OnClicked.AddDynamic(this, &UContextScreen::ChooseD);
     HintButton = Button(TEXT("Hint"), TEXT("Hint"));
     SubmitButton = Button(TEXT("Submit"), TEXT("Check answer"));
+    HintLabel = CastChecked<UTextBlock>(HintButton->GetContent());
+    SubmitLabel = CastChecked<UTextBlock>(SubmitButton->GetContent());
+    auto ActionIcon = [this](const TCHAR* Name, const TCHAR* File, FVector2D Dimensions)
+    {
+        auto* Image = Make<UImage>(Name);
+        const FString Path = FPaths::ProjectContentDir() / TEXT("UI/G/Vector") / File;
+        const bool Present = IFileManager::Get().FileExists(*Path);
+        if (Present) Image->SetBrush(FSlateVectorImageBrush(Path, Dimensions));
+        Image->SetVisibility(Present ? ESlateVisibility::HitTestInvisible : ESlateVisibility::Collapsed);
+#if WITH_ACCESSIBILITY
+        Image->TakeWidget()->SetAccessibleBehavior(EAccessibleBehavior::NotAccessible);
+#endif
+        return Image;
+    };
+    HintIcon = ActionIcon(TEXT("HintIcon"), TEXT("G_HintBulb.svg"), FVector2D(40, 56));
+    SubmitIcon = ActionIcon(TEXT("SubmitIcon"), TEXT("G_CheckStar.svg"), FVector2D(48, 48));
+    auto GroupAction = [this](UButton* Target, UTextBlock* Label, UImage* Icon, const TCHAR* Name)
+    {
+        auto* IconSize = Make<USizeBox>(*(FString(Name) + TEXT("IconSize")));
+        IconSize->AddChild(Icon);
+        IconSize->SetVisibility(Icon->GetVisibility());
+        auto* Row = Make<UHorizontalBox>(*(FString(Name) + TEXT("Row")));
+        Row->AddChildToHorizontalBox(IconSize)->SetVerticalAlignment(VAlign_Center);
+        Row->AddChildToHorizontalBox(Label)->SetVerticalAlignment(VAlign_Center);
+        Target->SetContent(Row);
+        auto* Slot = CastChecked<UButtonSlot>(Row->Slot);
+        Slot->SetHorizontalAlignment(HAlign_Center);
+        Slot->SetVerticalAlignment(VAlign_Center);
+        return IconSize;
+    };
+    HintIconSize = GroupAction(HintButton, HintLabel, HintIcon, TEXT("Hint"));
+    SubmitIconSize = GroupAction(SubmitButton, SubmitLabel, SubmitIcon, TEXT("Submit"));
     PauseButton = Button(TEXT("Pause"), TEXT("II"));
     HintSkin = Picture(TEXT("HintSkin"), TEXT("/Game/UI/G/G_HintSkin.G_HintSkin"));
     SubmitSkin = Picture(TEXT("SubmitSkin"), TEXT("/Game/UI/G/G_CheckSkin.G_CheckSkin"));
@@ -346,6 +380,13 @@ void UContextScreen::Layout(FVector2D Size)
     auto PutText = [X, this](UTextBlock* Label, float Left, float Y, float W, float H)
     { Bounds(Label, X + Left, Y, W, H); };
     float Y = PanelY + 89 * S;
+    Mode->SetText(FText::FromString(TEXT("C O N T E X T   D E T E C T I V E")));
+    Font(Mode, FMath::Max(28 * S * TextScale, 14.f));
+    Mode->SetWrapTextAt(0);
+    Mode->ForceLayoutPrepass();
+    // Drop decorative letter spacing when it would split words across lines.
+    if (Mode->GetDesiredSize().X > 660 * S)
+        Mode->SetText(FText::FromString(TEXT("CONTEXT DETECTIVE")));
     float H = Measure(Mode, 28, 660 * S, 40 * S);
     PutText(Mode, 112 * S, Y, 660 * S, H);
     PutText(HeaderDivider, 335 * S, Y + H, 214 * S, 29 * S);
@@ -390,11 +431,30 @@ void UContextScreen::Layout(FVector2D Size)
         Y += H + 17 * S;
     }
     Y += 16 * S;
-    const float ActionHeight = FMath::Max(113 * S, 48.f);
-    Font(CastChecked<UTextBlock>(HintButton->GetContent()), FMath::Max(34 * S * TextScale, 16.f), true, DisplayFont);
-    Font(CastChecked<UTextBlock>(SubmitButton->GetContent()), FMath::Max(34 * S * TextScale, 16.f), true, DisplayFont);
-    // At large type, stack actions instead of squeezing their labels horizontally.
-    const bool StackActions = TextScale > 1.2f;
+    Font(HintLabel, FMath::Max(34 * S * TextScale, 16.f), true, DisplayFont);
+    Font(SubmitLabel, FMath::Max(34 * S * TextScale, 16.f), true, DisplayFont);
+    HintIconSize->SetWidthOverride(40 * S * TextScale);
+    HintIconSize->SetHeightOverride(56 * S * TextScale);
+    SubmitIconSize->SetWidthOverride(48 * S * TextScale);
+    SubmitIconSize->SetHeightOverride(48 * S * TextScale);
+    CastChecked<UHorizontalBoxSlot>(HintLabel->Slot)->SetPadding(FMargin(HintIcon->GetVisibility() == ESlateVisibility::Collapsed ? 0 : 20 * S * TextScale, 0, 0, 0));
+    CastChecked<UHorizontalBoxSlot>(SubmitLabel->Slot)->SetPadding(FMargin(SubmitIcon->GetVisibility() == ESlateVisibility::Collapsed ? 0 : 20 * S * TextScale, 0, 0, 0));
+    HintButton->GetContent()->ForceLayoutPrepass();
+    SubmitButton->GetContent()->ForceLayoutPrepass();
+    const FVector2D HintDesired = HintButton->GetContent()->GetDesiredSize();
+    const FVector2D SubmitDesired = SubmitButton->GetContent()->GetDesiredSize();
+    auto ButtonPadding = [S](UButton* B)
+    {
+        const FMargin Padding = CastChecked<UButtonSlot>(B->GetContent()->Slot)->GetPadding();
+        return FVector2D(48 * S + Padding.Left + Padding.Right, 10 * S + Padding.Top + Padding.Bottom);
+    };
+    const FVector2D HintPadding = ButtonPadding(HintButton);
+    const FVector2D SubmitPadding = ButtonPadding(SubmitButton);
+    const float ActionHeight = FMath::Max(FMath::Max(113 * S, 48.f),
+        float(FMath::Max(HintDesired.Y + HintPadding.Y, SubmitDesired.Y + SubmitPadding.Y)));
+    // Stack when enlarged type or either complete icon/label group cannot fit.
+    const bool StackActions = TextScale > 1.2f || HintDesired.X + HintPadding.X > 287 * S
+        || SubmitDesired.X + SubmitPadding.X > 388 * S;
     Bounds(HintButton, X + 99 * S, Y, (StackActions ? 688 : 287) * S, ActionHeight);
     Bounds(SubmitButton, X + (StackActions ? 99 : 399) * S, Y + (StackActions ? ActionHeight + 15 * S : 0), (StackActions ? 688 : 388) * S, ActionHeight);
     auto PlaceActionSkin = [S](UImage* Image, float Left, float Top, float W, float H, float ReferenceWidth)
@@ -447,6 +507,8 @@ void UContextScreen::Layout(FVector2D Size)
 
 UTextBlock* UContextScreen::ButtonLabel(UButton* Target) const
 {
+    if (Target == HintButton) return HintLabel;
+    if (Target == SubmitButton) return SubmitLabel;
     for (const auto& Answer : Answers) if (Answer.Button == Target) return Answer.Label;
     return CastChecked<UTextBlock>(Target->GetContent());
 }
