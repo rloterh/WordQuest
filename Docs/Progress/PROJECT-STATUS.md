@@ -119,8 +119,9 @@ art outlines were corrected. Both real builds and both Unreal tests pass at sour
 `4e78be0`; native normal, enlarged-action focus, assisted disabled and paused captures
 were inspected from the clean commit. Exact provenance, rejected cleanup attempts
 and remaining icon/art differences are recorded in
-[action skins](../QA/UI01/G-ACTION-SKINS.md). Dedicated review remains pending;
-no static-art, motion, editorial or device gate is passed.
+[action skins](../QA/UI01/G-ACTION-SKINS.md). Dedicated review of clean `e9f77f3`
+against actual `dev` base `8c105ac` completed with exit 0 and no actionable
+introduced defects. No static-art, motion, editorial or device gate is passed.
 
 ## Resume
 

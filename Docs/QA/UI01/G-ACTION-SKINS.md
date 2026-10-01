@@ -68,8 +68,12 @@ answer-option outlines remain. `Artifacts/QA/UI01/g-action-skins-comparison.html
 embeds the unchanged final PNG and original with a 50% overlay. Browser interaction
 is unverified; prior local-navigation policy blocks were not bypassed.
 
-Dedicated review against actual `origin/dev` will be recorded after completion.
-It does not authorize a merge or replace native/device evidence.
+Dedicated read-only Codex review of clean `e9f77f3` against actual `origin/dev`
+(`8c105ac`) completed with exit 0 and no actionable introduced defects. Raw evidence:
+`Artifacts/Reviews/20261001-212555`. HEAD/worktree were unchanged during review;
+the reviewer did not rerun builds/runtime checks. Subsequent changes only record
+review/publishing status in documentation. Review does not authorize a merge or
+replace native/device evidence.
 
 ## Remaining differences and gates
 
