@@ -176,6 +176,15 @@ void UContextScreen::Build()
     {
         const FString Name = FString::Printf(TEXT("Answer%d"), I);
         FContextAnswerWidgets Answer;
+        Answer.Skin = Picture(*(Name + TEXT("Skin")), TEXT("/Game/UI/G/G_AnswerSkin.G_AnswerSkin"));
+        auto SkinBrush = Answer.Skin->GetBrush();
+        SkinBrush.DrawAs = ESlateBrushDrawType::Box;
+        SkinBrush.Margin = FMargin(.085f, .45f);
+        // This UV window excludes the generated export's empty margin and stray fringe.
+        // The source PNG remains intact; coordinates are recorded in its provenance.
+        SkinBrush.SetUVRegion(FBox2f(FVector2f(50.f / 2172, 168.f / 724), FVector2f(2125.f / 2172, 528.f / 724)));
+        Answer.Skin->SetBrush(SkinBrush);
+        if (!SkinBrush.GetResourceObject()) Answer.Skin->SetVisibility(ESlateVisibility::Collapsed);
         Answer.Button = Button(*Name, bReady ? Question.Choices[I] : TEXT("Unavailable"));
         Answer.Label = CastChecked<UTextBlock>(Answer.Button->GetContent());
         Answer.Label->SetJustification(ETextJustify::Left);
@@ -201,6 +210,7 @@ void UContextScreen::Build()
         auto* ContentSlot = CastChecked<UButtonSlot>(Row->Slot);
         ContentSlot->SetHorizontalAlignment(HAlign_Fill);
         ContentSlot->SetVerticalAlignment(VAlign_Center);
+        Canvas->AddChild(Answer.Skin);
         Canvas->AddChild(Answer.Button);
         Answers.Add(Answer);
     }
@@ -326,6 +336,10 @@ void UContextScreen::Layout(FVector2D Size)
         H = Measure(Answer.Label, 35, LabelWidth, FMath::Max(95 * S, 48.f));
         H = FMath::Max3(H, float(Answer.Label->GetDesiredSize().Y) + 30 * S, BadgeDiameter + 12 * S);
         Bounds(Answer.Button, X + 109 * S, Y, 666 * S, H);
+        Bounds(Answer.Skin, X + 109 * S, Y, 666 * S, H);
+        auto SkinBrush = Answer.Skin->GetBrush();
+        SkinBrush.ImageSize = FVector2D(666 * S, 95 * S);
+        Answer.Skin->SetBrush(SkinBrush);
         Y += H + 17 * S;
     }
     Y += 16 * S;
@@ -388,14 +402,16 @@ void UContextScreen::StyleButtons()
     auto Apply = [this](UButton* B, bool Primary, bool Selected)
     {
         const bool Focused = B->HasKeyboardFocus();
-        const auto FillColor = Primary ? Violet : Pearl;
+        const auto* Answer = Answers.FindByPredicate([B](const FContextAnswerWidgets& Item) { return Item.Button == B; });
+        const bool HasSkin = Answer && Answer->Skin->GetBrush().GetResourceObject();
+        const auto FillColor = HasSkin ? FLinearColor::Transparent : (Primary ? Violet : Pearl);
         const auto Border = Focused ? Ink : (Selected ? Violet : (Primary ? Gold : FLinearColor::White));
         const float Radius = FMath::Max(35 * Scale, 12.f);
         FButtonStyle Style;
         Style.SetNormal(FSlateRoundedBoxBrush(FillColor, Radius, Border, Focused || Selected ? 4.f : 2.f));
-        Style.SetHovered(FSlateRoundedBoxBrush(Primary ? Violet * .8f : FLinearColor(.78f, .73f, 1), Radius, Gold, 3.f));
-        Style.SetPressed(FSlateRoundedBoxBrush(Primary ? Violet * .6f : FLinearColor(.64f, .58f, .91f), Radius, Ink, 3.f));
-        Style.SetDisabled(FSlateRoundedBoxBrush(Primary ? Violet : Pearl, Radius, Border, 2.f));
+        Style.SetHovered(FSlateRoundedBoxBrush(HasSkin ? FLinearColor(.9f, .86f, 1, .16f) : (Primary ? Violet * .8f : FLinearColor(.78f, .73f, 1)), Radius, Gold, 3.f));
+        Style.SetPressed(FSlateRoundedBoxBrush(HasSkin ? FLinearColor(.22f, .16f, .5f, .16f) : (Primary ? Violet * .6f : FLinearColor(.64f, .58f, .91f)), Radius, Ink, 3.f));
+        Style.SetDisabled(FSlateRoundedBoxBrush(FillColor, Radius, Border, 2.f));
         Style.SetNormalPadding(FMargin(24 * Scale, 5 * Scale));
         Style.SetPressedPadding(FMargin(24 * Scale, 6 * Scale, 24 * Scale, 4 * Scale));
         B->SetStyle(Style);
@@ -419,6 +435,7 @@ void UContextScreen::Refresh()
     for (int32 I = 0; I < Answers.Num(); ++I)
     {
         Answers[I].Button->SetIsEnabled(bReady && !Attempt.bSubmitted);
+        Answers[I].Skin->SetIsEnabled(bReady && !Attempt.bSubmitted);
         if (bReady)
         {
             const FString Prefix = Attempt.SelectedIndex == I ? TEXT("Selected. ") : TEXT("");

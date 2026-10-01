@@ -43,6 +43,15 @@ colored fringe. No text, no logo, no panel, no palace, no clouds."
 
 ## Concrete missing deliverables
 
+On 2026-10-01 a blank pearl answer-skin v002 candidate was added under
+`UI/G/Reconstruction` and imported as `/Game/UI/G/G_AnswerSkin`. Native initial and
+enlarged focused-answer captures show its separate live text/badges and retained
+focus outline. Its generated bevel/texture, cropped external shadow, edge treatment
+and proportions still differ from the original. It is not accepted fidelity or
+release art. Exact prompts, unchanged raster master and UV/import provenance are
+stored alongside the source PNG; no layered source is claimed. The remaining items
+below still require art work and acceptance, including the purple check skin.
+
 1. Faithful spirit RGBA at the original x82–289/y276–461 placement, clean anti-aliased
    perimeter, same face and lantern. Provide separate local lantern-emission mask.
 2. Blank panel matching original x65–823/y521–1618. Supply non-stretching top/corners/

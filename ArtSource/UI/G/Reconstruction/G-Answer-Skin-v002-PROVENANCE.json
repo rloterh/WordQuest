@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-01",
+  "tool": "built-in imagegen",
+  "file": "G-Answer-Skin-v002-Candidate.png",
+  "sha256": "89c6aca43b0ee0df074e893355e406e45b5cac0dc6a3eac3473e54f7d0c9cee3",
+  "source_reference": "Planning/WordQuest-UI-Realms-Addendum/references/G-Celestial-Reverie-Gameplay.png",
+  "source_sha256": "306dae4f6352749edcf1d8edf73f26339a4ba6407b4a394ec50b5898418bedae",
+  "dimensions": [2172, 724],
+  "png_color_type": 6,
+  "corner_alpha": [0, 0, 0, 0],
+  "alpha_bounds_half_open": [
+    {"minimum_alpha": 1, "rect": [0, 47, 2162, 685]},
+    {"minimum_alpha": 128, "rect": [52, 170, 2123, 524]},
+    {"minimum_alpha": 250, "rect": [54, 172, 2121, 517]}
+  ],
+  "runtime_uv_window_pixels_half_open": [50, 168, 2125, 528],
+  "runtime_uv_reason": "Frame the button core, excluding empty margins, faint stray pixels and excess external shadow. The source is not cropped or modified.",
+  "slice_margins": {"horizontal": 0.085, "vertical": 0.45},
+  "reference_brush_size": [666, 95],
+  "import_max_texture_size": 1024,
+  "prompts": "G-Answer-Skin-PROMPTS.md",
+  "status": "native_compared_unapproved_candidate",
+  "imported_asset": "Game/Content/UI/G/G_AnswerSkin.uasset",
+  "import_verification": "Artifacts/Logs/UI01/AnswerSkinImport-20261001-commandlet.log: exit 0, complete marker, zero errors/warnings",
+  "accepted_for_release": false,
+  "limits": "Flat generated raster master, no layered editable source. Bevel, capsule proportions, edge fringe and shadow differ from reference and need native inspection. No rights clearance or physical-device pass."
+}
