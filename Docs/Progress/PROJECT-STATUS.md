@@ -1,10 +1,11 @@
 ﻿# Project status
 
-## Current stage: kickoff foundation; G proof incomplete
+## Current stage: native static G implementation; acceptance incomplete
 
 Owner authorized P00/UI00 inventory, UI01/UI02 G proof and appropriate PRs on
-2026-09-22. Working branch: `kickoff/g-visual-proof`, based on clean `dev` at
-`ebc3059`. No merge, game deployment or release is authorized.
+2026-09-22. The owner merged foundation PR #1 into `dev` at `6a840e0` on
+2026-09-23 and requested the next step. Working branch: `feature/g-static-gameplay`,
+based on that merge. No agent merge, game deployment or release is authorized.
 
 ## Completed work
 
@@ -17,7 +18,8 @@ Owner authorized P00/UI00 inventory, UI01/UI02 G proof and appropriate PRs on
 - Changed generated EngineAssociation from a local GUID to portable `5.8`; the build
   helper checks exact 5.8.2/CL. Original module/target code remains intact.
 - Created environment, companion and panel reconstruction candidates in `ArtSource`.
-  No candidate is approved or imported; identity and edge issues remain.
+  Candidates are now imported for the native proof, but none is approved; identity
+  and edge issues remain.
 - Transcribed EQUIVOCAL prototype fixture, with review pending and no release claim.
 - Retained Git exclusions/LFS handling; added `.slnx` exclusion.
 - Standalone Win64 Development game target compiled and linked successfully with
@@ -38,9 +40,8 @@ Owner authorized P00/UI00 inventory, UI01/UI02 G proof and appropriate PRs on
 - Fresh editor launch passed in 79.98 seconds, with zero map-check errors/warnings
   and no regenerated token. Unreal's normalized Mobile/Scalable settings are retained.
 - Standalone game target rebuilt successfully after the changes (exit 0).
-  Final internal review at `2628abc` completed with no actionable findings and an
-  unchanged worktree. PR #1 is prepared for owner review as a foundation change;
-  merging remains the owner's decision.
+  Final foundation review at `2628abc` completed with no actionable findings and an
+  unchanged worktree. The owner subsequently merged PR #1.
 
 ## Blocking evidence
 
@@ -48,7 +49,8 @@ Owner authorized P00/UI00 inventory, UI01/UI02 G proof and appropriate PRs on
    Android-only verification found no platform to check despite returning exit 0.
    This is not an Android pass. SDK/JDK compatibility remains unresolved.
 2. No adb-connected phone; Mac/iPhone access and target device models unknown.
-3. Static art fidelity, font identification/licensing and fixture approval remain open.
+3. Static art fidelity, exact font identification and fixture approval remain open.
+   The imported Cormorant candidate has its redistribution license and provenance.
 
 The firewall dialog triggered by initial UBA execution needs user handling; automation
 has not changed security settings. Subsequent builds use `-NoUBA`. PowerShell script
@@ -60,8 +62,21 @@ change or complete removal of UBA internals is claimed.
 
 P00/UI00 inventory is recorded with missing resources. P01 mobile feasibility,
 UI01 static fidelity, UI02 motion and physical-device acceptance are **not passed**.
-No G gameplay screen, interaction, motion, G runtime capture, package or device test
-has been implemented/executed. Generated images are working art only.
+Native G screen and isolated deterministic answer state are implemented. Unreal
+imported three textures and a font face and generated the blank gameplay map.
+Both editor and game targets compiled; two Unreal automation tests passed. Native
+captures exercised selection, evaluation, assistance, pause and responsive layouts.
+Visual QA found panel stretching and modal draw-order defects; both were fixed and
+rechecked in native captures. Manual desktop scrolling and answer clicks worked at
+200% reading text with extended content. On 2026-10-01 the clean implementation
+commit `4b3ed79` passed a fresh editor build, both automation tests and a native
+390x844 correct-answer capture. Internal review completed with no actionable
+findings. [Draft PR #2](https://github.com/rloterh/WordQuest/pull/2) is open against
+`dev`; the implementation remains `4b3ed79` with documentation-only follow-ups.
+Android receipt absence and no connected adb phone were rechecked on 2026-10-01.
+See [native proof](../QA/UI01/NATIVE-G-PROOF.md)
+and [review](../QA/UI01/INTERNAL-REVIEW.md).
+No UI01 acceptance, motion, package or device-test pass is claimed.
 
 ## Resume
 
@@ -69,5 +84,8 @@ Read [environment](../Setup/ENVIRONMENT.md), [toolchain](../Setup/TOOLCHAIN-LOCK
 [decisions](../Decisions/DECISIONS.md), [UI00 inventory](../QA/UI00/INVENTORY.md) and
 [asset handoff](../../ArtSource/G-ASSET-HANDOFF.md). Use
 `python Tools/BuildScripts/build_wordquest.py` to reproduce the editor build.
-Keep missing mobile evidence explicit. Finish G static proof before UI02 or H/I.
+Keep missing mobile evidence explicit. Next: refine the documented G art/lettering
+differences, complete fixture review, identify the engine installation source to add
+Android support, then validate on a connected phone. Keep PR #2 draft until its
+declared acceptance criteria are satisfied. Finish G static proof before UI02 or H/I.
 Preserve all supplied planning packages and original images unchanged.
