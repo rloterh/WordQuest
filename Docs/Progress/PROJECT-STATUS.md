@@ -6,9 +6,11 @@ Owner authorized P00/UI00 inventory, UI01/UI02 G proof and appropriate PRs on
 2026-09-22. The owner merged foundation PR #1 into `dev` at `6a840e0` on
 2026-09-23 and requested the next step. The owner also merged prototype PR #2 on
 2026-10-01 into `dev` at `eff9f50`. The owner merged control PR #3 the same day
-at `8748673`; native A–D badges and answer spacing are now on `dev`. Working branch:
-`feature/g-answer-skin`, based on that merge. The pearl button-skin candidate is
-published in [PR #4](https://github.com/rloterh/WordQuest/pull/4).
+at `8748673`; native A–D badges and answer spacing are now on `dev`. The owner
+merged [PR #4](https://github.com/rloterh/WordQuest/pull/4) at `70a8af0` on
+2026-10-01; its pearl answer-skin candidate is now on `dev`. Working branch:
+`feature/g-progress-plaque`, based on that merge, for the bounded progress-plaque
+candidate with separate live prototype text.
 No agent merge, game deployment or release is authorized.
 
 ## Completed work
@@ -98,8 +100,8 @@ retaken. Both real build targets and both Unreal tests pass. Exact asset provena
 import results, native evidence and remaining differences are recorded in
 [answer skin](../QA/UI01/G-ANSWER-SKIN.md). Dedicated internal review at clean
 `adcab28` against `8748673` completed with exit 0 and no actionable introduced
-defects. [PR #4](https://github.com/rloterh/WordQuest/pull/4) is open and ready for
-owner review as a candidate increment; no art or device gate is passed.
+defects. The owner merged [PR #4](https://github.com/rloterh/WordQuest/pull/4);
+no art or device gate is passed.
 
 ## Resume
 
