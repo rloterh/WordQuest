@@ -60,6 +60,15 @@ core's proportions are adapted to the reference bounds; gold brightness/thicknes
 bevel, purple lighting and edge noise still differ. No faithful-art acceptance or
 layered source is claimed. See `Docs/QA/UI01/G-PROGRESS-PLAQUE.md`.
 
+Hint/Check/Pause v001 surface candidates now live under `UI/G/Reconstruction`,
+imported as `G_HintSkin`, `G_CheckSkin` and `G_PauseSkin`. Check/Pause v002 cleanup
+attempts were rejected, not imported. Exact prompt sets and unchanged master hashes,
+alpha/UV bounds and import settings are in `G-ACTION-SKINS-*`. Native normal,
+enlarged-focus, hint-assisted disabled and paused captures were inspected. Gloss,
+gold, geometry, fringe and font metrics still differ; Hint bulb and Check star
+remain absent. These are unapproved art candidates with no layered source claimed.
+See `Docs/QA/UI01/G-ACTION-SKINS.md`.
+
 1. Faithful spirit RGBA at the original x82–289/y276–461 placement, clean anti-aliased
    perimeter, same face and lantern. Provide separate local lantern-emission mask.
 2. Blank panel matching original x65–823/y521–1618. Supply non-stretching top/corners/
@@ -68,8 +77,9 @@ layered source is claimed. See `Docs/QA/UI01/G-PROGRESS-PLAQUE.md`.
 3. Isolated cloud bank with overscan and matching clean plate underneath. Return
    frozen placement, pivot, motion bounds and alpha convention. Never slide a duplicated
    cloud over its original baked pixels or move the rigid castle silhouette.
-4. Blank pearl answer skin and purple check skin with pressed, selected, focus and
-   disabled treatment. Badges/letters and all instructional text remain live widgets.
+4. Faithful accepted answer/action skins with pressed, selected, focus and disabled
+   treatment. Candidates exist; further art correction and acceptance remain open.
+   Badges/letters and all instructional text remain live widgets.
 5. Clean brand mark, progress plaque, divider ornament, hint/pause icons and font
    sources with redistribution licenses and glyph/metric evidence.
 

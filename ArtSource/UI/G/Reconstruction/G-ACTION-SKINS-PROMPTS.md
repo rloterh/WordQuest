@@ -42,4 +42,3 @@ or committed. The first candidate was retained for native inspection.
 Selected v001 masters are copied unchanged into this directory. Runtime UV framing
 omits large margins and excess shadow; no raster pixels, alpha or dimensions were
 manually edited. No exact original-pixel extraction or layered paint document is claimed.
-

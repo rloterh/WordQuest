@@ -17,6 +17,10 @@ The later [progress-plaque candidate](G-PROGRESS-PLAQUE.md) adds separate decora
 behind centered live prototype progress, with native portrait/safe-area/landscape
 captures. It does not establish campaign persistence or art acceptance.
 
+The subsequent [action-skin candidates](G-ACTION-SKINS.md) add separate Hint,
+Check and Pause surfaces with native enlarged-focus, disabled and modal evidence.
+Their art/icons and physical-device acceptance remain unfinished.
+
 ## Behavior and scope
 
 `FContextQuestion` validates the local JSON fixture. `FContextAttempt` owns selection,

@@ -113,6 +113,15 @@ Provenance, comparisons and limitations are in
 `61fd184` against `70a8af0` completed with exit 0 and no actionable introduced
 defects. Static art, motion, editorial and physical-device gates remain open.
 
+The owner merged PR #5 at `8c105ac` on 2026-10-01. The next bounded increment adds
+separate Hint, Check and Pause skin candidates. A compilation error and extra normal
+art outlines were corrected. Both real builds and both Unreal tests pass at source
+`4e78be0`; native normal, enlarged-action focus, assisted disabled and paused captures
+were inspected from the clean commit. Exact provenance, rejected cleanup attempts
+and remaining icon/art differences are recorded in
+[action skins](../QA/UI01/G-ACTION-SKINS.md). Dedicated review remains pending;
+no static-art, motion, editorial or device gate is passed.
+
 ## Resume
 
 Read [environment](../Setup/ENVIRONMENT.md), [toolchain](../Setup/TOOLCHAIN-LOCK.md),
