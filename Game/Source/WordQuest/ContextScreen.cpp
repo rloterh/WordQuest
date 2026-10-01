@@ -321,7 +321,8 @@ void UContextScreen::Layout(FVector2D Size)
         Answer.MarkerSize->SetWidthOverride(MarkerWidth);
         Font(Answer.Letter, FMath::Max(35 * S * TextScale, 14.f), true);
         Font(Answer.Marker, FMath::Max(24 * S * TextScale, 14.f), true);
-        const float LabelWidth = 666 * S - 48 * S - BadgeDiameter - MarkerWidth;
+        const auto Padding = CastChecked<UButtonSlot>(Answer.Button->GetContent()->Slot)->GetPadding();
+        const float LabelWidth = 666 * S - 48 * S - BadgeDiameter - MarkerWidth - Padding.Left - Padding.Right;
         H = Measure(Answer.Label, 35, LabelWidth, FMath::Max(95 * S, 48.f));
         H = FMath::Max3(H, float(Answer.Label->GetDesiredSize().Y) + 30 * S, BadgeDiameter + 12 * S);
         Bounds(Answer.Button, X + 109 * S, Y, 666 * S, H);
