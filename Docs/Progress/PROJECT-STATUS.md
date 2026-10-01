@@ -84,8 +84,10 @@ After PR #2, the native answer-control follow-up restored separate A–D badges,
 stable selection markers and answer spacing. Normal reference-sized and enlarged
 focused-answer captures were inspected; long-word overflow and omitted native slot
 padding were corrected. Both build targets pass. Evidence and verification limits
-are recorded in [answer controls](../QA/UI01/G-ANSWER-CONTROLS.md). Internal review
-against the merged `dev` base is the next check before publishing the follow-up PR.
+are recorded in [answer controls](../QA/UI01/G-ANSWER-CONTROLS.md). Dedicated internal
+review of clean `924ffc6` against the actual `dev` base (`eff9f50`) completed with
+exit 0 and no actionable introduced defects. The bounded control PR is ready for
+owner review; this does not pass the unfinished static-art or device gates.
 
 ## Resume
 
