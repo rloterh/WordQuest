@@ -169,10 +169,14 @@ repeated by the reviewer. No new acceptance is claimed.
 The owner merged [PR #26](https://github.com/rloterh/WordQuest/pull/26) into `dev`
 at `e2ef2b0` on 2026-10-02, 20:00:20 UTC. The next bounded UI01 candidate
 reconstructs the wordmark's capital W with authored editable curves, preserving
-v001/v002, the other glyph outlines and the current layout/materials. Native dirty
-preflight at reference size and compact focused Pause passed and was inspected;
-clean packaged verification is pending. Original lettering/static fidelity is
-not accepted. The owner retains merge authority.
+v001/v002, the other glyph outlines and the current layout/materials. Clean
+`db9446d` passes both real target checks, full Win64 packaging, nine inspected
+packaged captures, both Unreal tests and all 63 Python tests. Cooked SVG bytes
+match source and v002/v003 reproduce byte-identically. Reference-size pixel
+changes stay inside the title; the two lower W-tip samples are within one pixel
+vertically of the reference. Precise contours/lettering/static fidelity remain
+unaccepted. See [capital W evidence](../QA/UI01/G-WORDMARK-CAPITAL.md).
+Dedicated review is pending. The owner retains merge authority.
 The owner identified Epic Games Launcher as the UE installation source; its current
 manifest/installation record now confirms exact UE 5.8.2 at the existing path.
 Android target receipt remains absent and adb lists no device. See

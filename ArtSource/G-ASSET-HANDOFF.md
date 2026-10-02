@@ -137,10 +137,11 @@ identify or accept the original font, letterforms, flourishes or final brand art
 
 A v003 wordmark master now reconstructs W with authored closed curves while
 preserving the v001/v002 masters, other eight licensed glyph outlines, transforms,
-Q swash, ornament and v002 material treatment. Reference-size and compact native
-preflight were inspected; clean packaged verification is pending. Its original
-lettering/art disposition remains unapproved. Provenance is beside the SVG;
-final evidence belongs in `Docs/QA/UI01/G-WORDMARK-CAPITAL.md`.
+Q swash, ornament and v002 material treatment. Nine clean packaged captures were
+inspected; cooked bytes match the master and reference-size changes stay inside
+the title. Two lower-tip samples improve to within one pixel vertically of the
+reference. Exact contours and original lettering/art remain unapproved. Provenance
+is beside the SVG; evidence is in `Docs/QA/UI01/G-WORDMARK-CAPITAL.md`.
 
 Both divider masters also have v002 material candidates, preserving their v001
 path geometry and native reading positions. Gradients and directional star facets
