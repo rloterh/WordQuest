@@ -7,7 +7,11 @@ The owner merged [PR #27](https://github.com/rloterh/WordQuest/pull/27) and
 at 21:50:42 and 21:50:59 UTC (`63e6919` and `77d4fde`). The next bounded UI01
 candidate refines the Q loop and tapered swash in a new editable v004 master,
 preserving earlier masters, the font file, authored W, other glyphs and controls.
-Verification is in progress; no new acceptance is claimed. Native desktop control
+The corrected clean source passes both real target checks, full Win64 packaging,
+nine inspected packaged captures, both Unreal tests and all 63 Python QA tests.
+The shared glyph gradients retain their old bounds to avoid reshading the other
+letters. Cooked SVG matches source; initial/result pixel changes stay inside the
+title. Dedicated review is pending; no art/device acceptance is claimed. Desktop control
 still returns a missing-pipe error, the Android support receipt remains absent
 and adb lists no device. See [Q swash](../QA/UI01/G-WORDMARK-SWASH.md).
 
