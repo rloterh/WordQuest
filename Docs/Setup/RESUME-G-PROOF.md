@@ -41,6 +41,9 @@ there is a documented need to re-enable that plugin with local credential handli
    Theme data carries G/H/I IDs; correctness code never reads realm or motion state.
 3. Validate no initial choice, submit-without-choice, each answer, selection changes,
    deterministic feedback, assisted hint state, repeat submit and keyboard focus.
+   Development-only `key*` modes also check synthetic native Slate routing; see
+   [keyboard routing](../QA/UI01/G-KEYBOARD-ROUTING.md). Those checks do not replace
+   manual keyboard, Tab traversal, screen-reader or phone verification.
 4. Capture actual native 884x1780 frozen t=0 view. Compare alongside original and with
    50% overlay; record panel, companion, type, palette and anchor differences. Fix
    material deviations. Save capture metadata and images under `Artifacts`.

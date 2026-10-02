@@ -21,13 +21,14 @@ The owner merged [PR #9](https://github.com/rloterh/WordQuest/pull/9) at `c3eece
 on 2026-10-02; its local cooked Win64 proof is now on `dev`.
 The owner merged [PR #10](https://github.com/rloterh/WordQuest/pull/10) at `2f3c3f6`
 on 2026-10-02; its editable wordmark candidate is now on `dev`.
-Working branch: `feature/g-spirit-framing`, based on that merge, for bounded
-aspect-preserving companion framing and an art-attempt audit. Two new generated
-exports were rejected for identity/ornament differences; neither is imported.
-The existing source/Unreal texture is preserved; final native/package checks pass.
-Dedicated internal review is recorded in regular
-[PR #11](https://github.com/rloterh/WordQuest/pull/11) against `dev`, awaiting the
-owner's review/merge decision.
+The owner merged [PR #11](https://github.com/rloterh/WordQuest/pull/11) at `f0b8c4c`
+on 2026-10-02; its companion framing and rejected-art audit are now on `dev`.
+Working branch: `feature/g-keyboard-route-proof`, based on that merge, for bounded
+synthetic native Slate key-routing checks. Both builds, clean Win64 package, seven
+routed packaged checks, both Unreal tests and 13 Python tests pass. Dedicated
+read-only review completed with no actionable introduced defects. The bounded
+regular [PR #12](https://github.com/rloterh/WordQuest/pull/12) is ready for owner
+merge; manual keyboard, screen-reader and phone gates remain open.
 No agent merge, game deployment or release is authorized.
 
 ## Completed work
@@ -205,10 +206,27 @@ inspected packaged captures and both Unreal tests pass at clean `30b58f8`.
 See [companion framing](../QA/UI01/G-SPIRIT-FRAMING.md). Dedicated review of clean
 `b1cb19c` against actual `dev` base `2f3c3f6` completed with exit 0 and no actionable
 introduced defects. The bounded regular
-[PR #11](https://github.com/rloterh/WordQuest/pull/11) is open against `dev` as a
-tested framing checkpoint, awaiting the owner's review/merge decision.
+[PR #11](https://github.com/rloterh/WordQuest/pull/11) was merged by the owner on
+2026-10-02 as a tested framing checkpoint; that does not accept unfinished gates.
 Framing does not accept companion identity or resolve alpha-edge,
 static art, motion, editorial, offline/phone, performance or release gates.
+
+After the owner merged PR #11, seven Development-only proof modes dispatch native
+Slate key-down/up events through focused widgets. Per-step logs verify all answer
+shortcuts, empty/repeated submission, assistance, real Space button activation and
+pause/resume state; incomplete or incorrect traces fail verification. Gameplay
+handlers, art, fixture and engine-generated project files are unchanged. Both real
+builds, clean full Win64 cook/stage/archive, seven inspected 390x844 packaged checks,
+both Unreal tests and 13 Python trace/package-helper tests pass at clean `1fa4d13`.
+See [keyboard routing](../QA/UI01/G-KEYBOARD-ROUTING.md). Dedicated read-only review
+at clean `462ef2e` against actual `dev` base `f0b8c4c` completed with exit 0,
+no actionable introduced defects and unchanged head/worktree.
+The bounded regular [PR #12](https://github.com/rloterh/WordQuest/pull/12) is open
+against `dev` and ready for owner merge. GitHub reports no configured status checks;
+the local build/runtime/review evidence above supplies the recorded validation.
+This synthetic route evidence does not establish manual/OS keyboard input, Tab
+traversal, screen-reader, pointer/touch, offline/phone or performance acceptance.
+Static art, motion, editorial and release gates remain open.
 
 ## Resume
 

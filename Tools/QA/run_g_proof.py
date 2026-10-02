@@ -10,10 +10,41 @@ import subprocess
 import sys
 
 
+# Expected routed steps: key, state tuple, require handled key-down. Paused
+# shortcuts may be unhandled, but must leave selection/hint/evaluation unchanged.
+KEYBOARD_STEPS = {
+    'keyswitch': [('One', (0,0,0,0,0,0), True), ('Three', (2,0,0,0,0,0), True),
+                  ('Four', (3,0,0,0,0,0), True), ('Two', (1,0,0,0,0,0), True)],
+    'keyempty': [('Enter', (-1,0,0,0,0,0), True)],
+    'keysubmit': [('One', (0,0,0,0,0,0), True), ('Enter', (0,1,1,0,0,1), True),
+                  ('Enter', (0,1,1,0,0,1), True)],
+    'keyhint': [('H', (-1,0,0,1,0,0), True), ('One', (0,0,0,1,0,0), True),
+                ('Enter', (0,1,1,1,0,1), True)],
+    'keybuttons': [('SpaceBar', (1,0,0,0,0,0), True), ('SpaceBar', (1,1,0,0,0,1), True),
+                   ('Enter', (1,1,0,0,0,1), True)],
+    'keypaused': [('Two', (1,0,0,0,0,0), True), ('P', (1,0,0,0,1,0), True),
+                  ('One', (1,0,0,0,1,0), False), ('H', (1,0,0,0,1,0), False)],
+    'keyresumed': [('Two', (1,0,0,0,0,0), True), ('P', (1,0,0,0,1,0), True),
+                   ('One', (1,0,0,0,1,0), False), ('H', (1,0,0,0,1,0), False),
+                   ('SpaceBar', (1,0,0,0,0,0), True)],
+}
+
+
+def check_keyboard_steps(log, proof):
+    rows = re.findall(r'WQ_KEY_STEP proof=(\w+) step=(\d+) key=(\w+) down=(\d+) up=(\d+) selected=(-?\d+) submitted=(\d+) correct=(\d+) hint=(\d+) paused=(\d+) evaluations=(\d+)', log)
+    expected = KEYBOARD_STEPS[proof]
+    passed = len(rows) == len(expected)
+    for index, (row, (key, state, require_down)) in enumerate(zip(rows, expected), 1):
+        passed = passed and row[0] == proof and int(row[1]) == index and row[2] == key
+        passed = passed and tuple(map(int, row[5:])) == state and (not require_down or row[3] == '1')
+        passed = passed and (key != 'SpaceBar' or row[4] == '1')
+    return passed, rows
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('mode', choices=['automation', 'capture'])
-    parser.add_argument('--proof', default='initial', choices=['initial', 'selected', 'correct', 'wrong', 'hint', 'empty', 'paused', 'resumed', 'pausefocus', 'large', 'long', 'longfocus', 'focus', 'actions', 'actionfocus'])
+    parser.add_argument('--proof', default='initial', choices=['initial', 'selected', 'correct', 'wrong', 'hint', 'empty', 'paused', 'resumed', 'pausefocus', 'large', 'long', 'longfocus', 'focus', 'actions', 'actionfocus', *KEYBOARD_STEPS])
     parser.add_argument('--width', type=int, default=884)
     parser.add_argument('--height', type=int, default=1780)
     parser.add_argument('--safe-zone', type=float, default=1.0, help='Desktop simulated safe-area ratio, 0.5 to 1')
@@ -88,10 +119,15 @@ def main():
             'wrong': (1, 1, 0, 0, 0, 1), 'hint': (0, 1, 1, 1, 0, 1),
             'paused': (1, 0, 0, 0, 1, 0),
             'resumed': (1, 0, 0, 0, 0, 0),
+            **{proof: steps[-1][1] for proof, steps in KEYBOARD_STEPS.items()},
         }.get(args.proof, (-1, 0, 0, 0, 0, 0))
         matches = re.findall(r'WQ_STATE proof=\w+ selected=(-?\d+) submitted=(\d+) correct=(\d+) hint=(\d+) paused=(\d+) evaluations=(\d+)', log)
         result['state_passed'] = len(matches) == 1 and tuple(map(int, matches[0])) == expected
         result['evidence_complete'] = result['state_passed'] and result.get('dimensions') == [args.width, args.height]
+        if args.proof in KEYBOARD_STEPS:
+            passed, rows = check_keyboard_steps(log, args.proof)
+            result.update({'keyboard_steps_passed': passed, 'keyboard_steps': rows})
+            result['evidence_complete'] = result['evidence_complete'] and passed
     else:
         report = run / 'Report/index.json'
         if report.is_file():
