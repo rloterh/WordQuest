@@ -82,8 +82,52 @@ that overlay so viewport-bound evidence can be inspected clearly. Ordinary launc
 and keyboard-route captures retain their normal tooltip behavior. This option is
 not a tooltip interaction or physical-input pass. Exact flags remain in raw metadata.
 
-Final clean package/regression captures and dedicated review are pending. Raw
-captures/logs remain local and ignored under `Artifacts`.
+## Final clean verification
+
+Final implementation source `7e68d60696cf443c0cf2c950d37f02528e06973d` passes
+the real editor target and Game target (three Game actions, 15.27 seconds), then
+full Win64 build/cook/stage/archive (UAT 74.29 seconds, exit 0). Package:
+`Artifacts/Packages/Win64/20261002-092241-088002`. The 48 recorded payload hashes,
+head, worktree and input consistency checks pass. Manifest SHA-256:
+`0f11d792997ce0ae4eb06d998634f3d9bae43dfbcd543e73871a1a905e9aad2e`.
+
+All 24 packaged captures at that clean head pass their dimension/state contracts;
+13 keyboard routes pass, including six focus-route/final-visibility contracts.
+All six 200% long-answer leading-visibility checks pass. Raw batch evidence:
+`Artifacts/QA/UI01/G-Oversized-Answer-Final-Batch.json`. Two native context tests
+pass, zero failed/not run, in `20261002-092955-automation-initial` (exit 0).
+All 27 Python tests pass; all six supplied reference hashes remain unchanged.
+Git LFS is available; no binary assets or generated project files changed.
+
+Fourteen final native PNGs were directly inspected, using the following directories
+under `Artifacts/QA/UI01`. Other capture results are trace checks, not additional
+visual-inspection claims.
+
+| Capture directory | Inspected result |
+| --- | --- |
+| `20261002-092553-packaged-capture-keydisabled` | Returned Pause is visible and focused after submission. |
+| `20261002-092603-packaged-capture-initial` | Normal 884x1780 layout retained. |
+| `20261002-092613-packaged-capture-focus` | Fitting B row fully visible in landscape. |
+| `20261002-092623-packaged-capture-longfocus` | Oversized B badge and first line visible in landscape. |
+| `20261002-092633-packaged-capture-longselectedfocus` | Oversized B badge, selected marker and first line visible. |
+| `20261002-092643-packaged-capture-longfocus` | Fitting 200% portrait B starts inside the reading clip. |
+| `20261002-092652-packaged-capture-longselectedfocus` | Fitting portrait B retains centered selected identifier. |
+| `20261002-092702-packaged-capture-longfocus` | 260x640 fitting B remains readable by wrapping/scrolling. |
+| `20261002-092712-packaged-capture-longselectedfocus` | Narrow fitting B retains selected identifier. |
+| `20261002-092723-packaged-capture-actions` | 200% Hint/Check controls visible. |
+| `20261002-092803-packaged-capture-keymodal` | Paused text-size control visible and focused. |
+| `20261002-092813-packaged-capture-keyretry` | Selected 200% A and first line visible after retry. |
+| `20261002-092936-packaged-capture-correct` | Correct feedback starts below controls; further explanation requires scrolling. |
+| `20261002-092946-packaged-capture-hint` | Hint-used state and feedback start retained. |
+
+Read-only comparison with PR #15's `20261002-082919-packaged-capture-initial`
+finds zero changed RGB pixels and byte-identical normal-size PNGs, SHA-256
+`7d43a02275a016f9c2fbf9ed4a37727f64cf94a776c60e6740975e761ee297c0`.
+Comparison evidence: `Artifacts/QA/UI01/G-Oversized-Answer-Normal-Comparison.json`.
+This establishes baseline preservation, not fidelity approval against original art.
+Raw captures/logs remain local and ignored under `Artifacts`.
+
+Dedicated review against the actual stacked base is pending.
 
 ## Remaining gates
 

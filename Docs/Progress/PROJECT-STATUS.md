@@ -41,10 +41,11 @@ still reports OPEN on GitHub despite the owner's merge report; no merge SHA is
 recorded until verified. Working branch: `feature/g-oversized-answer-focus`,
 stacked on its unchanged tested head `cc1d584`. Oversized focused answers now reveal
 their option letter and first line at the top, while the rest remains scrollable.
-Fitting rows retain their layout. Editor build and clean selected-leading capture
-pass. Initial package regression found a pending-feedback/Pause-focus conflict;
-the corrected editor retest passes. Final package/regression checks and dedicated
-review are in progress.
+Fitting rows retain their layout. Initial package regression found a pending-
+feedback/Pause-focus conflict; the correction passes both real builds, a final
+clean Win64 package, 24 packaged capture checks, both Unreal tests and 27 Python
+tests. Fourteen native PNGs were inspected; the normal-size baseline is byte-
+identical. Dedicated review against the actual stacked base is in progress.
 Manual input, screen-reader, art and phone gates remain open.
 No agent merge, game deployment or release is authorized.
 
@@ -303,10 +304,11 @@ The next bounded correction is stacked on PR #15's unchanged tested branch while
 its reported merge remains unconfirmed. It reveals the beginning of oversized
 focused answer rows using measured canvas height, rechecks after Slate focus
 scrolling and places the option identifier/selected marker at the start of those
-rows. Clean `767e387` passes the editor build and selected 200% landscape leading-
-visibility capture; all 27 Python tests pass. See
-[oversized-answer focus](../QA/UI01/G-OVERSIZED-ANSWER-FOCUS.md). Final clean package,
-native regression checks and dedicated review are pending. Existing art, manual
+rows. Final clean `7e68d60` passes both builds, full Win64 packaging, 24 native
+capture contracts (including six answer-start checks and 13 keyboard routes), both
+Unreal tests and all 27 Python tests. Fourteen PNGs were inspected; normal-size
+pixels are unchanged. See [oversized-answer focus](../QA/UI01/G-OVERSIZED-ANSWER-FOCUS.md).
+Dedicated review against the actual stacked base is pending. Existing art, manual
 input/accessibility, editorial, phone/offline, motion and release gates remain open.
 
 ## Owner playtest preview
