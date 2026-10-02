@@ -97,7 +97,9 @@ defects. Head/worktree stayed unchanged. The reviewer independently passed all
 nine new option-cue/feedback tests; it did not independently run engine builds,
 packaged runtime or physical-device checks. Raw evidence:
 `Artifacts/Reviews/20261002-144007`. Subsequent review/publication records change
-documentation only. No merge is performed by the agent.
+documentation only. [PR #22](https://github.com/rloterh/WordQuest/pull/22) targets
+`dev` and is ready for owner review. GitHub has no configured status checks;
+validation above is local. No merge is performed by the agent.
 
 ## Limits
 

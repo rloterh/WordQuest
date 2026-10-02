@@ -109,7 +109,9 @@ Scoring and art remain unchanged. Both real target builds, clean full Win64 pack
 14 inspected packaged captures, both Unreal tests and all 46 Python tests pass.
 Initial screen pixels remain unchanged. Dedicated review against actual `dev`
 found no actionable introduced defects and independently passed all nine new
-QA tests; head/worktree stayed unchanged. See
+QA tests; head/worktree stayed unchanged.
+[PR #22](https://github.com/rloterh/WordQuest/pull/22) targets `dev` and is ready
+for owner review. See
 [answer outcome evidence](../QA/UI01/G-ANSWER-OUTCOMES.md). The Android receipt
 remains absent and adb lists no device on this fresh recheck.
 The owner identified Epic Games Launcher as the UE installation source; its current
