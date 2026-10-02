@@ -36,15 +36,13 @@ at `3312e95` on 2026-10-02; its genuine licensed Bold action face is now on `dev
 Both real builds, full Win64 cook/stage/archive, seven inspected packaged captures,
 both Unreal tests and 22 Python tests passed; cooked Bold payload matched its source
 and dedicated read-only review found no actionable introduced defects.
-Working branch: `feature/g-answer-badge-material`, based on that merge, for an
-editable shaded badge candidate retaining live A–D letters and selected-state
-outline/marker. Both builds, full Win64 package, nine inspected native capture
-state/dimension checks, both Unreal tests and 22 Python tests pass. Missing-SVG
-fallback passes and cooked SVG matches source exactly. Dedicated read-only review
-found no actionable introduced defects. The 200% artificial long-answer landscape row remains partially visible
-at its stress-capture scroll position, reproduced in the merged baseline.
-The bounded regular [PR #15](https://github.com/rloterh/WordQuest/pull/15) is open
-for owner review/merge.
+The tested badge candidate [PR #15](https://github.com/rloterh/WordQuest/pull/15)
+still reports OPEN on GitHub despite the owner's merge report; no merge SHA is
+recorded until verified. Working branch: `feature/g-oversized-answer-focus`,
+stacked on its unchanged tested head `cc1d584`. Oversized focused answers now reveal
+their option letter and first line at the top, while the rest remains scrollable.
+Fitting rows retain their layout. Editor build and clean selected-leading capture
+pass; final package/regression checks and dedicated review are in progress.
 Manual input, screen-reader, art and phone gates remain open.
 No agent merge, game deployment or release is authorized.
 
@@ -298,6 +296,16 @@ The bounded regular [PR #15](https://github.com/rloterh/WordQuest/pull/15) is op
 against `dev`. No GitHub status checks are configured; validation above is local.
 Exact static art, manual accessibility/input, editorial, phone/offline, performance,
 motion and release gates remain open.
+
+The next bounded correction is stacked on PR #15's unchanged tested branch while
+its reported merge remains unconfirmed. It reveals the beginning of oversized
+focused answer rows using measured canvas height, rechecks after Slate focus
+scrolling and places the option identifier/selected marker at the start of those
+rows. Clean `767e387` passes the editor build and selected 200% landscape leading-
+visibility capture; all 27 Python tests pass. See
+[oversized-answer focus](../QA/UI01/G-OVERSIZED-ANSWER-FOCUS.md). Final clean package,
+native regression checks and dedicated review are pending. Existing art, manual
+input/accessibility, editorial, phone/offline, motion and release gates remain open.
 
 ## Owner playtest preview
 
