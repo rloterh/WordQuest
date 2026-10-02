@@ -105,4 +105,12 @@ unapproved. Static fidelity, editorial, offline/physical-phone, contrast/manual
 accessibility, performance, motion and release gates remain open. Android engine
 platform support is still absent; see [installation handoff](../../Setup/ANDROID-SUPPORT.md).
 UI01 acceptance precedes UI02 and H/I. No merge, deployment or release is performed.
-Dedicated read-only review against actual `origin/dev` is pending.
+Dedicated read-only Codex review completed at clean
+`e3f40726cf5bf8385db69b37781c3fd8ee535af9` against actual `origin/dev`,
+`aa204ff50fc08586ac1f64b4cf1cdb410cbb9eae`, with exit 0 and no actionable
+introduced defects. Head/worktree stayed unchanged. The reviewer independently
+passed all seven reading-scroll tests and the diff whitespace check; its broader
+QA invocation did not complete. It did not independently rerun Unreal builds or
+runtime evidence. The implementation run above passed all 56 Python tests.
+Raw review evidence: `Artifacts/Reviews/20261002-173804`. Subsequent records change
+documentation only. The owner retains merge authority.

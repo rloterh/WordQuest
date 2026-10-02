@@ -137,7 +137,9 @@ clean Win64 packaging, 14 inspected packaged checks, both Unreal tests and all
 56 Python tests at `b97b940`. Normal initial/result pixels are unchanged.
 The 260x200 Pause panel still exceeds its viewport; Resume isolation is checked,
 not complete modal acceptance. See [reading scroll](../QA/UI01/G-READING-SCROLL.md).
-Dedicated read-only review is pending. Android support receipt is
+Dedicated read-only review against actual `dev` found no actionable introduced
+defects and independently passed seven reading-scroll tests; its broader QA run
+did not complete. Head/worktree stayed unchanged. Android support receipt is
 still absent and adb lists no device on this turn's recheck.
 The owner identified Epic Games Launcher as the UE installation source; its current
 manifest/installation record now confirms exact UE 5.8.2 at the existing path.
@@ -435,8 +437,9 @@ Read [environment](../Setup/ENVIRONMENT.md), [toolchain](../Setup/TOOLCHAIN-LOCK
 [asset handoff](../../ArtSource/G-ASSET-HANDOFF.md). Use
 `python Tools/BuildScripts/build_wordquest.py` to reproduce the editor build.
 Keep missing mobile evidence explicit. Next: refine the documented G art/lettering
-differences, complete fixture review, identify the engine installation source to add
-Android support, then validate on a connected phone. Finish G static proof before
+differences, complete fixture review, add Android platform support through the
+identified Epic Games Launcher installation, then validate on a connected phone.
+The extreme short-window Pause layout remains a bounded UI01 follow-up. Finish G static proof before
 UI02 or H/I. The current control follow-up preserves initial unselected state,
 keyboard focus, disabled states, long answers and the 200% reading override.
 Preserve all supplied planning packages and original images unchanged.
