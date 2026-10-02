@@ -87,6 +87,8 @@ The existing PR #19 package's game tree matches this follow-up; no new package i
 claimed. Dedicated read-only review against actual `dev` completed with no
 actionable introduced defects and unchanged head/worktree. See
 [QA verdict integrity](../QA/UI01/G-PROOF-EVIDENCE.md).
+[PR #20](https://github.com/rloterh/WordQuest/pull/20) is a regular PR against `dev`,
+ready for the owner's merge decision.
 Manual input, screen-reader, art and phone gates remain open.
 No agent merge, game deployment or release is authorized.
 

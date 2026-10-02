@@ -51,6 +51,9 @@ actionable introduced defects. Head/worktree stayed unchanged. Raw evidence:
 `Artifacts/Reviews/20261002-121513`. Tests were not rerun in the read-only review
 environment; connector startup/permission diagnostics do not constitute test
 results. Subsequent review/publication records change documentation only.
+[PR #20](https://github.com/rloterh/WordQuest/pull/20) publishes this correction as
+a regular PR against `dev` for the owner's merge decision. GitHub has no configured
+status checks; the local evidence above supplies the recorded validation.
 
 ## Art experiment and gates
 
