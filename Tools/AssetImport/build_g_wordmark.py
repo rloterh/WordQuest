@@ -3,6 +3,7 @@
 Outlines the repository's OFL Cormorant font, then adds authored ornament.
 No reference pixels, raster edits, external fonts or Unreal assets are generated.
 """
+import argparse
 from pathlib import Path
 from fontTools.ttLib import TTFont
 from fontTools.pens.svgPathPen import SVGPathPen
@@ -11,6 +12,10 @@ from fontTools.pens.transformPen import TransformPen
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--revision', choices=['v001', 'v002'], default='v002',
+                        help='v002 adds bevel layers; v001 reproduces the preserved first candidate')
+    args = parser.parse_args()
     root = Path(__file__).resolve().parents[2]
     font = TTFont(root / 'ArtSource/Fonts/CormorantGaramond/CormorantGaramond-SemiBold.ttf')
     glyphs, cmap = font.getGlyphSet(), font.getBestCmap()
@@ -63,7 +68,21 @@ def main():
   <path d="M235 124 L254 125 L235 127 L232 125Z" fill="#efcca5"/>
 </svg>
 '''
-    target = root / 'ArtSource/UI/G/Vector/G-Wordmark-v001.svg'
+    if args.revision == 'v002':
+        # Keep licensed glyph and ornament geometry intact. Separate closed-vector
+        # layers supply the warm interior, ivory rim and offset lower bevel.
+        svg = svg.replace('stop-color="#fff3e5"', 'stop-color="#f5d2ba"')
+        svg = svg.replace('stop-color="#e9c39e"', 'stop-color="#ce9b7e"')
+        svg = svg.replace('stop-color="#fff1da"', 'stop-color="#fbe4cf"')
+        svg = svg.replace('stop-color="#d39868"', 'stop-color="#bf8b72"')
+        original_layers = f'''    <path d="{lettering}" transform="translate(1.1 1.4)" fill="#61405f"/>
+    <path d="{lettering}" fill="url(#pearlGold)" stroke="url(#edgeGold)" stroke-width=".7"/>'''
+        bevel_layers = f'''    <path d="{lettering}" transform="translate(1.2 1.8)" fill="#6a426b" stroke="#6a426b" stroke-width="2.6" stroke-linejoin="round"/>
+    <path d="{lettering}" fill="url(#pearlGold)" stroke="#fff8ee" stroke-width="2.8" stroke-linejoin="round"/>
+    <path d="{lettering}" fill="url(#pearlGold)" stroke="url(#edgeGold)" stroke-width="1.2" stroke-linejoin="round"/>
+    <path d="{lettering}" transform="translate(-.3 -.4)" fill="none" stroke="#fffaf4" stroke-width=".35" stroke-opacity=".65" stroke-linejoin="round"/>'''
+        svg = svg.replace(original_layers, bevel_layers)
+    target = root / f'ArtSource/UI/G/Vector/G-Wordmark-{args.revision}.svg'
     target.write_text(svg, encoding='utf-8', newline='\n')
     print(target)
 

@@ -40,12 +40,11 @@ The owner merged [PR #15](https://github.com/rloterh/WordQuest/pull/15) into `de
 at `551a085` on 2026-10-02, 10:32:08 UTC. The owner then merged
 [PR #16](https://github.com/rloterh/WordQuest/pull/16) into its original stacked
 base, `feature/g-answer-badge-material`, at `032f3b2`, 10:32:56 UTC. Both PRs are
-closed/merged, but #16's focus correction is absent from `dev` because that merge
-occurred after #15. Working branch: `feature/g-focus-dev-integration`, based on
-`origin/dev`; it integrates the owner's merged feature branch without changing its
-tested implementation. [PR #17](https://github.com/rloterh/WordQuest/pull/17) targets
-`dev` as a regular PR, ready for the owner's merge decision; no remote branch
-merge was performed by the agent.
+closed/merged. Initially #16's focus correction was absent from `dev` because that
+merge occurred after #15. The owner merged
+[PR #17](https://github.com/rloterh/WordQuest/pull/17) into `dev` at `f0fd74b` on
+2026-10-02, 10:55:10 UTC; the tested correction is now integrated. No remote branch
+merge was performed by the agent. Working branch: `feature/g-wordmark-bevel`.
 Oversized focused answers reveal their option letter and first line, while the
 rest remains scrollable. The original correction passed both builds, full Win64
 packaging, 24 capture checks, both Unreal tests and 27 Python tests. Fresh integration
@@ -53,6 +52,11 @@ editor build, two inspected native regression captures, both Unreal tests and al
 27 Python tests pass. Dedicated review against actual `dev` found no actionable
 introduced defects. PR #17 publishes this integration against `dev`. See
 [integration evidence](../QA/UI01/G-FOCUS-DEV-INTEGRATION.md).
+The next bounded UI01 candidate adds layered ivory/gold bevel to a new editable
+wordmark revision, preserving the prior SVG, licensed glyph geometry, placement,
+live learning text and controls. Preliminary normal/narrow native captures pass
+state/dimensions and were inspected. Clean packaging, final captures and review
+are pending; this is not original-lettering or static-fidelity acceptance.
 Manual input, screen-reader, art and phone gates remain open.
 No agent merge, game deployment or release is authorized.
 
@@ -317,8 +321,8 @@ Unreal tests and all 27 Python tests. Fourteen PNGs were inspected; normal-size
 pixels are unchanged. See [oversized-answer focus](../QA/UI01/G-OVERSIZED-ANSWER-FOCUS.md).
 Dedicated review against the actual stacked base found no actionable introduced
 defects. The owner merged #16 into that feature branch after #15 had merged; the
-correction still needs the recorded [integration](../QA/UI01/G-FOCUS-DEV-INTEGRATION.md)
-into `dev`. Existing art, manual
+correction reached `dev` through owner-merged #17 at `f0fd74b`. See the recorded
+[integration](../QA/UI01/G-FOCUS-DEV-INTEGRATION.md). Existing art, manual
 input/accessibility, editorial, phone/offline, motion and release gates remain open.
 
 ## Owner playtest preview
