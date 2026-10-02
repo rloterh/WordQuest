@@ -13,7 +13,7 @@ targets; shape, faceting and lighting still require visual acceptance.
 | `G-Header-Divider-v002.svg` | `Game/Content/UI/G/Vector/G_HeaderDivider.svg` | 214x29 viewBox; preserved tapered lines/terminals/star with gold gradients and ivory facets |
 | `G-Reading-Divider-v002.svg` | `Game/Content/UI/G/Vector/G_ReadingDivider.svg` | 314x29 viewBox; matching long divider with the same material treatment |
 | `G-Pause-Bars-v001.svg` | `Game/Content/UI/G/Vector/G_PauseBars.svg` | 24x30 viewBox; two white rounded bars, runtime tint follows skin availability |
-| `G-Wordmark-v003.svg` | `Game/Content/UI/G/Vector/G_Wordmark.svg` | 430x140 viewBox; authored reference-guided W, remaining licensed outlines and preserved ivory/gold bevel/ornament |
+| `G-Wordmark-v004.svg` | `Game/Content/UI/G/Vector/G_Wordmark.svg` | 430x140 viewBox; authored W, adapted Q bowl/looped swash, seven other licensed outlines and retained ivory/gold ornament |
 | `G-Answer-Badge-v001.svg` | `Game/Content/UI/G/Vector/G_AnswerBadge.svg` | 70x70 viewBox; lilac shaded disc and pale rim, with no baked letter |
 
 From the repository root:
@@ -109,3 +109,12 @@ No original image pixels were edited/extracted and no raster or binary asset was
 generated. The staging helper now checks all seven masters/runtime copies.
 Native/cooked verification and remaining differences are recorded in
 `Docs/QA/UI01/G-ANSWER-BADGE-MATERIAL.md`.
+
+Revision v004 preserves all three earlier masters. It removes the straight
+descender from the Q's outlined graphic, restores the bowl's bottom curve and
+adds separate closed loop/tapered ribbon paths based on the gameplay reference.
+The font file is unmodified; all other bowl/counter segments, seven other glyphs,
+authored W, advances/fit, under-title ornament, gradient definitions, canvas and
+native placement remain intact. The builder defaults to v004, with explicit
+v001/v002/v003 reproduction retained. See `G-Wordmark-v004-PROVENANCE.json`
+and `Docs/QA/UI01/G-WORDMARK-SWASH.md`; exact lettering/art gates remain open.

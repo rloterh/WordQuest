@@ -2,6 +2,15 @@
 
 ## Current stage: native static G implementation; acceptance incomplete
 
+The owner merged [PR #27](https://github.com/rloterh/WordQuest/pull/27) and
+[PR #28](https://github.com/rloterh/WordQuest/pull/28) into `dev` on 2026-10-02
+at 21:50:42 and 21:50:59 UTC (`63e6919` and `77d4fde`). The next bounded UI01
+candidate refines the Q loop and tapered swash in a new editable v004 master,
+preserving earlier masters, the font file, authored W, other glyphs and controls.
+Verification is in progress; no new acceptance is claimed. Native desktop control
+still returns a missing-pipe error, the Android support receipt remains absent
+and adb lists no device. See [Q swash](../QA/UI01/G-WORDMARK-SWASH.md).
+
 The owner requested unattended local development-tool permissions on 2026-10-02.
 WordQuest-only shell defaults and a user-level Unreal/Blender/Android Studio/Epic
 Launcher/WordQuest allow list are saved outside Git. Configuration parsing and the
@@ -53,7 +62,7 @@ closed/merged. Initially #16's focus correction was absent from `dev` because th
 merge occurred after #15. The owner merged
 [PR #17](https://github.com/rloterh/WordQuest/pull/17) into `dev` at `f0fd74b` on
 2026-10-02, 10:55:10 UTC; the tested correction is now integrated. No remote branch
-merge was performed by the agent. Working branch: `feature/g-wordmark-capital`.
+merge was performed by the agent. Working branch: `feature/g-wordmark-swash`.
 Oversized focused answers reveal their option letter and first line, while the
 rest remains scrollable. The original correction passed both builds, full Win64
 packaging, 24 capture checks, both Unreal tests and 27 Python tests. Fresh integration
