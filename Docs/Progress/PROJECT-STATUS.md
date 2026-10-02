@@ -26,9 +26,10 @@ on 2026-10-02; its companion framing and rejected-art audit are now on `dev`.
 The owner merged [PR #12](https://github.com/rloterh/WordQuest/pull/12) at `b2d7a0d`
 on 2026-10-02; its synthetic native keyboard routing evidence is now on `dev`.
 Working branch: `feature/g-focus-navigation`, based on that merge, for bounded
-Tab/Shift-Tab focus-order and Pause text-size/retry checks. Native baseline,
-corrections, final build/runtime evidence and review are in progress. Manual input,
-screen-reader, art and phone gates remain open.
+Tab/Shift-Tab focus-order and Pause text-size/retry checks. Focus cycling and rapid
+200% retry visibility are corrected. Both builds, clean Win64 package, 14 packaged
+checks, both Unreal tests and 22 Python tests pass; dedicated review is pending.
+Manual input, screen-reader, art and phone gates remain open.
 No agent merge, game deployment or release is authorized.
 
 ## Completed work
@@ -227,6 +228,19 @@ the local build/runtime/review evidence above supplies the recorded validation.
 This synthetic route evidence does not establish manual/OS keyboard input, Tab
 traversal, screen-reader, pointer/touch, offline/phone or performance acceptance.
 Static art, motion, editorial and release gates remain open.
+
+After the owner merged PR #12, native Tab evidence showed traversal stopping at
+Pause. Gameplay Next/Previous now cycles through enabled A/B/C/D/Hint/Check/Pause
+controls; screen focus enters at the first/last enabled control. Hint/submission
+skip disabled controls. A rapid 200% retry capture exposed stale feedback reveal
+and focus scrolling against old geometry; retry clears that request and changed
+layout rechecks focused-control visibility on the next tick. Six new native modes
+assert each state/focus/Shift/text setting plus final control visibility. Both
+real builds, clean full Win64 cook/stage/archive, 14 packaged checks, seven directly
+inspected new focus PNGs, both Unreal tests and 22 Python tests pass at `554079e`.
+See [focus navigation](../QA/UI01/G-FOCUS-NAVIGATION.md). Dedicated review is pending.
+This is synthetic native traversal, not manual/platform accessibility acceptance.
+Art, editorial, motion, offline/phone, performance and release gates remain open.
 
 ## Resume
 

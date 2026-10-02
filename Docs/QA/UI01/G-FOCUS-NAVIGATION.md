@@ -74,9 +74,53 @@ missing/extra/reordered steps, wrong proof, visible capture, missing/clipped cap
 and incorrect/duplicate capture. All 22 combined focus/keyboard/
 package-helper tests pass. These check evidence rejection, not physical input.
 
-Final clean builds, package, native captures, existing Unreal tests and dedicated
-review are pending. Raw evidence stays under ignored `Artifacts`; no art or device
-gate is passed by these checks.
+Final runtime evidence uses clean source
+`554079e48665de83ae5cc2ed3c8df21a11de3f06`. The corrected editor compilation passed
+(6 actions, 27.35 seconds, exit 0):
+`Artifacts/Logs/Build/WordQuestEditor-20261002-042323.log`. Its preliminary dirty
+`20261002-042351-capture-keyretry` passed focus/state/visibility checks and native
+inspection showed full enlarged A; final clean packaged evidence follows below.
+
+Package `Artifacts/Packages/Win64/20261002-042431-180556` passed the clean editor
+recheck (1.60 seconds), real game build (5 actions, 49.02 seconds), full cook,
+stage and archive (UAT 143.68 seconds), all exit 0. Manifest head/worktree/inputs
+remain unchanged, with complete payload hashes. Manifest SHA-256:
+`9bd54b7e9017f1461ec91d9dd9e8ff2373115fe164ff982197f2aa5f8867931f`.
+
+All 14 packaged runs record this clean source/package revision, empty worktree,
+verified archive hashes, exit 0, correct ordered attempt traces, final state and
+PNG dimensions. The seven new focus captures below additionally pass every focus/
+Shift/text-setting transition and capture-time control visibility. All seven PNGs
+were directly inspected. Raw `run.json`, `Unreal.log`, `console.log` and `native.png`
+remain local under `Artifacts/QA/UI01/` (ignored, not uploaded with the PR).
+
+| New packaged run | Dimensions | Native observation |
+| --- | --- | --- |
+| `20261002-042715-packaged-capture-keytab` | 390x844 | Hint focused, no choice/evaluation |
+| `20261002-042726-packaged-capture-keyback` | 390x844 | Check focused after reverse wrap |
+| `20261002-042735-packaged-capture-keyskip` | 390x844 | D focused; Hint disabled and hint feedback visible |
+| `20261002-042745-packaged-capture-keymodal` | 390x844 | Text-size control focused at 200%, modal above dimmed content |
+| `20261002-042754-packaged-capture-keyretry` | 390x844 | Entire focused selected A visible at 200%; no stale result/hint feedback |
+| `20261002-042803-packaged-capture-keydisabled` | 390x844 | Pause focused; completed A/result retained, answer/actions disabled |
+| `20261002-042920-packaged-capture-keyretry` | 844x390 | Entire focused selected A visible at 200% after scrolling |
+
+The seven earlier keyboard routes passed at 390x844, from this same package:
+`20261002-042813-packaged-capture-keyswitch`,
+`20261002-042823-packaged-capture-keyempty`,
+`20261002-042832-packaged-capture-keysubmit`,
+`20261002-042842-packaged-capture-keyhint`,
+`20261002-042851-packaged-capture-keybuttons`,
+`20261002-042901-packaged-capture-keypaused` and
+`20261002-042910-packaged-capture-keyresumed`. Their existing key/state/dimension
+checks passed; the new focus/visibility assertions apply only to the six new modes.
+
+Both existing Unreal tests passed from the clean revision in
+`20261002-042928-automation-initial` (2 succeeded, zero failed/not-run/in-process,
+exit 0). These remain isolated attempt/draft-fixture tests, not campaign or
+editorial qualification. All 22 Python tests, six supplied reference hashes, six
+SVG source/runtime pairs, `git lfs fsck` and `git diff --check` passed. Dedicated
+review against actual `origin/dev` is pending. Later commits record evidence only;
+no art or device gate is passed by these checks.
 
 Reproduce after a clean commit:
 
