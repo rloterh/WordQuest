@@ -58,8 +58,8 @@ live learning text and controls. Both real builds, clean full Win64 packaging,
 eight inspected packaged captures, both Unreal tests and 27 Python tests pass.
 Cooked SVG bytes match source, v002 reproduces byte-identically, and preserved v001
 matches the builder after line-ending normalization. Normal-size pixel changes
-stay inside the title region. Initial review found no actionable defects; final
-review after this provenance correction is pending. See
+stay inside the title region. Final dedicated review against actual `dev` found
+no actionable introduced defects. Publication is pending. See
 [wordmark bevel](../QA/UI01/G-WORDMARK-BEVEL.md); this is not
 original-lettering or static-fidelity acceptance.
 Manual input, screen-reader, art and phone gates remain open.
