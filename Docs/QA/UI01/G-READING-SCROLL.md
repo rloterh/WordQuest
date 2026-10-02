@@ -114,3 +114,5 @@ QA invocation did not complete. It did not independently rerun Unreal builds or
 runtime evidence. The implementation run above passed all 56 Python tests.
 Raw review evidence: `Artifacts/Reviews/20261002-173804`. Subsequent records change
 documentation only. The owner retains merge authority.
+Published as regular [PR #24](https://github.com/rloterh/WordQuest/pull/24)
+against `dev`; no merge was performed.

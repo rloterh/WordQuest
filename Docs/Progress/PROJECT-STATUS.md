@@ -139,7 +139,9 @@ The 260x200 Pause panel still exceeds its viewport; Resume isolation is checked,
 not complete modal acceptance. See [reading scroll](../QA/UI01/G-READING-SCROLL.md).
 Dedicated read-only review against actual `dev` found no actionable introduced
 defects and independently passed seven reading-scroll tests; its broader QA run
-did not complete. Head/worktree stayed unchanged. Android support receipt is
+did not complete. Head/worktree stayed unchanged. The bounded regular
+[PR #24](https://github.com/rloterh/WordQuest/pull/24) is published against `dev`;
+the owner retains merge authority. Android support receipt is
 still absent and adb lists no device on this turn's recheck.
 The owner identified Epic Games Launcher as the UE installation source; its current
 manifest/installation record now confirms exact UE 5.8.2 at the existing path.
