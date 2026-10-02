@@ -95,6 +95,7 @@ UButton* UContextScreen::Button(const TCHAR* Name, const FString& Label)
     Result->SetToolTipText(FText::FromString(Label));
     Result->OnReceivedFocus.BindWeakLambda(this, [this, Result]()
     {
+        bReadingScrollPriority = false;
         StyleButtons();
         if (!Attempt.bPaused)
         {
@@ -170,6 +171,7 @@ void UContextScreen::Build()
     Scroll = Make<UScrollBox>(TEXT("ReadingScroll"));
     Scroll->SetScrollBarVisibility(ESlateVisibility::Collapsed);
     Scroll->SetScrollWhenFocusChanges(EScrollWhenFocusChanges::InstantScroll);
+    Accessible(Scroll, TEXT("Question content. Page Up and Page Down scroll. Home jumps to the beginning; End jumps to the end."));
     Safe->AddChild(Scroll);
     ContentSize = Make<USizeBox>(TEXT("ContentSize"));
     Scroll->AddChild(ContentSize);
@@ -427,7 +429,7 @@ void UContextScreen::NativeTick(const FGeometry& Geometry, float DeltaTime)
         // A focus event may have used the old geometry before text-size/reflow.
         // Recheck it next tick, once the new layout has been arranged. Explicit
         // feedback scrolling takes priority over revealing a still-focused row.
-        bRevealFocusAfterLayout = !bRevealFeedback;
+        bRevealFocusAfterLayout = !bRevealFeedback && !bReadingScrollPriority;
         Layout(Size);
         LastSize = Size;
         bLayoutDirty = false;
@@ -830,6 +832,7 @@ void UContextScreen::ResetAttempt()
     Feedback->SetText(FText::GetEmpty());
     bRevealFeedback = false;
     bRevealFeedbackAfterLayout = false;
+    bReadingScrollPriority = false;
     Refresh();
     Scroll->ScrollToStart();
     SetUserFocus(GetOwningPlayer());
@@ -847,6 +850,20 @@ FReply UContextScreen::NativeOnKeyDown(const FGeometry& Geometry, const FKeyEven
     if (Key == EKeys::Escape || Key == EKeys::P) { TogglePause(); return FReply::Handled(); }
     if (!Attempt.bPaused)
     {
+        if (Key == EKeys::PageUp || Key == EKeys::PageDown || Key == EKeys::Home || Key == EKeys::End)
+        {
+            Scroll->EndInertialScrolling();
+            const float EndOffset = FMath::Max(0.f, Scroll->GetScrollOffsetOfEnd());
+            const float Page = FMath::Max(1.f, float(Scroll->GetCachedGeometry().GetLocalSize().Y) * .9f);
+            const float Destination = Key == EKeys::Home ? 0.f : Key == EKeys::End ? EndOffset
+                : Scroll->GetScrollOffset() + (Key == EKeys::PageUp ? -Page : Page);
+            Scroll->SetScrollOffset(FMath::Clamp(Destination, 0.f, EndOffset));
+            // Reading input supersedes pending automatic reveals. The next
+            // deliberate control focus or retry restores focus-driven scrolling.
+            bRevealFeedback = bRevealFeedbackAfterLayout = bRevealFocusAfterLayout = false;
+            bReadingScrollPriority = true;
+            return FReply::Handled();
+        }
         if (Key == EKeys::Tab && HasUserFocus(GetOwningPlayer()))
         {
             const auto Order = EnabledGameplayControls();
@@ -891,7 +908,10 @@ FString UContextScreen::GetProofTextSizes() const
         Size(Answers[0].Letter), Size(HintLabel), Size(SubmitLabel), Size(Feedback));
 }
 
-int32 UContextScreen::GetProofFeedbackVisibility() const
+float UContextScreen::GetProofReadingOffset() const { return Scroll->GetScrollOffset(); }
+float UContextScreen::GetProofReadingEndOffset() const { return Scroll->GetScrollOffsetOfEnd(); }
+
+int32 UContextScreen::GetProofFeedbackVisibility(bool bEnd) const
 {
     if (Feedback->GetText().IsEmpty()) return 0;
     const auto Clip = Scroll->GetCachedGeometry().GetLayoutBoundingRect();
@@ -902,11 +922,12 @@ int32 UContextScreen::GetProofFeedbackVisibility() const
     {
         const float LineHeight = FSlateApplication::Get().GetRenderer()->GetFontMeasureService()
             ->GetMaxCharacterHeight(Feedback->GetFont()) * Geometry.GetAccumulatedLayoutTransform().GetScale();
-        Rect.Bottom = Rect.Top + FMath::Min(float(Rect.GetSize().Y), LineHeight);
+        if (bEnd) Rect.Top = Rect.Bottom - FMath::Min(float(Rect.GetSize().Y), LineHeight);
+        else Rect.Bottom = Rect.Top + FMath::Min(float(Rect.GetSize().Y), LineHeight);
     }
     const bool Visible = Rect.GetSize().X > 0 && Rect.GetSize().Y > 0 && Rect.Left >= Clip.Left - 1
         && Rect.Top >= Clip.Top - 1 && Rect.Right <= Clip.Right + 1 && Rect.Bottom <= Clip.Bottom + 1;
-    return Visible ? (Oversized ? 2 : 1) : -1;
+    return Visible ? (Oversized ? (bEnd ? 3 : 2) : 1) : -1;
 }
 
 int32 UContextScreen::GetProofAnswerCueCode(int32 Index) const

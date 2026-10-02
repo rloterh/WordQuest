@@ -101,8 +101,9 @@ defects. Head/worktree stayed unchanged. The reviewer independently passed 39 QA
 tests and the diff whitespace check; it did not independently rerun engine builds,
 captures or physical-device gates. Raw evidence: `Artifacts/Reviews/20261002-164119`.
 Subsequent review/publication records change documentation only.
-[PR #23](https://github.com/rloterh/WordQuest/pull/23) targets `dev` and is ready
-for owner review. GitHub has no configured status checks; validation above is local.
+[PR #23](https://github.com/rloterh/WordQuest/pull/23) was merged by the owner into
+`dev` at `aa204ff50fc08586ac1f64b4cf1cdb410cbb9eae`,
+2026-10-02 16:51:26 UTC. GitHub has no configured status checks; validation above is local.
 
 ## Limits
 

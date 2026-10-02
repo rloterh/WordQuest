@@ -19,8 +19,13 @@ private:
     void RunProof();
     void RunKeyboardProof();
     void RunInterruptionProof();
+    void RunScrollProof();
+    void TraceScrollProof();
     void CaptureProof();
     FTimerHandle ProofTimer;
+    FTimerHandle ScrollTimer;
+    int32 ScrollStep = 0;
+    bool ScrollDown = false, ScrollUp = false;
     FString ProofName, CapturePath;
 #endif
 };
