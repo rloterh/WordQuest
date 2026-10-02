@@ -140,3 +140,6 @@ not completed, and it did not independently repeat native builds, rendering or
 device acceptance. The author's final 63-test run completed separately as recorded
 above. Raw review evidence: `Artifacts/Reviews/20261002-222323`. Subsequent
 review/publication records change documentation only.
+
+Published as regular [PR #29](https://github.com/rloterh/WordQuest/pull/29)
+against `dev`; no agent merge was performed.

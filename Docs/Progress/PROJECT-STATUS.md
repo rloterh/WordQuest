@@ -15,6 +15,8 @@ title. Dedicated read-only review against actual `dev` found no actionable intro
 defects and left head/worktree unchanged. Art/device acceptance remains open. Desktop control
 still returns a missing-pipe error, the Android support receipt remains absent
 and adb lists no device. See [Q swash](../QA/UI01/G-WORDMARK-SWASH.md).
+Published as regular [PR #29](https://github.com/rloterh/WordQuest/pull/29)
+against `dev`; no agent merge occurred.
 
 The owner requested unattended local development-tool permissions on 2026-10-02.
 WordQuest-only shell defaults and a user-level Unreal/Blender/Android Studio/Epic
