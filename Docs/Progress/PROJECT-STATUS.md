@@ -2,6 +2,15 @@
 
 ## Current stage: native static G implementation; acceptance incomplete
 
+The owner requested unattended local development-tool permissions on 2026-10-02.
+WordQuest-only shell defaults and a user-level Unreal/Blender/Android Studio/Epic
+Launcher/WordQuest allow list are saved outside Git. Configuration parsing and the
+CLI diagnostic confirm unrestricted shell access with approval Never. The supported
+Computer Use inventory failed because its native pipe was unavailable; the desktop
+workspace launch was requested, but GUI access remains unverified. See
+[local tool permissions](../Setup/LOCAL-TOOL-PERMISSIONS.md) for the host setup
+and separate remaining gates. This does not change game or release acceptance.
+
 Owner authorized P00/UI00 inventory, UI01/UI02 G proof and appropriate PRs on
 2026-09-22. The owner merged foundation PR #1 into `dev` at `6a840e0` on
 2026-09-23 and requested the next step. The owner also merged prototype PR #2 on
