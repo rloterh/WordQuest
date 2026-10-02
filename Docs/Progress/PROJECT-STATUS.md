@@ -46,7 +46,10 @@ feedback/Pause-focus conflict; the correction passes both real builds, a final
 clean Win64 package, 24 packaged capture checks, both Unreal tests and 27 Python
 tests. Fourteen native PNGs were inspected; the normal-size baseline is byte-
 identical. Dedicated review against the actual stacked base completed with no
-actionable introduced defects. Publication is pending.
+actionable introduced defects. [PR #16](https://github.com/rloterh/WordQuest/pull/16)
+is published as a draft against `feature/g-answer-badge-material`; PR #15 still
+reports OPEN. After its merge is verified, retarget #16 to `dev`, check the actual
+diff and review against that base before making it ready for owner merge.
 Manual input, screen-reader, art and phone gates remain open.
 No agent merge, game deployment or release is authorized.
 
