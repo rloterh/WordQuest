@@ -55,6 +55,7 @@ public:
 protected:
     virtual TSharedRef<SWidget> RebuildWidget() override;
     virtual void NativeConstruct() override;
+    virtual void NativeDestruct() override;
     virtual void NativeTick(const FGeometry& Geometry, float DeltaTime) override;
     virtual FReply NativeOnKeyDown(const FGeometry& Geometry, const FKeyEvent& Event) override;
 private:
@@ -66,6 +67,8 @@ private:
     void Build();
     void Layout(FVector2D Size);
     void Refresh();
+    void PauseForInterruption();
+    void ApplicationActivationChanged(bool bActive);
     TArray<UButton*> EnabledGameplayControls() const;
     void StyleButtons();
     void RevealFocusedControl(UButton* Target);
@@ -87,6 +90,9 @@ private:
     bool bReady = false;
     bool bRevealFeedback = false;
     bool bRevealFocusAfterLayout = false;
+    FDelegateHandle ActivationHandle;
+    FDelegateHandle DeactivationHandle;
+    FDelegateHandle BackgroundHandle;
     UPROPERTY(Transient) TObjectPtr<UCanvasPanel> Root;
     UPROPERTY(Transient) TObjectPtr<UCanvasPanel> Canvas;
     UPROPERTY(Transient) TObjectPtr<UCanvasPanel> Modal;

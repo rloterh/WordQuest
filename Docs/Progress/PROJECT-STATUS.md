@@ -44,7 +44,7 @@ closed/merged. Initially #16's focus correction was absent from `dev` because th
 merge occurred after #15. The owner merged
 [PR #17](https://github.com/rloterh/WordQuest/pull/17) into `dev` at `f0fd74b` on
 2026-10-02, 10:55:10 UTC; the tested correction is now integrated. No remote branch
-merge was performed by the agent. Working branch: `feature/g-proof-evidence`.
+merge was performed by the agent. Working branch: `feature/g-interruption-pause`.
 Oversized focused answers reveal their option letter and first line, while the
 rest remains scrollable. The original correction passed both builds, full Win64
 packaging, 24 capture checks, both Unreal tests and 27 Python tests. Fresh integration
@@ -87,8 +87,24 @@ The existing PR #19 package's game tree matches this follow-up; no new package i
 claimed. Dedicated read-only review against actual `dev` completed with no
 actionable introduced defects and unchanged head/worktree. See
 [QA verdict integrity](../QA/UI01/G-PROOF-EVIDENCE.md).
-[PR #20](https://github.com/rloterh/WordQuest/pull/20) is a regular PR against `dev`,
+[PR #20](https://github.com/rloterh/WordQuest/pull/20) was merged by the owner into
+`dev` at `7cc53bf` on 2026-10-02, 13:23:01 UTC.
+The next bounded UI01 correction opens Pause on application deactivation or
+background notification, preserving the current attempt and requiring explicit
+Resume. Repeated notifications cannot toggle an existing Pause. Both real target
+builds, clean full Win64 packaging, nine inspected packaged captures, both Unreal
+tests and all 37 Python tests pass. Four synthetic native lifecycle routes preserve
+attempt/focus state; initial screen pixels are unchanged. Real OS/phone interruptions
+remain unverified. Dedicated read-only review against actual `dev` found no
+actionable introduced defects and independently passed the six new trace tests;
+head/worktree stayed unchanged. See
+[interruption Pause](../QA/UI01/G-INTERRUPTION-PAUSE.md).
+[PR #21](https://github.com/rloterh/WordQuest/pull/21) is a regular PR against `dev`,
 ready for the owner's merge decision.
+The owner identified Epic Games Launcher as the UE installation source; its current
+manifest/installation record now confirms exact UE 5.8.2 at the existing path.
+Android target receipt remains absent and adb lists no device. See
+[Android support handoff](../Setup/ANDROID-SUPPORT.md).
 Manual input, screen-reader, art and phone gates remain open.
 No agent merge, game deployment or release is authorized.
 
