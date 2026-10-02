@@ -21,6 +21,7 @@ struct FContextAnswerWidgets
     UPROPERTY(Transient) TObjectPtr<UImage> Skin;
     UPROPERTY(Transient) TObjectPtr<UTextBlock> Label;
     UPROPERTY(Transient) TObjectPtr<UBorder> Badge;
+    UPROPERTY(Transient) TObjectPtr<UImage> BadgeSkin;
     UPROPERTY(Transient) TObjectPtr<UTextBlock> Letter;
     UPROPERTY(Transient) TObjectPtr<USizeBox> BadgeSize;
     UPROPERTY(Transient) TObjectPtr<UTextBlock> Marker;

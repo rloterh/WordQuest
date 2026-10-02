@@ -10,6 +10,8 @@
 #include "Components/Image.h"
 #include "Components/HorizontalBox.h"
 #include "Components/HorizontalBoxSlot.h"
+#include "Components/Overlay.h"
+#include "Components/OverlaySlot.h"
 #include "Components/SafeZone.h"
 #include "Components/ScrollBox.h"
 #include "Components/ScrollBoxSlot.h"
@@ -235,8 +237,16 @@ void UContextScreen::Build()
         Answer.Badge->SetHorizontalAlignment(HAlign_Center);
         Answer.Badge->SetVerticalAlignment(VAlign_Center);
         Answer.Badge->AddChild(Answer.Letter);
+        Answer.BadgeSkin = VectorPicture(*(Name + TEXT("BadgeSkin")), TEXT("G_AnswerBadge.svg"), FVector2D(70, 70));
+        auto* BadgeLayers = Make<UOverlay>(*(Name + TEXT("BadgeLayers")));
+        for (UWidget* Layer : {static_cast<UWidget*>(Answer.BadgeSkin.Get()), static_cast<UWidget*>(Answer.Badge.Get())})
+        {
+            auto* LayerSlot = BadgeLayers->AddChildToOverlay(Layer);
+            LayerSlot->SetHorizontalAlignment(HAlign_Fill);
+            LayerSlot->SetVerticalAlignment(VAlign_Fill);
+        }
         Answer.BadgeSize = Make<USizeBox>(*(Name + TEXT("BadgeSize")));
-        Answer.BadgeSize->AddChild(Answer.Badge);
+        Answer.BadgeSize->AddChild(BadgeLayers);
         Answer.Marker = Text(*(Name + TEXT("Selection")), TEXT(""));
         Answer.MarkerSize = Make<USizeBox>(*(Name + TEXT("SelectionSize")));
         Answer.MarkerSize->AddChild(Answer.Marker);
@@ -622,7 +632,9 @@ void UContextScreen::StyleButtons()
         const bool Selected = Attempt.SelectedIndex == I;
         Apply(Answer.Button, false, Selected);
         const float Radius = FMath::Max(70 * Scale * TextScale, 32.f) * .5f;
-        Answer.Badge->SetBrush(FSlateRoundedBoxBrush(BadgeFill, Radius, Selected ? Ink : BadgeEdge, Selected ? 3.f : 1.f));
+        const bool HasBadgeSkin = Answer.BadgeSkin->GetVisibility() != ESlateVisibility::Collapsed;
+        Answer.Badge->SetBrush(FSlateRoundedBoxBrush(HasBadgeSkin ? FLinearColor::Transparent : BadgeFill,
+            Radius, Selected ? Ink : BadgeEdge, Selected ? 3.f : (HasBadgeSkin ? 0.f : 1.f)));
         Answer.Marker->SetText(Selected ? FText::FromString(TEXT(">")) : FText::GetEmpty());
     }
     Apply(SubmitButton, true, false);
