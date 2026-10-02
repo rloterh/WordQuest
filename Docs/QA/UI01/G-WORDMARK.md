@@ -86,7 +86,14 @@ fidelity acceptance record. No manual pointer/keyboard or screen-reader service
 sequence was performed. Earlier cold D3D12 pipeline delays remain an unresolved
 performance observation; renderer settings were not changed or qualified here.
 
-Dedicated internal review is pending.
+Dedicated read-only Codex review of clean `0f9ed17` against actual `origin/dev`
+(`c3eece4`) completed with exit 0 and no actionable introduced defects.
+Raw evidence: `Artifacts/Reviews/20261002-023059`; HEAD/worktree were unchanged.
+The reviewer checked SVG parity, original-reference hashes and whitespace, but
+did not independently rerun builds/runtime/device checks. Optional connector and
+ignored local-tool directory warnings did not prevent the review from completing.
+Subsequent changes only record review/publication status in documentation. Review
+does not authorize merge or replace native/device evidence.
 
 ## Remaining gates
 
