@@ -126,7 +126,9 @@ Nine paired runs show exact doubling across ten checked font roles; normal initi
 and correct-outcome PNGs remain unchanged. Dedicated review against actual `dev`
 found no actionable introduced defects and independently passed 39 QA tests;
 head/worktree stayed unchanged. See
-[text enlargement evidence](../QA/UI01/G-TEXT-ENLARGEMENT.md). Android support
+[text enlargement evidence](../QA/UI01/G-TEXT-ENLARGEMENT.md).
+[PR #23](https://github.com/rloterh/WordQuest/pull/23) targets `dev` and is ready
+for owner review. Android support
 receipt is still absent and adb lists no device on this turn's recheck.
 The owner identified Epic Games Launcher as the UE installation source; its current
 manifest/installation record now confirms exact UE 5.8.2 at the existing path.

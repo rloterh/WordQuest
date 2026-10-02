@@ -101,6 +101,8 @@ defects. Head/worktree stayed unchanged. The reviewer independently passed 39 QA
 tests and the diff whitespace check; it did not independently rerun engine builds,
 captures or physical-device gates. Raw evidence: `Artifacts/Reviews/20261002-164119`.
 Subsequent review/publication records change documentation only.
+[PR #23](https://github.com/rloterh/WordQuest/pull/23) targets `dev` and is ready
+for owner review. GitHub has no configured status checks; validation above is local.
 
 ## Limits
 
