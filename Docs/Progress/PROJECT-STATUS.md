@@ -20,7 +20,8 @@ on 2026-10-02; its divider/Pause SVG candidates are now on `dev`.
 The owner merged [PR #9](https://github.com/rloterh/WordQuest/pull/9) at `c3eece4`
 on 2026-10-02; its local cooked Win64 proof is now on `dev`.
 Working branch: `feature/g-vector-wordmark`, based on that merge, for the bounded
-static G brand candidate. Build/runtime/package checks are pending.
+static G brand candidate. Final build/native/package evidence is recorded; internal
+review/publication are pending.
 No agent merge, game deployment or release is authorized.
 
 ## Completed work
@@ -172,6 +173,17 @@ actionable introduced defects. Android/device/offline, art, motion, editorial an
 release gates remain open.
 The owner merged the bounded [PR #9](https://github.com/rloterh/WordQuest/pull/9)
 on 2026-10-02. That checkpoint does not accept the remaining gates.
+
+After PR #9, a separate editable G wordmark candidate adds licensed outlined
+lettering, gold shading, capital curls, Q swash and under-title ornament. The first
+flat-fill capture was corrected with explicit SVG percentage gradients; narrow
+missing-resource title spacing was corrected. Both real builds and final cook/
+stage/archive pass at clean `1d76858`, together with five inspected packaged
+captures, both Unreal tests and five packaging-helper tests. Extracted draft JSON
+and six SVGs match input hashes; the missing-resource editor capture preserves a
+smaller live title beside focused Pause. See [wordmark](../QA/UI01/G-WORDMARK.md).
+Internal review/publication are pending. Art, screen-reader/input, offline/phone,
+performance, motion, editorial and release gates remain open.
 
 ## Resume
 

@@ -37,7 +37,56 @@ amber shading from unit-valued gradient coordinates. That version is rejected
 as final visual evidence; coordinates were changed to explicit SVG percentages.
 The first narrow missing-resource capture kept the live label readable but too
 close to Pause; its fallback font size was reduced from 108 to 95 reference pixels.
-Final native/package checks and review are pending.
+
+Final runtime source: clean `1d76858e60fd01570035e28608e1aa9cabea666e`.
+`python Tools/BuildScripts/package_g_win64.py` completed editor/game builds,
+full cook (510 packages), stage and archive with exit 0. Final editor build rebuilt
+four actions (`Artifacts/Logs/Build/WordQuestEditor-20261002-022430.log`); UAT
+rebuilt the game in three actions and completed in about 2m11s. Package evidence:
+`Artifacts/Packages/Win64/20261002-022430-698363/run.json`, SHA256
+`40ab48c1e88ec7b50a72f103953d15159cc703c0f0ef938d77b39d3bf9458618`.
+HEAD, worktree and input invariants remained unchanged. `UAT.log`/`EditorBuild.log`
+retain the actual commands and results. This is Win64 Development, not mobile or
+Shipping. The earlier successful `9e04616` package/captures are superseded by this
+final fallback-size revision.
+
+UnrealPak extraction exited 0. `PakExtract.log` and `RawResources.json` in the final
+run record the draft JSON and all six SVGs; extracted bytes match recorded input
+hashes. The new SVG SHA256 is
+`e397842f40e69c65cd16ef4bd44185adfc72f89bdc6b6c6765215416f05ffd9d`.
+Native packaged captures below verified the archive hashes before each launch.
+All exited 0, passed requested dimensions/expected state and record clean source
+and package commits in `run.json`. Each PNG was directly inspected:
+
+| Run under `Artifacts/QA/UI01` | Native observation |
+| --- | --- |
+| `20261002-022800-packaged-capture-initial` | 884x1780; pale-gold outlined title/curls/Q swash/star visible; initial no selection or evaluation; compared directly with unchanged original |
+| `20261002-022811-packaged-capture-pausefocus` | 260x640, simulated safe-zone ratio 0.9; smaller mark remains readable and separate from focused minimum-size Pause |
+| `20261002-022821-packaged-capture-large` | 390x844, simulated 0.9 safe zone; brand retains its decorative scale while live 200% reading rows expand/scroll |
+| `20261002-022830-packaged-capture-initial` | 844x390; compact hero retains title/ornament and Pause; progress/spirit hidden as before; reading continues below viewport |
+| `20261002-022839-packaged-capture-correct` | 390x844; A correct, submitted, one evaluation after two Submit calls; title independent of disabled controls/feedback |
+
+Both existing `WordQuest.Context` tests passed with zero failures/skips in
+`20261002-022848-automation-initial/Report` (editor commandlet, not packaged tests).
+Five packaging-helper failure tests, six source/runtime SVG parity checks, all six
+original-reference hashes, LFS integrity and diff whitespace checks pass.
+
+The negative test temporarily moved only `G_Wordmark.svg`, then restored its exact
+hash in a finally block. Parity failed with the expected exit 1 (log under
+`missing-wordmark-20261002-0229`). `20261002-022916-capture-pausefocus` exited 0
+at 260x640 with simulated 0.9 inset; its metadata explicitly records that one
+runtime deletion, so this is dirty fallback evidence. Direct inspection shows the
+smaller live title clear of focused Pause, unchanged reading layout and no
+selection/evaluation. Resources were restored and clean status/parity rechecked.
+
+`Artifacts/QA/UI01/g-wordmark-comparison.html` embeds the final native PNG,
+immutable original and adjustable 50% overlay. Browser/overlay interaction remains
+unverified; prior local-navigation blocks were not bypassed. This is not a static
+fidelity acceptance record. No manual pointer/keyboard or screen-reader service
+sequence was performed. Earlier cold D3D12 pipeline delays remain an unresolved
+performance observation; renderer settings were not changed or qualified here.
+
+Dedicated internal review is pending.
 
 ## Remaining gates
 
