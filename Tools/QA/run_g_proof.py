@@ -94,6 +94,28 @@ def check_answer_start(log, proof):
     return passed, rows
 
 
+def check_option_cues(log, proof, state):
+    rows = re.findall(r'WQ_OPTION_CUE proof=(\w+) option=(\d+) codepoint=(\d+) label=([^\r\n]*)', log)
+    selected, submitted, correct, *_ = state
+    passed = len(rows) == 4
+    for index, row in enumerate(rows):
+        is_selected = selected == index
+        code = 0 if not is_selected else (10003 if correct else 215) if submitted else 62
+        prefix = '' if not is_selected else ('Correct. ' if correct else 'Not quite. ') if submitted else 'Selected. '
+        label_prefix = f'{prefix}Option {chr(65 + index)}. '
+        passed = passed and row[:3] == (proof, str(index), str(code))
+        passed = passed and row[3].startswith(label_prefix) and bool(row[3][len(label_prefix):].strip())
+    return passed, rows
+
+
+FEEDBACK_PROOFS = ('correct', 'wrong', 'hint', 'empty', 'keyempty', 'keysubmit', 'keyhint', 'keybuttons')
+
+
+def check_feedback_capture(log, proof):
+    rows = re.findall(r'WQ_FEEDBACK_CAPTURE proof=(\w+) visibility=(-?\d+)', log)
+    return len(rows) == 1 and rows[0][0] == proof and rows[0][1] in ('1', '2'), rows
+
+
 INTERRUPTION_PROOFS = ('interruptpaused', 'interruptresumed', 'interruptsubmitted', 'interruptmanual')
 
 
@@ -214,6 +236,13 @@ def main():
         matches = re.findall(r'WQ_STATE proof=\w+ selected=(-?\d+) submitted=(\d+) correct=(\d+) hint=(\d+) paused=(\d+) evaluations=(\d+)', log)
         result['state_passed'] = len(matches) == 1 and tuple(map(int, matches[0])) == expected
         result['evidence_complete'] = result['state_passed'] and result.get('dimensions') == [args.width, args.height]
+        passed, rows = check_option_cues(log, args.proof, expected)
+        result.update({'option_cues_passed': passed, 'option_cues': rows})
+        result['evidence_complete'] = result['evidence_complete'] and passed
+        if args.proof in FEEDBACK_PROOFS:
+            passed, rows = check_feedback_capture(log, args.proof)
+            result.update({'feedback_visible_passed': passed, 'feedback_capture': rows})
+            result['evidence_complete'] = result['evidence_complete'] and passed
         if args.proof in INTERRUPTION_PROOFS:
             passed, rows, capture_rows = check_interruption_steps(log, args.proof)
             result.update({'interruption_steps_passed': passed, 'interruption_steps': rows,

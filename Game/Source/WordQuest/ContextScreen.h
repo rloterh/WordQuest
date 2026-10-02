@@ -46,6 +46,9 @@ public:
     void FocusProofAnswer();
     void FocusProofAction();
     void FocusProofPause();
+    int32 GetProofAnswerCueCode(int32 Index) const;
+    FString GetProofAnswerAccessibleText(int32 Index) const;
+    int32 GetProofFeedbackVisibility() const;
     FString GetProofFocusName() const;
     int32 GetProofTextPercent() const { return FMath::RoundToInt(TextScale * 100); }
     bool GetProofFocusedControlVisible() const;
@@ -89,6 +92,7 @@ private:
     bool bLayoutDirty = true;
     bool bReady = false;
     bool bRevealFeedback = false;
+    bool bRevealFeedbackAfterLayout = false;
     bool bRevealFocusAfterLayout = false;
     FDelegateHandle ActivationHandle;
     FDelegateHandle DeactivationHandle;

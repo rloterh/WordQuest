@@ -100,6 +100,7 @@ UButton* UContextScreen::Button(const TCHAR* Name, const FString& Label)
             // A deliberate control focus move supersedes an older pending
             // feedback reveal (including returning from the Pause modal).
             bRevealFeedback = false;
+            bRevealFeedbackAfterLayout = false;
             RevealFocusedControl(Result);
             // Slate's automatic focus scroll can replace this request during
             // the same event. Reapply after the event and any pending reflow.
@@ -430,6 +431,21 @@ void UContextScreen::NativeTick(const FGeometry& Geometry, float DeltaTime)
         LastSize = Size;
         bLayoutDirty = false;
     }
+    else if (bRevealFeedbackAfterLayout)
+    {
+        bRevealFeedbackAfterLayout = false;
+        if (!Attempt.bPaused)
+        {
+            // Feedback can be outside the arranged viewport before scrolling.
+            // Use the measured canvas slot after reflow, rather than its stale
+            // cached descendant geometry. Oversized feedback starts at line one.
+            const auto* FeedbackSlot = CastChecked<UCanvasPanelSlot>(Feedback->Slot);
+            const float ViewHeight = Scroll->GetCachedGeometry().GetLocalSize().Y;
+            const float Height = FeedbackSlot->GetSize().Y;
+            Scroll->SetScrollOffset(FMath::Max(0.f, float(FeedbackSlot->GetPosition().Y)
+                + (Height > ViewHeight ? 0.f : Height - ViewHeight)));
+        }
+    }
     else if (bRevealFocusAfterLayout)
     {
         bRevealFocusAfterLayout = false;
@@ -614,7 +630,7 @@ void UContextScreen::Layout(FVector2D Size)
     StyleButtons();
     if (bRevealFeedback)
     {
-        Scroll->ScrollWidgetIntoView(Feedback, false);
+        bRevealFeedbackAfterLayout = true;
         bRevealFeedback = false;
     }
 }
@@ -698,7 +714,9 @@ void UContextScreen::StyleButtons()
         const bool HasBadgeSkin = Answer.BadgeSkin->GetVisibility() != ESlateVisibility::Collapsed;
         Answer.Badge->SetBrush(FSlateRoundedBoxBrush(HasBadgeSkin ? FLinearColor::Transparent : BadgeFill,
             Radius, Selected ? Ink : BadgeEdge, Selected ? 3.f : (HasBadgeSkin ? 0.f : 1.f)));
-        Answer.Marker->SetText(Selected ? FText::FromString(TEXT(">")) : FText::GetEmpty());
+        const TCHAR* Cue = !Selected ? TEXT("") : !Attempt.bSubmitted ? TEXT(">")
+            : Attempt.bCorrect ? TEXT("\u2713") : TEXT("\u00d7");
+        Answer.Marker->SetText(FText::FromString(Cue));
     }
     Apply(SubmitButton, true, false);
     for (auto* B : {HintButton.Get(), PauseButton.Get(), ResumeButton.Get(), TextSizeButton.Get(), ResetButton.Get()}) Apply(B, false, false);
@@ -722,7 +740,8 @@ void UContextScreen::Refresh()
         Answers[I].Skin->SetIsEnabled(bReady && !Attempt.bSubmitted);
         if (bReady)
         {
-            const FString Prefix = Attempt.SelectedIndex == I ? TEXT("Selected. ") : TEXT("");
+            const FString Prefix = Attempt.SelectedIndex != I ? TEXT("") : !Attempt.bSubmitted ? TEXT("Selected. ")
+                : Attempt.bCorrect ? TEXT("Correct. ") : TEXT("Not quite. ");
             SetButtonLabel(Answers[I].Button, Question.Choices[I]);
             Accessible(Answers[I].Button, FString::Printf(TEXT("%sOption %c. %s"), *Prefix, TCHAR('A' + I), *Question.Choices[I]));
         }
@@ -797,6 +816,7 @@ void UContextScreen::ResetAttempt()
     Attempt = FContextAttempt();
     Feedback->SetText(FText::GetEmpty());
     bRevealFeedback = false;
+    bRevealFeedbackAfterLayout = false;
     Refresh();
     Scroll->ScrollToStart();
     SetUserFocus(GetOwningPlayer());
@@ -836,6 +856,39 @@ FReply UContextScreen::NativeOnKeyDown(const FGeometry& Geometry, const FKeyEven
 }
 
 #if !UE_BUILD_SHIPPING
+int32 UContextScreen::GetProofFeedbackVisibility() const
+{
+    if (Feedback->GetText().IsEmpty()) return 0;
+    const auto Clip = Scroll->GetCachedGeometry().GetLayoutBoundingRect();
+    const auto& Geometry = Feedback->GetCachedGeometry();
+    auto Rect = Geometry.GetLayoutBoundingRect();
+    const bool Oversized = Rect.GetSize().Y > Clip.GetSize().Y;
+    if (Oversized)
+    {
+        const float LineHeight = FSlateApplication::Get().GetRenderer()->GetFontMeasureService()
+            ->GetMaxCharacterHeight(Feedback->GetFont()) * Geometry.GetAccumulatedLayoutTransform().GetScale();
+        Rect.Bottom = Rect.Top + FMath::Min(float(Rect.GetSize().Y), LineHeight);
+    }
+    const bool Visible = Rect.GetSize().X > 0 && Rect.GetSize().Y > 0 && Rect.Left >= Clip.Left - 1
+        && Rect.Top >= Clip.Top - 1 && Rect.Right <= Clip.Right + 1 && Rect.Bottom <= Clip.Bottom + 1;
+    return Visible ? (Oversized ? 2 : 1) : -1;
+}
+
+int32 UContextScreen::GetProofAnswerCueCode(int32 Index) const
+{
+    const FString Cue = Answers[Index].Marker->GetText().ToString();
+    return Cue.IsEmpty() ? 0 : int32(Cue[0]);
+}
+
+FString UContextScreen::GetProofAnswerAccessibleText(int32 Index) const
+{
+#if WITH_ACCESSIBILITY
+    return Answers[Index].Button->TakeWidget()->GetAccessibleText().ToString();
+#else
+    return TEXT("Accessibility unavailable");
+#endif
+}
+
 void UContextScreen::SetProofTextScale(float Value) { TextScale = FMath::Clamp(Value, 1.f, 2.f); Refresh(); }
 void UContextScreen::FocusProofAnswer() { Answers[1].Button->SetUserFocus(GetOwningPlayer()); }
 void UContextScreen::FocusProofAction() { SubmitButton->SetUserFocus(GetOwningPlayer()); }

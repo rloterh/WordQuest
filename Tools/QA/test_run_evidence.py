@@ -23,6 +23,9 @@ class RunEvidenceTests(unittest.TestCase):
                 log = Path(next(arg.removeprefix('-AbsLog=') for arg in command if arg.startswith('-AbsLog=')))
                 log.write_text('WQ_STATE proof=initial selected=-1 submitted=0 correct=0 hint=0 paused=0 evaluations=0\n', encoding='utf-8')
                 if mode == 'capture':
+                    with log.open('a', encoding='utf-8') as output:
+                        for index in range(4):
+                            output.write(f'WQ_OPTION_CUE proof=initial option={index} codepoint=0 label=Option {chr(65 + index)}. Fixture choice\n')
                     # Only the header is consumed by the runner; this is a test
                     # fixture, not a screenshot or native visual evidence.
                     (log.parent / 'native.png').write_bytes(b'\x89PNG\r\n\x1a\n' + b'\0' * 8 + struct.pack('>II', 884, 1780))
