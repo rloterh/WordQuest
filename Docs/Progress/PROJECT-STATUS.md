@@ -59,7 +59,8 @@ eight inspected packaged captures, both Unreal tests and 27 Python tests pass.
 Cooked SVG bytes match source, v002 reproduces byte-identically, and preserved v001
 matches the builder after line-ending normalization. Normal-size pixel changes
 stay inside the title region. Final dedicated review against actual `dev` found
-no actionable introduced defects. Publication is pending. See
+no actionable introduced defects. [PR #18](https://github.com/rloterh/WordQuest/pull/18)
+is a regular PR against `dev`, ready for the owner's merge decision. See
 [wordmark bevel](../QA/UI01/G-WORDMARK-BEVEL.md); this is not
 original-lettering or static-fidelity acceptance.
 Manual input, screen-reader, art and phone gates remain open.

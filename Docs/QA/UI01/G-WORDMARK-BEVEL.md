@@ -93,5 +93,8 @@ and whitespace; it did not independently rerun Unreal builds or physical-device
 acceptance. Subsequent records are documentation only; the packaged runtime and
 builder bytes remain unchanged. Raw captures/builds remain local and
 ignored under `Artifacts`.
+[PR #18](https://github.com/rloterh/WordQuest/pull/18) is published as a regular
+PR against `dev`, ready for the owner's merge decision. GitHub has no configured
+status checks; the local verification above supplies the recorded evidence.
 Physical/manual input, screen-reader, art fidelity, editorial fixture review,
 phone/offline, performance, UI02 motion and release gates remain open.
