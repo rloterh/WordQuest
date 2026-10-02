@@ -101,6 +101,19 @@ UImage* UContextScreen::Picture(const TCHAR* Name, const TCHAR* Path)
     return Result;
 }
 
+UImage* UContextScreen::VectorPicture(const TCHAR* Name, const TCHAR* File, FVector2D Dimensions)
+{
+    auto* Image = Make<UImage>(Name);
+    const FString Path = FPaths::ProjectContentDir() / TEXT("UI/G/Vector") / File;
+    const bool Present = IFileManager::Get().FileExists(*Path);
+    if (Present) Image->SetBrush(FSlateVectorImageBrush(Path, Dimensions));
+    Image->SetVisibility(Present ? ESlateVisibility::HitTestInvisible : ESlateVisibility::Collapsed);
+#if WITH_ACCESSIBILITY
+    Image->TakeWidget()->SetAccessibleBehavior(EAccessibleBehavior::NotAccessible);
+#endif
+    return Image;
+}
+
 TSharedRef<SWidget> UContextScreen::RebuildWidget()
 {
     if (!WidgetTree) WidgetTree = NewObject<UWidgetTree>(this, TEXT("WidgetTree"));
@@ -174,12 +187,12 @@ void UContextScreen::Build()
     Word->SetWrappingPolicy(ETextWrappingPolicy::AllowPerCharacterWrapping);
     Clue = Text(TEXT("Clue"), bReady ? Question.Clue : ContentError);
     Prompt = Text(TEXT("Prompt"), Question.Prompt);
-    Divider = Text(TEXT("Divider"), TEXT("────────  ✦  ────────"));
-    Divider->SetColorAndOpacity(Gold);
-    HeaderDivider = Text(TEXT("HeaderDivider"), TEXT("────  ✦  ────"));
-    HeaderDivider->SetColorAndOpacity(Gold);
+    Divider = VectorPicture(TEXT("Divider"), TEXT("G_ReadingDivider.svg"), FVector2D(314, 29));
+    HeaderDivider = VectorPicture(TEXT("HeaderDivider"), TEXT("G_HeaderDivider.svg"), FVector2D(214, 29));
     Feedback = Text(TEXT("Feedback"), TEXT(""));
-    for (auto* Label : {Mode.Get(), Word.Get(), Clue.Get(), Prompt.Get(), Divider.Get(), HeaderDivider.Get(), Feedback.Get()}) Canvas->AddChild(Label);
+    for (auto* Label : {Mode.Get(), Word.Get(), Clue.Get(), Prompt.Get(), Feedback.Get()}) Canvas->AddChild(Label);
+    Canvas->AddChild(Divider);
+    Canvas->AddChild(HeaderDivider);
     for (int32 I = 0; I < 4; ++I)
     {
         const FString Name = FString::Printf(TEXT("Answer%d"), I);
@@ -231,20 +244,8 @@ void UContextScreen::Build()
     SubmitButton = Button(TEXT("Submit"), TEXT("Check answer"));
     HintLabel = CastChecked<UTextBlock>(HintButton->GetContent());
     SubmitLabel = CastChecked<UTextBlock>(SubmitButton->GetContent());
-    auto ActionIcon = [this](const TCHAR* Name, const TCHAR* File, FVector2D Dimensions)
-    {
-        auto* Image = Make<UImage>(Name);
-        const FString Path = FPaths::ProjectContentDir() / TEXT("UI/G/Vector") / File;
-        const bool Present = IFileManager::Get().FileExists(*Path);
-        if (Present) Image->SetBrush(FSlateVectorImageBrush(Path, Dimensions));
-        Image->SetVisibility(Present ? ESlateVisibility::HitTestInvisible : ESlateVisibility::Collapsed);
-#if WITH_ACCESSIBILITY
-        Image->TakeWidget()->SetAccessibleBehavior(EAccessibleBehavior::NotAccessible);
-#endif
-        return Image;
-    };
-    HintIcon = ActionIcon(TEXT("HintIcon"), TEXT("G_HintBulb.svg"), FVector2D(40, 56));
-    SubmitIcon = ActionIcon(TEXT("SubmitIcon"), TEXT("G_CheckStar.svg"), FVector2D(48, 48));
+    HintIcon = VectorPicture(TEXT("HintIcon"), TEXT("G_HintBulb.svg"), FVector2D(40, 56));
+    SubmitIcon = VectorPicture(TEXT("SubmitIcon"), TEXT("G_CheckStar.svg"), FVector2D(48, 48));
     auto GroupAction = [this](UButton* Target, UTextBlock* Label, UImage* Icon, const TCHAR* Name)
     {
         auto* IconSize = Make<USizeBox>(*(FString(Name) + TEXT("IconSize")));
@@ -262,6 +263,18 @@ void UContextScreen::Build()
     HintIconSize = GroupAction(HintButton, HintLabel, HintIcon, TEXT("Hint"));
     SubmitIconSize = GroupAction(SubmitButton, SubmitLabel, SubmitIcon, TEXT("Submit"));
     PauseButton = Button(TEXT("Pause"), TEXT("II"));
+    PauseButton->SetToolTipText(FText::FromString(TEXT("Pause")));
+    PauseLabel = CastChecked<UTextBlock>(PauseButton->GetContent());
+    PauseIcon = VectorPicture(TEXT("PauseIcon"), TEXT("G_PauseBars.svg"), FVector2D(24, 30));
+    if (PauseIcon->GetVisibility() != ESlateVisibility::Collapsed)
+    {
+        PauseIconSize = Make<USizeBox>(TEXT("PauseIconSize"));
+        PauseIconSize->AddChild(PauseIcon);
+        PauseButton->SetContent(PauseIconSize);
+        auto* PauseContentSlot = CastChecked<UButtonSlot>(PauseIconSize->Slot);
+        PauseContentSlot->SetHorizontalAlignment(HAlign_Center);
+        PauseContentSlot->SetVerticalAlignment(VAlign_Center);
+    }
     HintSkin = Picture(TEXT("HintSkin"), TEXT("/Game/UI/G/G_HintSkin.G_HintSkin"));
     SubmitSkin = Picture(TEXT("SubmitSkin"), TEXT("/Game/UI/G/G_CheckSkin.G_CheckSkin"));
     PauseSkin = Picture(TEXT("PauseSkin"), TEXT("/Game/UI/G/G_PauseSkin.G_PauseSkin"));
@@ -364,7 +377,12 @@ void UContextScreen::Layout(FVector2D Size)
     const float PauseW = FMath::Max(71 * S, 48.f);
     Bounds(PauseButton, X + Width - PauseW - 25 * S, 31 * S, PauseW, FMath::Max(75 * S, 48.f));
     Bounds(PauseSkin, X + Width - PauseW - 25 * S, 31 * S, PauseW, FMath::Max(75 * S, 48.f));
-    Font(CastChecked<UTextBlock>(PauseButton->GetContent()), 36 * S, true);
+    Font(PauseLabel, FMath::Max(36 * S, 14.f), true);
+    if (PauseIconSize)
+    {
+        PauseIconSize->SetWidthOverride(FMath::Max(24 * S, 14.f));
+        PauseIconSize->SetHeightOverride(FMath::Max(30 * S, 18.f));
+    }
     Place(Spirit, 82, Hero == 521 ? 276 : 85, 207, 165);
     Spirit->SetVisibility(Hero == 521 ? ESlateVisibility::HitTestInvisible : ESlateVisibility::Collapsed);
     ProgressPlaque->SetVisibility(Hero == 521 && ProgressPlaque->GetBrush().GetResourceObject()
@@ -389,8 +407,7 @@ void UContextScreen::Layout(FVector2D Size)
         Mode->SetText(FText::FromString(TEXT("CONTEXT DETECTIVE")));
     float H = Measure(Mode, 28, 660 * S, 40 * S);
     PutText(Mode, 112 * S, Y, 660 * S, H);
-    PutText(HeaderDivider, 335 * S, Y + H, 214 * S, 29 * S);
-    Font(HeaderDivider, 22 * S);
+    Bounds(HeaderDivider, X + 335 * S, Y + H - 4 * S, 214 * S, 29 * S);
     Y += H + 29 * S;
     H = Measure(Word, 80, 670 * S, 90 * S, true);
     PutText(Word, 107 * S, Y, 670 * S, H);
@@ -398,8 +415,7 @@ void UContextScreen::Layout(FVector2D Size)
     H = Measure(Clue, 37, 580 * S, 90 * S);
     PutText(Clue, 152 * S, Y, 580 * S, H);
     Y += H + 8 * S;
-    PutText(Divider, 285 * S, Y, 314 * S, 29 * S);
-    Font(Divider, 22 * S);
+    Bounds(Divider, X + 285 * S, Y - 2 * S, 314 * S, 29 * S);
     Y += 32 * S;
     H = Measure(Prompt, 35, 650 * S, 55 * S, true);
     PutText(Prompt, 117 * S, Y, 650 * S, H);
@@ -509,6 +525,7 @@ UTextBlock* UContextScreen::ButtonLabel(UButton* Target) const
 {
     if (Target == HintButton) return HintLabel;
     if (Target == SubmitButton) return SubmitLabel;
+    if (Target == PauseButton) return PauseLabel;
     for (const auto& Answer : Answers) if (Answer.Button == Target) return Answer.Label;
     return CastChecked<UTextBlock>(Target->GetContent());
 }
@@ -556,10 +573,12 @@ void UContextScreen::StyleButtons()
         Style.SetHovered(FSlateRoundedBoxBrush(HasSkin ? FLinearColor(.9f, .86f, 1, .16f) : (Primary ? Violet * .8f : FLinearColor(.78f, .73f, 1)), Radius, Gold, 3.f));
         Style.SetPressed(FSlateRoundedBoxBrush(HasSkin ? FLinearColor(.22f, .16f, .5f, .16f) : (Primary ? Violet * .6f : FLinearColor(.64f, .58f, .91f)), Radius, Ink, 3.f));
         Style.SetDisabled(FSlateRoundedBoxBrush(FillColor, Radius, Border, SkinnedAction ? 0.f : 2.f));
-        Style.SetNormalPadding(FMargin(24 * Scale, 5 * Scale));
-        Style.SetPressedPadding(FMargin(24 * Scale, 6 * Scale, 24 * Scale, 4 * Scale));
+        const float HorizontalPadding = (B == PauseButton ? 8 : 24) * Scale;
+        Style.SetNormalPadding(FMargin(HorizontalPadding, 5 * Scale));
+        Style.SetPressedPadding(FMargin(HorizontalPadding, 6 * Scale, HorizontalPadding, 4 * Scale));
         B->SetStyle(Style);
         ButtonLabel(B)->SetColorAndOpacity(Primary || (B == PauseButton && HasSkin) ? FLinearColor::White : Ink);
+        if (B == PauseButton) PauseIcon->SetColorAndOpacity(HasSkin ? FLinearColor::White : Ink);
     };
     for (int32 I = 0; I < Answers.Num(); ++I)
     {
@@ -681,6 +700,7 @@ FReply UContextScreen::NativeOnKeyDown(const FGeometry& Geometry, const FKeyEven
 void UContextScreen::SetProofTextScale(float Value) { TextScale = FMath::Clamp(Value, 1.f, 2.f); Refresh(); }
 void UContextScreen::FocusProofAnswer() { Answers[1].Button->SetUserFocus(GetOwningPlayer()); }
 void UContextScreen::FocusProofAction() { SubmitButton->SetUserFocus(GetOwningPlayer()); }
+void UContextScreen::FocusProofPause() { PauseButton->SetUserFocus(GetOwningPlayer()); }
 void UContextScreen::SetProofLongText()
 {
     if (!bReady) return;

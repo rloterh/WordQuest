@@ -25,6 +25,10 @@ The later [separate action-icon candidates](G-ACTION-ICONS.md) restore a vector
 Hint bulb and Check star beside live text, with complete-group sizing, narrow
 heading correction and native fallback evidence. Art and device gates remain open.
 
+The subsequent [divider/Pause vector candidates](G-VECTOR-ORNAMENTS.md) replace
+font-dependent decoration, with native focus, pause/resume and missing-resource
+checks. These remain unaccepted reconstruction candidates.
+
 ## Behavior and scope
 
 `FContextQuestion` validates the local JSON fixture. `FContextAttempt` owns selection,

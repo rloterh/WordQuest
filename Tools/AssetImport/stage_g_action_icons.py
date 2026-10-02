@@ -1,4 +1,4 @@
-"""Copy editable G SVG candidates to the project's staged runtime resource directory."""
+"""Copy editable G SVG icons/ornaments to the project's staged runtime directory."""
 import argparse
 import hashlib
 from pathlib import Path
@@ -11,7 +11,10 @@ def main():
     parser.add_argument('--check', action='store_true', help='Check source/runtime parity without writing')
     args = parser.parse_args()
     root = Path(__file__).resolve().parents[2]
-    pairs = [('G-Hint-Bulb-v001.svg', 'G_HintBulb.svg'), ('G-Check-Star-v001.svg', 'G_CheckStar.svg')]
+    pairs = [('G-Hint-Bulb-v001.svg', 'G_HintBulb.svg'), ('G-Check-Star-v001.svg', 'G_CheckStar.svg'),
+             ('G-Header-Divider-v001.svg', 'G_HeaderDivider.svg'),
+             ('G-Reading-Divider-v001.svg', 'G_ReadingDivider.svg'),
+             ('G-Pause-Bars-v001.svg', 'G_PauseBars.svg')]
     for original, runtime in pairs:
         source = root / 'ArtSource/UI/G/Vector' / original
         target = root / 'Game/Content/UI/G/Vector' / runtime

@@ -12,8 +12,11 @@ merged [PR #4](https://github.com/rloterh/WordQuest/pull/4) at `70a8af0` on
 [PR #5](https://github.com/rloterh/WordQuest/pull/5) at `8c105ac` on 2026-10-01;
 its separate plaque and live prototype text are now on `dev`. The owner merged
 [PR #6](https://github.com/rloterh/WordQuest/pull/6) at `3acca49` on 2026-10-01;
-its action-skin candidates are now on `dev`. Working branch: `feature/g-action-icons`,
-based on that merge, for separate SVG Hint/Check icons and complete-group layout.
+its action-skin candidates are now on `dev`. The owner merged
+[PR #7](https://github.com/rloterh/WordQuest/pull/7) at `822e850` on 2026-10-01;
+its separate Hint/Check SVG candidates and group layout are now on `dev`.
+Working branch: `feature/g-vector-ornaments`, based on that merge, for separate
+divider/Pause SVG candidates and native proof checks.
 No agent merge, game deployment or release is authorized.
 
 ## Completed work
@@ -136,7 +139,20 @@ See [action icons](../QA/UI01/G-ACTION-ICONS.md). Dedicated review of clean
 actionable introduced defects.
 Raw SVG staging is declared but packaging is unverified. Android receipt absence
 and no connected adb phone were rechecked. No art, motion or device gate is passed.
-The bounded [PR #7](https://github.com/rloterh/WordQuest/pull/7) is open against
+The owner merged the bounded [PR #7](https://github.com/rloterh/WordQuest/pull/7)
+on 2026-10-01 as a tested candidate increment; this does not accept unfinished gates.
+
+After PR #7, separate hand-authored short/long divider and rounded Pause-bar SVG
+candidates replace decorative font glyphs. A compile-name conflict and squeezed
+Pause content were corrected. Both builds and both Unreal tests pass at clean
+source `273b373`; native normal, 200%, narrow focus, pause/resume and landscape
+captures were inspected. Intentional missing-resource evidence retained Pause's
+text fallback and reading layout; all SVGs were restored and parity rechecked.
+See [vector ornaments](../QA/UI01/G-VECTOR-ORNAMENTS.md). Dedicated review of clean
+`e141c2f` against actual `dev` base `822e850` completed with exit 0 and no
+actionable introduced defects.
+No art, motion, package/device, editorial or release gate is passed.
+The bounded [PR #8](https://github.com/rloterh/WordQuest/pull/8) is open against
 `dev` as a tested candidate increment, awaiting the owner's review/merge decision.
 
 ## Resume

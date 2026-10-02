@@ -12,7 +12,7 @@ import sys
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('mode', choices=['automation', 'capture'])
-    parser.add_argument('--proof', default='initial', choices=['initial', 'selected', 'correct', 'wrong', 'hint', 'empty', 'paused', 'large', 'long', 'longfocus', 'focus', 'actions', 'actionfocus'])
+    parser.add_argument('--proof', default='initial', choices=['initial', 'selected', 'correct', 'wrong', 'hint', 'empty', 'paused', 'resumed', 'pausefocus', 'large', 'long', 'longfocus', 'focus', 'actions', 'actionfocus'])
     parser.add_argument('--width', type=int, default=884)
     parser.add_argument('--height', type=int, default=1780)
     parser.add_argument('--safe-zone', type=float, default=1.0, help='Desktop simulated safe-area ratio, 0.5 to 1')
@@ -58,6 +58,7 @@ def main():
             'selected': (2, 0, 0, 0, 0, 0), 'correct': (0, 1, 1, 0, 0, 1),
             'wrong': (1, 1, 0, 0, 0, 1), 'hint': (0, 1, 1, 1, 0, 1),
             'paused': (1, 0, 0, 0, 1, 0),
+            'resumed': (1, 0, 0, 0, 0, 0),
         }.get(args.proof, (-1, 0, 0, 0, 0, 0))
         matches = re.findall(r'WQ_STATE proof=\w+ selected=(-?\d+) submitted=(\d+) correct=(\d+) hint=(\d+) paused=(\d+) evaluations=(\d+)', log)
         result['state_passed'] = len(matches) == 1 and tuple(map(int, matches[0])) == expected
