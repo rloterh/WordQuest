@@ -91,8 +91,12 @@ actionable introduced defects and unchanged head/worktree. See
 `dev` at `7cc53bf` on 2026-10-02, 13:23:01 UTC.
 The next bounded UI01 correction opens Pause on application deactivation or
 background notification, preserving the current attempt and requiring explicit
-Resume. Repeated notifications cannot toggle an existing Pause. Native lifecycle
-proofs, clean packaging and dedicated review are pending; all 37 Python tests pass.
+Resume. Repeated notifications cannot toggle an existing Pause. Both real target
+builds, clean full Win64 packaging, nine inspected packaged captures, both Unreal
+tests and all 37 Python tests pass. Four synthetic native lifecycle routes preserve
+attempt/focus state; initial screen pixels are unchanged. Real OS/phone interruptions
+remain unverified. Dedicated review is pending. See
+[interruption Pause](../QA/UI01/G-INTERRUPTION-PAUSE.md).
 The owner identified Epic Games Launcher as the UE installation source; its current
 manifest/installation record now confirms exact UE 5.8.2 at the existing path.
 Android target receipt remains absent and adb lists no device. See
