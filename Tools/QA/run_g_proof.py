@@ -88,10 +88,16 @@ def check_keyboard_steps(log, proof):
     return passed, rows
 
 
+def check_answer_start(log, proof):
+    rows = re.findall(r'WQ_ANSWER_START proof=(\w+) focus=(\w+) textpercent=(\d+) visible=(\d+) oversized=(\d+)', log)
+    passed = len(rows) == 1 and rows[0][:4] == (proof, 'Answer1', '200', '1') and rows[0][4] in ('0', '1')
+    return passed, rows
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('mode', choices=['automation', 'capture'])
-    parser.add_argument('--proof', default='initial', choices=['initial', 'selected', 'correct', 'wrong', 'hint', 'empty', 'paused', 'resumed', 'pausefocus', 'large', 'long', 'longfocus', 'focus', 'actions', 'actionfocus', *KEYBOARD_STEPS])
+    parser.add_argument('--proof', default='initial', choices=['initial', 'selected', 'correct', 'wrong', 'hint', 'empty', 'paused', 'resumed', 'pausefocus', 'large', 'long', 'longfocus', 'longselectedfocus', 'focus', 'actions', 'actionfocus', *KEYBOARD_STEPS])
     parser.add_argument('--width', type=int, default=884)
     parser.add_argument('--height', type=int, default=1780)
     parser.add_argument('--safe-zone', type=float, default=1.0, help='Desktop simulated safe-area ratio, 0.5 to 1')
@@ -166,6 +172,7 @@ def main():
             'wrong': (1, 1, 0, 0, 0, 1), 'hint': (0, 1, 1, 1, 0, 1),
             'paused': (1, 0, 0, 0, 1, 0),
             'resumed': (1, 0, 0, 0, 0, 0),
+            'longselectedfocus': (1, 0, 0, 0, 0, 0),
             **{proof: steps[-1][1] for proof, steps in KEYBOARD_STEPS.items()},
         }.get(args.proof, (-1, 0, 0, 0, 0, 0))
         matches = re.findall(r'WQ_STATE proof=\w+ selected=(-?\d+) submitted=(\d+) correct=(\d+) hint=(\d+) paused=(\d+) evaluations=(\d+)', log)
@@ -181,6 +188,10 @@ def main():
             result['evidence_complete'] = result['evidence_complete'] and passed
             passed, rows = check_focus_capture(log, args.proof)
             result.update({'focus_visible_passed': passed, 'focus_capture': rows})
+            result['evidence_complete'] = result['evidence_complete'] and passed
+        if args.proof in ('longfocus', 'longselectedfocus'):
+            passed, rows = check_answer_start(log, args.proof)
+            result.update({'answer_start_passed': passed, 'answer_start': rows})
             result['evidence_complete'] = result['evidence_complete'] and passed
     else:
         report = run / 'Report/index.json'

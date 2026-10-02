@@ -26,6 +26,11 @@
 #include "Misc/Paths.h"
 #include "HAL/FileManager.h"
 #include "Styling/CoreStyle.h"
+#if !UE_BUILD_SHIPPING
+#include "Fonts/FontMeasure.h"
+#include "Framework/Application/SlateApplication.h"
+#include "Rendering/SlateRenderer.h"
+#endif
 
 namespace
 {
@@ -89,7 +94,13 @@ UButton* UContextScreen::Button(const TCHAR* Name, const FString& Label)
     Result->OnReceivedFocus.BindWeakLambda(this, [this, Result]()
     {
         StyleButtons();
-        if (!Attempt.bPaused) Scroll->ScrollWidgetIntoView(Result, false);
+        if (!Attempt.bPaused)
+        {
+            RevealFocusedControl(Result);
+            // Slate's automatic focus scroll can replace this request during
+            // the same event. Reapply after the event and any pending reflow.
+            bRevealFocusAfterLayout = !bRevealFeedback;
+        }
     });
     Result->OnLostFocus.BindWeakLambda(this, [this]() { StyleButtons(); });
     return Result;
@@ -388,7 +399,7 @@ void UContextScreen::NativeTick(const FGeometry& Geometry, float DeltaTime)
         bRevealFocusAfterLayout = false;
         if (!Attempt.bPaused)
             for (auto* B : EnabledGameplayControls())
-                if (B->HasUserFocus(GetOwningPlayer())) { Scroll->ScrollWidgetIntoView(B, false); break; }
+                if (B->HasUserFocus(GetOwningPlayer())) { RevealFocusedControl(B); break; }
     }
 }
 
@@ -479,6 +490,11 @@ void UContextScreen::Layout(FVector2D Size)
         const float LabelWidth = 666 * S - 48 * S - BadgeDiameter - MarkerWidth - SlotPadding.Left - SlotPadding.Right;
         H = Measure(Answer.Label, 35, LabelWidth, FMath::Max(95 * S, 48.f));
         H = FMath::Max3(H, float(Answer.Label->GetDesiredSize().Y) + 30 * S, BadgeDiameter + 12 * S);
+        // An oversized row starts with its option identity beside the first lines.
+        // Centered identifiers can otherwise be outside the initial reading view.
+        const auto IdentifierAlignment = H > Size.Y ? VAlign_Top : VAlign_Center;
+        CastChecked<UHorizontalBoxSlot>(Answer.BadgeSize->Slot)->SetVerticalAlignment(IdentifierAlignment);
+        CastChecked<UHorizontalBoxSlot>(Answer.MarkerSize->Slot)->SetVerticalAlignment(IdentifierAlignment);
         Bounds(Answer.Button, X + 109 * S, Y, 666 * S, H);
         if (const auto* Texture = Cast<UTexture2D>(Answer.Skin->GetBrush().GetResourceObject()))
         {
@@ -567,6 +583,17 @@ void UContextScreen::Layout(FVector2D Size)
     }
 }
 
+void UContextScreen::RevealFocusedControl(UButton* Target)
+{
+    const float ViewHeight = Scroll->GetCachedGeometry().GetLocalSize().Y;
+    // Offscreen descendants can retain a stale cached geometry until scrolled
+    // into view. Our canvas slot already holds the current measured row height.
+    const float ControlHeight = CastChecked<UCanvasPanelSlot>(Target->Slot)->GetSize().Y;
+    const bool Oversized = ViewHeight > 1 && ControlHeight > ViewHeight;
+    Scroll->ScrollWidgetIntoView(Target, false, Oversized
+        ? EDescendantScrollDestination::TopOrLeft : EDescendantScrollDestination::IntoView);
+}
+
 UTextBlock* UContextScreen::ButtonLabel(UButton* Target) const
 {
     if (Target == HintButton) return HintLabel;
@@ -616,7 +643,7 @@ void UContextScreen::StyleButtons()
         const float NormalOutline = SkinnedAction && !Focused ? 0.f : (Focused || Selected ? 4.f : 2.f);
         FButtonStyle Style;
         Style.SetNormal(FSlateRoundedBoxBrush(FillColor, Radius, Border, NormalOutline));
-        Style.SetHovered(FSlateRoundedBoxBrush(HasSkin ? FLinearColor(.9f, .86f, 1, .16f) : (Primary ? Violet * .8f : FLinearColor(.78f, .73f, 1)), Radius, Gold, 3.f));
+        Style.SetHovered(FSlateRoundedBoxBrush(HasSkin ? FLinearColor(.9f, .86f, 1, .16f) : (Primary ? Violet * .8f : FLinearColor(.78f, .73f, 1)), Radius, Focused ? Ink : Gold, Focused ? 4.f : 3.f));
         Style.SetPressed(FSlateRoundedBoxBrush(HasSkin ? FLinearColor(.22f, .16f, .5f, .16f) : (Primary ? Violet * .6f : FLinearColor(.64f, .58f, .91f)), Radius, Ink, 3.f));
         Style.SetDisabled(FSlateRoundedBoxBrush(FillColor, Radius, Border, SkinnedAction ? 0.f : 2.f));
         const float HorizontalPadding = (B == PauseButton ? 8 : 24) * Scale;
@@ -800,6 +827,38 @@ bool UContextScreen::GetProofFocusedControlVisible() const
         }
     return false;
 }
+bool UContextScreen::GetProofFocusedAnswerOversized() const
+{
+    const auto Clip = Scroll->GetCachedGeometry().GetLayoutBoundingRect();
+    for (const auto& Answer : Answers)
+        if (Answer.Button->HasUserFocus(GetOwningPlayer()))
+            return Answer.Button->GetCachedGeometry().GetLayoutBoundingRect().GetSize().Y > Clip.GetSize().Y;
+    return false;
+}
+
+bool UContextScreen::GetProofFocusedAnswerStartVisible() const
+{
+    const auto Clip = Scroll->GetCachedGeometry().GetLayoutBoundingRect();
+    auto Visible = [Clip](const FSlateRect& Rect)
+    {
+        return Rect.GetSize().X > 0 && Rect.GetSize().Y > 0 && Rect.Left >= Clip.Left - 1
+            && Rect.Top >= Clip.Top - 1 && Rect.Right <= Clip.Right + 1 && Rect.Bottom <= Clip.Bottom + 1;
+    };
+    for (int32 I = 0; I < Answers.Num(); ++I)
+    {
+        const auto& Answer = Answers[I];
+        if (!Answer.Button->HasUserFocus(GetOwningPlayer())) continue;
+        const auto& Geometry = Answer.Label->GetCachedGeometry();
+        auto FirstLine = Geometry.GetLayoutBoundingRect();
+        const float LineHeight = FSlateApplication::Get().GetRenderer()->GetFontMeasureService()
+            ->GetMaxCharacterHeight(Answer.Label->GetFont()) * Geometry.GetAccumulatedLayoutTransform().GetScale();
+        FirstLine.Bottom = FirstLine.Top + FMath::Min(float(FirstLine.GetSize().Y), LineHeight);
+        return Visible(FirstLine) && Visible(Answer.BadgeSize->GetCachedGeometry().GetLayoutBoundingRect())
+            && (Attempt.SelectedIndex != I || Visible(Answer.Marker->GetCachedGeometry().GetLayoutBoundingRect()));
+    }
+    return false;
+}
+
 void UContextScreen::SetProofLongText()
 {
     if (!bReady) return;

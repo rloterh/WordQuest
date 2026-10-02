@@ -49,6 +49,8 @@ public:
     FString GetProofFocusName() const;
     int32 GetProofTextPercent() const { return FMath::RoundToInt(TextScale * 100); }
     bool GetProofFocusedControlVisible() const;
+    bool GetProofFocusedAnswerStartVisible() const;
+    bool GetProofFocusedAnswerOversized() const;
 #endif
 protected:
     virtual TSharedRef<SWidget> RebuildWidget() override;
@@ -66,6 +68,7 @@ private:
     void Refresh();
     TArray<UButton*> EnabledGameplayControls() const;
     void StyleButtons();
+    void RevealFocusedControl(UButton* Target);
     UTextBlock* ButtonLabel(UButton* Target) const;
     UImage* ButtonSkin(UButton* Target) const;
     void SetButtonLabel(UButton* Target, const FString& Label);
