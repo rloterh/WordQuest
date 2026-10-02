@@ -88,8 +88,8 @@ Six original reference hashes, seven SVG pairs, LFS and whitespace checks pass.
 
 Baseline `20261002-170418-capture-scrollfeedback` correctly failed its evidence
 contract and is excluded from acceptance. Dirty editor preflights `171448`,
-`172049`, `172528` and `172627` passed before clean packaging; only the latter
-screen-focus route includes the additional Tab/End sequence.
+`172049`, `172528` and `172627` passed before clean packaging. The `172049`
+screen-focus run includes the additional Tab/End sequence; `171448` predates it.
 
 ## Limits and review
 
