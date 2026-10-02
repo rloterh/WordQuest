@@ -52,6 +52,12 @@ there is a documented need to re-enable that plugin with local credential handli
 
 ## Android handoff, explicitly unverified
 
+The local Win64 Development package has since passed bounded archive/resource and
+native checks. Reproduce with `python Tools/BuildScripts/package_g_win64.py`, then
+pass its printed run directory to `python Tools/QA/run_g_proof.py capture --package-run`.
+See [cooked Win64 evidence](../QA/UI01/G-WIN64-PACKAGE-PROOF.md). This does not resolve
+the Android prerequisites below or establish network-isolated offline acceptance.
+
 The SDK exists but this engine installation lacks
 `Engine/Binaries/Android/UnrealGame.target`. Use the original engine installation
 manager to add Android platform support for **the same UE 5.8.2 installation**. If

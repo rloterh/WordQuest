@@ -15,8 +15,10 @@ its separate plaque and live prototype text are now on `dev`. The owner merged
 its action-skin candidates are now on `dev`. The owner merged
 [PR #7](https://github.com/rloterh/WordQuest/pull/7) at `822e850` on 2026-10-01;
 its separate Hint/Check SVG candidates and group layout are now on `dev`.
-Working branch: `feature/g-vector-ornaments`, based on that merge, for separate
-divider/Pause SVG candidates and native proof checks.
+The owner merged [PR #8](https://github.com/rloterh/WordQuest/pull/8) at `eae3475`
+on 2026-10-02; its divider/Pause SVG candidates are now on `dev`.
+Working branch: `feature/g-win64-package-proof`, based on that merge, to verify
+the bounded G proof in a local cooked Win64 Development package.
 No agent merge, game deployment or release is authorized.
 
 ## Completed work
@@ -152,8 +154,22 @@ See [vector ornaments](../QA/UI01/G-VECTOR-ORNAMENTS.md). Dedicated review of cl
 `e141c2f` against actual `dev` base `822e850` completed with exit 0 and no
 actionable introduced defects.
 No art, motion, package/device, editorial or release gate is passed.
-The bounded [PR #8](https://github.com/rloterh/WordQuest/pull/8) is open against
-`dev` as a tested candidate increment, awaiting the owner's review/merge decision.
+The owner merged the bounded [PR #8](https://github.com/rloterh/WordQuest/pull/8)
+on 2026-10-02; this does not accept unfinished gates.
+
+After PR #8, the local Win64 Development G proof now builds, cooks, stages and
+archives with commit/input/payload hashes. Live Coding and archive-path helper
+issues were corrected; generated file-order logs are narrowly excluded while
+build resources remain eligible for Git. Final clean `f695ff8` passes packaging,
+seven packaged native captures, both Unreal tests and five helper failure tests.
+Extracted draft JSON/five SVGs match recorded source hashes. See
+[cooked Win64 proof](../QA/UI01/G-WIN64-PACKAGE-PROOF.md). Initial D3D12 shutdown
+pipeline work was slow; no performance qualification is claimed. Dedicated review
+of clean `3be5369` against actual `dev` base `eae3475` completed with exit 0 and no
+actionable introduced defects. Android/device/offline, art, motion, editorial and
+release gates remain open.
+The bounded [PR #9](https://github.com/rloterh/WordQuest/pull/9) is open against
+`dev` as a tested local Win64 checkpoint, awaiting the owner's review/merge decision.
 
 ## Resume
 

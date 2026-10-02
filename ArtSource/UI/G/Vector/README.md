@@ -33,7 +33,9 @@ only their decoration while preserving reading layout. Pause retains its semanti
 name/tooltip and uses its original text fallback if its SVG is absent; its vector
 is independent of display fonts and remains at least 14x18 logical units inside
 the existing minimum 48-unit control. `DefaultGame.ini` declares the directory for UFS
-staging, but a packaged build has not verified that path. Native desktop evidence
+staging. The subsequent local Win64 Development package verifies all five SVGs
+inside its pak and in native rendering; see `Docs/QA/UI01/G-WIN64-PACKAGE-PROOF.md`.
+Android/iOS packaging remains unverified. Earlier native desktop evidence
 and remaining gates are in `Docs/QA/UI01/G-ACTION-ICONS.md` and
 `Docs/QA/UI01/G-VECTOR-ORNAMENTS.md`. The staging helper's historical filename is
 retained; it now checks all five masters/runtime copies.

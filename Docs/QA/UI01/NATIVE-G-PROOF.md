@@ -29,6 +29,10 @@ The subsequent [divider/Pause vector candidates](G-VECTOR-ORNAMENTS.md) replace
 font-dependent decoration, with native focus, pause/resume and missing-resource
 checks. These remain unaccepted reconstruction candidates.
 
+The later [cooked Win64 proof](G-WIN64-PACKAGE-PROOF.md) verifies a local archive,
+raw-resource hashes and packaged native behavior. Mobile/offline, art and release
+acceptance remain separate and unfinished.
+
 ## Behavior and scope
 
 `FContextQuestion` validates the local JSON fixture. `FContextAttempt` owns selection,
