@@ -10,8 +10,8 @@ targets; shape, faceting and lighting still require visual acceptance.
 | --- | --- | --- |
 | `G-Hint-Bulb-v001.svg` | `Game/Content/UI/G/Vector/G_HintBulb.svg` | 40x56 viewBox; rounded navy bulb outline and two base bars |
 | `G-Check-Star-v001.svg` | `Game/Content/UI/G/Vector/G_CheckStar.svg` | 48x48 viewBox; curved four-point gold star with white/lilac facets |
-| `G-Header-Divider-v001.svg` | `Game/Content/UI/G/Vector/G_HeaderDivider.svg` | 214x29 viewBox; tapered short gold lines, diamond terminals and faceted central star |
-| `G-Reading-Divider-v001.svg` | `Game/Content/UI/G/Vector/G_ReadingDivider.svg` | 314x29 viewBox; longer matching lines and central star |
+| `G-Header-Divider-v002.svg` | `Game/Content/UI/G/Vector/G_HeaderDivider.svg` | 214x29 viewBox; preserved tapered lines/terminals/star with gold gradients and ivory facets |
+| `G-Reading-Divider-v002.svg` | `Game/Content/UI/G/Vector/G_ReadingDivider.svg` | 314x29 viewBox; matching long divider with the same material treatment |
 | `G-Pause-Bars-v001.svg` | `Game/Content/UI/G/Vector/G_PauseBars.svg` | 24x30 viewBox; two white rounded bars, runtime tint follows skin availability |
 | `G-Wordmark-v002.svg` | `Game/Content/UI/G/Vector/G_Wordmark.svg` | 430x140 viewBox; preserved licensed outlines/ornament with layered ivory rim and warm gold bevel |
 | `G-Answer-Badge-v001.svg` | `Game/Content/UI/G/Vector/G_AnswerBadge.svg` | 70x70 viewBox; lilac shaded disc and pale rim, with no baked letter |
@@ -78,6 +78,15 @@ art acceptance remain open. The package claims above describe earlier revisions.
 
 No rights clearance beyond supplied-reference provenance is established. Release
 clearance and faithful-art acceptance remain open.
+
+Divider revision v002 preserves both v001 masters and all path coordinates/canvas
+sizes. Explicit-percentage SVG gradients shade the tapered lines and star bevel;
+an ivory upper facet and darker lower facet supply directional light. Staging uses
+the two v002 masters; runtime names, native placement and reading spacing are
+unchanged. No raster edit or image generation is used. See
+`G-Divider-v002-PROVENANCE.json` and `Docs/QA/UI01/G-DIVIDER-BEVEL.md` for evidence
+and remaining line/taper/star/material acceptance. Earlier package records above
+describe their original revisions.
 
 The seventh resource reconstructs the reference's softly shaded answer badge.
 Four native overlays reuse that SVG under separate live A–D labels. A transparent

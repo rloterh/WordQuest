@@ -13,6 +13,12 @@
 /ArtSource/UI/G/Vector/G-Wordmark-v002.svg text eol=lf
 /Game/Content/UI/G/Vector/G_Wordmark.svg text eol=lf
 
+# Keep the revised divider masters and staged copies byte-identical.
+/ArtSource/UI/G/Vector/G-Header-Divider-v002.svg text eol=lf
+/ArtSource/UI/G/Vector/G-Reading-Divider-v002.svg text eol=lf
+/Game/Content/UI/G/Vector/G_HeaderDivider.svg text eol=lf
+/Game/Content/UI/G/Vector/G_ReadingDivider.svg text eol=lf
+
 # Unreal binary assets.
 *.uasset filter=lfs diff=lfs merge=lfs -text
 *.umap filter=lfs diff=lfs merge=lfs -text

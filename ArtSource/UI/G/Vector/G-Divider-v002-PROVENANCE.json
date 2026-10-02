@@ -1,0 +1,26 @@
+{
+  "status": "unapproved UI01 material candidates; faithful-art/device/release acceptance pending",
+  "reference": "Planning/WordQuest-UI-Realms-Addendum/references/G-Celestial-Reverie-Gameplay.png",
+  "reference_sha256": "306dae4f6352749edcf1d8edf73f26339a4ba6407b4a394ec50b5898418bedae",
+  "assets": [
+    {
+      "master": "ArtSource/UI/G/Vector/G-Header-Divider-v002.svg",
+      "preserved_previous_master": "ArtSource/UI/G/Vector/G-Header-Divider-v001.svg",
+      "runtime": "Game/Content/UI/G/Vector/G_HeaderDivider.svg",
+      "viewbox": "0 0 214 29",
+      "sha256": "82bc35648a2c5b768e07aaec0533c5eb7e1ce84e863e267cf0605e36430cf94b"
+    },
+    {
+      "master": "ArtSource/UI/G/Vector/G-Reading-Divider-v002.svg",
+      "preserved_previous_master": "ArtSource/UI/G/Vector/G-Reading-Divider-v001.svg",
+      "runtime": "Game/Content/UI/G/Vector/G_ReadingDivider.svg",
+      "viewbox": "0 0 314 29",
+      "sha256": "358ccc69ba1d1f9a0efe1fcb7e69d57ff7612a7712479b97f975717fe50f0284"
+    }
+  ],
+  "method": "hand-authored editable SVG; preserved path coordinates with explicit-percentage gold gradients, thin star rim and ivory/darker facet fills",
+  "raster_editing": false,
+  "image_generation": false,
+  "binary_asset_generation": false,
+  "remaining": "exact line weight/taper, star geometry, bevel/light and final material acceptance"
+}
