@@ -107,7 +107,9 @@ Visual inspection also found partly clipped narrow-window explanations. Feedback
 reveal now uses measured canvas bounds after reflow, with a new visibility contract.
 Scoring and art remain unchanged. Both real target builds, clean full Win64 packaging,
 14 inspected packaged captures, both Unreal tests and all 46 Python tests pass.
-Initial screen pixels remain unchanged. Dedicated review is pending. See
+Initial screen pixels remain unchanged. Dedicated review against actual `dev`
+found no actionable introduced defects and independently passed all nine new
+QA tests; head/worktree stayed unchanged. See
 [answer outcome evidence](../QA/UI01/G-ANSWER-OUTCOMES.md). The Android receipt
 remains absent and adb lists no device on this fresh recheck.
 The owner identified Epic Games Launcher as the UE installation source; its current

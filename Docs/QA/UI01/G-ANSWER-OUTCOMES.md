@@ -90,8 +90,14 @@ PNG SHA-256 `7aa62165b992c5599f993e3947bc5572ce901fde239e1290a34920addec1b99e`.
 The current capture helper requires the new cue/feedback metadata: old packages
 remain historical evidence and need a fresh build for this contract.
 
-Dedicated read-only review against actual `origin/dev` is pending. No merge is
-performed by the agent.
+Dedicated read-only Codex review completed at clean
+`6caed5c690d456e6b94a1454ee2d7503833a9d55` against actual `origin/dev`,
+`7e100c2748390718430d52414bf89d960c301eb3`, exit 0 and no actionable introduced
+defects. Head/worktree stayed unchanged. The reviewer independently passed all
+nine new option-cue/feedback tests; it did not independently run engine builds,
+packaged runtime or physical-device checks. Raw evidence:
+`Artifacts/Reviews/20261002-144007`. Subsequent review/publication records change
+documentation only. No merge is performed by the agent.
 
 ## Limits
 
