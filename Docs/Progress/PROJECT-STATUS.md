@@ -70,7 +70,9 @@ gradients, star rim and ivory/darker facets add material depth. Both real target
 checks, clean full Win64 packaging, eight inspected packaged captures, both Unreal
 tests and all 27 Python tests pass. Cooked bytes match sources; normal-size pixel
 changes stay inside the two divider regions. Dedicated review against actual
-`dev` found no actionable introduced defects. Publication is pending. See
+`dev` found no actionable introduced defects.
+[PR #19](https://github.com/rloterh/WordQuest/pull/19) is a regular PR against `dev`,
+ready for the owner's merge decision. See
 [divider bevel](../QA/UI01/G-DIVIDER-BEVEL.md). No art gate is passed.
 Manual input, screen-reader, art and phone gates remain open.
 No agent merge, game deployment or release is authorized.

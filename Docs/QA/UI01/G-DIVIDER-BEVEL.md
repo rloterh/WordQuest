@@ -82,5 +82,8 @@ defects. Head/worktree remained unchanged. Raw evidence:
 and whitespace; it did not rerun engine, packaging or device checks. Subsequent
 review/publication records change documentation only; packaged runtime bytes
 remain unchanged. Raw evidence stays ignored under `Artifacts`.
+[PR #19](https://github.com/rloterh/WordQuest/pull/19) is published as a regular
+PR against `dev`, ready for the owner's merge decision. GitHub has no configured
+status checks; the local verification above supplies its recorded evidence.
 Static art fidelity, manual/platform accessibility, editorial fixture review,
 phone/offline, performance, UI02 motion and release gates remain open.
