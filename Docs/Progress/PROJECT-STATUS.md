@@ -144,7 +144,11 @@ did not complete. Head/worktree stayed unchanged. The bounded regular
 `dev` at `7a464ed` on 2026-10-02, 17:50:25 UTC. The next bounded UI01 follow-up
 adds safe-area Pause scrolling and measured label wrapping. Its native baseline
 at 260x200 confirmed hidden Retry/text-size controls and overflowing label content.
-Implementation is undergoing build/runtime verification; no new gate is passed.
+Final clean `77fed09` passes both real targets, full Win64 packaging, 17 inspected
+packaged contracts, both Unreal tests and all 63 Python tests. Normal initial/result
+pixels remain unchanged. Focus reveals each Pause control; labels fit and the
+scroll indicator appears only for overflow. See [Pause scroll](../QA/UI01/G-PAUSE-SCROLL.md).
+Dedicated review is pending; manual/platform accessibility remains open.
 The owner retains merge authority. Android support receipt is
 still absent and adb lists no device on this turn's recheck.
 The owner identified Epic Games Launcher as the UE installation source; its current
@@ -445,7 +449,8 @@ Read [environment](../Setup/ENVIRONMENT.md), [toolchain](../Setup/TOOLCHAIN-LOCK
 Keep missing mobile evidence explicit. Next: refine the documented G art/lettering
 differences, complete fixture review, add Android platform support through the
 identified Epic Games Launcher installation, then validate on a connected phone.
-The extreme short-window Pause layout remains a bounded UI01 follow-up. Finish G static proof before
+The short-window Pause correction has bounded native evidence; manual/platform
+accessibility remains unverified. Finish G static proof before
 UI02 or H/I. The current control follow-up preserves initial unselected state,
 keyboard focus, disabled states, long answers and the 200% reading override.
 Preserve all supplied planning packages and original images unchanged.
