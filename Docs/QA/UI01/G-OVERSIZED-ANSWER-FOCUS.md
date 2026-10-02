@@ -127,7 +127,14 @@ Comparison evidence: `Artifacts/QA/UI01/G-Oversized-Answer-Normal-Comparison.jso
 This establishes baseline preservation, not fidelity approval against original art.
 Raw captures/logs remain local and ignored under `Artifacts`.
 
-Dedicated review against the actual stacked base is pending.
+Dedicated read-only Codex review completed with exit 0 at clean head
+`475ecb31974f77a9605bee8158bb7e748642fb43` against the actual stacked base
+`origin/feature/g-answer-badge-material`, SHA
+`cc1d584785720e6a93eb5df16821acbd0ca0ee05`. It reported no actionable introduced
+defects; head and worktree remained unchanged. Raw report:
+`Artifacts/Reviews/20261002-093502`. The reviewer did not independently reproduce
+Unreal builds or runtime captures. Subsequent review/publication records change
+documentation only; `Game` remains identical to the verified package source.
 
 ## Remaining gates
 

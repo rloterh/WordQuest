@@ -45,7 +45,8 @@ Fitting rows retain their layout. Initial package regression found a pending-
 feedback/Pause-focus conflict; the correction passes both real builds, a final
 clean Win64 package, 24 packaged capture checks, both Unreal tests and 27 Python
 tests. Fourteen native PNGs were inspected; the normal-size baseline is byte-
-identical. Dedicated review against the actual stacked base is in progress.
+identical. Dedicated review against the actual stacked base completed with no
+actionable introduced defects. Publication is pending.
 Manual input, screen-reader, art and phone gates remain open.
 No agent merge, game deployment or release is authorized.
 
@@ -308,7 +309,8 @@ rows. Final clean `7e68d60` passes both builds, full Win64 packaging, 24 native
 capture contracts (including six answer-start checks and 13 keyboard routes), both
 Unreal tests and all 27 Python tests. Fourteen PNGs were inspected; normal-size
 pixels are unchanged. See [oversized-answer focus](../QA/UI01/G-OVERSIZED-ANSWER-FOCUS.md).
-Dedicated review against the actual stacked base is pending. Existing art, manual
+Dedicated review against the actual stacked base found no actionable introduced
+defects. Existing art, manual
 input/accessibility, editorial, phone/offline, motion and release gates remain open.
 
 ## Owner playtest preview
