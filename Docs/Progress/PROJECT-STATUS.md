@@ -36,15 +36,20 @@ at `3312e95` on 2026-10-02; its genuine licensed Bold action face is now on `dev
 Both real builds, full Win64 cook/stage/archive, seven inspected packaged captures,
 both Unreal tests and 22 Python tests passed; cooked Bold payload matched its source
 and dedicated read-only review found no actionable introduced defects.
-Working branch: `feature/g-answer-badge-material`, based on that merge, for an
-editable shaded badge candidate retaining live A–D letters and selected-state
-outline/marker. Both builds, full Win64 package, nine inspected native capture
-state/dimension checks, both Unreal tests and 22 Python tests pass. Missing-SVG
-fallback passes and cooked SVG matches source exactly. Dedicated read-only review
-found no actionable introduced defects. The 200% artificial long-answer landscape row remains partially visible
-at its stress-capture scroll position, reproduced in the merged baseline.
-The bounded regular [PR #15](https://github.com/rloterh/WordQuest/pull/15) is open
-for owner review/merge.
+The tested badge candidate [PR #15](https://github.com/rloterh/WordQuest/pull/15)
+still reports OPEN on GitHub despite the owner's merge report; no merge SHA is
+recorded until verified. Working branch: `feature/g-oversized-answer-focus`,
+stacked on its unchanged tested head `cc1d584`. Oversized focused answers now reveal
+their option letter and first line at the top, while the rest remains scrollable.
+Fitting rows retain their layout. Initial package regression found a pending-
+feedback/Pause-focus conflict; the correction passes both real builds, a final
+clean Win64 package, 24 packaged capture checks, both Unreal tests and 27 Python
+tests. Fourteen native PNGs were inspected; the normal-size baseline is byte-
+identical. Dedicated review against the actual stacked base completed with no
+actionable introduced defects. [PR #16](https://github.com/rloterh/WordQuest/pull/16)
+is published as a draft against `feature/g-answer-badge-material`; PR #15 still
+reports OPEN. After its merge is verified, retarget #16 to `dev`, check the actual
+diff and review against that base before making it ready for owner merge.
 Manual input, screen-reader, art and phone gates remain open.
 No agent merge, game deployment or release is authorized.
 
@@ -298,6 +303,18 @@ The bounded regular [PR #15](https://github.com/rloterh/WordQuest/pull/15) is op
 against `dev`. No GitHub status checks are configured; validation above is local.
 Exact static art, manual accessibility/input, editorial, phone/offline, performance,
 motion and release gates remain open.
+
+The next bounded correction is stacked on PR #15's unchanged tested branch while
+its reported merge remains unconfirmed. It reveals the beginning of oversized
+focused answer rows using measured canvas height, rechecks after Slate focus
+scrolling and places the option identifier/selected marker at the start of those
+rows. Final clean `7e68d60` passes both builds, full Win64 packaging, 24 native
+capture contracts (including six answer-start checks and 13 keyboard routes), both
+Unreal tests and all 27 Python tests. Fourteen PNGs were inspected; normal-size
+pixels are unchanged. See [oversized-answer focus](../QA/UI01/G-OVERSIZED-ANSWER-FOCUS.md).
+Dedicated review against the actual stacked base found no actionable introduced
+defects. Existing art, manual
+input/accessibility, editorial, phone/offline, motion and release gates remain open.
 
 ## Owner playtest preview
 

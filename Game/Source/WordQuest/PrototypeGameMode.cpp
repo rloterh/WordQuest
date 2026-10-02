@@ -145,11 +145,12 @@ void APrototypeController::RunProof()
         GetWorldTimerManager().SetTimer(FocusTimer, FTimerDelegate::CreateWeakLambda(this,
             [this]() { Screen->FocusProofAction(); }), .5f, false);
     }
-    else if (ProofName == TEXT("long") || ProofName == TEXT("longfocus"))
+    else if (ProofName == TEXT("long") || ProofName == TEXT("longfocus") || ProofName == TEXT("longselectedfocus"))
     {
         Screen->SetProofTextScale(2);
         Screen->SetProofLongText();
-        if (ProofName == TEXT("longfocus"))
+        if (ProofName == TEXT("longselectedfocus")) Screen->Choose(1);
+        if (ProofName != TEXT("long"))
         {
             // Focus after enlarged content has laid out, before the native capture.
             FTimerHandle FocusTimer;
@@ -166,6 +167,10 @@ void APrototypeController::RunProof()
 
 void APrototypeController::CaptureProof()
 {
+    if (ProofName == TEXT("longfocus") || ProofName == TEXT("longselectedfocus"))
+        UE_LOG(LogTemp, Display, TEXT("WQ_ANSWER_START proof=%s focus=%s textpercent=%d visible=%d oversized=%d"),
+            *ProofName, *Screen->GetProofFocusName(), Screen->GetProofTextPercent(),
+            Screen->GetProofFocusedAnswerStartVisible(), Screen->GetProofFocusedAnswerOversized());
     if (ProofName.StartsWith(TEXT("key")))
         UE_LOG(LogTemp, Display, TEXT("WQ_FOCUS_CAPTURE proof=%s focus=%s visible=%d textpercent=%d"),
             *ProofName, *Screen->GetProofFocusName(), Screen->GetProofFocusedControlVisible(), Screen->GetProofTextPercent());
