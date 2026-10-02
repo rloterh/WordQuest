@@ -57,7 +57,9 @@ x239..723/y1491..1532, confined to the two action labels. Outside that union the
 two RGB captures are identical. Core glyph pixel counts in the documented label
 regions rise from 309 to 384 for navy Hint and 672 to 807 for white Check. These
 counts demonstrate the rendered weight change; they are not contrast or global
-fidelity scores. Baseline metadata records the prior merged package and only a
+fidelity scores. Regions, thresholds and capture hashes are retained in
+`Artifacts/QA/UI01/G-Action-Font-Weight-Comparison.json`.
+Baseline metadata records the prior merged package and only a
 status-document worktree edit; candidate metadata records the new source/assets.
 
 Missing-Bold fallback passed in dirty editor run
@@ -70,10 +72,56 @@ loaded SemiBold primary face. The asset was restored in `finally`, with its exac
 original SHA-256 verified. This is an editor omission test, not packaged corruption
 or phone evidence.
 
-All 22 existing Python tests, six reference hashes, six SVG pairs and LFS/diff
-checks pass. Final clean package, enlarged/narrow/disabled/modal captures,
-existing Unreal tests and dedicated review are pending. Raw artifacts remain
-local and ignored; no physical-device or art gate is passed.
+## Clean cooked verification
+
+Clean runtime/source commit `c15ddfddf1b55f591d338f7212afb2c685a349f7` passes
+the real editor target and Win64 Development game build, full cook, stage and
+archive. Package evidence is
+`Artifacts/Packages/Win64/20261002-050446-409607`; editor and UAT exits are 0,
+and head, worktree and recorded inputs remain unchanged. The game build performed
+five actions in 25.92 seconds; UAT completed in 86.00 seconds. Manifest SHA-256:
+`21f9c153b8b567e83a7bc68abea1e04344e93a0ac79fbf36c6bf2fec399ed1e9`.
+
+UnrealPak successfully extracts `G_DisplayBold.ufont` from the archive (exit 0).
+The cooked file is 1,042,276 bytes with SHA-256
+`421cf02a61822a29d3500dae3f2df3dedf2319e7b1cda777dc04afb86dd7e6d2`.
+Its full 1,042,268-byte source TTF payload matches exactly at offset 4. UE's
+`UFontFace::CookAdditionalFilesOverride` / `FFontFaceData::Serialize` write the
+font-data array and preprocessed-geometry array: the additional bytes are a
+four-byte payload count and trailing zero array count, not a changed TTF.
+`CookedBoldFont.json` and `FontExtractCorrected.log` retain this evidence.
+An initial `-Extract=dir` attempt exited 1 and refused the existing pak; corrected
+`-Extract dir` exited 0. The pak still matches its original manifest hash.
+Packaged native logs confirm loading `Content/UI/G/G_DisplayBold.ufont`, rather
+than an external ArtSource font. Existing `/Game/UI/G` cook inclusion suffices.
+
+All seven final packaged captures use that clean commit/package and verified
+payload hashes. Each exits 0, passes state/dimension checks and was directly
+inspected; raw runs live under `Artifacts/QA/UI01/`:
+
+| Run | Window | Inspected state |
+| --- | --- | --- |
+| `20261002-050724-packaged-capture-initial` | 884x1780 | Normal, unselected live action labels |
+| `20261002-050734-packaged-capture-actions` | 390x844 | 200% reading, focused Check |
+| `20261002-050743-packaged-capture-hint` | 390x844 | Assisted correct A; disabled Hint/Check labels |
+| `20261002-050753-packaged-capture-keymodal` | 390x844 | Pause heading, 200% TextSize focus |
+| `20261002-050802-packaged-capture-keytab` | 390x844 | Enabled-control cycle, final Hint focus |
+| `20261002-050812-packaged-capture-actionfocus` | 260x640 | Narrow stacked live actions, focused Check |
+| `20261002-050821-packaged-capture-actions` | 844x390 | 200% reading, landscape focused Check |
+
+The 390x844/260x640 runs use a simulated 0.9 safe-area inset; this is not phone
+safe-area evidence. Native keymodal/keytab traces also pass per-key state, focus,
+settings and final focused-control visibility checks. They dispatch synthetic
+Slate events and do not establish physical keyboard or screen-reader acceptance.
+Native labels remain live and readable within their action groups in these
+captures; scrolling and unfinished art remain as documented in earlier proofs.
+
+Both existing Unreal tests pass (2 succeeded, 0 failed/not-run/in-process,
+exit 0) at the same clean source commit:
+`20261002-050830-automation-initial`. All 22 existing Python tests, six reference
+hashes, six SVG source/runtime pairs and LFS/diff checks pass. Dedicated review
+is pending. Raw artifacts remain local and ignored; no physical-device or art
+gate is passed.
 
 ## Remaining gates
 

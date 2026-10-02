@@ -33,8 +33,11 @@ read-only review found no actionable introduced defects. The owner requested a
 playtest preview; that interactive 480x960 session closed cleanly. Manual observations
 are pending. Working branch: `feature/g-action-font-weight`, based on the merge,
 for a genuine licensed Bold action-face candidate. Import/editor build and preliminary
-native weight comparison pass; fallback/final package/runtime checks and review
-are in progress. Manual input, screen-reader, art and phone gates remain open.
+native weight comparison, missing-face fallback, both real builds, full Win64
+cook/stage/archive, seven inspected packaged captures, both Unreal tests and
+22 Python tests pass. Cooked Bold payload matches the licensed source exactly.
+Dedicated review is in progress. Manual input, screen-reader, art and phone gates
+remain open.
 No agent merge, game deployment or release is authorized.
 
 ## Completed work
@@ -251,6 +254,19 @@ The owner merged the bounded regular
 [PR #13](https://github.com/rloterh/WordQuest/pull/13) on 2026-10-02. No GitHub status checks are configured;
 validation is recorded from the local build/runtime/review evidence above.
 Art, editorial, motion, offline/phone, performance and release gates remain open.
+
+After PR #13, the runtime composite adds a genuine licensed Cormorant Garamond
+Bold face for action labels and the existing display-font Pause heading. Previously
+Bold requests fell back to the preserved SemiBold primary face. Only the new
+Unreal-generated FontFace and its unmodified source TTF are added; original
+references, existing fonts/license, wordmark, learning text and interaction logic
+are unchanged. Clean `c15ddfd` passes both builds, full Win64 cook/stage/archive,
+seven directly inspected packaged captures and both Unreal tests; 22 existing
+Python tests also pass. Extracted cooked Bold payload matches the source exactly,
+and a separate editor omission test preserves the SemiBold fallback. See
+[action font weight](../QA/UI01/G-ACTION-FONT-WEIGHT.md). Dedicated read-only review
+is pending. Exact typeface identification, static fidelity, manual accessibility,
+editorial, phone/offline, performance, motion and release gates remain open.
 
 ## Owner playtest preview
 
