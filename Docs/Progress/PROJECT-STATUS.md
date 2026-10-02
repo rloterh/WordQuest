@@ -123,7 +123,9 @@ A development-only capture option verifies the setting, records actual font size
 and checks action content fit. Both real target builds, clean Win64 packaging,
 17 inspected native captures, both Unreal tests and all 49 Python tests pass.
 Nine paired runs show exact doubling across ten checked font roles; normal initial
-and correct-outcome PNGs remain unchanged. Dedicated review is pending. See
+and correct-outcome PNGs remain unchanged. Dedicated review against actual `dev`
+found no actionable introduced defects and independently passed 39 QA tests;
+head/worktree stayed unchanged. See
 [text enlargement evidence](../QA/UI01/G-TEXT-ENLARGEMENT.md). Android support
 receipt is still absent and adb lists no device on this turn's recheck.
 The owner identified Epic Games Launcher as the UE installation source; its current
