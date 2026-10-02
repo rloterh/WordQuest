@@ -43,14 +43,15 @@ base, `feature/g-answer-badge-material`, at `032f3b2`, 10:32:56 UTC. Both PRs ar
 closed/merged, but #16's focus correction is absent from `dev` because that merge
 occurred after #15. Working branch: `feature/g-focus-dev-integration`, based on
 `origin/dev`; it integrates the owner's merged feature branch without changing its
-tested implementation. A follow-up PR to `dev` is being prepared; no remote branch
+tested implementation. [PR #17](https://github.com/rloterh/WordQuest/pull/17) targets
+`dev` as a regular PR, ready for the owner's merge decision; no remote branch
 merge was performed by the agent.
 Oversized focused answers reveal their option letter and first line, while the
 rest remains scrollable. The original correction passed both builds, full Win64
 packaging, 24 capture checks, both Unreal tests and 27 Python tests. Fresh integration
 editor build, two inspected native regression captures, both Unreal tests and all
 27 Python tests pass. Dedicated review against actual `dev` found no actionable
-introduced defects. Follow-up publication is pending. See
+introduced defects. PR #17 publishes this integration against `dev`. See
 [integration evidence](../QA/UI01/G-FOCUS-DEV-INTEGRATION.md).
 Manual input, screen-reader, art and phone gates remain open.
 No agent merge, game deployment or release is authorized.
