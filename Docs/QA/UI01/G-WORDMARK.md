@@ -94,6 +94,8 @@ did not independently rerun builds/runtime/device checks. Optional connector and
 ignored local-tool directory warnings did not prevent the review from completing.
 Subsequent changes only record review/publication status in documentation. Review
 does not authorize merge or replace native/device evidence.
+The bounded regular [PR #10](https://github.com/rloterh/WordQuest/pull/10) is open
+against `dev`; the owner retains the merge/art acceptance decision.
 
 ## Remaining gates
 
