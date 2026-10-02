@@ -105,9 +105,11 @@ The next bounded G correction distinguishes neutral selection from submitted
 correct/near-miss outcomes with live symbols and matching accessible button text.
 Visual inspection also found partly clipped narrow-window explanations. Feedback
 reveal now uses measured canvas bounds after reflow, with a new visibility contract.
-Scoring and art remain unchanged. Real editor build and all 46 Python tests pass;
-fresh clean package/runtime verification and dedicated review are pending. The Android
-receipt remains absent and adb lists no device on this fresh recheck.
+Scoring and art remain unchanged. Both real target builds, clean full Win64 packaging,
+14 inspected packaged captures, both Unreal tests and all 46 Python tests pass.
+Initial screen pixels remain unchanged. Dedicated review is pending. See
+[answer outcome evidence](../QA/UI01/G-ANSWER-OUTCOMES.md). The Android receipt
+remains absent and adb lists no device on this fresh recheck.
 The owner identified Epic Games Launcher as the UE installation source; its current
 manifest/installation record now confirms exact UE 5.8.2 at the existing path.
 Android target receipt remains absent and adb lists no device. See
