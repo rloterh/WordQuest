@@ -40,8 +40,13 @@ and all 48 recorded payload checks pass. Manifest SHA-256:
 UnrealPak extraction exits 0; the extracted wordmark, runtime copy and v002 master
 match SHA-256 `34eb2dc12e2c1be40db36f862924431ee5b26ce82fe5424ecec4098d6fd9b6b2`.
 Exact extraction evidence is in the package's `WordmarkExtract.log` and
-`WordmarkExtract.json`. Builder reproduction is byte-identical for v002 and
-the preserved v001; all seven staged SVG pairs pass. All six original-reference
+`WordmarkExtract.json`. Builder reproduction is byte-identical for v002.
+The first raw-byte v001 reproduction check failed because its preserved checkout
+has 32 CRLF endings while the builder emits LF. Its original bytes were restored
+in a finally block. A read-only in-memory check confirms identical normalized
+SVG text: preserved raw hash `080b8abab341089c9bc51dd693ea1ea5a33037d5b4abd8250d557e1e48072f41`,
+generated LF hash `e397842f40e69c65cd16ef4bd44185adfc72f89bdc6b6c6765215416f05ffd9d`.
+No raw-byte equality is claimed for v001. All seven staged SVG pairs pass. All six original-reference
 hashes and all 27 existing Python tests pass. Git LFS is available; no new binary
 asset is committed. XML checks confirm identical canvas/group transform and
 glyph/ornament path geometry between v001/v002; material layers account for changes.
@@ -76,7 +81,10 @@ the original. The existing comparison helper creates
 and a 50% overlay. Browser/overlay interaction is unverified; earlier local-page
 navigation blocks were not bypassed.
 
-Dedicated actual-base review is pending. Raw captures/builds remain local and
+Initial dedicated review at clean `40a3801` against actual `origin/dev` (`f0fd74b`)
+completed with exit 0 and no actionable findings; raw evidence is
+`Artifacts/Reviews/20261002-111700`. That report preceded the corrected v001
+line-ending reproduction wording above; final review is pending. Raw captures/builds remain local and
 ignored under `Artifacts`.
 Physical/manual input, screen-reader, art fidelity, editorial fixture review,
 phone/offline, performance, UI02 motion and release gates remain open.

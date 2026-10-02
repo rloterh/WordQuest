@@ -56,9 +56,11 @@ The next bounded UI01 candidate adds layered ivory/gold bevel to a new editable
 wordmark revision, preserving the prior SVG, licensed glyph geometry, placement,
 live learning text and controls. Both real builds, clean full Win64 packaging,
 eight inspected packaged captures, both Unreal tests and 27 Python tests pass.
-Cooked SVG bytes match source, both builder revisions reproduce exactly, and
-normal-size pixel changes stay inside the title region. Dedicated review against
-`dev` is pending. See [wordmark bevel](../QA/UI01/G-WORDMARK-BEVEL.md); this is not
+Cooked SVG bytes match source, v002 reproduces byte-identically, and preserved v001
+matches the builder after line-ending normalization. Normal-size pixel changes
+stay inside the title region. Initial review found no actionable defects; final
+review after this provenance correction is pending. See
+[wordmark bevel](../QA/UI01/G-WORDMARK-BEVEL.md); this is not
 original-lettering or static-fidelity acceptance.
 Manual input, screen-reader, art and phone gates remain open.
 No agent merge, game deployment or release is authorized.
