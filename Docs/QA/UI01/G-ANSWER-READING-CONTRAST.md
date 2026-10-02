@@ -124,3 +124,4 @@ it did not independently repeat builds or runtime checks. Raw review evidence:
 documentation only; the clean packaged source above remains the implementation.
 Published as regular [PR #26](https://github.com/rloterh/WordQuest/pull/26)
 against `dev`; no agent merge was performed.
+The owner merged it into `dev` at `e2ef2b0` on 2026-10-02, 20:00:20 UTC.

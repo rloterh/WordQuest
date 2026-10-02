@@ -13,7 +13,7 @@ targets; shape, faceting and lighting still require visual acceptance.
 | `G-Header-Divider-v002.svg` | `Game/Content/UI/G/Vector/G_HeaderDivider.svg` | 214x29 viewBox; preserved tapered lines/terminals/star with gold gradients and ivory facets |
 | `G-Reading-Divider-v002.svg` | `Game/Content/UI/G/Vector/G_ReadingDivider.svg` | 314x29 viewBox; matching long divider with the same material treatment |
 | `G-Pause-Bars-v001.svg` | `Game/Content/UI/G/Vector/G_PauseBars.svg` | 24x30 viewBox; two white rounded bars, runtime tint follows skin availability |
-| `G-Wordmark-v002.svg` | `Game/Content/UI/G/Vector/G_Wordmark.svg` | 430x140 viewBox; preserved licensed outlines/ornament with layered ivory rim and warm gold bevel |
+| `G-Wordmark-v003.svg` | `Game/Content/UI/G/Vector/G_Wordmark.svg` | 430x140 viewBox; authored reference-guided W, remaining licensed outlines and preserved ivory/gold bevel/ornament |
 | `G-Answer-Badge-v001.svg` | `Game/Content/UI/G/Vector/G_AnswerBadge.svg` | 70x70 viewBox; lilac shaded disc and pale rim, with no baked letter |
 
 From the repository root:
@@ -44,9 +44,10 @@ retained; it now checks all six masters/runtime copies. The sixth resource is a
 separate G brand candidate; its new packaged verification is recorded in
 `Docs/QA/UI01/G-WORDMARK.md`.
 
-The wordmark outlines the repository's unmodified Cormorant Garamond SemiBold
-(`ArtSource/Fonts/CormorantGaramond`, adjacent OFL and provenance), rather than
-claiming to identify the reference's lettering. The other five masters remain
+The wordmark's remaining eight letters outline the repository's unmodified
+Cormorant Garamond SemiBold (`ArtSource/Fonts/CormorantGaramond`, adjacent OFL and
+provenance); revision v003 replaces W with authored reference-guided curves.
+It does not identify the reference's lettering. The other five masters remain
 unchanged. Its independent ornament paths and font outlines are editable SVG;
 no font lookup is needed to render the mark. Only this fixed brand is outlined;
 all learning text and control labels remain live widgets. The mark has a custom
@@ -59,7 +60,7 @@ development-only outline tool outside tracked source, then stage normally:
 ```powershell
 python -m pip install --target Artifacts/Tools/fonttools fonttools==4.61.1
 $env:PYTHONPATH = "$PWD/Artifacts/Tools/fonttools"
-python Tools/AssetImport/build_g_wordmark.py --revision v002
+python Tools/AssetImport/build_g_wordmark.py --revision v003
 python Tools/AssetImport/stage_g_action_icons.py
 ```
 
@@ -71,10 +72,19 @@ and transformed glyph outlines. No supplied image pixels are changed or extracte
 Revision v002 keeps the v001 master unchanged and adds separate vector bevel/rim
 layers over the same glyph paths and authored ornament. It changes palette/strokes,
 not title placement, font source, learning text or interactive controls. Use
-`--revision v001` to reproduce the preserved first candidate; the default is v002.
+`--revision v001` to reproduce the preserved first candidate.
 Provenance and remaining limitations are in `G-Wordmark-v002-PROVENANCE.json`
 and `Docs/QA/UI01/G-WORDMARK-BEVEL.md`. Letterform, flourish, lighting and faithful
 art acceptance remain open. The package claims above describe earlier revisions.
+
+Revision v003 preserves both earlier masters and replaces the W glyph/curls with
+authored closed curves. The deeper tips and splayed stems follow the original
+reference more closely in native inspection. The remaining eight glyph paths,
+their advances/transform, Q swash, under-title ornament, bevel palette and native
+placement are preserved. The builder defaults to v003; explicit v001/v002 options
+reproduce the older revisions. See `G-Wordmark-v003-PROVENANCE.json` and
+`Docs/QA/UI01/G-WORDMARK-CAPITAL.md` for verification and remaining limitations.
+No raster edit, new font or original-lettering acceptance is claimed.
 
 No rights clearance beyond supplied-reference provenance is established. Release
 clearance and faithful-art acceptance remain open.

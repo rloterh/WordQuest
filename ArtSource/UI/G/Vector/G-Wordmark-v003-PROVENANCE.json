@@ -1,0 +1,20 @@
+{
+  "status": "unapproved UI01 capital-letter candidate; not accepted original lettering or release art",
+  "master": "ArtSource/UI/G/Vector/G-Wordmark-v003.svg",
+  "runtime": "Game/Content/UI/G/Vector/G_Wordmark.svg",
+  "sha256": "d14ff694d50670c980d064ece5f2cbd561bf2fc72c00813eecd5606b7168efa4",
+  "preserved_previous_masters": ["ArtSource/UI/G/Vector/G-Wordmark-v001.svg", "ArtSource/UI/G/Vector/G-Wordmark-v002.svg"],
+  "reference": "Planning/WordQuest-UI-Realms-Addendum/references/G-Celestial-Reverie-Gameplay.png",
+  "reference_sha256": "306dae4f6352749edcf1d8edf73f26339a4ba6407b4a394ec50b5898418bedae",
+  "font_for_remaining_glyphs": "ArtSource/Fonts/CormorantGaramond/CormorantGaramond-SemiBold.ttf",
+  "font_sha256": "dc4bc094dc3c55cf79ff2f6f0ba1e501b712fc3cf3742296cd8fdcc6e995127d",
+  "font_license": "adjacent unmodified SIL OFL 1.1; output graphic, not a modified font",
+  "builder": "Tools/AssetImport/build_g_wordmark.py --revision v003",
+  "development_dependency": "fonttools==4.61.1; not required for runtime or normal builds",
+  "method": "authored closed vector curves reconstruct the W's stems, deeper tips and curled terminals from visual inspection; the other eight licensed glyph outlines, existing transforms, Q swash, under-title ornament and v002 material treatment are retained",
+  "raster_editing": false,
+  "image_generation": false,
+  "unreal_binary_generation": false,
+  "layout": "existing 430x140 SVG canvas and x229/y23 reference-size placement unchanged",
+  "remaining": "precise W contours, other letterforms, Q connection, ornaments and lighting remain candidates; original font identification, art, device and release acceptance pending"
+}

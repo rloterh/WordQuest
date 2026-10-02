@@ -11,6 +11,7 @@
 
 # Preserve exact staged bytes for the revised wordmark candidate.
 /ArtSource/UI/G/Vector/G-Wordmark-v002.svg text eol=lf
+/ArtSource/UI/G/Vector/G-Wordmark-v003.svg text eol=lf
 /Game/Content/UI/G/Vector/G_Wordmark.svg text eol=lf
 
 # Keep the revised divider masters and staged copies byte-identical.
