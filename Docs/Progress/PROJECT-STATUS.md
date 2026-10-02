@@ -115,8 +115,12 @@ QA tests; head/worktree stayed unchanged.
 [answer outcome evidence](../QA/UI01/G-ANSWER-OUTCOMES.md). The Android receipt
 remains absent and adb lists no device on that recheck.
 The next bounded verification covers submitted correct/incorrect/assisted feedback
-at 200% text in narrow and landscape windows. A development-only capture option
-records and verifies the actual text setting; runtime checks and review are pending.
+at 200% text in narrow and landscape windows. It exposed minimum font sizes and
+point-size rounding applied after enlargement, reducing the actual ratio. Scaling
+now enlarges the normal rounded font after its readability floor. Enlarged action
+labels wrap within the available button width, fixing a clipped submitted label.
+A development-only capture option verifies the setting, records actual font sizes
+and checks action content fit; fresh verification and review are pending.
 The owner identified Epic Games Launcher as the UE installation source; its current
 manifest/installation record now confirms exact UE 5.8.2 at the existing path.
 Android target receipt remains absent and adb lists no device. See

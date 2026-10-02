@@ -219,6 +219,8 @@ void APrototypeController::CaptureProof()
 {
     UE_LOG(LogTemp, Display, TEXT("WQ_TEXT_CAPTURE proof=%s textpercent=%d"),
         *ProofName, Screen->GetProofTextPercent());
+    UE_LOG(LogTemp, Display, TEXT("WQ_TYPE_CAPTURE proof=%s %s"), *ProofName, *Screen->GetProofTextSizes());
+    UE_LOG(LogTemp, Display, TEXT("WQ_ACTION_CONTENT proof=%s fits=%d"), *ProofName, Screen->GetProofActionContentsFit());
     UE_LOG(LogTemp, Display, TEXT("WQ_FEEDBACK_CAPTURE proof=%s visibility=%d"),
         *ProofName, Screen->GetProofFeedbackVisibility());
     for (int32 I = 0; I < 4; ++I)

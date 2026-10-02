@@ -57,7 +57,7 @@ class RunEvidenceTests(unittest.TestCase):
 
     def test_large_text_requires_actual_200_percent_capture(self):
         for trace, expected in (('', False), ('WQ_TEXT_CAPTURE proof=initial textpercent=100\n', False),
-                                ('WQ_TEXT_CAPTURE proof=initial textpercent=200\n', True)):
+                                ('WQ_TEXT_CAPTURE proof=initial textpercent=200\nWQ_ACTION_CONTENT proof=initial fits=1\n', True)):
             with self.subTest(trace=trace):
                 status, verdict = self.run_fixture('capture', large_text=True, text_trace=trace)
                 self.assertEqual(status, 0 if expected else 1)

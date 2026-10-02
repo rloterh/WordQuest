@@ -121,6 +121,11 @@ def check_large_text_capture(log, proof):
     return rows == [(proof, '200')], rows
 
 
+def check_action_content(log, proof):
+    rows = re.findall(r'WQ_ACTION_CONTENT proof=(\w+) fits=(\d+)', log)
+    return rows == [(proof, '1')], rows
+
+
 INTERRUPTION_PROOFS = ('interruptpaused', 'interruptresumed', 'interruptsubmitted', 'interruptmanual')
 
 
@@ -252,6 +257,9 @@ def main():
         if args.large_text:
             passed, rows = check_large_text_capture(log, args.proof)
             result.update({'large_text_passed': passed, 'text_capture': rows})
+            result['evidence_complete'] = result['evidence_complete'] and passed
+            passed, rows = check_action_content(log, args.proof)
+            result.update({'action_content_passed': passed, 'action_content': rows})
             result['evidence_complete'] = result['evidence_complete'] and passed
         if args.proof in FEEDBACK_PROOFS:
             passed, rows = check_feedback_capture(log, args.proof)
