@@ -139,3 +139,5 @@ checked original references, source/runtime SVG parity and diff whitespace;
 it did not independently repeat builds, native rendering or device acceptance.
 Raw evidence: `Artifacts/Reviews/20261002-203116`. Subsequent review/publication
 records change documentation only.
+Published as regular [PR #27](https://github.com/rloterh/WordQuest/pull/27)
+against `dev`; no agent merge was performed.
