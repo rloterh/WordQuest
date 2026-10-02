@@ -103,6 +103,7 @@ private:
     UPROPERTY(Transient) TObjectPtr<UTextBlock> PauseLabel;
     UPROPERTY(Transient) TObjectPtr<UImage> ModalShade;
     UPROPERTY(Transient) TObjectPtr<UTextBlock> Brand;
+    UPROPERTY(Transient) TObjectPtr<UImage> BrandMark;
     UPROPERTY(Transient) TObjectPtr<UTextBlock> Progress;
     UPROPERTY(Transient) TObjectPtr<UTextBlock> Mode;
     UPROPERTY(Transient) TObjectPtr<UTextBlock> Word;

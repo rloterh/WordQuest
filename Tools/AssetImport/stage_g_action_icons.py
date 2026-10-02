@@ -14,7 +14,8 @@ def main():
     pairs = [('G-Hint-Bulb-v001.svg', 'G_HintBulb.svg'), ('G-Check-Star-v001.svg', 'G_CheckStar.svg'),
              ('G-Header-Divider-v001.svg', 'G_HeaderDivider.svg'),
              ('G-Reading-Divider-v001.svg', 'G_ReadingDivider.svg'),
-             ('G-Pause-Bars-v001.svg', 'G_PauseBars.svg')]
+             ('G-Pause-Bars-v001.svg', 'G_PauseBars.svg'),
+             ('G-Wordmark-v001.svg', 'G_Wordmark.svg')]
     for original, runtime in pairs:
         source = root / 'ArtSource/UI/G/Vector' / original
         target = root / 'Game/Content/UI/G/Vector' / runtime

@@ -17,8 +17,12 @@ its action-skin candidates are now on `dev`. The owner merged
 its separate Hint/Check SVG candidates and group layout are now on `dev`.
 The owner merged [PR #8](https://github.com/rloterh/WordQuest/pull/8) at `eae3475`
 on 2026-10-02; its divider/Pause SVG candidates are now on `dev`.
-Working branch: `feature/g-win64-package-proof`, based on that merge, to verify
-the bounded G proof in a local cooked Win64 Development package.
+The owner merged [PR #9](https://github.com/rloterh/WordQuest/pull/9) at `c3eece4`
+on 2026-10-02; its local cooked Win64 proof is now on `dev`.
+Working branch: `feature/g-vector-wordmark`, based on that merge, for the bounded
+static G brand candidate. Final build/native/package evidence and dedicated
+internal review are recorded in regular [PR #10](https://github.com/rloterh/WordQuest/pull/10)
+against `dev`, awaiting the owner's review/merge decision.
 No agent merge, game deployment or release is authorized.
 
 ## Completed work
@@ -168,8 +172,23 @@ pipeline work was slow; no performance qualification is claimed. Dedicated revie
 of clean `3be5369` against actual `dev` base `eae3475` completed with exit 0 and no
 actionable introduced defects. Android/device/offline, art, motion, editorial and
 release gates remain open.
-The bounded [PR #9](https://github.com/rloterh/WordQuest/pull/9) is open against
-`dev` as a tested local Win64 checkpoint, awaiting the owner's review/merge decision.
+The owner merged the bounded [PR #9](https://github.com/rloterh/WordQuest/pull/9)
+on 2026-10-02. That checkpoint does not accept the remaining gates.
+
+After PR #9, a separate editable G wordmark candidate adds licensed outlined
+lettering, gold shading, capital curls, Q swash and under-title ornament. The first
+flat-fill capture was corrected with explicit SVG percentage gradients; narrow
+missing-resource title spacing was corrected. Both real builds and final cook/
+stage/archive pass at clean `1d76858`, together with five inspected packaged
+captures, both Unreal tests and five packaging-helper tests. Extracted draft JSON
+and six SVGs match input hashes; the missing-resource editor capture preserves a
+smaller live title beside focused Pause. See [wordmark](../QA/UI01/G-WORDMARK.md).
+Dedicated review of clean `0f9ed17` against actual `dev` base `c3eece4` completed
+with exit 0 and no actionable introduced defects. The bounded regular
+[PR #10](https://github.com/rloterh/WordQuest/pull/10) is open against `dev` as a
+tested candidate checkpoint, awaiting the owner's review/merge decision.
+Art, screen-reader/input, offline/phone,
+performance, motion, editorial and release gates remain open.
 
 ## Resume
 

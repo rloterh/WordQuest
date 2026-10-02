@@ -13,6 +13,7 @@ targets; shape, faceting and lighting still require visual acceptance.
 | `G-Header-Divider-v001.svg` | `Game/Content/UI/G/Vector/G_HeaderDivider.svg` | 214x29 viewBox; tapered short gold lines, diamond terminals and faceted central star |
 | `G-Reading-Divider-v001.svg` | `Game/Content/UI/G/Vector/G_ReadingDivider.svg` | 314x29 viewBox; longer matching lines and central star |
 | `G-Pause-Bars-v001.svg` | `Game/Content/UI/G/Vector/G_PauseBars.svg` | 24x30 viewBox; two white rounded bars, runtime tint follows skin availability |
+| `G-Wordmark-v001.svg` | `Game/Content/UI/G/Vector/G_Wordmark.svg` | 430x140 viewBox; outlined licensed lettering, gold finish, capital curls, Q swash and star |
 
 From the repository root:
 
@@ -38,7 +39,33 @@ inside its pak and in native rendering; see `Docs/QA/UI01/G-WIN64-PACKAGE-PROOF.
 Android/iOS packaging remains unverified. Earlier native desktop evidence
 and remaining gates are in `Docs/QA/UI01/G-ACTION-ICONS.md` and
 `Docs/QA/UI01/G-VECTOR-ORNAMENTS.md`. The staging helper's historical filename is
-retained; it now checks all five masters/runtime copies.
+retained; it now checks all six masters/runtime copies. The sixth resource is a
+separate G brand candidate; its new packaged verification is recorded in
+`Docs/QA/UI01/G-WORDMARK.md`.
+
+The wordmark outlines the repository's unmodified Cormorant Garamond SemiBold
+(`ArtSource/Fonts/CormorantGaramond`, adjacent OFL and provenance), rather than
+claiming to identify the reference's lettering. The other five masters remain
+unchanged. Its independent ornament paths and font outlines are editable SVG;
+no font lookup is needed to render the mark. Only this fixed brand is outlined;
+all learning text and control labels remain live widgets. The mark has a custom
+`WordQuest` accessibility name; missing SVG retains the live title fallback.
+Screen-reader service behavior is unverified.
+
+To rebuild this candidate from its font and authored curves, install the pinned
+development-only outline tool outside tracked source, then stage normally:
+
+```powershell
+python -m pip install --target Artifacts/Tools/fonttools fonttools==4.61.1
+$env:PYTHONPATH = "$PWD/Artifacts/Tools/fonttools"
+python Tools/AssetImport/build_g_wordmark.py
+python Tools/AssetImport/stage_g_action_icons.py
+```
+
+The checked-in SVGs are sufficient for normal builds; neither Unreal nor the
+parity check requires this Python package. The builder uses
+[fontTools SVGPathPen](https://fonttools.readthedocs.io/en/latest/pens/svgPathPen.html)
+and transformed glyph outlines. No supplied image pixels are changed or extracted.
 
 No rights clearance beyond supplied-reference provenance is established. Release
 clearance and faithful-art acceptance remain open.
