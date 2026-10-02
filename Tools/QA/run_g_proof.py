@@ -1,6 +1,7 @@
 """Run native Unreal checks and retain raw logs/captures; no device claims."""
 import argparse
 from datetime import datetime
+import hashlib
 import json
 import re
 from pathlib import Path
@@ -17,15 +18,39 @@ def main():
     parser.add_argument('--height', type=int, default=1780)
     parser.add_argument('--safe-zone', type=float, default=1.0, help='Desktop simulated safe-area ratio, 0.5 to 1')
     parser.add_argument('--engine-root', type=Path, default=Path(r'C:\Program Files\Epic Games\UE_5.8'))
+    parser.add_argument('--package-run', type=Path, help='Use a completed local package run instead of the editor (capture only)')
     args = parser.parse_args()
     if not .5 <= args.safe_zone <= 1 or args.width < 200 or args.height < 200:
         parser.error('Use safe-zone 0.5..1 and dimensions at least 200 pixels.')
     root = Path(__file__).resolve().parents[2]
-    run = root / 'Artifacts/QA/UI01' / f'{datetime.now():%Y%m%d-%H%M%S}-{args.mode}-{args.proof}'
+    package_manifest = None
+    package_directory = None
+    if args.package_run:
+        if args.mode != 'capture':
+            parser.error('Packaged proof currently supports capture only; run automation with the editor.')
+        manifest_path = args.package_run.resolve() / 'run.json'
+        package_manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
+        if not package_manifest.get('evidence_complete') or not package_manifest.get('files'):
+            parser.error('Package run has no complete successful archive/hash evidence.')
+        package_directory = Path(package_manifest['package_directory']).resolve()
+        for relative, expected_file in package_manifest['files'].items():
+            payload = (package_directory / relative).resolve()
+            if not payload.is_relative_to(package_directory) or not payload.is_file() or payload.stat().st_size != expected_file['size']:
+                parser.error(f'Missing/invalid packaged file: {relative}')
+            with payload.open('rb') as source:
+                if hashlib.file_digest(source, 'sha256').hexdigest() != expected_file['sha256']:
+                    parser.error(f'Packaged file hash changed: {relative}')
+    kind = 'packaged-capture' if package_manifest else args.mode
+    run = root / 'Artifacts/QA/UI01' / f'{datetime.now():%Y%m%d-%H%M%S}-{kind}-{args.proof}'
     run.mkdir(parents=True)
     command = [str(args.engine_root / 'Engine/Binaries/Win64/UnrealEditor-Cmd.exe'),
                str(root / 'Game/WordQuest.uproject'), '-Unattended', '-NoSplash', '-NoSound',
                f'-AbsLog={run / "Unreal.log"}']
+    if package_manifest:
+        command = [str(package_directory / 'WordQuest/Binaries/Win64/WordQuest.exe'),
+                   '-Unattended', '-NoSplash', '-NoSound', f'-AbsLog={run / "Unreal.log"}']
+        if not Path(command[0]).is_file():
+            parser.error('Missing archived native Development game executable.')
     if args.mode == 'automation':
         command += ['-NullRHI', '-ExecCmds=Automation RunTests WordQuest.Context',
                     '-TestExit=Automation Test Queue Empty', f'-ReportExportPath={run / "Report"}']
@@ -38,9 +63,13 @@ def main():
     print(f'Running {args.mode}/{args.proof}: {run}', flush=True)
     result = {'command': command, 'head': subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=root, text=True).strip(),
               'worktree': subprocess.check_output(['git', 'status', '--short'], cwd=root, text=True)}
+    if package_manifest:
+        result.update({'package_manifest': str(manifest_path), 'package_head': package_manifest['head'],
+                       'package_hashes_verified': True,
+                       'package_manifest_sha256': hashlib.sha256(manifest_path.read_bytes()).hexdigest()})
     with (run / 'console.log').open('w', encoding='utf-8') as output:
         try:
-            process = subprocess.run(command, cwd=root, stdout=output, stderr=subprocess.STDOUT, timeout=600)
+            process = subprocess.run(command, cwd=package_directory or root, stdout=output, stderr=subprocess.STDOUT, timeout=600)
             result['exit_code'] = process.returncode
         except subprocess.TimeoutExpired:
             result['exit_code'] = -1

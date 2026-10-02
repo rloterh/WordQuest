@@ -41,10 +41,10 @@ def main():
     archive = run / 'Archive'
     command = [str(args.engine_root / 'Engine/Build/BatchFiles/RunUAT.bat'), 'BuildCookRun',
                f'-project={root / "Game/WordQuest.uproject"}', '-noP4', '-unattended',
-               '-platform=Win64', '-clientconfig=Development', '-build', '-cook',
+               '-platform=Win64', '-clientconfig=Development', '-build', '-skipbuildeditor', '-cook',
                '-map=/Game/Maps/GPrototype', '-stage', '-pak', '-iostore', '-archive',
                f'-stagingdirectory={run / "Stage"}', f'-archivedirectory={archive}',
-               '-utf8output', '-ubtargs=-NoUBA -MaxParallelActions=2',
+               '-utf8output', '-ubtargs=-NoUBA -NoHotReloadFromIDE -MaxParallelActions=2',
                f'-AdditionalCookerOptions=-ini:Engine:[DevOptions.Shaders]:NumUnusedShaderCompilingThreads={max((os.cpu_count() or 2) - 2, 0)}']
     inputs = [root / 'Game/Content/Data/G-Equivocal-Prototype.json',
               *sorted((root / 'Game/Content/UI/G/Vector').glob('*.svg'))]
@@ -52,17 +52,26 @@ def main():
                 'configuration': 'Development', 'command': command,
                 'input_sha256': {str(p.relative_to(root)): sha256(p) for p in inputs},
                 'evidence_complete': False}
+    editor_command = [sys.executable, str(root / 'Tools/BuildScripts/build_wordquest.py'),
+                      '--engine-root', str(args.engine_root)]
+    evidence['editor_build_command'] = editor_command
     print(f'Local G package: {run}', flush=True)
     try:
-        with (run / 'UAT.log').open('w', encoding='utf-8') as output:
-            output.write(subprocess.list2cmdline(command) + '\n')
-            with subprocess.Popen(command, cwd=root, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
-                                  text=True, encoding='utf-8', errors='replace') as process:
-                for line in process.stdout:
-                    print(line, end='', flush=True)
-                    output.write(line)
-                    output.flush()
-                evidence['exit_code'] = process.wait()
+        # UAT applies UbtArgs to the client, not its editor target. Build the editor
+        # explicitly with the established helper before asking UAT to reuse it.
+        for label, build_command in [('EditorBuild', editor_command), ('UAT', command)]:
+            with (run / f'{label}.log').open('w', encoding='utf-8') as output:
+                output.write(subprocess.list2cmdline(build_command) + '\n')
+                with subprocess.Popen(build_command, cwd=root, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+                                      text=True, encoding='utf-8', errors='replace') as process:
+                    for line in process.stdout:
+                        print(line, end='', flush=True)
+                        output.write(line)
+                        output.flush()
+                    evidence['exit_code'] = process.wait()
+                    evidence[f'{label}_exit_code'] = evidence['exit_code']
+            if evidence['exit_code']:
+                break
         package = archive / 'Windows'
         executable = package / 'WordQuest.exe'
         evidence['package_directory'] = str(package)
