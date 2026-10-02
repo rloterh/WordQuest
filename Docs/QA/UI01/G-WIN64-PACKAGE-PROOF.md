@@ -93,7 +93,12 @@ during shutdown before exiting 0. Later warm runs completed substantially sooner
 This is an unresolved performance observation, not a measured startup/shutdown,
 frame-time, thermal or memory qualification. Renderer settings were not altered.
 
-Dedicated read-only PR review is pending against actual `origin/dev`.
+Dedicated read-only Codex review of clean `3be5369` against actual `origin/dev`
+(`eae3475`) completed with exit 0 and no actionable introduced defects. Raw
+evidence: `Artifacts/Reviews/20261002-010558`. HEAD/worktree were unchanged;
+build/runtime checks were not independently rerun during review. Subsequent edits
+only record review/publication status. Review does not authorize merge or replace
+device/release evidence.
 
 ## Limits and next gates
 

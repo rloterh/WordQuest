@@ -165,7 +165,9 @@ seven packaged native captures, both Unreal tests and five helper failure tests.
 Extracted draft JSON/five SVGs match recorded source hashes. See
 [cooked Win64 proof](../QA/UI01/G-WIN64-PACKAGE-PROOF.md). Initial D3D12 shutdown
 pipeline work was slow; no performance qualification is claimed. Dedicated review
-is pending. Android/device/offline, art, motion, editorial and release gates remain open.
+of clean `3be5369` against actual `dev` base `eae3475` completed with exit 0 and no
+actionable introduced defects. Android/device/offline, art, motion, editorial and
+release gates remain open.
 
 ## Resume
 
