@@ -25,7 +25,9 @@ Working branch: `feature/g-spirit-framing`, based on that merge, for bounded
 aspect-preserving companion framing and an art-attempt audit. Two new generated
 exports were rejected for identity/ornament differences; neither is imported.
 The existing source/Unreal texture is preserved; final native/package checks pass.
-Dedicated internal review is recorded; PR publication is pending.
+Dedicated internal review is recorded in regular
+[PR #11](https://github.com/rloterh/WordQuest/pull/11) against `dev`, awaiting the
+owner's review/merge decision.
 No agent merge, game deployment or release is authorized.
 
 ## Completed work
@@ -202,7 +204,10 @@ gutter pixels and contains the framed image, without stretching, in the document
 inspected packaged captures and both Unreal tests pass at clean `30b58f8`.
 See [companion framing](../QA/UI01/G-SPIRIT-FRAMING.md). Dedicated review of clean
 `b1cb19c` against actual `dev` base `2f3c3f6` completed with exit 0 and no actionable
-introduced defects; publication is pending. Framing does not accept companion identity or resolve alpha-edge,
+introduced defects. The bounded regular
+[PR #11](https://github.com/rloterh/WordQuest/pull/11) is open against `dev` as a
+tested framing checkpoint, awaiting the owner's review/merge decision.
+Framing does not accept companion identity or resolve alpha-edge,
 static art, motion, editorial, offline/phone, performance or release gates.
 
 ## Resume

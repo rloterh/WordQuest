@@ -83,7 +83,9 @@ scope; builds/runtime/device checks were not independently rerun. Raw evidence:
 `Artifacts/Reviews/20261002-032154`; HEAD/worktree were unchanged. Optional connector
 warnings did not prevent review completion. Subsequent changes only record review/
 publication status in documentation. Review does not authorize merge or replace
-art/device acceptance.
+art/device acceptance. The bounded regular
+[PR #11](https://github.com/rloterh/WordQuest/pull/11) is open against `dev`; the
+owner retains the merge decision.
 
 ## Remaining gates
 
