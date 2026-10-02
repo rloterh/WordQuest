@@ -122,3 +122,5 @@ paint override, Unreal size-box ownership/slot handling and declared evidence;
 it did not independently repeat builds or runtime checks. Raw review evidence:
 `Artifacts/Reviews/20261002-195153`. Subsequent review/publication records change
 documentation only; the clean packaged source above remains the implementation.
+Published as regular [PR #26](https://github.com/rloterh/WordQuest/pull/26)
+against `dev`; no agent merge was performed.

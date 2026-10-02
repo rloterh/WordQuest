@@ -166,6 +166,8 @@ See [answer reading contrast](../QA/UI01/G-ANSWER-READING-CONTRAST.md).
 Dedicated read-only review against actual `dev` found no actionable introduced
 defects; head/worktree stayed unchanged. Builds/runtime were not independently
 repeated by the reviewer. No new acceptance is claimed.
+The bounded regular [PR #26](https://github.com/rloterh/WordQuest/pull/26) is
+published against `dev`; the owner retains merge authority.
 The owner retains merge authority. Android support receipt is still absent and
 adb lists no device on this turn's recheck.
 The owner identified Epic Games Launcher as the UE installation source; its current
