@@ -44,19 +44,57 @@ void APrototypeController::BeginPlay()
 void APrototypeController::RunKeyboardProof()
 {
     int32 Step = 0;
-    auto KeyStep = [this, &Step](const FKey& Key)
+    auto KeyStep = [this, &Step](const FKey& Key, bool Shift = false)
     {
         // Route real Slate key-down/up events to the focused widget. These
         // checks must not call Choose/Hint/Submit/TogglePause directly.
-        const FKeyEvent Event(Key, FModifierKeysState(), uint32(0), false, 0, 0);
+        const FModifierKeysState Modifiers(Shift, false, false, false, false, false, false, false, false);
+        const FKeyEvent Event(Key, Modifiers, uint32(0), false, 0, 0);
         const bool Down = FSlateApplication::Get().ProcessKeyDownEvent(Event);
         const bool Up = FSlateApplication::Get().ProcessKeyUpEvent(Event);
         const auto& A = Screen->GetAttempt();
-        UE_LOG(LogTemp, Display, TEXT("WQ_KEY_STEP proof=%s step=%d key=%s down=%d up=%d selected=%d submitted=%d correct=%d hint=%d paused=%d evaluations=%d"),
+        UE_LOG(LogTemp, Display, TEXT("WQ_KEY_STEP proof=%s step=%d key=%s down=%d up=%d selected=%d submitted=%d correct=%d hint=%d paused=%d evaluations=%d shift=%d focus=%s textpercent=%d"),
             *ProofName, ++Step, *Key.GetFName().ToString(), Down, Up,
-            A.SelectedIndex, A.bSubmitted, A.bCorrect, A.bHintUsed, A.bPaused, A.EvaluationCount);
+            A.SelectedIndex, A.bSubmitted, A.bCorrect, A.bHintUsed, A.bPaused, A.EvaluationCount,
+            Shift, *Screen->GetProofFocusName(), Screen->GetProofTextPercent());
     };
-    if (ProofName == TEXT("keyswitch"))
+    if (ProofName == TEXT("keyback"))
+    {
+        KeyStep(EKeys::Tab, true); KeyStep(EKeys::Tab);
+        KeyStep(EKeys::Tab, true); KeyStep(EKeys::Tab, true);
+    }
+    else if (ProofName == TEXT("keyskip"))
+    {
+        KeyStep(EKeys::H);
+        for (int32 I = 0; I < 6; ++I) KeyStep(EKeys::Tab);
+        KeyStep(EKeys::Tab, true); KeyStep(EKeys::Tab, true);
+    }
+    else if (ProofName == TEXT("keytab"))
+    {
+        for (int32 I = 0; I < 8; ++I) KeyStep(EKeys::Tab);
+        for (int32 I = 0; I < 3; ++I) KeyStep(EKeys::Tab, true);
+    }
+    else if (ProofName == TEXT("keymodal"))
+    {
+        KeyStep(EKeys::P); KeyStep(EKeys::Tab); KeyStep(EKeys::SpaceBar);
+        KeyStep(EKeys::Tab); KeyStep(EKeys::Tab);
+        KeyStep(EKeys::Tab, true); KeyStep(EKeys::Tab, true); KeyStep(EKeys::Tab, true);
+        KeyStep(EKeys::Tab); // Leave the enlarged modal on TextSize.
+    }
+    else if (ProofName == TEXT("keyretry"))
+    {
+        KeyStep(EKeys::H); KeyStep(EKeys::One); KeyStep(EKeys::Enter); KeyStep(EKeys::P);
+        KeyStep(EKeys::Tab); KeyStep(EKeys::SpaceBar); // Real text-size toggle.
+        KeyStep(EKeys::Tab); KeyStep(EKeys::SpaceBar); // Real retry button.
+        KeyStep(EKeys::Tab); KeyStep(EKeys::SpaceBar); // First answer after reset.
+    }
+    else if (ProofName == TEXT("keydisabled"))
+    {
+        KeyStep(EKeys::One); KeyStep(EKeys::Enter);
+        KeyStep(EKeys::Tab); KeyStep(EKeys::Tab); KeyStep(EKeys::Tab, true);
+        KeyStep(EKeys::P); KeyStep(EKeys::SpaceBar);
+    }
+    else if (ProofName == TEXT("keyswitch"))
     {
         KeyStep(EKeys::One); KeyStep(EKeys::Three); KeyStep(EKeys::Four); KeyStep(EKeys::Two);
     }
@@ -128,6 +166,9 @@ void APrototypeController::RunProof()
 
 void APrototypeController::CaptureProof()
 {
+    if (ProofName.StartsWith(TEXT("key")))
+        UE_LOG(LogTemp, Display, TEXT("WQ_FOCUS_CAPTURE proof=%s focus=%s visible=%d textpercent=%d"),
+            *ProofName, *Screen->GetProofFocusName(), Screen->GetProofFocusedControlVisible(), Screen->GetProofTextPercent());
     IFileManager::Get().MakeDirectory(*FPaths::GetPath(CapturePath), true);
     FScreenshotRequest::RequestScreenshot(CapturePath, true, false);
     if (FParse::Param(FCommandLine::Get(), TEXT("WQExit")))
