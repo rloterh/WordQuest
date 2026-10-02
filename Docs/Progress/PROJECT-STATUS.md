@@ -11,7 +11,8 @@ The corrected clean source passes both real target checks, full Win64 packaging,
 nine inspected packaged captures, both Unreal tests and all 63 Python QA tests.
 The shared glyph gradients retain their old bounds to avoid reshading the other
 letters. Cooked SVG matches source; initial/result pixel changes stay inside the
-title. Dedicated review is pending; no art/device acceptance is claimed. Desktop control
+title. Dedicated read-only review against actual `dev` found no actionable introduced
+defects and left head/worktree unchanged. Art/device acceptance remains open. Desktop control
 still returns a missing-pipe error, the Android support receipt remains absent
 and adb lists no device. See [Q swash](../QA/UI01/G-WORDMARK-SWASH.md).
 
