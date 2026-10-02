@@ -157,6 +157,16 @@ No art, motion, package/device, editorial or release gate is passed.
 The owner merged the bounded [PR #8](https://github.com/rloterh/WordQuest/pull/8)
 on 2026-10-02; this does not accept unfinished gates.
 
+After PR #8, the local Win64 Development G proof now builds, cooks, stages and
+archives with commit/input/payload hashes. Live Coding and archive-path helper
+issues were corrected; generated file-order logs are narrowly excluded while
+build resources remain eligible for Git. Final clean `f695ff8` passes packaging,
+seven packaged native captures, both Unreal tests and five helper failure tests.
+Extracted draft JSON/five SVGs match recorded source hashes. See
+[cooked Win64 proof](../QA/UI01/G-WIN64-PACKAGE-PROOF.md). Initial D3D12 shutdown
+pipeline work was slow; no performance qualification is claimed. Dedicated review
+is pending. Android/device/offline, art, motion, editorial and release gates remain open.
+
 ## Resume
 
 Read [environment](../Setup/ENVIRONMENT.md), [toolchain](../Setup/TOOLCHAIN-LOCK.md),

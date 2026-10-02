@@ -11,6 +11,7 @@ import unittest
 from unittest.mock import Mock, patch
 
 ROOT = Path(__file__).resolve().parents[2]
+(ROOT / 'Artifacts/QA').mkdir(parents=True, exist_ok=True)
 
 
 def load(name, relative):

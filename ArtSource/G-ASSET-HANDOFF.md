@@ -85,6 +85,12 @@ landscape and missing-resource evidence is recorded in
 line taper, bevel/light and exact art acceptance remain open. Pause's actual button,
 semantic name and text fallback remain intact. No layered raster source is claimed.
 
+On 2026-10-02 the local Win64 Development archive verified the draft JSON and all
+five SVGs inside its pak with exact input hashes, plus native cooked texture/font
+and vector rendering. See `Docs/QA/UI01/G-WIN64-PACKAGE-PROOF.md`. This closes that
+desktop resource-path check only; it does not accept art, offline/device or release
+gates. Earlier unverified-package statements describe their original increments.
+
 1. Faithful spirit RGBA at the original x82–289/y276–461 placement, clean anti-aliased
    perimeter, same face and lantern. Provide separate local lantern-emission mask.
 2. Blank panel matching original x65–823/y521–1618. Supply non-stretching top/corners/
