@@ -44,7 +44,7 @@ closed/merged. Initially #16's focus correction was absent from `dev` because th
 merge occurred after #15. The owner merged
 [PR #17](https://github.com/rloterh/WordQuest/pull/17) into `dev` at `f0fd74b` on
 2026-10-02, 10:55:10 UTC; the tested correction is now integrated. No remote branch
-merge was performed by the agent. Working branch: `feature/g-wordmark-bevel`.
+merge was performed by the agent. Working branch: `feature/g-divider-bevel`.
 Oversized focused answers reveal their option letter and first line, while the
 rest remains scrollable. The original correction passed both builds, full Win64
 packaging, 24 capture checks, both Unreal tests and 27 Python tests. Fresh integration
@@ -59,10 +59,21 @@ eight inspected packaged captures, both Unreal tests and 27 Python tests pass.
 Cooked SVG bytes match source, v002 reproduces byte-identically, and preserved v001
 matches the builder after line-ending normalization. Normal-size pixel changes
 stay inside the title region. Final dedicated review against actual `dev` found
-no actionable introduced defects. [PR #18](https://github.com/rloterh/WordQuest/pull/18)
-is a regular PR against `dev`, ready for the owner's merge decision. See
+no actionable introduced defects. The owner merged
+[PR #18](https://github.com/rloterh/WordQuest/pull/18) into `dev` at `c8c0dd3`
+on 2026-10-02, 11:27:16 UTC. See
 [wordmark bevel](../QA/UI01/G-WORDMARK-BEVEL.md); this is not
 original-lettering or static-fidelity acceptance.
+The next bounded UI01 candidate refines shading on the two separate gold dividers.
+New v002 masters preserve v001 geometry, canvas and native reading placement;
+gradients, star rim and ivory/darker facets add material depth. Both real target
+checks, clean full Win64 packaging, eight inspected packaged captures, both Unreal
+tests and all 27 Python tests pass. Cooked bytes match sources; normal-size pixel
+changes stay inside the two divider regions. Dedicated review against actual
+`dev` found no actionable introduced defects.
+[PR #19](https://github.com/rloterh/WordQuest/pull/19) is a regular PR against `dev`,
+ready for the owner's merge decision. See
+[divider bevel](../QA/UI01/G-DIVIDER-BEVEL.md). No art gate is passed.
 Manual input, screen-reader, art and phone gates remain open.
 No agent merge, game deployment or release is authorized.
 

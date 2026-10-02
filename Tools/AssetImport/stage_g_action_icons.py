@@ -12,8 +12,8 @@ def main():
     args = parser.parse_args()
     root = Path(__file__).resolve().parents[2]
     pairs = [('G-Hint-Bulb-v001.svg', 'G_HintBulb.svg'), ('G-Check-Star-v001.svg', 'G_CheckStar.svg'),
-             ('G-Header-Divider-v001.svg', 'G_HeaderDivider.svg'),
-             ('G-Reading-Divider-v001.svg', 'G_ReadingDivider.svg'),
+             ('G-Header-Divider-v002.svg', 'G_HeaderDivider.svg'),
+             ('G-Reading-Divider-v002.svg', 'G_ReadingDivider.svg'),
              ('G-Pause-Bars-v001.svg', 'G_PauseBars.svg'),
              ('G-Wordmark-v002.svg', 'G_Wordmark.svg'),
              ('G-Answer-Badge-v001.svg', 'G_AnswerBadge.svg')]

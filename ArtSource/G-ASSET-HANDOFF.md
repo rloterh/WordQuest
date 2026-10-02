@@ -135,6 +135,13 @@ only pixel differences are verified; eight packaged captures were inspected.
 See `Docs/QA/UI01/G-WORDMARK-BEVEL.md` and adjacent v002 provenance. This does not
 identify or accept the original font, letterforms, flourishes or final brand art.
 
+Both divider masters also have v002 material candidates, preserving their v001
+path geometry and native reading positions. Gradients and directional star facets
+are verified in a clean Win64 package with exact cooked-byte matches; all eight
+native captures were inspected. See `Docs/QA/UI01/G-DIVIDER-BEVEL.md` and the
+adjacent vector provenance. Line/taper, star shape/light and static fidelity
+acceptance remain open. Earlier unverified statements describe their original work.
+
 ## Runtime handoff after static art and build prerequisites
 
 Use one common Context Detective screen; realm data selects art/fonts/skins, while

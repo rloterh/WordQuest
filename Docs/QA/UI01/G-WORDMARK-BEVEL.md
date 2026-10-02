@@ -94,7 +94,8 @@ acceptance. Subsequent records are documentation only; the packaged runtime and
 builder bytes remain unchanged. Raw captures/builds remain local and
 ignored under `Artifacts`.
 [PR #18](https://github.com/rloterh/WordQuest/pull/18) is published as a regular
-PR against `dev`, ready for the owner's merge decision. GitHub has no configured
+PR against `dev`; the owner merged it on 2026-10-02, 11:27:16 UTC, at
+`c8c0dd382b94019c36fb66f2df788d5f7d817724`. GitHub has no configured
 status checks; the local verification above supplies the recorded evidence.
 Physical/manual input, screen-reader, art fidelity, editorial fixture review,
 phone/offline, performance, UI02 motion and release gates remain open.
