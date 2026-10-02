@@ -44,7 +44,13 @@ Clean implementation `38d34a70169f760498d9c8751bac2b08570bfd93`:
   TSR, editor-widget registration and template SpawnActor warnings; packaged capture
   retains the existing TSR/SpawnActor warnings. This is not a warning-free claim.
 
-Dedicated internal review against actual `origin/dev` is pending.
+Dedicated read-only Codex review at clean
+`1f3b7f3fa604d0526fbfe50ab3ac0172a1fd74f5` against actual `origin/dev`,
+`b02a7cc1263ea4d96653c47ec5067f80cb3acfbd`, completed with exit 0 and no
+actionable introduced defects. Head/worktree stayed unchanged. Raw evidence:
+`Artifacts/Reviews/20261002-121513`. Tests were not rerun in the read-only review
+environment; connector startup/permission diagnostics do not constitute test
+results. Subsequent review/publication records change documentation only.
 
 ## Art experiment and gates
 
