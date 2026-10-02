@@ -116,6 +116,11 @@ def check_feedback_capture(log, proof):
     return len(rows) == 1 and rows[0][0] == proof and rows[0][1] in ('1', '2'), rows
 
 
+def check_large_text_capture(log, proof):
+    rows = re.findall(r'WQ_TEXT_CAPTURE proof=(\w+) textpercent=(\d+)', log)
+    return rows == [(proof, '200')], rows
+
+
 INTERRUPTION_PROOFS = ('interruptpaused', 'interruptresumed', 'interruptsubmitted', 'interruptmanual')
 
 
@@ -150,9 +155,12 @@ def main():
     parser.add_argument('--height', type=int, default=1780)
     parser.add_argument('--safe-zone', type=float, default=1.0, help='Desktop simulated safe-area ratio, 0.5 to 1')
     parser.add_argument('--no-tooltips', action='store_true', help='Hide desktop tooltips for comparison captures; not a tooltip interaction test')
+    parser.add_argument('--large-text', action='store_true', help='Use and verify 200%% text in simple question-state captures')
     parser.add_argument('--engine-root', type=Path, default=Path(r'C:\Program Files\Epic Games\UE_5.8'))
     parser.add_argument('--package-run', type=Path, help='Use a completed local package run instead of the editor (capture only)')
     args = parser.parse_args()
+    if args.large_text and (args.mode != 'capture' or args.proof not in ('initial', 'selected', 'correct', 'wrong', 'hint', 'empty')):
+        parser.error('--large-text supports initial/selected/correct/wrong/hint/empty captures only.')
     if not .5 <= args.safe_zone <= 1 or args.width < 200 or args.height < 200:
         parser.error('Use safe-zone 0.5..1 and dimensions at least 200 pixels.')
     root = Path(__file__).resolve().parents[2]
@@ -191,6 +199,8 @@ def main():
         command += ['-game', '-windowed', '-RenderOffscreen', '-ForceRes',
                     f'-ResX={args.width}', f'-ResY={args.height}', f'-WQProof={args.proof}',
                     f'-WQCapture={run / "native.png"}', '-WQExit']
+        if args.large_text:
+            command.append('-WQLargeText')
         console = []
         if args.safe_zone != 1:
             console.append(f'r.DebugSafeZone.TitleRatio {args.safe_zone}')
@@ -239,6 +249,10 @@ def main():
         passed, rows = check_option_cues(log, args.proof, expected)
         result.update({'option_cues_passed': passed, 'option_cues': rows})
         result['evidence_complete'] = result['evidence_complete'] and passed
+        if args.large_text:
+            passed, rows = check_large_text_capture(log, args.proof)
+            result.update({'large_text_passed': passed, 'text_capture': rows})
+            result['evidence_complete'] = result['evidence_complete'] and passed
         if args.proof in FEEDBACK_PROOFS:
             passed, rows = check_feedback_capture(log, args.proof)
             result.update({'feedback_visible_passed': passed, 'feedback_capture': rows})

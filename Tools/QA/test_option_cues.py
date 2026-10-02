@@ -1,6 +1,6 @@
 """Reject premature correctness, stale retry/result markers and semantic drift."""
 import unittest
-from Tools.QA.run_g_proof import check_option_cues, check_feedback_capture
+from Tools.QA.run_g_proof import check_option_cues, check_feedback_capture, check_large_text_capture
 
 
 def trace(proof, selected=-1, code=0, prefix=''):
@@ -8,6 +8,12 @@ def trace(proof, selected=-1, code=0, prefix=''):
 
 
 class OptionCueTests(unittest.TestCase):
+    def test_large_text_rejects_wrong_proof_or_duplicate(self):
+        log = 'WQ_TEXT_CAPTURE proof=correct textpercent=200'
+        self.assertTrue(check_large_text_capture(log, 'correct')[0])
+        self.assertFalse(check_large_text_capture(log, 'wrong')[0])
+        self.assertFalse(check_large_text_capture(log+'\n'+log, 'correct')[0])
+
     def test_feedback_visible_or_oversized_first_line(self):
         for value in (1,2):
             self.assertTrue(check_feedback_capture(f'WQ_FEEDBACK_CAPTURE proof=hint visibility={value}', 'hint')[0])

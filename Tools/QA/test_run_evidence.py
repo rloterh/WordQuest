@@ -14,7 +14,7 @@ from Tools.QA import run_g_proof
 
 
 class RunEvidenceTests(unittest.TestCase):
-    def run_fixture(self, mode, exit_code=0, timeout=False, report=None):
+    def run_fixture(self, mode, exit_code=0, timeout=False, report=None, large_text=False, text_trace=''):
         with tempfile.TemporaryDirectory(prefix='wordquest-evidence-') as directory:
             root = Path(directory)
             script = root / 'Tools/QA/run_g_proof.py'
@@ -24,6 +24,7 @@ class RunEvidenceTests(unittest.TestCase):
                 log.write_text('WQ_STATE proof=initial selected=-1 submitted=0 correct=0 hint=0 paused=0 evaluations=0\n', encoding='utf-8')
                 if mode == 'capture':
                     with log.open('a', encoding='utf-8') as output:
+                        output.write(text_trace)
                         for index in range(4):
                             output.write(f'WQ_OPTION_CUE proof=initial option={index} codepoint=0 label=Option {chr(65 + index)}. Fixture choice\n')
                     # Only the header is consumed by the runner; this is a test
@@ -38,7 +39,7 @@ class RunEvidenceTests(unittest.TestCase):
                 return subprocess.CompletedProcess(command, exit_code)
 
             with patch.object(run_g_proof, '__file__', str(script)), \
-                    patch.object(sys, 'argv', ['run_g_proof.py', mode]), \
+                    patch.object(sys, 'argv', ['run_g_proof.py', mode] + (['--large-text'] if large_text else [])), \
                     patch.object(run_g_proof.subprocess, 'check_output', side_effect=['fixture-head\n', '']), \
                     patch.object(run_g_proof.subprocess, 'run', side_effect=native_run), \
                     contextlib.redirect_stdout(io.StringIO()):
@@ -53,6 +54,16 @@ class RunEvidenceTests(unittest.TestCase):
                 status, verdict = self.run_fixture(mode)
                 self.assertEqual(status, 0)
                 self.assertTrue(verdict['evidence_complete'])
+
+    def test_large_text_requires_actual_200_percent_capture(self):
+        for trace, expected in (('', False), ('WQ_TEXT_CAPTURE proof=initial textpercent=100\n', False),
+                                ('WQ_TEXT_CAPTURE proof=initial textpercent=200\n', True)):
+            with self.subTest(trace=trace):
+                status, verdict = self.run_fixture('capture', large_text=True, text_trace=trace)
+                self.assertEqual(status, 0 if expected else 1)
+                self.assertEqual(verdict['evidence_complete'], expected)
+                self.assertEqual(verdict['large_text_passed'], expected)
+                self.assertIn('-WQLargeText', verdict['command'])
 
     def test_late_nonzero_exit_rejects_existing_capture_or_report(self):
         for mode in ('capture', 'automation'):

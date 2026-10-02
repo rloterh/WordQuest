@@ -44,7 +44,7 @@ closed/merged. Initially #16's focus correction was absent from `dev` because th
 merge occurred after #15. The owner merged
 [PR #17](https://github.com/rloterh/WordQuest/pull/17) into `dev` at `f0fd74b` on
 2026-10-02, 10:55:10 UTC; the tested correction is now integrated. No remote branch
-merge was performed by the agent. Working branch: `feature/g-answer-outcomes`.
+merge was performed by the agent. Working branch: `feature/g-large-outcome-proof`.
 Oversized focused answers reveal their option letter and first line, while the
 rest remains scrollable. The original correction passed both builds, full Win64
 packaging, 24 capture checks, both Unreal tests and 27 Python tests. Fresh integration
@@ -110,10 +110,13 @@ Scoring and art remain unchanged. Both real target builds, clean full Win64 pack
 Initial screen pixels remain unchanged. Dedicated review against actual `dev`
 found no actionable introduced defects and independently passed all nine new
 QA tests; head/worktree stayed unchanged.
-[PR #22](https://github.com/rloterh/WordQuest/pull/22) targets `dev` and is ready
-for owner review. See
+[PR #22](https://github.com/rloterh/WordQuest/pull/22) was merged by the owner into
+`dev` at `9107ff2` on 2026-10-02, 15:56:21 UTC. See
 [answer outcome evidence](../QA/UI01/G-ANSWER-OUTCOMES.md). The Android receipt
-remains absent and adb lists no device on this fresh recheck.
+remains absent and adb lists no device on that recheck.
+The next bounded verification covers submitted correct/incorrect/assisted feedback
+at 200% text in narrow and landscape windows. A development-only capture option
+records and verifies the actual text setting; runtime checks and review are pending.
 The owner identified Epic Games Launcher as the UE installation source; its current
 manifest/installation record now confirms exact UE 5.8.2 at the existing path.
 Android target receipt remains absent and adb lists no device. See
