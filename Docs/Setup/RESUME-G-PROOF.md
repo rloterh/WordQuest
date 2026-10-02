@@ -50,6 +50,10 @@ there is a documented need to re-enable that plugin with local credential handli
    Desktop reading also supports Page Up/Page Down (one viewport with overlap)
    and Home/End (beginning/end). These keys preserve the answer and Hint state;
    Pause blocks them. A control focus move resumes automatic control reveal.
+   Pause controls use their own safe-area scroll box. Tab/Shift-Tab reveals each
+   focused control; labels wrap as needed and a scrollbar appears for overflow.
+   See [Pause scroll evidence](../QA/UI01/G-PAUSE-SCROLL.md) for the checked sizes
+   and remaining manual/platform accessibility gates.
 4. Capture actual native 884x1780 frozen t=0 view. Compare alongside original and with
    50% overlay; record panel, companion, type, palette and anchor differences. Fix
    material deviations. Save capture metadata and images under `Artifacts`.

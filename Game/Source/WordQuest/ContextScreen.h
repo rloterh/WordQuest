@@ -53,6 +53,7 @@ public:
     float GetProofReadingEndOffset() const;
     FString GetProofTextSizes() const;
     bool GetProofActionContentsFit() const;
+    bool GetProofModalContentsFit() const;
     FString GetProofFocusName() const;
     int32 GetProofTextPercent() const { return FMath::RoundToInt(TextScale * 100); }
     bool GetProofFocusedControlVisible() const;
@@ -79,6 +80,7 @@ private:
     TArray<UButton*> EnabledGameplayControls() const;
     void StyleButtons();
     void RevealFocusedControl(UButton* Target);
+    void RevealModalControl(UButton* Target);
     UTextBlock* ButtonLabel(UButton* Target) const;
     UImage* ButtonSkin(UButton* Target) const;
     void SetButtonLabel(UButton* Target, const FString& Label);
@@ -91,6 +93,7 @@ private:
     FContextAttempt Attempt;
     FString ContentError;
     FVector2D LastSize = FVector2D::ZeroVector;
+    FVector2D LastModalSize = FVector2D::ZeroVector;
     float TextScale = 1.f;
     float Scale = 1.f;
     bool bLayoutDirty = true;
@@ -99,12 +102,16 @@ private:
     bool bRevealFeedbackAfterLayout = false;
     bool bRevealFocusAfterLayout = false;
     bool bReadingScrollPriority = false;
+    bool bRevealModalFocusAfterLayout = false;
     FDelegateHandle ActivationHandle;
     FDelegateHandle DeactivationHandle;
     FDelegateHandle BackgroundHandle;
     UPROPERTY(Transient) TObjectPtr<UCanvasPanel> Root;
     UPROPERTY(Transient) TObjectPtr<UCanvasPanel> Canvas;
     UPROPERTY(Transient) TObjectPtr<UCanvasPanel> Modal;
+    UPROPERTY(Transient) TObjectPtr<UCanvasPanel> ModalContent;
+    UPROPERTY(Transient) TObjectPtr<UScrollBox> ModalScroll;
+    UPROPERTY(Transient) TObjectPtr<USizeBox> ModalContentSize;
     UPROPERTY(Transient) TObjectPtr<UScrollBox> Scroll;
     UPROPERTY(Transient) TObjectPtr<USizeBox> ContentSize;
     UPROPERTY(Transient) TObjectPtr<UImage> Background;

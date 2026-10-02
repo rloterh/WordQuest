@@ -21,9 +21,12 @@ private:
     void RunInterruptionProof();
     void RunScrollProof();
     void TraceScrollProof();
+    void RunModalProof();
+    void TraceModalProof();
     void CaptureProof();
     FTimerHandle ProofTimer;
     FTimerHandle ScrollTimer;
+    FTimerHandle ModalTimer;
     int32 ScrollStep = 0;
     bool ScrollDown = false, ScrollUp = false;
     FString ProofName, CapturePath;
