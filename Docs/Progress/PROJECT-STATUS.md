@@ -66,9 +66,11 @@ on 2026-10-02, 11:27:16 UTC. See
 original-lettering or static-fidelity acceptance.
 The next bounded UI01 candidate refines shading on the two separate gold dividers.
 New v002 masters preserve v001 geometry, canvas and native reading placement;
-gradients, star rim and ivory/darker facets add material depth. Preliminary native
-capture passes state/dimensions and was inspected; final clean packaging/captures
-and dedicated review are pending. See
+gradients, star rim and ivory/darker facets add material depth. Both real target
+checks, clean full Win64 packaging, eight inspected packaged captures, both Unreal
+tests and all 27 Python tests pass. Cooked bytes match sources; normal-size pixel
+changes stay inside the two divider regions. Dedicated review against `dev` is
+pending. See
 [divider bevel](../QA/UI01/G-DIVIDER-BEVEL.md). No art gate is passed.
 Manual input, screen-reader, art and phone gates remain open.
 No agent merge, game deployment or release is authorized.
