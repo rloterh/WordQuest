@@ -99,6 +99,8 @@ remain unverified. Dedicated read-only review against actual `dev` found no
 actionable introduced defects and independently passed the six new trace tests;
 head/worktree stayed unchanged. See
 [interruption Pause](../QA/UI01/G-INTERRUPTION-PAUSE.md).
+[PR #21](https://github.com/rloterh/WordQuest/pull/21) is a regular PR against `dev`,
+ready for the owner's merge decision.
 The owner identified Epic Games Launcher as the UE installation source; its current
 manifest/installation record now confirms exact UE 5.8.2 at the existing path.
 Android target receipt remains absent and adb lists no device. See

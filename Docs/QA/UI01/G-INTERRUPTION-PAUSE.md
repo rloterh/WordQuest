@@ -81,6 +81,9 @@ defects. Head/worktree stayed unchanged. The reviewer independently passed the
 six interruption trace tests; it did not independently run engine builds or real
 OS/device interruption checks. Raw evidence: `Artifacts/Reviews/20261002-134048`.
 Subsequent review/publication records change documentation only.
+[PR #21](https://github.com/rloterh/WordQuest/pull/21) is a regular PR against `dev`
+for the owner's merge decision. GitHub has no configured status checks; validation
+above is local. No agent merge is performed.
 
 ## Limits and next prerequisites
 
