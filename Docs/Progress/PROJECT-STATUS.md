@@ -120,7 +120,12 @@ point-size rounding applied after enlargement, reducing the actual ratio. Scalin
 now enlarges the normal rounded font after its readability floor. Enlarged action
 labels wrap within the available button width, fixing a clipped submitted label.
 A development-only capture option verifies the setting, records actual font sizes
-and checks action content fit; fresh verification and review are pending.
+and checks action content fit. Both real target builds, clean Win64 packaging,
+17 inspected native captures, both Unreal tests and all 49 Python tests pass.
+Nine paired runs show exact doubling across ten checked font roles; normal initial
+and correct-outcome PNGs remain unchanged. Dedicated review is pending. See
+[text enlargement evidence](../QA/UI01/G-TEXT-ENLARGEMENT.md). Android support
+receipt is still absent and adb lists no device on this turn's recheck.
 The owner identified Epic Games Launcher as the UE installation source; its current
 manifest/installation record now confirms exact UE 5.8.2 at the existing path.
 Android target receipt remains absent and adb lists no device. See
