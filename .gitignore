@@ -36,6 +36,8 @@ Desktop.ini
 !/Artifacts/**/.gitkeep
 
 # Game/Build contains source build resources; do not blanket-ignore it.
+# UAT-generated file-order traces are cook outputs, not build resources.
+/Game/Build/**/FileOpenOrder/*.log
 # Python helper bytecode.
 __pycache__/
 *.py[cod]
