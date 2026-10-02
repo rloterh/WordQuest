@@ -375,7 +375,8 @@ void UContextScreen::Layout(FVector2D Size)
     const float BGScale = FMath::Max(float(RootSize.X) / 884.f, float(RootSize.Y) / 1779.f);
     Bounds(Background, (RootSize.X - 884 * BGScale) / 2, 0, 884 * BGScale, 1779 * BGScale);
     Place(Brand, 211, 16, 465, 137);
-    Font(Brand, 108 * S, false, DisplayFont);
+    // The live fallback must fit its title region beside the minimum-size Pause.
+    Font(Brand, 95 * S, false, DisplayFont);
     Place(BrandMark, 229, 23, 430, 140);
     Place(ProgressPlaque, 352, 169, 178, 61);
     Font(Progress, 35 * S, true);

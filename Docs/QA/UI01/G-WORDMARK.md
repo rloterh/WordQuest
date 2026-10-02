@@ -35,7 +35,9 @@ fallback when absent. No screen-reader service pass is claimed.
 The initial dirty editor capture `20261002-021319-capture-initial` exposed flat
 amber shading from unit-valued gradient coordinates. That version is rejected
 as final visual evidence; coordinates were changed to explicit SVG percentages.
-Build, final native/package checks and review are pending.
+The first narrow missing-resource capture kept the live label readable but too
+close to Pause; its fallback font size was reduced from 108 to 95 reference pixels.
+Final native/package checks and review are pending.
 
 ## Remaining gates
 
