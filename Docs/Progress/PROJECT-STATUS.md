@@ -148,7 +148,9 @@ Final clean `77fed09` passes both real targets, full Win64 packaging, 17 inspect
 packaged contracts, both Unreal tests and all 63 Python tests. Normal initial/result
 pixels remain unchanged. Focus reveals each Pause control; labels fit and the
 scroll indicator appears only for overflow. See [Pause scroll](../QA/UI01/G-PAUSE-SCROLL.md).
-Dedicated review is pending; manual/platform accessibility remains open.
+Dedicated read-only review against actual `dev` found no actionable introduced
+defects and independently passed seven modal-proof tests; its broader QA run did
+not complete. Head/worktree stayed unchanged. Manual/platform accessibility remains open.
 The owner retains merge authority. Android support receipt is
 still absent and adb lists no device on this turn's recheck.
 The owner identified Epic Games Launcher as the UE installation source; its current

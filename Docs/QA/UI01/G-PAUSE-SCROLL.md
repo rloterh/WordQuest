@@ -39,6 +39,8 @@ Every step is measured on a later arranged frame. No route directly sets button
 focus, text scale or scroll offset. Cycle ends on Retry; Resume preserves the
 submitted attempt and returns focus to Pause; Retry clears choice/Hint/result and
 evaluation count, then Tab/Space selects A without submitting it.
+`WQ_STATE` records the setup before timed input; the ordered traces and final
+option-cue checks supply the later state evidence.
 
 Each ordered trace requires handled input, Space release, exact Shift/focus/text
 state, unchanged attempt during navigation, visible focused Pause controls and
@@ -105,5 +107,13 @@ Unfinished candidate art, the EQUIVOCAL draft and prototype `3 / 7` remain unapp
 Static fidelity, editorial, offline/physical-phone, contrast/manual accessibility,
 performance, motion and release gates remain open. Android engine support receipt
 is absent and adb lists no device on this turn's recheck. UI01 acceptance precedes
-UI02 and H/I; no merge, deployment or release is performed. Dedicated read-only
-review against actual `origin/dev` is pending.
+UI02 and H/I; no merge, deployment or release is performed.
+Dedicated read-only Codex review completed at clean
+`727cf67e9940bffe0a0313e109f44ba7b34f4f19` against actual `origin/dev`,
+`7a464ede7f6cbc1e48d63f9d19d447ee286fe12d`, with exit 0 and no actionable
+introduced defects. Head/worktree stayed unchanged. The reviewer independently
+passed all seven modal-proof tests; its broader QA run did not complete. It did
+not independently repeat Unreal runtime/device verification. The implementation
+run above passed all 63 Python tests. Raw review evidence:
+`Artifacts/Reviews/20261002-184421`. Subsequent review/publication records change
+documentation only. The owner retains merge authority.
