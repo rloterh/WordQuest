@@ -36,7 +36,47 @@ is introduced. The six SVGs and all supplied references remain unchanged.
 
 ## Verification
 
-Native comparison, final clean build/package evidence and review are pending.
+The initial dirty editor capture `20261002-031244-capture-initial` was inspected
+against the original and showed the framed candidate's main wisps and lantern
+tip visible in the intended region. It is preliminary evidence, superseded by
+the clean packaged runs below. The editor implementation built successfully in
+six actions (`Artifacts/Logs/Build/WordQuestEditor-20261002-031014.log`, exit 0).
+
+Final runtime source: clean `30b58f886101c6e9646eda092f7911810b3cb0b3`.
+`python Tools/BuildScripts/package_g_win64.py` passed its clean editor build check,
+rebuilt/linked the game in five actions, fully cooked 510 packages, staged and
+archived, with all exits 0. UAT completed in about 2m31s. Logs/manifests are under
+`Artifacts/Packages/Win64/20261002-031511-853620`; the editor check also records
+`Artifacts/Logs/Build/WordQuestEditor-20261002-031511.log`.
+The package `run.json` SHA256 is
+`beb19064dc1f78ff56963aa515bc215190b9466b72850ddded4bf6e8461283f1`.
+HEAD, worktree and input-hash invariants remained unchanged. This is local Win64
+Development only. The PNG/Unreal texture hashes match the ArtSource provenance
+and neither binary differs from `origin/dev`.
+
+Each native packaged run verified archived payload hashes before launch, exited
+0, and passed requested dimensions/initial unselected, unevaluated state. Clean
+source and package provenance are in each `run.json`. All PNGs were inspected:
+
+| Run under `Artifacts/QA/UI01` | Observation |
+| --- | --- |
+| `20261002-031846-packaged-capture-initial` | 884x1780; framed existing companion visible, main wisps and lantern tip included, no opaque export rectangle; compared directly with unchanged reference |
+| `20261002-031858-packaged-capture-initial` | 390x844, simulated 0.9 safe-zone ratio; companion keeps frame aspect/reference-region scale; live reading and controls remain visible |
+| `20261002-031908-packaged-capture-large` | 390x844, simulated 0.9 inset; 200% live reading rows expand/scroll while the decorative companion retains its composition scale |
+| `20261002-031918-packaged-capture-initial` | 844x390; companion and progress remain hidden in compact landscape; title/Pause/header visible and reading continues below viewport |
+
+Both existing `WordQuest.Context` tests passed with zero failures/skips in
+`20261002-031926-automation-initial/Report` (editor commandlet, not packaged tests).
+All six original-reference hashes, six SVG source/runtime parity checks, LFS
+integrity and diff whitespace checks pass. No new binary asset was committed.
+
+`Artifacts/QA/UI01/g-spirit-framing-comparison.html` embeds the final native PNG,
+immutable original and an adjustable 50% overlay. Browser/overlay interaction
+remains unverified; prior local-navigation blocks were not bypassed. No physical
+phone, manual pointer/keyboard, screen-reader service, offline-isolation or
+performance verification is claimed.
+
+Dedicated read-only internal review is pending.
 
 ## Remaining gates
 

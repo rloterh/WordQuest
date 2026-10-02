@@ -24,7 +24,8 @@ on 2026-10-02; its editable wordmark candidate is now on `dev`.
 Working branch: `feature/g-spirit-framing`, based on that merge, for bounded
 aspect-preserving companion framing and an art-attempt audit. Two new generated
 exports were rejected for identity/ornament differences; neither is imported.
-The existing source/Unreal texture is preserved; native/package checks are pending.
+The existing source/Unreal texture is preserved; final native/package checks pass.
+Dedicated internal review/publication are pending.
 No agent merge, game deployment or release is authorized.
 
 ## Completed work
@@ -191,6 +192,17 @@ with exit 0 and no actionable introduced defects. The bounded regular
 2026-10-02 as a tested candidate checkpoint; that does not accept unfinished art.
 Art, screen-reader/input, offline/phone,
 performance, motion, editorial and release gates remain open.
+
+After PR #10, two new spirit raster attempts were rejected for identity/gold
+ornament differences; exact built-in prompts, hashes and dispositions are recorded.
+Neither was imported or adopted as a new visual target. The existing v001 PNG and
+Unreal texture remain unchanged. Native UV framing excludes some faint export
+gutter pixels and contains the framed image, without stretching, in the documented
+207x185 reference region. Both builds, clean full Win64 cook/stage/archive, four
+inspected packaged captures and both Unreal tests pass at clean `30b58f8`.
+See [companion framing](../QA/UI01/G-SPIRIT-FRAMING.md). Dedicated review/publication
+are pending. Framing does not accept companion identity or resolve alpha-edge,
+static art, motion, editorial, offline/phone, performance or release gates.
 
 ## Resume
 
