@@ -16,6 +16,8 @@ or learning content. Unchanged runtime copy:
 The existing staging/parity helper now handles seven resources. Existing masters,
 raster sources, Unreal binary assets and all supplied references are unchanged.
 No raster editing, original-pixel extraction or image generation was used.
+Git explicitly retains LF for these two new SVGs so their documented bytes remain
+stable across checkouts; no existing SVG/reference line-ending policy is changed.
 
 Each existing answer badge size box now contains an overlay: a noninteractive
 Slate vector image and the existing native border/live letter. The selected navy
@@ -62,9 +64,63 @@ were restored in `finally`. Context is retained in
 `Artifacts/QA/UI01/BadgeFallback/fallback-context.json`. This is an editor omission
 test, not packaged corruption or physical-device evidence.
 
-Final clean package/runtime verification is in progress. Raw native
-metadata explicitly records dirty preliminary source; it is not clean-commit
-package evidence. Dedicated review is pending.
+## Clean cooked verification
+
+Clean source `b7426996cf614f24f342c2571c6dc39bc40f7e9e` passes the editor target,
+Win64 Development game build (five actions, 18.80 seconds), full cook, stage and
+archive. Package: `Artifacts/Packages/Win64/20261002-082621-605383`.
+Editor/UAT exits 0; head, worktree and recorded input invariants are unchanged.
+UAT completed in 78.13 seconds, including a transient local Zen connection error
+that its built-in staging retry recovered. No engine/security setting was changed
+and no bypass was added. Successful staging is recorded after that recovery.
+Manifest SHA-256:
+`3dc11ad3edec8966e0de9c46f6777abe89e308004d9f318dcd322f8ce1ce6e93`.
+
+UnrealPak extracted `Content/UI/G/Vector/G_AnswerBadge.svg` (exit 0): all 712 bytes
+match both source and runtime SVG, with the SHA-256 recorded above. The archive pak
+retains its manifest hash. `BadgeExtract.log` and `CookedBadge.json` retain evidence.
+
+All nine clean candidate packaged runs below exit 0, pass requested dimensions
+and state checks, verify the archive's payload hashes and were directly inspected.
+Metadata records source/package `b742699` with a clean worktree. Raw runs are under
+`Artifacts/QA/UI01/`; only the simulated inset runs use 0.9 safe-zone ratio.
+
+| Run | Window | Inspected observation |
+| --- | --- | --- |
+| `20261002-082919-packaged-capture-initial` | 884x1780 | Four shaded badges with live A–D; no selection/evaluation |
+| `20261002-082930-packaged-capture-selected` | 884x1780 | C retains ring, marker and row outline; no evaluation |
+| `20261002-082939-packaged-capture-hint` | 390x844, inset | Assisted A, one evaluation; selected ring and disabled badge/letter treatment |
+| `20261002-082949-packaged-capture-longfocus` | 390x844, inset | 200% artificial long-answer stress; circular enlarged badges and focused B |
+| `20261002-082958-packaged-capture-longfocus` | 844x390 | 200% artificial long-answer stress; oversized B row partially visible (limit below) |
+| `20261002-083008-packaged-capture-initial` | 260x640, inset | Minimum-size circular badges, wrapped live options |
+| `20261002-083118-packaged-capture-keybuttons` | 390x844, inset | Native Space activates B and Check; repeated Enter leaves one evaluation |
+| `20261002-083128-packaged-capture-keytab` | 390x844, inset | Per-key enabled-control traversal and final Hint visibility pass |
+| `20261002-083235-packaged-capture-focus` | 844x390 | 100% focused B row and badge fully visible |
+
+The 200% artificial long-answer landscape row exceeds the viewport height; its
+badge top is clipped at this scroll position. It is not full-row visibility or
+responsive acceptance. Baseline packaged run
+`20261002-083402-packaged-capture-longfocus` uses the prior package from `c15ddfd`
+(runtime identical to merged `3312e95`) and reproduces the same layout/clipping.
+Read-only comparison finds differences only in badge pixels
+(x131..264/y0..122), with all other RGB pixels identical; evidence:
+`G-Answer-Badge-Landscape-Stress.json`. Long content remains scrollable, while
+manual navigation/readability qualification is pending. No new layout regression
+is observed. The separate 100% landscape capture exposes the complete focused row.
+
+`keybuttons` passes its routed per-key state checks; `keytab` additionally passes
+focus/settings and final focused-control visibility checks. These use synthetic
+Slate events, not physical keyboard input or screen-reader certification.
+An initial batch invocation used the nonexistent mode `keyactivate`; argument
+validation rejected it before launching the game. It was corrected to the existing
+`keybuttons` mode above, with no product code change.
+
+Both existing Unreal tests pass at the same clean source: two succeeded, zero
+failed/not-run/in-process, exit 0, in `20261002-083137-automation-initial`.
+All 22 existing Python tests, six original-reference hashes, seven SVG parity pairs,
+LFS integrity and whitespace checks pass. Dedicated review is pending. Later
+changes record evidence and the two new SVGs' Git LF policy; runtime/source and
+physical SVG payload bytes remain unchanged from the tested package.
 
 ## Remaining gates
 

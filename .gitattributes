@@ -5,6 +5,10 @@
 /ArtSource/Licenses/ROBOTO_License.txt -text whitespace=-blank-at-eol
 .gitkeep -text
 
+# Keep the new badge master/runtime bytes stable across checkout platforms.
+/ArtSource/UI/G/Vector/G-Answer-Badge-v001.svg text eol=lf
+/Game/Content/UI/G/Vector/G_AnswerBadge.svg text eol=lf
+
 # Unreal binary assets.
 *.uasset filter=lfs diff=lfs merge=lfs -text
 *.umap filter=lfs diff=lfs merge=lfs -text

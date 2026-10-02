@@ -38,8 +38,12 @@ both Unreal tests and 22 Python tests passed; cooked Bold payload matched its so
 and dedicated read-only review found no actionable introduced defects.
 Working branch: `feature/g-answer-badge-material`, based on that merge, for an
 editable shaded badge candidate retaining live A–D letters and selected-state
-outline/marker. Editor build passes; native/package/fallback checks and review
-are in progress. Manual input, screen-reader, art and phone gates remain open.
+outline/marker. Both builds, full Win64 package, nine inspected native capture
+state/dimension checks, both Unreal tests and 22 Python tests pass. Missing-SVG
+fallback passes and cooked SVG matches source exactly. Dedicated review is in
+progress. The 200% artificial long-answer landscape row remains partially visible
+at its stress-capture scroll position, reproduced in the merged baseline.
+Manual input, screen-reader, art and phone gates remain open.
 No agent merge, game deployment or release is authorized.
 
 ## Completed work
@@ -275,6 +279,19 @@ The owner merged the bounded regular
 [PR #14](https://github.com/rloterh/WordQuest/pull/14) on 2026-10-02 at `3312e95`.
 GitHub has no configured status checks; local validation is recorded above.
 This does not accept unfinished art/device gates. The owner retains merge authority.
+
+After PR #14, a separate editable shaded SVG disc supplies the four G answer
+badges beneath unchanged live A–D letters. Selected native ring/marker/row outline,
+focus, sizing and scoring are preserved; a missing SVG restores the original solid
+badge. Clean `b742699` passes both builds, full Win64 cook/stage/archive, nine
+inspected packaged state/dimension checks, both Unreal tests and 22 Python tests.
+Extracted cooked SVG matches source/runtime bytes exactly. The 200% artificial
+long-answer landscape row is taller than the viewport and partially visible at the
+recorded scroll position; baseline comparison confirms unchanged layout. This is
+not complete-row visibility acceptance. See
+[badge material](../QA/UI01/G-ANSWER-BADGE-MATERIAL.md). Dedicated review is pending.
+Exact static art, manual accessibility/input, editorial, phone/offline, performance,
+motion and release gates remain open.
 
 ## Owner playtest preview
 

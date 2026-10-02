@@ -116,6 +116,13 @@ gates. Earlier unverified-package statements describe their original increments.
    It does not identify or accept the original title lettering.
 
 Use sRGB exports with straight alpha unless the importer explicitly converts it.
+The G answer badge now also has an editable shaded SVG disc candidate under
+`UI/G/Vector/G-Answer-Badge-v001.svg`, reused beneath live A–D letters. Selected
+state is a separate native ring/marker; absent SVG retains the original solid
+badge. Cooked resource and native state evidence are in
+`Docs/QA/UI01/G-ANSWER-BADGE-MATERIAL.md`. This does not accept the answer skin,
+badge material or typography as final art.
+
 Retain source masks, painted hidden regions and editable layers in the artist's real
 layered format, plus export settings and provenance. Do not fabricate `.blend` or
 other editable-source files from a filename alone. No rights clearance beyond the
