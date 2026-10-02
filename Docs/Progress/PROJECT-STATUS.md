@@ -36,8 +36,8 @@ for a genuine licensed Bold action-face candidate. Import/editor build and preli
 native weight comparison, missing-face fallback, both real builds, full Win64
 cook/stage/archive, seven inspected packaged captures, both Unreal tests and
 22 Python tests pass. Cooked Bold payload matches the licensed source exactly.
-Dedicated review is in progress. Manual input, screen-reader, art and phone gates
-remain open.
+Dedicated read-only review found no actionable introduced defects. Manual input,
+screen-reader, art and phone gates remain open.
 No agent merge, game deployment or release is authorized.
 
 ## Completed work
@@ -265,7 +265,9 @@ seven directly inspected packaged captures and both Unreal tests; 22 existing
 Python tests also pass. Extracted cooked Bold payload matches the source exactly,
 and a separate editor omission test preserves the SemiBold fallback. See
 [action font weight](../QA/UI01/G-ACTION-FONT-WEIGHT.md). Dedicated read-only review
-is pending. Exact typeface identification, static fidelity, manual accessibility,
+of clean `6267858` against actual `dev` base `793a192` completed with exit 0,
+no actionable introduced defects and unchanged head/worktree. Exact typeface
+identification, static fidelity, manual accessibility,
 editorial, phone/offline, performance, motion and release gates remain open.
 
 ## Owner playtest preview

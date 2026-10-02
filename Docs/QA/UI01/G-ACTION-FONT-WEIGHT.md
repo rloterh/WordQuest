@@ -119,9 +119,18 @@ captures; scrolling and unfinished art remain as documented in earlier proofs.
 Both existing Unreal tests pass (2 succeeded, 0 failed/not-run/in-process,
 exit 0) at the same clean source commit:
 `20261002-050830-automation-initial`. All 22 existing Python tests, six reference
-hashes, six SVG source/runtime pairs and LFS/diff checks pass. Dedicated review
-is pending. Raw artifacts remain local and ignored; no physical-device or art
-gate is passed.
+hashes, six SVG source/runtime pairs and LFS/diff checks pass. Raw artifacts
+remain local and ignored; no physical-device or art gate is passed.
+
+## Internal review
+
+Dedicated Codex read-only review completed against actual `origin/dev` base
+`793a1924d6b31a85fae4c74148aa6ab4b3c32ad8`, reviewing clean head
+`6267858c759faeb4816355db89482ad13e19748d`. Exit 0, unchanged head/worktree and
+no actionable introduced defects. Raw report and metadata are retained in
+`Artifacts/Reviews/20261002-051631`. The review checked the fallback, cook
+inclusion, provenance and scope disclosures; it did not rerun builds/runtime
+tests. Later commits record review/publication only, with no runtime changes.
 
 ## Remaining gates
 
