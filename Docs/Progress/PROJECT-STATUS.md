@@ -40,8 +40,8 @@ Working branch: `feature/g-answer-badge-material`, based on that merge, for an
 editable shaded badge candidate retaining live A–D letters and selected-state
 outline/marker. Both builds, full Win64 package, nine inspected native capture
 state/dimension checks, both Unreal tests and 22 Python tests pass. Missing-SVG
-fallback passes and cooked SVG matches source exactly. Dedicated review is in
-progress. The 200% artificial long-answer landscape row remains partially visible
+fallback passes and cooked SVG matches source exactly. Dedicated read-only review
+found no actionable introduced defects. The 200% artificial long-answer landscape row remains partially visible
 at its stress-capture scroll position, reproduced in the merged baseline.
 Manual input, screen-reader, art and phone gates remain open.
 No agent merge, game deployment or release is authorized.
@@ -289,7 +289,9 @@ Extracted cooked SVG matches source/runtime bytes exactly. The 200% artificial
 long-answer landscape row is taller than the viewport and partially visible at the
 recorded scroll position; baseline comparison confirms unchanged layout. This is
 not complete-row visibility acceptance. See
-[badge material](../QA/UI01/G-ANSWER-BADGE-MATERIAL.md). Dedicated review is pending.
+[badge material](../QA/UI01/G-ANSWER-BADGE-MATERIAL.md). Dedicated read-only review
+of clean `98d22a1` against actual `dev` base `3312e95` completed with exit 0,
+no actionable introduced defects and unchanged head/worktree.
 Exact static art, manual accessibility/input, editorial, phone/offline, performance,
 motion and release gates remain open.
 
