@@ -108,6 +108,11 @@ UButton* UContextScreen::Button(const TCHAR* Name, const FString& Label)
             // the same event. Reapply after the event and any pending reflow.
             bRevealFocusAfterLayout = true;
         }
+        else
+        {
+            RevealModalControl(Result);
+            bRevealModalFocusAfterLayout = true;
+        }
     });
     Result->OnLostFocus.BindWeakLambda(this, [this]() { StyleButtons(); });
     return Result;
@@ -362,13 +367,24 @@ void UContextScreen::Build()
     ModalShade->SetColorAndOpacity(FLinearColor(.015f, .008f, .04f, .97f));
     Modal->AddChild(ModalShade);
     Fill(ModalShade);
+    auto* ModalSafe = Make<USafeZone>(TEXT("PauseSafeArea"));
+    Modal->AddChild(ModalSafe);
+    Fill(ModalSafe);
+    ModalScroll = Make<UScrollBox>(TEXT("PauseScroll"));
+    ModalScroll->SetScrollWhenFocusChanges(EScrollWhenFocusChanges::InstantScroll);
+    ModalSafe->AddChild(ModalScroll);
+    Accessible(ModalScroll, TEXT("Pause controls. Scroll or use Tab and Shift Tab to reach each control."));
+    ModalContentSize = Make<USizeBox>(TEXT("PauseContentSize"));
+    ModalScroll->AddChild(ModalContentSize);
+    ModalContent = Make<UCanvasPanel>(TEXT("PauseContent"));
+    ModalContentSize->AddChild(ModalContent);
     PauseTitle = Text(TEXT("PauseTitle"), TEXT("Paused"));
     PauseTitle->SetColorAndOpacity(FLinearColor::White);
-    Modal->AddChild(PauseTitle);
+    ModalContent->AddChild(PauseTitle);
     ResumeButton = Button(TEXT("Resume"), TEXT("Resume"));
     TextSizeButton = Button(TEXT("TextSize"), TEXT("Text size: 100%"));
     ResetButton = Button(TEXT("Reset"), TEXT("Try this question again"));
-    for (auto* B : {ResumeButton.Get(), TextSizeButton.Get(), ResetButton.Get()}) Modal->AddChild(B);
+    for (auto* B : {ResumeButton.Get(), TextSizeButton.Get(), ResetButton.Get()}) ModalContent->AddChild(B);
     ResumeButton->OnClicked.AddDynamic(this, &UContextScreen::TogglePause);
     TextSizeButton->OnClicked.AddDynamic(this, &UContextScreen::ToggleTextSize);
     ResetButton->OnClicked.AddDynamic(this, &UContextScreen::ResetAttempt);
@@ -424,15 +440,26 @@ void UContextScreen::NativeTick(const FGeometry& Geometry, float DeltaTime)
 {
     Super::NativeTick(Geometry, DeltaTime);
     const FVector2D Size = Scroll->GetCachedGeometry().GetLocalSize();
-    if (Size.X > 1 && Size.Y > 1 && (bLayoutDirty || !Size.Equals(LastSize, .5)))
+    const FVector2D ModalSize = ModalScroll->GetCachedGeometry().GetLocalSize();
+    if (Size.X > 1 && Size.Y > 1 && (bLayoutDirty || !Size.Equals(LastSize, .5)
+        || (Attempt.bPaused && !ModalSize.Equals(LastModalSize, .5))))
     {
         // A focus event may have used the old geometry before text-size/reflow.
         // Recheck it next tick, once the new layout has been arranged. Explicit
         // feedback scrolling takes priority over revealing a still-focused row.
         bRevealFocusAfterLayout = !bRevealFeedback && !bReadingScrollPriority;
+        bRevealModalFocusAfterLayout = Attempt.bPaused;
         Layout(Size);
         LastSize = Size;
+        LastModalSize = ModalSize;
         bLayoutDirty = false;
+    }
+    else if (bRevealModalFocusAfterLayout)
+    {
+        bRevealModalFocusAfterLayout = false;
+        if (Attempt.bPaused)
+            for (auto* B : {ResumeButton.Get(), TextSizeButton.Get(), ResetButton.Get()})
+                if (B->HasUserFocus(GetOwningPlayer())) { RevealModalControl(B); break; }
     }
     else if (bRevealFeedbackAfterLayout)
     {
@@ -631,23 +658,49 @@ void UContextScreen::Layout(FVector2D Size)
     Bounds(PanelBody, X + 47 * S, PanelTop + 160 * S, 790 * S, PanelEnd - PanelTop - 260 * S);
     Bounds(PanelBottom, X + 47 * S, PanelEnd - 100 * S, 790 * S, 100 * S);
     ContentSize->SetHeightOverride(FMath::Max(float(Size.Y), Y + 214 * S));
-    const float ModalWidth = FMath::Min(float(RootSize.X) - 32.f, 470.f);
-    const float ModalX = (RootSize.X - ModalWidth) / 2;
-    const float ModalY = FMath::Max(16.f, float(RootSize.Y) / 2 - 150.f);
-    Bounds(PauseTitle, ModalX, ModalY, ModalWidth, 52);
+    // Keep a full-size shade, but place the scrollable controls inside the safe
+    // area. Side margins also leave space for the ordinary scroll indicator.
+    const auto CachedModalSize = ModalScroll->GetCachedGeometry().GetLocalSize();
+    const FVector2D ModalSize = CachedModalSize.X > 1 && CachedModalSize.Y > 1 ? CachedModalSize : Size;
+    const float ModalWidth = FMath::Max(48.f, FMath::Min(float(ModalSize.X) - 48.f, 470.f));
+    const float ModalX = (ModalSize.X - ModalWidth) / 2;
+    const float ModalY = FMath::Max(16.f, float(ModalSize.Y) / 2 - 150.f);
     Font(PauseTitle, 32, true, DisplayFont);
-    int32 Row = 0;
+    PauseTitle->SetWrapTextAt(ModalWidth);
+    PauseTitle->SetWrappingPolicy(ETextWrappingPolicy::AllowPerCharacterWrapping);
+    PauseTitle->ForceLayoutPrepass();
+    const float TitleHeight = FMath::Max(52.f, float(PauseTitle->GetDesiredSize().Y));
+    Bounds(PauseTitle, ModalX, ModalY, ModalWidth, TitleHeight);
+    StyleButtons();
+    float ModalControlY = ModalY + TitleHeight + 14.f;
     for (auto* B : {ResumeButton.Get(), TextSizeButton.Get(), ResetButton.Get()})
     {
-        Bounds(B, ModalX, ModalY + 66 + Row++ * 66, ModalWidth, 54);
-        Font(CastChecked<UTextBlock>(B->GetContent()), 22, true);
+        auto* Label = ButtonLabel(B);
+        Font(Label, 22, true);
+        const auto ContentPadding = CastChecked<UButtonSlot>(Label->Slot)->GetPadding();
+        const auto StylePadding = B->GetStyle().NormalPadding;
+        Label->SetWrapTextAt(FMath::Max(1.f, ModalWidth - ContentPadding.Left - ContentPadding.Right
+            - StylePadding.Left - StylePadding.Right));
+        Label->SetWrappingPolicy(ETextWrappingPolicy::AllowPerCharacterWrapping);
+        Label->ForceLayoutPrepass();
+        const float Height = FMath::Max(54.f, float(Label->GetDesiredSize().Y) + ContentPadding.Top + ContentPadding.Bottom
+            + StylePadding.Top + StylePadding.Bottom);
+        Bounds(B, ModalX, ModalControlY, ModalWidth, Height);
+        ModalControlY += Height + 12.f;
     }
+    ModalContentSize->SetHeightOverride(FMath::Max(float(ModalSize.Y), ModalControlY + 4.f));
     StyleButtons();
     if (bRevealFeedback)
     {
         bRevealFeedbackAfterLayout = true;
         bRevealFeedback = false;
     }
+}
+
+void UContextScreen::RevealModalControl(UButton* Target)
+{
+    if (Target == ResumeButton || Target == TextSizeButton || Target == ResetButton)
+        ModalScroll->ScrollWidgetIntoView(Target, false, EDescendantScrollDestination::IntoView);
 }
 
 void UContextScreen::RevealFocusedControl(UButton* Target)
@@ -814,6 +867,7 @@ void UContextScreen::TogglePause()
 {
     if (!Attempt.bPaused)
     {
+        ModalScroll->ScrollToStart();
         PreviousFocus = PauseButton;
         for (const auto& Answer : Answers) if (Answer.Button->HasKeyboardFocus()) PreviousFocus = Answer.Button;
         if (HintButton->HasKeyboardFocus()) PreviousFocus = HintButton;
@@ -833,6 +887,7 @@ void UContextScreen::ResetAttempt()
     bRevealFeedback = false;
     bRevealFeedbackAfterLayout = false;
     bReadingScrollPriority = false;
+    bRevealModalFocusAfterLayout = false;
     Refresh();
     Scroll->ScrollToStart();
     SetUserFocus(GetOwningPlayer());
@@ -889,6 +944,20 @@ FReply UContextScreen::NativeOnKeyDown(const FGeometry& Geometry, const FKeyEven
 bool UContextScreen::GetProofActionContentsFit() const
 {
     for (auto* B : {HintButton.Get(), SubmitButton.Get()})
+    {
+        const auto Content = B->GetContent()->GetDesiredSize();
+        const auto ContentPadding = CastChecked<UButtonSlot>(B->GetContent()->Slot)->GetPadding();
+        const auto StylePadding = B->GetStyle().NormalPadding;
+        const auto Size = CastChecked<UCanvasPanelSlot>(B->Slot)->GetSize();
+        if (Content.X + ContentPadding.Left + ContentPadding.Right + StylePadding.Left + StylePadding.Right > Size.X + 1
+            || Content.Y + ContentPadding.Top + ContentPadding.Bottom + StylePadding.Top + StylePadding.Bottom > Size.Y + 1) return false;
+    }
+    return true;
+}
+
+bool UContextScreen::GetProofModalContentsFit() const
+{
+    for (auto* B : {ResumeButton.Get(), TextSizeButton.Get(), ResetButton.Get()})
     {
         const auto Content = B->GetContent()->GetDesiredSize();
         const auto ContentPadding = CastChecked<UButtonSlot>(B->GetContent()->Slot)->GetPadding();
@@ -962,7 +1031,7 @@ bool UContextScreen::GetProofFocusedControlVisible() const
     TArray<UButton*> Controls = Attempt.bPaused
         ? TArray<UButton*>{ResumeButton.Get(), TextSizeButton.Get(), ResetButton.Get()}
         : EnabledGameplayControls();
-    const FSlateRect Clip = (Attempt.bPaused ? GetCachedGeometry() : Scroll->GetCachedGeometry()).GetLayoutBoundingRect();
+    const FSlateRect Clip = (Attempt.bPaused ? ModalScroll->GetCachedGeometry() : Scroll->GetCachedGeometry()).GetLayoutBoundingRect();
     for (auto* B : Controls)
         if (B->HasUserFocus(GetOwningPlayer()))
         {

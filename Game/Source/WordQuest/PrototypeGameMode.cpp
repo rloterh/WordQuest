@@ -212,11 +212,47 @@ void APrototypeController::TraceScrollProof()
     ScrollUp = FSlateApplication::Get().ProcessKeyUpEvent(Event);
 }
 
+void APrototypeController::RunModalProof()
+{
+    auto Key = [](const FKey& Value)
+    {
+        const FKeyEvent Event(Value, FModifierKeysState(), uint32(0), false, 0, 0);
+        FSlateApplication::Get().ProcessKeyDownEvent(Event);
+        FSlateApplication::Get().ProcessKeyUpEvent(Event);
+    };
+    Key(EKeys::H); Key(EKeys::One); Key(EKeys::Enter); Key(EKeys::P);
+    ScrollStep = 0;
+    ScrollDown = ScrollUp = false;
+    GetWorldTimerManager().SetTimer(ModalTimer, this, &APrototypeController::TraceModalProof, .15f, true, .5f);
+}
+
+void APrototypeController::TraceModalProof()
+{
+    TArray<FKey> Keys = {EKeys::Invalid, EKeys::Tab, EKeys::SpaceBar, EKeys::Tab,
+        EKeys::Tab, EKeys::Tab, EKeys::Tab, EKeys::Tab, EKeys::Tab, EKeys::Tab};
+    if (ProofName == TEXT("modalresume")) { Keys.Add(EKeys::Tab); Keys.Add(EKeys::SpaceBar); }
+    if (ProofName == TEXT("modalretry")) { Keys.Add(EKeys::SpaceBar); Keys.Add(EKeys::Tab); Keys.Add(EKeys::SpaceBar); }
+    const auto& A = Screen->GetAttempt();
+    const bool Shift = ScrollStep >= 5 && ScrollStep <= 7;
+    UE_LOG(LogTemp, Display, TEXT("WQ_MODAL_STEP proof=%s step=%d key=%s down=%d up=%d shift=%d selected=%d submitted=%d correct=%d hint=%d paused=%d evaluations=%d focus=%s textpercent=%d visible=%d fits=%d answerstart=%d oversized=%d"),
+        *ProofName, ScrollStep + 1, ScrollStep == 0 ? TEXT("start") : *Keys[ScrollStep].GetFName().ToString(),
+        ScrollDown, ScrollUp, Shift, A.SelectedIndex, A.bSubmitted, A.bCorrect, A.bHintUsed, A.bPaused, A.EvaluationCount,
+        *Screen->GetProofFocusName(), Screen->GetProofTextPercent(), Screen->GetProofFocusedControlVisible(), Screen->GetProofModalContentsFit(),
+        Screen->GetProofFocusedAnswerStartVisible(), Screen->GetProofFocusedAnswerOversized());
+    if (++ScrollStep == Keys.Num()) { GetWorldTimerManager().ClearTimer(ModalTimer); return; }
+    const bool NextShift = ScrollStep >= 5 && ScrollStep <= 7;
+    const FModifierKeysState Modifiers(NextShift, false, false, false, false, false, false, false, false);
+    const FKeyEvent Event(Keys[ScrollStep], Modifiers, uint32(0), false, 0, 0);
+    ScrollDown = FSlateApplication::Get().ProcessKeyDownEvent(Event);
+    ScrollUp = FSlateApplication::Get().ProcessKeyUpEvent(Event);
+}
+
 void APrototypeController::RunProof()
 {
     if (FParse::Param(FCommandLine::Get(), TEXT("WQLargeText"))) Screen->SetProofTextScale(2);
     if (ProofName.StartsWith(TEXT("key"))) RunKeyboardProof();
     else if (ProofName.StartsWith(TEXT("scroll"))) RunScrollProof();
+    else if (ProofName.StartsWith(TEXT("modal"))) RunModalProof();
     else if (ProofName.StartsWith(TEXT("interrupt"))) RunInterruptionProof();
     else if (ProofName == TEXT("selected")) Screen->Choose(2);
     else if (ProofName == TEXT("correct")) { Screen->Choose(0); Screen->Submit(); Screen->Submit(); }
@@ -255,7 +291,7 @@ void APrototypeController::RunProof()
     UE_LOG(LogTemp, Display, TEXT("WQ_STATE proof=%s selected=%d submitted=%d correct=%d hint=%d paused=%d evaluations=%d"),
         *ProofName, A.SelectedIndex, A.bSubmitted, A.bCorrect, A.bHintUsed, A.bPaused, A.EvaluationCount);
     if (!CapturePath.IsEmpty()) GetWorldTimerManager().SetTimer(ProofTimer, this, &APrototypeController::CaptureProof,
-        ProofName.StartsWith(TEXT("scroll")) ? 2.f : 1.f, false);
+        ProofName.StartsWith(TEXT("modal")) ? 3.f : ProofName.StartsWith(TEXT("scroll")) ? 2.f : 1.f, false);
 }
 
 void APrototypeController::CaptureProof()
@@ -269,6 +305,10 @@ void APrototypeController::CaptureProof()
     if (ProofName.StartsWith(TEXT("scroll")))
         UE_LOG(LogTemp, Display, TEXT("WQ_SCROLL_CAPTURE proof=%s focus=%s visible=%d"),
             *ProofName, *Screen->GetProofFocusName(), Screen->GetProofFocusedControlVisible());
+    if (ProofName.StartsWith(TEXT("modal")))
+        UE_LOG(LogTemp, Display, TEXT("WQ_MODAL_CAPTURE proof=%s focus=%s visible=%d fits=%d answerstart=%d oversized=%d"),
+            *ProofName, *Screen->GetProofFocusName(), Screen->GetProofFocusedControlVisible(), Screen->GetProofModalContentsFit(),
+            Screen->GetProofFocusedAnswerStartVisible(), Screen->GetProofFocusedAnswerOversized());
     for (int32 I = 0; I < 4; ++I)
         UE_LOG(LogTemp, Display, TEXT("WQ_OPTION_CUE proof=%s option=%d codepoint=%d label=%s"),
             *ProofName, I, Screen->GetProofAnswerCueCode(I), *Screen->GetProofAnswerAccessibleText(I));

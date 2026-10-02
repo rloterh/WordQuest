@@ -166,6 +166,34 @@ def check_scroll_steps(log, proof):
     return passed, rows, captures
 
 
+MODAL_PROOFS = ('modalcycle', 'modalresume', 'modalretry')
+
+
+def check_modal_steps(log, proof):
+    rows = re.findall(r'WQ_MODAL_STEP proof=(\w+) step=(\d+) key=(\w+) down=(\d+) up=(\d+) shift=(\d+) selected=(-?\d+) submitted=(\d+) correct=(\d+) hint=(\d+) paused=(\d+) evaluations=(\d+) focus=(\w+) textpercent=(\d+) visible=(\d+) fits=(\d+) answerstart=(\d+) oversized=(\d+)', log)
+    keys = ['start','Tab','SpaceBar','Tab','Tab','Tab','Tab','Tab','Tab','Tab']
+    focuses = ['Resume','TextSize','TextSize','Reset','Resume','Reset','TextSize','Resume','TextSize','Reset']
+    if proof == 'modalresume': keys += ['Tab','SpaceBar']; focuses += ['Resume','Pause']
+    if proof == 'modalretry': keys += ['SpaceBar','Tab','SpaceBar']; focuses += ['Screen','Answer0','Answer0']
+    passed = len(rows) == len(keys)
+    for index,(row,key,focus) in enumerate(zip(rows,keys,focuses)):
+        attempt = (0,1,1,1,1,1)
+        if proof == 'modalresume' and index == 11: attempt = (0,1,1,1,0,1)
+        if proof == 'modalretry' and index >= 10: attempt = (0 if index == 12 else -1,0,0,0,0,0)
+        passed = passed and row[:3] == (proof,str(index+1),key) and row[3] == ('0' if index == 0 else '1')
+        passed = passed and row[5] == str(int(5 <= index <= 7)) and tuple(map(int,row[6:12])) == attempt
+        passed = passed and row[12:14] == (focus,'100' if index < 2 else '200') and row[15] == '1'
+        if focus == 'Answer0': passed = passed and row[16] == '1' and (row[14] == '1' or row[17] == '1')
+        elif focus != 'Screen': passed = passed and row[14] == '1'
+        if key == 'SpaceBar': passed = passed and row[4] == '1'
+    captures = re.findall(r'WQ_MODAL_CAPTURE proof=(\w+) focus=(\w+) visible=(\d+) fits=(\d+) answerstart=(\d+) oversized=(\d+)',log)
+    passed = passed and len(captures) == 1 and captures[0][:2] == (proof,focuses[-1]) and captures[0][3] == '1'
+    if len(captures) == 1:
+        passed = passed and (captures[0][4] == '1' and (captures[0][2] == '1' or captures[0][5] == '1')
+                            if proof == 'modalretry' else captures[0][2] == '1')
+    return passed,rows,captures
+
+
 INTERRUPTION_PROOFS = ('interruptpaused', 'interruptresumed', 'interruptsubmitted', 'interruptmanual')
 
 
@@ -195,7 +223,7 @@ def check_interruption_steps(log, proof):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('mode', choices=['automation', 'capture'])
-    parser.add_argument('--proof', default='initial', choices=['initial', 'selected', 'correct', 'wrong', 'hint', 'empty', 'paused', 'resumed', 'pausefocus', 'large', 'long', 'longfocus', 'longselectedfocus', 'focus', 'actions', 'actionfocus', *KEYBOARD_STEPS, *INTERRUPTION_PROOFS, *SCROLL_PROOFS])
+    parser.add_argument('--proof', default='initial', choices=['initial', 'selected', 'correct', 'wrong', 'hint', 'empty', 'paused', 'resumed', 'pausefocus', 'large', 'long', 'longfocus', 'longselectedfocus', 'focus', 'actions', 'actionfocus', *KEYBOARD_STEPS, *INTERRUPTION_PROOFS, *SCROLL_PROOFS, *MODAL_PROOFS])
     parser.add_argument('--width', type=int, default=884)
     parser.add_argument('--height', type=int, default=1780)
     parser.add_argument('--safe-zone', type=float, default=1.0, help='Desktop simulated safe-area ratio, 0.5 to 1')
@@ -287,12 +315,14 @@ def main():
             'interruptresumed': (1, 0, 0, 1, 0, 0),
             'interruptsubmitted': (1, 1, 0, 1, 0, 1),
             **{proof: (0, 1, 1, 1, int(proof == 'scrollpaused'), 1) for proof in SCROLL_PROOFS},
+            **{proof: (0, 1, 1, 1, 1, 1) for proof in MODAL_PROOFS},
             **{proof: steps[-1][1] for proof, steps in KEYBOARD_STEPS.items()},
         }.get(args.proof, (-1, 0, 0, 0, 0, 0))
         matches = re.findall(r'WQ_STATE proof=\w+ selected=(-?\d+) submitted=(\d+) correct=(\d+) hint=(\d+) paused=(\d+) evaluations=(\d+)', log)
         result['state_passed'] = len(matches) == 1 and tuple(map(int, matches[0])) == expected
         result['evidence_complete'] = result['state_passed'] and result.get('dimensions') == [args.width, args.height]
-        passed, rows = check_option_cues(log, args.proof, expected)
+        cue_state = (0,0,0,0,0,0) if args.proof == 'modalretry' else expected
+        passed, rows = check_option_cues(log, args.proof, cue_state)
         result.update({'option_cues_passed': passed, 'option_cues': rows})
         result['evidence_complete'] = result['evidence_complete'] and passed
         if args.large_text or args.proof in SCROLL_PROOFS:
@@ -309,6 +339,10 @@ def main():
         if args.proof in SCROLL_PROOFS:
             passed, rows, captures = check_scroll_steps(log, args.proof)
             result.update({'scroll_steps_passed': passed, 'scroll_steps': rows, 'scroll_capture': captures})
+            result['evidence_complete'] = result['evidence_complete'] and passed
+        if args.proof in MODAL_PROOFS:
+            passed, rows, captures = check_modal_steps(log, args.proof)
+            result.update({'modal_steps_passed': passed, 'modal_steps': rows, 'modal_capture': captures})
             result['evidence_complete'] = result['evidence_complete'] and passed
         if args.proof in INTERRUPTION_PROOFS:
             passed, rows, capture_rows = check_interruption_steps(log, args.proof)
