@@ -216,6 +216,9 @@ void APrototypeController::RunProof()
 
 void APrototypeController::CaptureProof()
 {
+    for (int32 I = 0; I < 4; ++I)
+        UE_LOG(LogTemp, Display, TEXT("WQ_OPTION_CUE proof=%s option=%d codepoint=%d label=%s"),
+            *ProofName, I, Screen->GetProofAnswerCueCode(I), *Screen->GetProofAnswerAccessibleText(I));
     if (ProofName == TEXT("longfocus") || ProofName == TEXT("longselectedfocus"))
         UE_LOG(LogTemp, Display, TEXT("WQ_ANSWER_START proof=%s focus=%s textpercent=%d visible=%d oversized=%d"),
             *ProofName, *Screen->GetProofFocusName(), Screen->GetProofTextPercent(),

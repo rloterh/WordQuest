@@ -44,7 +44,7 @@ closed/merged. Initially #16's focus correction was absent from `dev` because th
 merge occurred after #15. The owner merged
 [PR #17](https://github.com/rloterh/WordQuest/pull/17) into `dev` at `f0fd74b` on
 2026-10-02, 10:55:10 UTC; the tested correction is now integrated. No remote branch
-merge was performed by the agent. Working branch: `feature/g-interruption-pause`.
+merge was performed by the agent. Working branch: `feature/g-answer-outcomes`.
 Oversized focused answers reveal their option letter and first line, while the
 rest remains scrollable. The original correction passed both builds, full Win64
 packaging, 24 capture checks, both Unreal tests and 27 Python tests. Fresh integration
@@ -99,8 +99,13 @@ remain unverified. Dedicated read-only review against actual `dev` found no
 actionable introduced defects and independently passed the six new trace tests;
 head/worktree stayed unchanged. See
 [interruption Pause](../QA/UI01/G-INTERRUPTION-PAUSE.md).
-[PR #21](https://github.com/rloterh/WordQuest/pull/21) is a regular PR against `dev`,
-ready for the owner's merge decision.
+[PR #21](https://github.com/rloterh/WordQuest/pull/21) was merged by the owner into
+`dev` at `7e100c2` on 2026-10-02, 14:01:07 UTC.
+The next bounded G correction distinguishes neutral selection from submitted
+correct/near-miss outcomes with live symbols and matching accessible button text.
+Scoring and art remain unchanged. Real editor build and all 43 Python tests pass;
+clean package/runtime verification and dedicated review are pending. The Android
+receipt remains absent and adb lists no device on this fresh recheck.
 The owner identified Epic Games Launcher as the UE installation source; its current
 manifest/installation record now confirms exact UE 5.8.2 at the existing path.
 Android target receipt remains absent and adb lists no device. See

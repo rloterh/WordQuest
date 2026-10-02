@@ -698,7 +698,9 @@ void UContextScreen::StyleButtons()
         const bool HasBadgeSkin = Answer.BadgeSkin->GetVisibility() != ESlateVisibility::Collapsed;
         Answer.Badge->SetBrush(FSlateRoundedBoxBrush(HasBadgeSkin ? FLinearColor::Transparent : BadgeFill,
             Radius, Selected ? Ink : BadgeEdge, Selected ? 3.f : (HasBadgeSkin ? 0.f : 1.f)));
-        Answer.Marker->SetText(Selected ? FText::FromString(TEXT(">")) : FText::GetEmpty());
+        const TCHAR* Cue = !Selected ? TEXT("") : !Attempt.bSubmitted ? TEXT(">")
+            : Attempt.bCorrect ? TEXT("\u2713") : TEXT("\u00d7");
+        Answer.Marker->SetText(FText::FromString(Cue));
     }
     Apply(SubmitButton, true, false);
     for (auto* B : {HintButton.Get(), PauseButton.Get(), ResumeButton.Get(), TextSizeButton.Get(), ResetButton.Get()}) Apply(B, false, false);
@@ -722,7 +724,8 @@ void UContextScreen::Refresh()
         Answers[I].Skin->SetIsEnabled(bReady && !Attempt.bSubmitted);
         if (bReady)
         {
-            const FString Prefix = Attempt.SelectedIndex == I ? TEXT("Selected. ") : TEXT("");
+            const FString Prefix = Attempt.SelectedIndex != I ? TEXT("") : !Attempt.bSubmitted ? TEXT("Selected. ")
+                : Attempt.bCorrect ? TEXT("Correct. ") : TEXT("Not quite. ");
             SetButtonLabel(Answers[I].Button, Question.Choices[I]);
             Accessible(Answers[I].Button, FString::Printf(TEXT("%sOption %c. %s"), *Prefix, TCHAR('A' + I), *Question.Choices[I]));
         }
@@ -836,6 +839,21 @@ FReply UContextScreen::NativeOnKeyDown(const FGeometry& Geometry, const FKeyEven
 }
 
 #if !UE_BUILD_SHIPPING
+int32 UContextScreen::GetProofAnswerCueCode(int32 Index) const
+{
+    const FString Cue = Answers[Index].Marker->GetText().ToString();
+    return Cue.IsEmpty() ? 0 : int32(Cue[0]);
+}
+
+FString UContextScreen::GetProofAnswerAccessibleText(int32 Index) const
+{
+#if WITH_ACCESSIBILITY
+    return Answers[Index].Button->TakeWidget()->GetAccessibleText().ToString();
+#else
+    return TEXT("Accessibility unavailable");
+#endif
+}
+
 void UContextScreen::SetProofTextScale(float Value) { TextScale = FMath::Clamp(Value, 1.f, 2.f); Refresh(); }
 void UContextScreen::FocusProofAnswer() { Answers[1].Button->SetUserFocus(GetOwningPlayer()); }
 void UContextScreen::FocusProofAction() { SubmitButton->SetUserFocus(GetOwningPlayer()); }
