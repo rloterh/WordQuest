@@ -101,6 +101,7 @@ def main():
     parser.add_argument('--width', type=int, default=884)
     parser.add_argument('--height', type=int, default=1780)
     parser.add_argument('--safe-zone', type=float, default=1.0, help='Desktop simulated safe-area ratio, 0.5 to 1')
+    parser.add_argument('--no-tooltips', action='store_true', help='Hide desktop tooltips for comparison captures; not a tooltip interaction test')
     parser.add_argument('--engine-root', type=Path, default=Path(r'C:\Program Files\Epic Games\UE_5.8'))
     parser.add_argument('--package-run', type=Path, help='Use a completed local package run instead of the editor (capture only)')
     args = parser.parse_args()
@@ -142,8 +143,13 @@ def main():
         command += ['-game', '-windowed', '-RenderOffscreen', '-ForceRes',
                     f'-ResX={args.width}', f'-ResY={args.height}', f'-WQProof={args.proof}',
                     f'-WQCapture={run / "native.png"}', '-WQExit']
+        console = []
         if args.safe_zone != 1:
-            command += [f'-ExecCmds=r.DebugSafeZone.TitleRatio {args.safe_zone}']
+            console.append(f'r.DebugSafeZone.TitleRatio {args.safe_zone}')
+        if args.no_tooltips:
+            console.append('Slate.EnableTooltips 0')
+        if console:
+            command += [f'-ExecCmds={",".join(console)}']
     print(f'Running {args.mode}/{args.proof}: {run}', flush=True)
     result = {'command': command, 'head': subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=root, text=True).strip(),
               'worktree': subprocess.check_output(['git', 'status', '--short'], cwd=root, text=True)}
