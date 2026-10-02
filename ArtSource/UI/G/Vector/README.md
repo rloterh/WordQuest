@@ -44,7 +44,7 @@ retained; it now checks all six masters/runtime copies. The sixth resource is a
 separate G brand candidate; its new packaged verification is recorded in
 `Docs/QA/UI01/G-WORDMARK.md`.
 
-The wordmark's remaining eight letters outline the repository's unmodified
+The wordmark's licensed lettering derives from the repository's unmodified
 Cormorant Garamond SemiBold (`ArtSource/Fonts/CormorantGaramond`, adjacent OFL and
 provenance); revision v003 replaces W with authored reference-guided curves.
 It does not identify the reference's lettering. The other five masters remain
@@ -60,7 +60,7 @@ development-only outline tool outside tracked source, then stage normally:
 ```powershell
 python -m pip install --target Artifacts/Tools/fonttools fonttools==4.61.1
 $env:PYTHONPATH = "$PWD/Artifacts/Tools/fonttools"
-python Tools/AssetImport/build_g_wordmark.py --revision v003
+python Tools/AssetImport/build_g_wordmark.py --revision v004
 python Tools/AssetImport/stage_g_action_icons.py
 ```
 
@@ -81,7 +81,7 @@ Revision v003 preserves both earlier masters and replaces the W glyph/curls with
 authored closed curves. The deeper tips and splayed stems follow the original
 reference more closely in native inspection. The remaining eight glyph paths,
 their advances/transform, Q swash, under-title ornament, bevel palette and native
-placement are preserved. The builder defaults to v003; explicit v001/v002 options
+placement are preserved. That increment defaulted to v003; explicit v001/v002 options
 reproduce the older revisions. See `G-Wordmark-v003-PROVENANCE.json` and
 `Docs/QA/UI01/G-WORDMARK-CAPITAL.md` for verification and remaining limitations.
 No raster edit, new font or original-lettering acceptance is claimed.
@@ -118,3 +118,9 @@ authored W, advances/fit, under-title ornament, gradient definitions, canvas and
 native placement remain intact. The builder defaults to v004, with explicit
 v001/v002/v003 reproduction retained. See `G-Wordmark-v004-PROVENANCE.json`
 and `Docs/QA/UI01/G-WORDMARK-SWASH.md`; exact lettering/art gates remain open.
+
+V004's shared-glyph gradients are explicitly mapped to the previous v003
+vertical bounds. Removing the Q descender otherwise changes object-bounding-box
+gradient coordinates and unintentionally reshades other letters. W and independent
+ornament retain the original local gradients. The material correction has a
+separate native preflight and is included in the final package evidence.

@@ -29,3 +29,17 @@ The Android engine receipt remains absent and adb lists no device. The supported
 Computer Use inventory still fails with a missing native-pipe connection, so no
 manual desktop/Launcher control is claimed. Art, editorial, manual/platform
 accessibility, phone/offline/performance, UI02 motion and release gates remain open.
+
+The first clean package at `5a55ed4` (`20261002-220533-074642`) passed both
+real targets, cook/stage/archive, nine inspected native contracts and both Unreal
+tests. However, reference-size pixel analysis found 6,220 changed pixels outside
+the lower-Q region: removing its descender shortened the shared glyph gradient's
+object bounds, unintentionally changing shading on other lettering. This package
+is preliminary, not the final art evidence. Raw batch/analysis files are retained
+with the `wordmark-swash-unpinned-gradient-` prefix; the archive is unchanged.
+
+The correction gives the shared glyph path separate gradients mapped explicitly
+to its original vertical bounds. Original local gradients remain for W/ornament.
+Dirty native preflight `20261002-221346-capture-initial` reduces changes outside
+the lower-Q region to three pixels, each differing by one RGB byte level. Final
+clean packaging and captures verify this corrected material mapping.

@@ -47,10 +47,14 @@ def main():
     glyphs[cmap[ord('W')]].draw(cap)
     scale = 76 / (cap.bounds[3] - cap.bounds[1])
     paths, advance = [], 0
+    previous_lettering_bounds = BoundsPen(glyphs)
     for letter in 'WordQuest':
         glyph = glyphs[cmap[ord(letter)]]
         factor = 1.13 if letter == 'Q' else 1
         pen = SVGPathPen(glyphs, ntos=lambda n: f'{n:.3f}'.rstrip('0').rstrip('.'))
+        if letter != 'W':
+            glyph.draw(TransformPen(previous_lettering_bounds,
+                                   (scale, 0, 0, -scale * factor, advance, 91)))
         transformed = TransformPen(pen, (scale, 0, 0, -scale * factor, advance, 91))
         if letter == 'Q' and args.revision == 'v004':
             draw_q_bowl(glyph, transformed)
@@ -138,6 +142,24 @@ def main():
         svg = svg.replace('OFL Cormorant outlines with authored gold finish, capital curls, Q swash and star.',
                           'OFL Cormorant ordQuest outlines with a reference-guided authored W, gold finish, Q swash and star.')
     if args.revision == 'v004':
+        # The original shared glyph path used object-bounding-box gradients.
+        # Removing the Q descender shrinks that box and would reshade all other
+        # letters. Pin only this path's gradients to its v003 vertical bounds;
+        # W and independent ornament keep their existing local gradient mapping.
+        top, bottom = previous_lettering_bounds.bounds[1::2]
+        definition_start = svg.index('    <linearGradient id="pearlGold"')
+        definition_end = svg.index('  </defs>')
+        fixed_gradients = svg[definition_start:definition_end]
+        fixed_gradients = fixed_gradients.replace('id="pearlGold"', 'id="letterPearlGold"')
+        fixed_gradients = fixed_gradients.replace('id="edgeGold"', 'id="letterEdgeGold"')
+        fixed_gradients = fixed_gradients.replace('x1="0%" y1="0%" x2="0%" y2="100%"',
+            f'gradientUnits="userSpaceOnUse" x1="0" y1="{top:.3f}" x2="0" y2="{bottom:.3f}"')
+        svg = svg[:definition_end] + fixed_gradients + svg[definition_end:]
+        group_start = svg.index('  <g transform=')
+        group_end = svg.index('  </g>', group_start)
+        group = svg[group_start:group_end].replace('url(#pearlGold)', 'url(#letterPearlGold)')
+        group = group.replace('url(#edgeGold)', 'url(#letterEdgeGold)')
+        svg = svg[:group_start] + group + svg[group_end:]
         # Closed curves reconstruct the reference's loop and two sweeping,
         # tapered ribbons. Keep canvas, W, other glyphs and ornament unchanged.
         loop = '''M262 88 C259 78 246 71 235 75 C225 78 222 84 225 90

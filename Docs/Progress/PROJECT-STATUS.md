@@ -198,7 +198,8 @@ Dedicated read-only review against actual `dev` found no actionable introduced
 defects and independently checked references/SVG parity/whitespace. Head/worktree
 stayed unchanged; builds/runtime/device acceptance were not independently repeated.
 The owner retains merge authority. The bounded regular
-[PR #27](https://github.com/rloterh/WordQuest/pull/27) is published against `dev`.
+[PR #27](https://github.com/rloterh/WordQuest/pull/27) was merged by the owner
+into `dev` at `63e6919` on 2026-10-02, 21:50:42 UTC.
 The owner identified Epic Games Launcher as the UE installation source; its current
 manifest/installation record now confirms exact UE 5.8.2 at the existing path.
 Android target receipt remains absent and adb lists no device. See
