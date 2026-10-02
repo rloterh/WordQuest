@@ -113,3 +113,12 @@ accessibility, full contrast audit, phone/offline behavior and performance remai
 unverified. Android engine support receipt is still absent; adb lists no device
 on this turn's recheck. UI01 fidelity, UI02 motion and release acceptance remain
 open. The owner retains merge authority; no game deployment or release occurs.
+
+Dedicated read-only Codex review completed at clean
+`412a2af6d0d63133dbf323ceebfd374167061a9c` against actual `origin/dev`,
+`2a9e372515407643c91bdbbdc261a1e8ccbe2162`, with exit 0 and no actionable
+introduced defects. Head/worktree stayed unchanged. The reviewer checked the
+paint override, Unreal size-box ownership/slot handling and declared evidence;
+it did not independently repeat builds or runtime checks. Raw review evidence:
+`Artifacts/Reviews/20261002-195153`. Subsequent review/publication records change
+documentation only; the clean packaged source above remains the implementation.
