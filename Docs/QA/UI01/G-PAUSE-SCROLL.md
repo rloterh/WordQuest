@@ -117,3 +117,5 @@ not independently repeat Unreal runtime/device verification. The implementation
 run above passed all 63 Python tests. Raw review evidence:
 `Artifacts/Reviews/20261002-184421`. Subsequent review/publication records change
 documentation only. The owner retains merge authority.
+Published as regular [PR #25](https://github.com/rloterh/WordQuest/pull/25)
+against `dev`; no agent merge was performed.

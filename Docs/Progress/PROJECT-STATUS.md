@@ -150,7 +150,9 @@ pixels remain unchanged. Focus reveals each Pause control; labels fit and the
 scroll indicator appears only for overflow. See [Pause scroll](../QA/UI01/G-PAUSE-SCROLL.md).
 Dedicated read-only review against actual `dev` found no actionable introduced
 defects and independently passed seven modal-proof tests; its broader QA run did
-not complete. Head/worktree stayed unchanged. Manual/platform accessibility remains open.
+not complete. Head/worktree stayed unchanged. The bounded regular
+[PR #25](https://github.com/rloterh/WordQuest/pull/25) is published against `dev`;
+the owner retains merge authority. Manual/platform accessibility remains open.
 The owner retains merge authority. Android support receipt is
 still absent and adb lists no device on this turn's recheck.
 The owner identified Epic Games Launcher as the UE installation source; its current
