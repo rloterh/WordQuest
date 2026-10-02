@@ -72,7 +72,8 @@ def main():
                     evidence[f'{label}_exit_code'] = evidence['exit_code']
             if evidence['exit_code']:
                 break
-        package = archive / 'Windows'
+        # UE 5.8.2 archives this single-platform run directly into Archive.
+        package = archive
         executable = package / 'WordQuest.exe'
         evidence['package_directory'] = str(package)
         if evidence['exit_code'] == 0 and executable.is_file() and list(package.rglob('*.utoc')) and list(package.rglob('*.pak')):
