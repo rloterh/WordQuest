@@ -15,8 +15,10 @@ its separate plaque and live prototype text are now on `dev`. The owner merged
 its action-skin candidates are now on `dev`. The owner merged
 [PR #7](https://github.com/rloterh/WordQuest/pull/7) at `822e850` on 2026-10-01;
 its separate Hint/Check SVG candidates and group layout are now on `dev`.
-Working branch: `feature/g-vector-ornaments`, based on that merge, for separate
-divider/Pause SVG candidates and native proof checks.
+The owner merged [PR #8](https://github.com/rloterh/WordQuest/pull/8) at `eae3475`
+on 2026-10-02; its divider/Pause SVG candidates are now on `dev`.
+Working branch: `feature/g-win64-package-proof`, based on that merge, to verify
+the bounded G proof in a local cooked Win64 Development package.
 No agent merge, game deployment or release is authorized.
 
 ## Completed work
@@ -152,8 +154,8 @@ See [vector ornaments](../QA/UI01/G-VECTOR-ORNAMENTS.md). Dedicated review of cl
 `e141c2f` against actual `dev` base `822e850` completed with exit 0 and no
 actionable introduced defects.
 No art, motion, package/device, editorial or release gate is passed.
-The bounded [PR #8](https://github.com/rloterh/WordQuest/pull/8) is open against
-`dev` as a tested candidate increment, awaiting the owner's review/merge decision.
+The owner merged the bounded [PR #8](https://github.com/rloterh/WordQuest/pull/8)
+on 2026-10-02; this does not accept unfinished gates.
 
 ## Resume
 
