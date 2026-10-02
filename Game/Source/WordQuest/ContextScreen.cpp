@@ -96,10 +96,13 @@ UButton* UContextScreen::Button(const TCHAR* Name, const FString& Label)
         StyleButtons();
         if (!Attempt.bPaused)
         {
+            // A deliberate control focus move supersedes an older pending
+            // feedback reveal (including returning from the Pause modal).
+            bRevealFeedback = false;
             RevealFocusedControl(Result);
             // Slate's automatic focus scroll can replace this request during
             // the same event. Reapply after the event and any pending reflow.
-            bRevealFocusAfterLayout = !bRevealFeedback;
+            bRevealFocusAfterLayout = true;
         }
     });
     Result->OnLostFocus.BindWeakLambda(this, [this]() { StyleButtons(); });

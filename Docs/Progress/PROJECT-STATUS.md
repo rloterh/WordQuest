@@ -42,7 +42,9 @@ recorded until verified. Working branch: `feature/g-oversized-answer-focus`,
 stacked on its unchanged tested head `cc1d584`. Oversized focused answers now reveal
 their option letter and first line at the top, while the rest remains scrollable.
 Fitting rows retain their layout. Editor build and clean selected-leading capture
-pass; final package/regression checks and dedicated review are in progress.
+pass. Initial package regression found a pending-feedback/Pause-focus conflict;
+the corrected editor retest passes. Final package/regression checks and dedicated
+review are in progress.
 Manual input, screen-reader, art and phone gates remain open.
 No agent merge, game deployment or release is authorized.
 
