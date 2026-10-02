@@ -108,12 +108,14 @@ def check_option_cues(log, proof, state):
     return passed, rows
 
 
-FEEDBACK_PROOFS = ('correct', 'wrong', 'hint', 'empty', 'keyempty', 'keysubmit', 'keyhint', 'keybuttons')
+SCROLL_PROOFS = ('scrollfeedback', 'scrollfocus', 'scrollpaused')
+FEEDBACK_PROOFS = ('correct', 'wrong', 'hint', 'empty', 'keyempty', 'keysubmit', 'keyhint', 'keybuttons', 'scrollfeedback', 'scrollfocus')
 
 
 def check_feedback_capture(log, proof):
     rows = re.findall(r'WQ_FEEDBACK_CAPTURE proof=(\w+) visibility=(-?\d+)', log)
-    return len(rows) == 1 and rows[0][0] == proof and rows[0][1] in ('1', '2'), rows
+    allowed = ('1', '3') if proof in SCROLL_PROOFS else ('1', '2')
+    return len(rows) == 1 and rows[0][0] == proof and rows[0][1] in allowed, rows
 
 
 def check_large_text_capture(log, proof):
@@ -124,6 +126,44 @@ def check_large_text_capture(log, proof):
 def check_action_content(log, proof):
     rows = re.findall(r'WQ_ACTION_CONTENT proof=(\w+) fits=(\d+)', log)
     return rows == [(proof, '1')], rows
+
+
+def check_scroll_steps(log, proof):
+    pattern = r'WQ_SCROLL_STEP proof=(\w+) step=(\d+) key=(\w+) down=(\d+) up=(\d+) offset=([\d.-]+) end=([\d.-]+) selected=(-?\d+) submitted=(\d+) correct=(\d+) hint=(\d+) paused=(\d+) evaluations=(\d+) focus=(\w+) textpercent=(\d+) first=(-?\d+) last=(-?\d+) focusvisible=(\d+)'
+    rows = re.findall(pattern, log)
+    keys = ('start', 'PageDown', 'PageUp', 'End', 'PageDown', 'Home', 'PageUp', 'End')
+    if proof == 'scrollfeedback': keys += ('Tab', 'End')
+    paused = proof == 'scrollpaused'
+    focus = 'Resume' if paused else 'Pause' if proof == 'scrollfocus' else 'Screen'
+    passed = len(rows) == len(keys)
+    offsets, ends = [], []
+    for index, (row, key) in enumerate(zip(rows, keys), 1):
+        offset, end = float(row[5]), float(row[6])
+        offsets.append(offset); ends.append(end)
+        passed = passed and row[:3] == (proof, str(index), key)
+        passed = passed and tuple(map(int, row[7:13])) == (0, 1, 1, 1, int(paused), 1)
+        step_focus = 'Pause' if proof == 'scrollfeedback' and index >= 9 else focus
+        passed = passed and row[13:15] == (step_focus, '200') and -1 <= offset <= end + 1 and end > 1
+        passed = passed and row[3] == ('0' if index == 1 or paused else '1')
+    if len(rows) == len(keys):
+        passed = passed and max(ends) - min(ends) <= 1
+        if paused:
+            passed = passed and max(offsets) - min(offsets) <= 1 and all(row[17] == '1' for row in rows)
+        else:
+            passed = passed and offsets[1] > offsets[0] + 1 and offsets[2] < offsets[1] - 1
+            passed = passed and all(abs(offsets[i] - ends[i]) <= 1 for i in (3, 4, 7))
+            passed = passed and all(abs(offsets[i]) <= 1 for i in (5, 6))
+            passed = passed and all(rows[i][16] in ('1', '3') for i in (3, 4, 7))
+            if proof == 'scrollfocus': passed = passed and rows[5][17] == '1'
+            if proof == 'scrollfeedback':
+                passed = passed and offsets[8] < offsets[7] - 1 and rows[8][17] == '1'
+                passed = passed and abs(offsets[9] - ends[9]) <= 1 and rows[9][16] in ('1', '3')
+    captures = re.findall(r'WQ_SCROLL_CAPTURE proof=(\w+) focus=(\w+) visible=(\d+)', log)
+    if proof == 'scrollfeedback': focus = 'Pause'
+    passed = passed and len(captures) == 1 and captures[0][:2] == (proof, focus)
+    if paused:
+        passed = passed and len(captures) == 1 and captures[0][2] == '1'
+    return passed, rows, captures
 
 
 INTERRUPTION_PROOFS = ('interruptpaused', 'interruptresumed', 'interruptsubmitted', 'interruptmanual')
@@ -155,7 +195,7 @@ def check_interruption_steps(log, proof):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('mode', choices=['automation', 'capture'])
-    parser.add_argument('--proof', default='initial', choices=['initial', 'selected', 'correct', 'wrong', 'hint', 'empty', 'paused', 'resumed', 'pausefocus', 'large', 'long', 'longfocus', 'longselectedfocus', 'focus', 'actions', 'actionfocus', *KEYBOARD_STEPS, *INTERRUPTION_PROOFS])
+    parser.add_argument('--proof', default='initial', choices=['initial', 'selected', 'correct', 'wrong', 'hint', 'empty', 'paused', 'resumed', 'pausefocus', 'large', 'long', 'longfocus', 'longselectedfocus', 'focus', 'actions', 'actionfocus', *KEYBOARD_STEPS, *INTERRUPTION_PROOFS, *SCROLL_PROOFS])
     parser.add_argument('--width', type=int, default=884)
     parser.add_argument('--height', type=int, default=1780)
     parser.add_argument('--safe-zone', type=float, default=1.0, help='Desktop simulated safe-area ratio, 0.5 to 1')
@@ -246,6 +286,7 @@ def main():
             'interruptmanual': (1, 0, 0, 1, 1, 0),
             'interruptresumed': (1, 0, 0, 1, 0, 0),
             'interruptsubmitted': (1, 1, 0, 1, 0, 1),
+            **{proof: (0, 1, 1, 1, int(proof == 'scrollpaused'), 1) for proof in SCROLL_PROOFS},
             **{proof: steps[-1][1] for proof, steps in KEYBOARD_STEPS.items()},
         }.get(args.proof, (-1, 0, 0, 0, 0, 0))
         matches = re.findall(r'WQ_STATE proof=\w+ selected=(-?\d+) submitted=(\d+) correct=(\d+) hint=(\d+) paused=(\d+) evaluations=(\d+)', log)
@@ -254,7 +295,7 @@ def main():
         passed, rows = check_option_cues(log, args.proof, expected)
         result.update({'option_cues_passed': passed, 'option_cues': rows})
         result['evidence_complete'] = result['evidence_complete'] and passed
-        if args.large_text:
+        if args.large_text or args.proof in SCROLL_PROOFS:
             passed, rows = check_large_text_capture(log, args.proof)
             result.update({'large_text_passed': passed, 'text_capture': rows})
             result['evidence_complete'] = result['evidence_complete'] and passed
@@ -264,6 +305,10 @@ def main():
         if args.proof in FEEDBACK_PROOFS:
             passed, rows = check_feedback_capture(log, args.proof)
             result.update({'feedback_visible_passed': passed, 'feedback_capture': rows})
+            result['evidence_complete'] = result['evidence_complete'] and passed
+        if args.proof in SCROLL_PROOFS:
+            passed, rows, captures = check_scroll_steps(log, args.proof)
+            result.update({'scroll_steps_passed': passed, 'scroll_steps': rows, 'scroll_capture': captures})
             result['evidence_complete'] = result['evidence_complete'] and passed
         if args.proof in INTERRUPTION_PROOFS:
             passed, rows, capture_rows = check_interruption_steps(log, args.proof)

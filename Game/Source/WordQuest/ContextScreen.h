@@ -48,7 +48,9 @@ public:
     void FocusProofPause();
     int32 GetProofAnswerCueCode(int32 Index) const;
     FString GetProofAnswerAccessibleText(int32 Index) const;
-    int32 GetProofFeedbackVisibility() const;
+    int32 GetProofFeedbackVisibility(bool bEnd = false) const;
+    float GetProofReadingOffset() const;
+    float GetProofReadingEndOffset() const;
     FString GetProofTextSizes() const;
     bool GetProofActionContentsFit() const;
     FString GetProofFocusName() const;
@@ -96,6 +98,7 @@ private:
     bool bRevealFeedback = false;
     bool bRevealFeedbackAfterLayout = false;
     bool bRevealFocusAfterLayout = false;
+    bool bReadingScrollPriority = false;
     FDelegateHandle ActivationHandle;
     FDelegateHandle DeactivationHandle;
     FDelegateHandle BackgroundHandle;

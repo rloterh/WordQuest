@@ -171,10 +171,52 @@ void APrototypeController::RunInterruptionProof()
     }
 }
 
+void APrototypeController::RunScrollProof()
+{
+    Screen->SetProofTextScale(2);
+    auto Key = [](const FKey& Value)
+    {
+        const FKeyEvent Event(Value, FModifierKeysState(), uint32(0), false, 0, 0);
+        FSlateApplication::Get().ProcessKeyDownEvent(Event);
+        FSlateApplication::Get().ProcessKeyUpEvent(Event);
+    };
+    Key(EKeys::H); Key(EKeys::One); Key(EKeys::Enter);
+    if (ProofName == TEXT("scrollfocus")) Screen->FocusProofPause();
+    if (ProofName == TEXT("scrollpaused")) Key(EKeys::P);
+    ScrollStep = 0;
+    ScrollDown = ScrollUp = false;
+    // Arrange content before the first input, then measure each input on a
+    // later frame. No direct scroll call is permitted in this proof.
+    GetWorldTimerManager().SetTimer(ScrollTimer, this, &APrototypeController::TraceScrollProof, .15f, true, .5f);
+}
+
+void APrototypeController::TraceScrollProof()
+{
+    TArray<FKey> Keys = {EKeys::Invalid, EKeys::PageDown, EKeys::PageUp, EKeys::End,
+        EKeys::PageDown, EKeys::Home, EKeys::PageUp, EKeys::End};
+    if (ProofName == TEXT("scrollfeedback")) { Keys.Add(EKeys::Tab); Keys.Add(EKeys::End); }
+    const auto& A = Screen->GetAttempt();
+    UE_LOG(LogTemp, Display, TEXT("WQ_SCROLL_STEP proof=%s step=%d key=%s down=%d up=%d offset=%.3f end=%.3f selected=%d submitted=%d correct=%d hint=%d paused=%d evaluations=%d focus=%s textpercent=%d first=%d last=%d focusvisible=%d"),
+        *ProofName, ScrollStep + 1, ScrollStep == 0 ? TEXT("start") : *Keys[ScrollStep].GetFName().ToString(),
+        ScrollDown, ScrollUp, Screen->GetProofReadingOffset(), Screen->GetProofReadingEndOffset(),
+        A.SelectedIndex, A.bSubmitted, A.bCorrect, A.bHintUsed, A.bPaused, A.EvaluationCount,
+        *Screen->GetProofFocusName(), Screen->GetProofTextPercent(),
+        Screen->GetProofFeedbackVisibility(), Screen->GetProofFeedbackVisibility(true), Screen->GetProofFocusedControlVisible());
+    if (++ScrollStep == Keys.Num())
+    {
+        GetWorldTimerManager().ClearTimer(ScrollTimer);
+        return;
+    }
+    const FKeyEvent Event(Keys[ScrollStep], FModifierKeysState(), uint32(0), false, 0, 0);
+    ScrollDown = FSlateApplication::Get().ProcessKeyDownEvent(Event);
+    ScrollUp = FSlateApplication::Get().ProcessKeyUpEvent(Event);
+}
+
 void APrototypeController::RunProof()
 {
     if (FParse::Param(FCommandLine::Get(), TEXT("WQLargeText"))) Screen->SetProofTextScale(2);
     if (ProofName.StartsWith(TEXT("key"))) RunKeyboardProof();
+    else if (ProofName.StartsWith(TEXT("scroll"))) RunScrollProof();
     else if (ProofName.StartsWith(TEXT("interrupt"))) RunInterruptionProof();
     else if (ProofName == TEXT("selected")) Screen->Choose(2);
     else if (ProofName == TEXT("correct")) { Screen->Choose(0); Screen->Submit(); Screen->Submit(); }
@@ -212,7 +254,8 @@ void APrototypeController::RunProof()
     const auto& A = Screen->GetAttempt();
     UE_LOG(LogTemp, Display, TEXT("WQ_STATE proof=%s selected=%d submitted=%d correct=%d hint=%d paused=%d evaluations=%d"),
         *ProofName, A.SelectedIndex, A.bSubmitted, A.bCorrect, A.bHintUsed, A.bPaused, A.EvaluationCount);
-    if (!CapturePath.IsEmpty()) GetWorldTimerManager().SetTimer(ProofTimer, this, &APrototypeController::CaptureProof, 1.f, false);
+    if (!CapturePath.IsEmpty()) GetWorldTimerManager().SetTimer(ProofTimer, this, &APrototypeController::CaptureProof,
+        ProofName.StartsWith(TEXT("scroll")) ? 2.f : 1.f, false);
 }
 
 void APrototypeController::CaptureProof()
@@ -222,7 +265,10 @@ void APrototypeController::CaptureProof()
     UE_LOG(LogTemp, Display, TEXT("WQ_TYPE_CAPTURE proof=%s %s"), *ProofName, *Screen->GetProofTextSizes());
     UE_LOG(LogTemp, Display, TEXT("WQ_ACTION_CONTENT proof=%s fits=%d"), *ProofName, Screen->GetProofActionContentsFit());
     UE_LOG(LogTemp, Display, TEXT("WQ_FEEDBACK_CAPTURE proof=%s visibility=%d"),
-        *ProofName, Screen->GetProofFeedbackVisibility());
+        *ProofName, Screen->GetProofFeedbackVisibility(ProofName.StartsWith(TEXT("scroll"))));
+    if (ProofName.StartsWith(TEXT("scroll")))
+        UE_LOG(LogTemp, Display, TEXT("WQ_SCROLL_CAPTURE proof=%s focus=%s visible=%d"),
+            *ProofName, *Screen->GetProofFocusName(), Screen->GetProofFocusedControlVisible());
     for (int32 I = 0; I < 4; ++I)
         UE_LOG(LogTemp, Display, TEXT("WQ_OPTION_CUE proof=%s option=%d codepoint=%d label=%s"),
             *ProofName, I, Screen->GetProofAnswerCueCode(I), *Screen->GetProofAnswerAccessibleText(I));

@@ -44,7 +44,7 @@ closed/merged. Initially #16's focus correction was absent from `dev` because th
 merge occurred after #15. The owner merged
 [PR #17](https://github.com/rloterh/WordQuest/pull/17) into `dev` at `f0fd74b` on
 2026-10-02, 10:55:10 UTC; the tested correction is now integrated. No remote branch
-merge was performed by the agent. Working branch: `feature/g-large-outcome-proof`.
+merge was performed by the agent. Working branch: `feature/g-keyboard-reading-scroll`.
 Oversized focused answers reveal their option letter and first line, while the
 rest remains scrollable. The original correction passed both builds, full Win64
 packaging, 24 capture checks, both Unreal tests and 27 Python tests. Fresh integration
@@ -127,9 +127,14 @@ and correct-outcome PNGs remain unchanged. Dedicated review against actual `dev`
 found no actionable introduced defects and independently passed 39 QA tests;
 head/worktree stayed unchanged. See
 [text enlargement evidence](../QA/UI01/G-TEXT-ENLARGEMENT.md).
-[PR #23](https://github.com/rloterh/WordQuest/pull/23) targets `dev` and is ready
-for owner review. Android support
-receipt is still absent and adb lists no device on this turn's recheck.
+[PR #23](https://github.com/rloterh/WordQuest/pull/23) was merged by the owner into
+`dev` at `aa204ff` on 2026-10-02, 16:51:26 UTC. The next bounded correction
+checks keyboard paging and Home/End access to oversized explanations, preserving
+the attempt and blocking reading scroll while Pause is open. Native baseline
+confirmed all four keys were unhandled with unchanged scroll offset and hidden
+explanation end. Paging and boundary jumps are implemented; fresh verification
+and review are pending. Android support receipt is
+still absent and adb lists no device on this turn's recheck.
 The owner identified Epic Games Launcher as the UE installation source; its current
 manifest/installation record now confirms exact UE 5.8.2 at the existing path.
 Android target receipt remains absent and adb lists no device. See

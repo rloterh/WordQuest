@@ -28,3 +28,9 @@ completion is claimed. SDK/JDK compatibility remains unresolved until actual
 Turnkey/platform results and packaging are inspected. Then connect and authorize a
 physical phone for adb. Commands and unchanged physical-device acceptance gates
 are in [Resume G proof](RESUME-G-PROOF.md).
+
+On 2026-10-02 the owner confirmed Android Studio and Blender are available and
+authorized installing necessary dependencies. This removes a permission question;
+the missing native Launcher control still prevents this optional-platform download
+here. Neither another Android Studio installation nor Blender resolves the absent
+engine platform receipt. No unnecessary additional tool was installed.
