@@ -54,9 +54,12 @@ introduced defects. PR #17 publishes this integration against `dev`. See
 [integration evidence](../QA/UI01/G-FOCUS-DEV-INTEGRATION.md).
 The next bounded UI01 candidate adds layered ivory/gold bevel to a new editable
 wordmark revision, preserving the prior SVG, licensed glyph geometry, placement,
-live learning text and controls. Preliminary normal/narrow native captures pass
-state/dimensions and were inspected. Clean packaging, final captures and review
-are pending; this is not original-lettering or static-fidelity acceptance.
+live learning text and controls. Both real builds, clean full Win64 packaging,
+eight inspected packaged captures, both Unreal tests and 27 Python tests pass.
+Cooked SVG bytes match source, both builder revisions reproduce exactly, and
+normal-size pixel changes stay inside the title region. Dedicated review against
+`dev` is pending. See [wordmark bevel](../QA/UI01/G-WORDMARK-BEVEL.md); this is not
+original-lettering or static-fidelity acceptance.
 Manual input, screen-reader, art and phone gates remain open.
 No agent merge, game deployment or release is authorized.
 
