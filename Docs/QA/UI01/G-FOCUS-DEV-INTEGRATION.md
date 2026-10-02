@@ -43,7 +43,16 @@ Fresh checks on the clean integration head:
   Diff whitespace check passes.
 
 Capture directories above live under `Artifacts/QA/UI01`; raw evidence stays
-local and ignored. Dedicated read-only review against `origin/dev` is pending.
+local and ignored.
+
+Dedicated read-only review completed at clean head
+`a2ff4a4d88821c027d060aa9dbfbfad3be521047` against actual base `origin/dev`,
+`551a085a8d9a9cd75d0b4dd1793cef7c04427810`, exit 0, no actionable introduced
+defects. Head/worktree remained unchanged. Raw evidence:
+`Artifacts/Reviews/20261002-103835`. The reviewer ran the five answer-start tests;
+it did not independently reproduce Unreal builds, runtime captures or device gates.
+Later review/publication records are documentation only; implementation identity
+with the verified source remains unchanged.
 
 Static art fidelity, manual/platform accessibility, editorial approval,
 phone/offline, performance, UI02 motion and release gates remain open. The screen
