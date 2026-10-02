@@ -81,7 +81,11 @@ Exact prompts and hashes are in
 The bounded follow-up corrects native QA metadata: late nonzero exits/timeouts
 cannot claim complete evidence, and automation requires zero unfinished tests.
 Failure fixtures reproduce eight incorrect baseline verdicts; all 31 Python tests
-pass with the correction. Fresh native verification and internal review are pending.
+pass with the correction. Fresh real editor build, both Unreal tests, inspected
+editor capture and packaged keyboard/focus capture pass with complete metadata.
+The existing PR #19 package's game tree matches this follow-up; no new package is
+claimed. Dedicated internal review is pending. See
+[QA verdict integrity](../QA/UI01/G-PROOF-EVIDENCE.md).
 Manual input, screen-reader, art and phone gates remain open.
 No agent merge, game deployment or release is authorized.
 
