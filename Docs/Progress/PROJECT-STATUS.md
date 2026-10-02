@@ -132,8 +132,12 @@ head/worktree stayed unchanged. See
 checks keyboard paging and Home/End access to oversized explanations, preserving
 the attempt and blocking reading scroll while Pause is open. Native baseline
 confirmed all four keys were unhandled with unchanged scroll offset and hidden
-explanation end. Paging and boundary jumps are implemented; fresh verification
-and review are pending. Android support receipt is
+explanation end. Paging and boundary jumps now pass both real target builds,
+clean Win64 packaging, 14 inspected packaged checks, both Unreal tests and all
+56 Python tests at `b97b940`. Normal initial/result pixels are unchanged.
+The 260x200 Pause panel still exceeds its viewport; Resume isolation is checked,
+not complete modal acceptance. See [reading scroll](../QA/UI01/G-READING-SCROLL.md).
+Dedicated read-only review is pending. Android support receipt is
 still absent and adb lists no device on this turn's recheck.
 The owner identified Epic Games Launcher as the UE installation source; its current
 manifest/installation record now confirms exact UE 5.8.2 at the existing path.
