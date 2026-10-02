@@ -44,7 +44,7 @@ closed/merged. Initially #16's focus correction was absent from `dev` because th
 merge occurred after #15. The owner merged
 [PR #17](https://github.com/rloterh/WordQuest/pull/17) into `dev` at `f0fd74b` on
 2026-10-02, 10:55:10 UTC; the tested correction is now integrated. No remote branch
-merge was performed by the agent. Working branch: `feature/g-pause-scroll`.
+merge was performed by the agent. Working branch: `feature/g-reading-contrast`.
 Oversized focused answers reveal their option letter and first line, while the
 rest remains scrollable. The original correction passed both builds, full Win64
 packaging, 24 capture checks, both Unreal tests and 27 Python tests. Fresh integration
@@ -151,10 +151,25 @@ scroll indicator appears only for overflow. See [Pause scroll](../QA/UI01/G-PAUS
 Dedicated read-only review against actual `dev` found no actionable introduced
 defects and independently passed seven modal-proof tests; its broader QA run did
 not complete. Head/worktree stayed unchanged. The bounded regular
-[PR #25](https://github.com/rloterh/WordQuest/pull/25) is published against `dev`;
-the owner retains merge authority. Manual/platform accessibility remains open.
-The owner retains merge authority. Android support receipt is
-still absent and adb lists no device on this turn's recheck.
+[PR #25](https://github.com/rloterh/WordQuest/pull/25) was merged by the owner into
+`dev` at `2a9e372` on 2026-10-02, 19:27:41 UTC. Manual/platform accessibility
+remains open. The next bounded UI01 correction addresses disabled shading on
+submitted answer text, option letters and result symbols. Reference-size samples
+from the final PR #25 correct capture fall below the 3:1 large-text contrast target.
+A paint-only content wrapper keeps learning content readable while retaining
+disabled buttons and existing input/navigation rules. Clean `36972d1` passes both
+real target builds, full Win64 packaging, 15 inspected packaged checks, both Unreal
+tests and all 63 Python tests. Nine static samples improve from 2.52–2.64:1 to
+9.76–12.22:1; this is not a whole-screen contrast/accessibility pass. Initial PNG
+pixels are unchanged and submitted-state changes stay inside the answer rows.
+See [answer reading contrast](../QA/UI01/G-ANSWER-READING-CONTRAST.md).
+Dedicated read-only review against actual `dev` found no actionable introduced
+defects; head/worktree stayed unchanged. Builds/runtime were not independently
+repeated by the reviewer. No new acceptance is claimed.
+The bounded regular [PR #26](https://github.com/rloterh/WordQuest/pull/26) is
+published against `dev`; the owner retains merge authority.
+The owner retains merge authority. Android support receipt is still absent and
+adb lists no device on this turn's recheck.
 The owner identified Epic Games Launcher as the UE installation source; its current
 manifest/installation record now confirms exact UE 5.8.2 at the existing path.
 Android target receipt remains absent and adb lists no device. See
