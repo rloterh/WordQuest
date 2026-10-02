@@ -24,8 +24,9 @@ on 2026-10-02; its editable wordmark candidate is now on `dev`.
 The owner merged [PR #11](https://github.com/rloterh/WordQuest/pull/11) at `f0b8c4c`
 on 2026-10-02; its companion framing and rejected-art audit are now on `dev`.
 Working branch: `feature/g-keyboard-route-proof`, based on that merge, for bounded
-synthetic native Slate key-routing checks. Build, runtime/package evidence and
-internal review are pending; manual keyboard, screen-reader and phone gates remain open.
+synthetic native Slate key-routing checks. Both builds, clean Win64 package, seven
+routed packaged checks, both Unreal tests and 13 Python tests pass; internal review
+is pending. Manual keyboard, screen-reader and phone gates remain open.
 No agent merge, game deployment or release is authorized.
 
 ## Completed work
@@ -207,6 +208,18 @@ introduced defects. The bounded regular
 2026-10-02 as a tested framing checkpoint; that does not accept unfinished gates.
 Framing does not accept companion identity or resolve alpha-edge,
 static art, motion, editorial, offline/phone, performance or release gates.
+
+After the owner merged PR #11, seven Development-only proof modes dispatch native
+Slate key-down/up events through focused widgets. Per-step logs verify all answer
+shortcuts, empty/repeated submission, assistance, real Space button activation and
+pause/resume state; incomplete or incorrect traces fail verification. Gameplay
+handlers, art, fixture and engine-generated project files are unchanged. Both real
+builds, clean full Win64 cook/stage/archive, seven inspected 390x844 packaged checks,
+both Unreal tests and 13 Python trace/package-helper tests pass at clean `1fa4d13`.
+See [keyboard routing](../QA/UI01/G-KEYBOARD-ROUTING.md). Dedicated review is pending.
+This synthetic route evidence does not establish manual/OS keyboard input, Tab
+traversal, screen-reader, pointer/touch, offline/phone or performance acceptance.
+Static art, motion, editorial and release gates remain open.
 
 ## Resume
 
