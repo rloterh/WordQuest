@@ -70,6 +70,13 @@ def check_focus_steps(log, proof):
     return passed, rows
 
 
+def check_focus_capture(log, proof):
+    rows = re.findall(r'WQ_FOCUS_CAPTURE proof=(\w+) focus=(\w+) visible=(\d+) textpercent=(\d+)', log)
+    focus, _, percent = FOCUS_STEPS[proof][-1]
+    passed = len(rows) == 1 and rows[0] == (proof, focus, '1', str(percent))
+    return passed, rows
+
+
 def check_keyboard_steps(log, proof):
     rows = re.findall(r'WQ_KEY_STEP proof=(\w+) step=(\d+) key=(\w+) down=(\d+) up=(\d+) selected=(-?\d+) submitted=(\d+) correct=(\d+) hint=(\d+) paused=(\d+) evaluations=(\d+)', log)
     expected = KEYBOARD_STEPS[proof]
@@ -171,6 +178,9 @@ def main():
         if args.proof in FOCUS_STEPS:
             passed, rows = check_focus_steps(log, args.proof)
             result.update({'focus_steps_passed': passed, 'focus_steps': rows})
+            result['evidence_complete'] = result['evidence_complete'] and passed
+            passed, rows = check_focus_capture(log, args.proof)
+            result.update({'focus_visible_passed': passed, 'focus_capture': rows})
             result['evidence_complete'] = result['evidence_complete'] and passed
     else:
         report = run / 'Report/index.json'

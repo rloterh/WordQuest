@@ -47,6 +47,7 @@ public:
     void FocusProofPause();
     FString GetProofFocusName() const;
     int32 GetProofTextPercent() const { return FMath::RoundToInt(TextScale * 100); }
+    bool GetProofFocusedControlVisible() const;
 #endif
 protected:
     virtual TSharedRef<SWidget> RebuildWidget() override;
@@ -81,6 +82,7 @@ private:
     bool bLayoutDirty = true;
     bool bReady = false;
     bool bRevealFeedback = false;
+    bool bRevealFocusAfterLayout = false;
     UPROPERTY(Transient) TObjectPtr<UCanvasPanel> Root;
     UPROPERTY(Transient) TObjectPtr<UCanvasPanel> Canvas;
     UPROPERTY(Transient) TObjectPtr<UCanvasPanel> Modal;

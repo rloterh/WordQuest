@@ -19,7 +19,18 @@ This is a focus-cycle correction, not a claim that answers were unreachable.
 Other dirty baseline routes passed focus/state checks:
 `20261002-041329-capture-keymodal`, `20261002-041346-capture-keyretry` and
 `20261002-041402-capture-keydisabled`. The existing Pause cycle, 200% toggle, retry
-reset and completed-attempt Pause access worked; their handlers are preserved.
+reset and completed-attempt Pause access worked. Native PNG inspection of the
+rapid, single-frame `keyretry` sequence nevertheless showed enlarged A clipped
+at the bottom: retry cleared feedback text but left `bRevealFeedback` pending from
+Hint/submission. Layout later scrolled toward that empty feedback instead of the
+new focused answer. Retry now clears the pending reveal flag. A first follow-up
+build/capture (`WordQuestEditor-20261002-042007.log`,
+`20261002-042113-capture-keyretry`) still showed clipping: focus scrolling had used
+the geometry before reflow. NativeTick now rechecks focused enabled controls on the
+tick after changed layout is arranged, with explicit feedback scrolling retaining
+priority. This sequence is a synthetic rapid transition, not a reproduced manual
+keyboard test. The earlier successful package at clean `a225e58`,
+`20261002-041631-646664`, predates these visibility corrections and is superseded.
 
 Gameplay Next/Previous navigation now explicitly cycles through enabled controls
 in semantic order A/B/C/D/Hint/Check/Pause. Refresh rebuilds the order after Hint,
@@ -28,8 +39,8 @@ focus, Tab enters at the first enabled control and Shift-Tab at the last. After
 submission, Pause is the only enabled gameplay stop. The existing modal cycle
 and focus restoration remain intact. Arrow/gamepad navigation is unchanged.
 
-No art, fixture, renderer, module/target files, scoring or release behavior changes
-are included. Proof instrumentation/getters remain excluded from Shipping;
+No art, fixture, renderer, module/target files or scoring changes are included.
+Proof instrumentation/getters remain excluded from Shipping;
 the focus correction applies to normal runtime builds.
 
 ## Native routes
@@ -39,7 +50,11 @@ including the Shift modifier. They do not call programmatic focus helpers or
 Choose/Submit/Hint/TogglePause/ToggleTextSize/ResetAttempt directly. Each step logs
 its full attempt state, focused semantic control and text percentage. Verification
 requires every ordered key/state/focus/modifier/percentage, handled active down
-and Space release, final state and PNG dimensions. Matching final state alone
+and Space release, final state and PNG dimensions. At capture time it also requires
+the expected focused control's full positive-size layout rectangle inside the
+visible scroll region (or root viewport for modal controls), with one-pixel
+rounding tolerance. This is a geometry check, not a contrast or legibility verdict.
+Matching final state alone
 cannot pass missing or incorrect focus evidence.
 
 | Mode | Required route |
@@ -53,9 +68,10 @@ cannot pass missing or incorrect focus evidence.
 
 ## Verification
 
-Six new Python focus-trace tests pass: complete route, matching attempt state with
+Nine new Python focus tests pass: complete route, matching attempt state with
 incorrect focus, incorrect modifier/text setting, missing focus metadata,
-missing/extra/reordered steps and wrong proof. All 19 combined focus/keyboard/
+missing/extra/reordered steps, wrong proof, visible capture, missing/clipped capture
+and incorrect/duplicate capture. All 22 combined focus/keyboard/
 package-helper tests pass. These check evidence rejection, not physical input.
 
 Final clean builds, package, native captures, existing Unreal tests and dedicated

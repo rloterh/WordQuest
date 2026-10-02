@@ -166,6 +166,9 @@ void APrototypeController::RunProof()
 
 void APrototypeController::CaptureProof()
 {
+    if (ProofName.StartsWith(TEXT("key")))
+        UE_LOG(LogTemp, Display, TEXT("WQ_FOCUS_CAPTURE proof=%s focus=%s visible=%d textpercent=%d"),
+            *ProofName, *Screen->GetProofFocusName(), Screen->GetProofFocusedControlVisible(), Screen->GetProofTextPercent());
     IFileManager::Get().MakeDirectory(*FPaths::GetPath(CapturePath), true);
     FScreenshotRequest::RequestScreenshot(CapturePath, true, false);
     if (FParse::Param(FCommandLine::Get(), TEXT("WQExit")))
