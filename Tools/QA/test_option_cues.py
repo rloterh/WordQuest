@@ -1,6 +1,6 @@
 """Reject premature correctness, stale retry/result markers and semantic drift."""
 import unittest
-from Tools.QA.run_g_proof import check_option_cues
+from Tools.QA.run_g_proof import check_option_cues, check_feedback_capture
 
 
 def trace(proof, selected=-1, code=0, prefix=''):
@@ -8,6 +8,20 @@ def trace(proof, selected=-1, code=0, prefix=''):
 
 
 class OptionCueTests(unittest.TestCase):
+    def test_feedback_visible_or_oversized_first_line(self):
+        for value in (1,2):
+            self.assertTrue(check_feedback_capture(f'WQ_FEEDBACK_CAPTURE proof=hint visibility={value}', 'hint')[0])
+
+    def test_feedback_clipped_or_missing(self):
+        for value in (-1,0):
+            self.assertFalse(check_feedback_capture(f'WQ_FEEDBACK_CAPTURE proof=hint visibility={value}', 'hint')[0])
+        self.assertFalse(check_feedback_capture('', 'hint')[0])
+
+    def test_feedback_wrong_proof_or_duplicate(self):
+        log='WQ_FEEDBACK_CAPTURE proof=hint visibility=1'
+        self.assertFalse(check_feedback_capture(log.replace('proof=hint','proof=correct'), 'hint')[0])
+        self.assertFalse(check_feedback_capture(log+'\n'+log, 'hint')[0])
+
     def test_unselected_and_neutral_selection(self):
         self.assertTrue(check_option_cues(trace('initial'), 'initial', (-1,0,0,0,0,0))[0])
         self.assertTrue(check_option_cues(trace('selected',2,62,'Selected. '), 'selected', (2,0,0,0,0,0))[0])

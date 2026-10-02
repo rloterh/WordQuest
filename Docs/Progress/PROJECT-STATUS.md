@@ -103,8 +103,10 @@ head/worktree stayed unchanged. See
 `dev` at `7e100c2` on 2026-10-02, 14:01:07 UTC.
 The next bounded G correction distinguishes neutral selection from submitted
 correct/near-miss outcomes with live symbols and matching accessible button text.
-Scoring and art remain unchanged. Real editor build and all 43 Python tests pass;
-clean package/runtime verification and dedicated review are pending. The Android
+Visual inspection also found partly clipped narrow-window explanations. Feedback
+reveal now uses measured canvas bounds after reflow, with a new visibility contract.
+Scoring and art remain unchanged. Real editor build and all 46 Python tests pass;
+fresh clean package/runtime verification and dedicated review are pending. The Android
 receipt remains absent and adb lists no device on this fresh recheck.
 The owner identified Epic Games Launcher as the UE installation source; its current
 manifest/installation record now confirms exact UE 5.8.2 at the existing path.

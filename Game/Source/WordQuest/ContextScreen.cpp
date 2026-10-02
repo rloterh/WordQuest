@@ -100,6 +100,7 @@ UButton* UContextScreen::Button(const TCHAR* Name, const FString& Label)
             // A deliberate control focus move supersedes an older pending
             // feedback reveal (including returning from the Pause modal).
             bRevealFeedback = false;
+            bRevealFeedbackAfterLayout = false;
             RevealFocusedControl(Result);
             // Slate's automatic focus scroll can replace this request during
             // the same event. Reapply after the event and any pending reflow.
@@ -430,6 +431,21 @@ void UContextScreen::NativeTick(const FGeometry& Geometry, float DeltaTime)
         LastSize = Size;
         bLayoutDirty = false;
     }
+    else if (bRevealFeedbackAfterLayout)
+    {
+        bRevealFeedbackAfterLayout = false;
+        if (!Attempt.bPaused)
+        {
+            // Feedback can be outside the arranged viewport before scrolling.
+            // Use the measured canvas slot after reflow, rather than its stale
+            // cached descendant geometry. Oversized feedback starts at line one.
+            const auto* FeedbackSlot = CastChecked<UCanvasPanelSlot>(Feedback->Slot);
+            const float ViewHeight = Scroll->GetCachedGeometry().GetLocalSize().Y;
+            const float Height = FeedbackSlot->GetSize().Y;
+            Scroll->SetScrollOffset(FMath::Max(0.f, float(FeedbackSlot->GetPosition().Y)
+                + (Height > ViewHeight ? 0.f : Height - ViewHeight)));
+        }
+    }
     else if (bRevealFocusAfterLayout)
     {
         bRevealFocusAfterLayout = false;
@@ -614,7 +630,7 @@ void UContextScreen::Layout(FVector2D Size)
     StyleButtons();
     if (bRevealFeedback)
     {
-        Scroll->ScrollWidgetIntoView(Feedback, false);
+        bRevealFeedbackAfterLayout = true;
         bRevealFeedback = false;
     }
 }
@@ -800,6 +816,7 @@ void UContextScreen::ResetAttempt()
     Attempt = FContextAttempt();
     Feedback->SetText(FText::GetEmpty());
     bRevealFeedback = false;
+    bRevealFeedbackAfterLayout = false;
     Refresh();
     Scroll->ScrollToStart();
     SetUserFocus(GetOwningPlayer());
@@ -839,6 +856,24 @@ FReply UContextScreen::NativeOnKeyDown(const FGeometry& Geometry, const FKeyEven
 }
 
 #if !UE_BUILD_SHIPPING
+int32 UContextScreen::GetProofFeedbackVisibility() const
+{
+    if (Feedback->GetText().IsEmpty()) return 0;
+    const auto Clip = Scroll->GetCachedGeometry().GetLayoutBoundingRect();
+    const auto& Geometry = Feedback->GetCachedGeometry();
+    auto Rect = Geometry.GetLayoutBoundingRect();
+    const bool Oversized = Rect.GetSize().Y > Clip.GetSize().Y;
+    if (Oversized)
+    {
+        const float LineHeight = FSlateApplication::Get().GetRenderer()->GetFontMeasureService()
+            ->GetMaxCharacterHeight(Feedback->GetFont()) * Geometry.GetAccumulatedLayoutTransform().GetScale();
+        Rect.Bottom = Rect.Top + FMath::Min(float(Rect.GetSize().Y), LineHeight);
+    }
+    const bool Visible = Rect.GetSize().X > 0 && Rect.GetSize().Y > 0 && Rect.Left >= Clip.Left - 1
+        && Rect.Top >= Clip.Top - 1 && Rect.Right <= Clip.Right + 1 && Rect.Bottom <= Clip.Bottom + 1;
+    return Visible ? (Oversized ? 2 : 1) : -1;
+}
+
 int32 UContextScreen::GetProofAnswerCueCode(int32 Index) const
 {
     const FString Cue = Answers[Index].Marker->GetText().ToString();

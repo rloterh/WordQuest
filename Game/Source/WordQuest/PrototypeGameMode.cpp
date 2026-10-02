@@ -216,6 +216,8 @@ void APrototypeController::RunProof()
 
 void APrototypeController::CaptureProof()
 {
+    UE_LOG(LogTemp, Display, TEXT("WQ_FEEDBACK_CAPTURE proof=%s visibility=%d"),
+        *ProofName, Screen->GetProofFeedbackVisibility());
     for (int32 I = 0; I < 4; ++I)
         UE_LOG(LogTemp, Display, TEXT("WQ_OPTION_CUE proof=%s option=%d codepoint=%d label=%s"),
             *ProofName, I, Screen->GetProofAnswerCueCode(I), *Screen->GetProofAnswerAccessibleText(I));

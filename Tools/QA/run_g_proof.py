@@ -108,6 +108,14 @@ def check_option_cues(log, proof, state):
     return passed, rows
 
 
+FEEDBACK_PROOFS = ('correct', 'wrong', 'hint', 'empty', 'keyempty', 'keysubmit', 'keyhint', 'keybuttons')
+
+
+def check_feedback_capture(log, proof):
+    rows = re.findall(r'WQ_FEEDBACK_CAPTURE proof=(\w+) visibility=(-?\d+)', log)
+    return len(rows) == 1 and rows[0][0] == proof and rows[0][1] in ('1', '2'), rows
+
+
 INTERRUPTION_PROOFS = ('interruptpaused', 'interruptresumed', 'interruptsubmitted', 'interruptmanual')
 
 
@@ -231,6 +239,10 @@ def main():
         passed, rows = check_option_cues(log, args.proof, expected)
         result.update({'option_cues_passed': passed, 'option_cues': rows})
         result['evidence_complete'] = result['evidence_complete'] and passed
+        if args.proof in FEEDBACK_PROOFS:
+            passed, rows = check_feedback_capture(log, args.proof)
+            result.update({'feedback_visible_passed': passed, 'feedback_capture': rows})
+            result['evidence_complete'] = result['evidence_complete'] and passed
         if args.proof in INTERRUPTION_PROOFS:
             passed, rows, capture_rows = check_interruption_steps(log, args.proof)
             result.update({'interruption_steps_passed': passed, 'interruption_steps': rows,
