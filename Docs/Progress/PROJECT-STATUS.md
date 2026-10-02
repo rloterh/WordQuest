@@ -36,20 +36,21 @@ at `3312e95` on 2026-10-02; its genuine licensed Bold action face is now on `dev
 Both real builds, full Win64 cook/stage/archive, seven inspected packaged captures,
 both Unreal tests and 22 Python tests passed; cooked Bold payload matched its source
 and dedicated read-only review found no actionable introduced defects.
-The tested badge candidate [PR #15](https://github.com/rloterh/WordQuest/pull/15)
-still reports OPEN on GitHub despite the owner's merge report; no merge SHA is
-recorded until verified. Working branch: `feature/g-oversized-answer-focus`,
-stacked on its unchanged tested head `cc1d584`. Oversized focused answers now reveal
-their option letter and first line at the top, while the rest remains scrollable.
-Fitting rows retain their layout. Initial package regression found a pending-
-feedback/Pause-focus conflict; the correction passes both real builds, a final
-clean Win64 package, 24 packaged capture checks, both Unreal tests and 27 Python
-tests. Fourteen native PNGs were inspected; the normal-size baseline is byte-
-identical. Dedicated review against the actual stacked base completed with no
-actionable introduced defects. [PR #16](https://github.com/rloterh/WordQuest/pull/16)
-is published as a draft against `feature/g-answer-badge-material`; PR #15 still
-reports OPEN. After its merge is verified, retarget #16 to `dev`, check the actual
-diff and review against that base before making it ready for owner merge.
+The owner merged [PR #15](https://github.com/rloterh/WordQuest/pull/15) into `dev`
+at `551a085` on 2026-10-02, 10:32:08 UTC. The owner then merged
+[PR #16](https://github.com/rloterh/WordQuest/pull/16) into its original stacked
+base, `feature/g-answer-badge-material`, at `032f3b2`, 10:32:56 UTC. Both PRs are
+closed/merged, but #16's focus correction is absent from `dev` because that merge
+occurred after #15. Working branch: `feature/g-focus-dev-integration`, based on
+`origin/dev`; it integrates the owner's merged feature branch without changing its
+tested implementation. A follow-up PR to `dev` is being prepared; no remote branch
+merge was performed by the agent.
+Oversized focused answers reveal their option letter and first line, while the
+rest remains scrollable. The original correction passed both builds, full Win64
+packaging, 24 capture checks, both Unreal tests and 27 Python tests. Fresh integration
+editor build, two inspected native regression captures, both Unreal tests and all
+27 Python tests pass. Dedicated review against actual `dev` is pending. See
+[integration evidence](../QA/UI01/G-FOCUS-DEV-INTEGRATION.md).
 Manual input, screen-reader, art and phone gates remain open.
 No agent merge, game deployment or release is authorized.
 
@@ -299,13 +300,13 @@ not complete-row visibility acceptance. See
 [badge material](../QA/UI01/G-ANSWER-BADGE-MATERIAL.md). Dedicated read-only review
 of clean `98d22a1` against actual `dev` base `3312e95` completed with exit 0,
 no actionable introduced defects and unchanged head/worktree.
-The bounded regular [PR #15](https://github.com/rloterh/WordQuest/pull/15) is open
-against `dev`. No GitHub status checks are configured; validation above is local.
+The owner merged [PR #15](https://github.com/rloterh/WordQuest/pull/15) into `dev`
+at `551a085` on 2026-10-02. No GitHub status checks are configured; validation above is local.
 Exact static art, manual accessibility/input, editorial, phone/offline, performance,
 motion and release gates remain open.
 
-The next bounded correction is stacked on PR #15's unchanged tested branch while
-its reported merge remains unconfirmed. It reveals the beginning of oversized
+The bounded correction was stacked on PR #15's tested branch while its original
+merge report was unconfirmed. It reveals the beginning of oversized
 focused answer rows using measured canvas height, rechecks after Slate focus
 scrolling and places the option identifier/selected marker at the start of those
 rows. Final clean `7e68d60` passes both builds, full Win64 packaging, 24 native
@@ -313,7 +314,9 @@ capture contracts (including six answer-start checks and 13 keyboard routes), bo
 Unreal tests and all 27 Python tests. Fourteen PNGs were inspected; normal-size
 pixels are unchanged. See [oversized-answer focus](../QA/UI01/G-OVERSIZED-ANSWER-FOCUS.md).
 Dedicated review against the actual stacked base found no actionable introduced
-defects. Existing art, manual
+defects. The owner merged #16 into that feature branch after #15 had merged; the
+correction still needs the recorded [integration](../QA/UI01/G-FOCUS-DEV-INTEGRATION.md)
+into `dev`. Existing art, manual
 input/accessibility, editorial, phone/offline, motion and release gates remain open.
 
 ## Owner playtest preview

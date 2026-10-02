@@ -1,12 +1,13 @@
 # G oversized-answer focus correction
 
 This bounded UI01 correction follows the tested badge candidate in PR #15.
-The owner reported a merge, but GitHub still reports that PR open; the follow-up
-is stacked on `feature/g-answer-badge-material` at `cc1d584` until that merge is
-confirmed. No agent merge is authorized. Its actual PR base must be used for review.
-[PR #16](https://github.com/rloterh/WordQuest/pull/16) is a draft against that
-branch. Once #15 is verified merged, retarget #16 to `dev` and check/review its
-actual base before marking it ready. Draft status records this dependency.
+At publication, GitHub still reported #15 open despite the initial owner merge
+report, so [PR #16](https://github.com/rloterh/WordQuest/pull/16) was a draft
+stacked on `feature/g-answer-badge-material` at `cc1d584`. The owner subsequently
+merged #15 into `dev` at `551a085` and then #16 into that feature branch at
+`032f3b2`, both on 2026-10-02. The second merge did not propagate to `dev`;
+see [integration evidence](G-FOCUS-DEV-INTEGRATION.md) for the follow-up and
+review against the actual `dev` base. No agent remote merge is authorized.
 
 ## Failure and resulting behavior
 
