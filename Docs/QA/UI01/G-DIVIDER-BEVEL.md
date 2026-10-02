@@ -74,6 +74,13 @@ created `g-divider-bevel-comparison.html` with unchanged embedded PNGs and an
 adjustable 50% overlay. Browser/overlay interaction is unverified; earlier local-
 navigation blocks were not bypassed.
 
-Dedicated actual-base review is pending. Raw evidence stays ignored under `Artifacts`.
+Dedicated read-only Codex review completed at clean
+`5185af7a839cbe69fab9910c229c78e6091fa281` against actual `origin/dev`,
+`c8c0dd382b94019c36fb66f2df788d5f7d817724`, exit 0 and no actionable introduced
+defects. Head/worktree remained unchanged. Raw evidence:
+`Artifacts/Reviews/20261002-114527`. It verified SVG parity, original references
+and whitespace; it did not rerun engine, packaging or device checks. Subsequent
+review/publication records change documentation only; packaged runtime bytes
+remain unchanged. Raw evidence stays ignored under `Artifacts`.
 Static art fidelity, manual/platform accessibility, editorial fixture review,
 phone/offline, performance, UI02 motion and release gates remain open.
