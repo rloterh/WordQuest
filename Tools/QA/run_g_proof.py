@@ -94,10 +94,36 @@ def check_answer_start(log, proof):
     return passed, rows
 
 
+INTERRUPTION_PROOFS = ('interruptpaused', 'interruptresumed', 'interruptsubmitted', 'interruptmanual')
+
+
+def check_interruption_steps(log, proof):
+    rows = re.findall(r'WQ_INTERRUPT_STEP proof=(\w+) step=(\d+) event=(\w+) selected=(-?\d+) submitted=(\d+) correct=(\d+) hint=(\d+) paused=(\d+) evaluations=(\d+) focus=(\w+)', log)
+    submitted = proof == 'interruptsubmitted'
+    gameplay_focus = 'Pause' if submitted else 'Answer1'
+    def state(paused):
+        return (1, int(submitted), 0, 1, int(paused), int(submitted))
+    expected = [('start', state(proof == 'interruptmanual'),
+                 'Resume' if proof == 'interruptmanual' else gameplay_focus)]
+    notifications = ('deactivate', 'background', 'slateinactive') if proof == 'interruptresumed' else (
+        ('background', 'slateinactive', 'deactivate') if submitted else ('slateinactive', 'deactivate', 'background'))
+    expected += [(event, state(True), 'Resume') for event in
+        (*notifications, 'slateactive', 'foreground', 'reactivate', 'blockedinput')]
+    if proof in ('interruptresumed', 'interruptsubmitted'):
+        expected.append(('resume', state(False), gameplay_focus))
+    passed = len(rows) == len(expected)
+    for index, (row, (event, attempt, focus)) in enumerate(zip(rows, expected), 1):
+        passed = passed and row[:3] == (proof, str(index), event)
+        passed = passed and tuple(map(int, row[3:9])) == attempt and row[9] == focus
+    capture = re.findall(r'WQ_INTERRUPT_CAPTURE proof=(\w+) focus=(\w+) visible=(\d+)', log)
+    passed = passed and capture == [(proof, expected[-1][2], '1')]
+    return passed, rows, capture
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('mode', choices=['automation', 'capture'])
-    parser.add_argument('--proof', default='initial', choices=['initial', 'selected', 'correct', 'wrong', 'hint', 'empty', 'paused', 'resumed', 'pausefocus', 'large', 'long', 'longfocus', 'longselectedfocus', 'focus', 'actions', 'actionfocus', *KEYBOARD_STEPS])
+    parser.add_argument('--proof', default='initial', choices=['initial', 'selected', 'correct', 'wrong', 'hint', 'empty', 'paused', 'resumed', 'pausefocus', 'large', 'long', 'longfocus', 'longselectedfocus', 'focus', 'actions', 'actionfocus', *KEYBOARD_STEPS, *INTERRUPTION_PROOFS])
     parser.add_argument('--width', type=int, default=884)
     parser.add_argument('--height', type=int, default=1780)
     parser.add_argument('--safe-zone', type=float, default=1.0, help='Desktop simulated safe-area ratio, 0.5 to 1')
@@ -179,11 +205,20 @@ def main():
             'paused': (1, 0, 0, 0, 1, 0),
             'resumed': (1, 0, 0, 0, 0, 0),
             'longselectedfocus': (1, 0, 0, 0, 0, 0),
+            'interruptpaused': (1, 0, 0, 1, 1, 0),
+            'interruptmanual': (1, 0, 0, 1, 1, 0),
+            'interruptresumed': (1, 0, 0, 1, 0, 0),
+            'interruptsubmitted': (1, 1, 0, 1, 0, 1),
             **{proof: steps[-1][1] for proof, steps in KEYBOARD_STEPS.items()},
         }.get(args.proof, (-1, 0, 0, 0, 0, 0))
         matches = re.findall(r'WQ_STATE proof=\w+ selected=(-?\d+) submitted=(\d+) correct=(\d+) hint=(\d+) paused=(\d+) evaluations=(\d+)', log)
         result['state_passed'] = len(matches) == 1 and tuple(map(int, matches[0])) == expected
         result['evidence_complete'] = result['state_passed'] and result.get('dimensions') == [args.width, args.height]
+        if args.proof in INTERRUPTION_PROOFS:
+            passed, rows, capture_rows = check_interruption_steps(log, args.proof)
+            result.update({'interruption_steps_passed': passed, 'interruption_steps': rows,
+                           'interruption_capture': capture_rows})
+            result['evidence_complete'] = result['evidence_complete'] and passed
         if args.proof in KEYBOARD_STEPS:
             passed, rows = check_keyboard_steps(log, args.proof)
             result.update({'keyboard_steps_passed': passed, 'keyboard_steps': rows})

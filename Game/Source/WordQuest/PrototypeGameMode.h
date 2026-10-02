@@ -18,6 +18,7 @@ private:
 #if !UE_BUILD_SHIPPING
     void RunProof();
     void RunKeyboardProof();
+    void RunInterruptionProof();
     void CaptureProof();
     FTimerHandle ProofTimer;
     FString ProofName, CapturePath;

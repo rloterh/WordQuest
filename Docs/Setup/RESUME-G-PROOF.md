@@ -67,8 +67,10 @@ the Android prerequisites below or establish network-isolated offline acceptance
 The SDK exists but this engine installation lacks
 `Engine/Binaries/Android/UnrealGame.target`. Use the original engine installation
 manager to add Android platform support for **the same UE 5.8.2 installation**. If
-managed by Epic Launcher, use the installed engine's Options; its launcher inventory
-was empty during P00, so do not assume that route currently manages this installation.
+managed by Epic Launcher, use the installed engine's Options. The owner confirmed
+that source on 2026-10-02; fresh Launcher manifest and installation records confirm
+exact UE 5.8.2 at the existing path. See [Android support handoff](ANDROID-SUPPORT.md).
+The empty P00 Launcher inventory is historical and no longer the current evidence.
 No engine replacement or upgrade is required by this report.
 
 Then run the engine's non-installing check:

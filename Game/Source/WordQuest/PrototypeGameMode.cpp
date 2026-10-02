@@ -5,6 +5,7 @@
 #include "Misc/CommandLine.h"
 #include "Misc/Parse.h"
 #include "Misc/Paths.h"
+#include "Misc/CoreDelegates.h"
 #include "HAL/FileManager.h"
 #include "UnrealClient.h"
 #include "TimerManager.h"
@@ -123,9 +124,57 @@ void APrototypeController::RunKeyboardProof()
     }
 }
 
+void APrototypeController::RunInterruptionProof()
+{
+    int32 Step = 0;
+    auto Trace = [this, &Step](const TCHAR* Event)
+    {
+        const auto& A = Screen->GetAttempt();
+        UE_LOG(LogTemp, Display, TEXT("WQ_INTERRUPT_STEP proof=%s step=%d event=%s selected=%d submitted=%d correct=%d hint=%d paused=%d evaluations=%d focus=%s"),
+            *ProofName, ++Step, Event, A.SelectedIndex, A.bSubmitted, A.bCorrect,
+            A.bHintUsed, A.bPaused, A.EvaluationCount, *Screen->GetProofFocusName());
+    };
+    auto Key = [](const FKey& Value)
+    {
+        const FKeyEvent Event(Value, FModifierKeysState(), uint32(0), false, 0, 0);
+        FSlateApplication::Get().ProcessKeyDownEvent(Event);
+        FSlateApplication::Get().ProcessKeyUpEvent(Event);
+    };
+    Key(EKeys::H); Key(EKeys::Two);
+    if (ProofName == TEXT("interruptsubmitted"))
+    {
+        Key(EKeys::Enter);
+        Screen->FocusProofPause();
+    }
+    else Screen->FocusProofAnswer();
+    if (ProofName == TEXT("interruptmanual")) Key(EKeys::P);
+    // Drive the engine notification routes, not the screen's pause handler.
+    // This is synthetic lifecycle evidence, not OS/phone interruption testing.
+    FSlateApplication::Get().OnApplicationActivationChanged(true);
+    Trace(TEXT("start"));
+    auto Inactive = [&Trace]() { FSlateApplication::Get().OnApplicationActivationChanged(false); Trace(TEXT("slateinactive")); };
+    auto Deactivate = [&Trace]() { FCoreDelegates::ApplicationWillDeactivateDelegate.Broadcast(); Trace(TEXT("deactivate")); };
+    auto Background = [&Trace]() { FCoreDelegates::ApplicationWillEnterBackgroundDelegate.Broadcast(); Trace(TEXT("background")); };
+    // Each notification must independently pause an active attempt in one mode.
+    if (ProofName == TEXT("interruptresumed")) { Deactivate(); Background(); Inactive(); }
+    else if (ProofName == TEXT("interruptsubmitted")) { Background(); Inactive(); Deactivate(); }
+    else { Inactive(); Deactivate(); Background(); }
+    FSlateApplication::Get().OnApplicationActivationChanged(true); Trace(TEXT("slateactive"));
+    FCoreDelegates::ApplicationHasEnteredForegroundDelegate.Broadcast(); Trace(TEXT("foreground"));
+    FCoreDelegates::ApplicationHasReactivatedDelegate.Broadcast(); Trace(TEXT("reactivate"));
+    // Enter/Space on focused Resume are deliberate modal actions. Only the
+    // gameplay selection and Hint shortcuts must remain blocked here.
+    Key(EKeys::One); Key(EKeys::H); Trace(TEXT("blockedinput"));
+    if (ProofName == TEXT("interruptresumed") || ProofName == TEXT("interruptsubmitted"))
+    {
+        Key(EKeys::SpaceBar); Trace(TEXT("resume"));
+    }
+}
+
 void APrototypeController::RunProof()
 {
     if (ProofName.StartsWith(TEXT("key"))) RunKeyboardProof();
+    else if (ProofName.StartsWith(TEXT("interrupt"))) RunInterruptionProof();
     else if (ProofName == TEXT("selected")) Screen->Choose(2);
     else if (ProofName == TEXT("correct")) { Screen->Choose(0); Screen->Submit(); Screen->Submit(); }
     else if (ProofName == TEXT("wrong")) { Screen->Choose(1); Screen->Submit(); }
@@ -174,6 +223,9 @@ void APrototypeController::CaptureProof()
     if (ProofName.StartsWith(TEXT("key")))
         UE_LOG(LogTemp, Display, TEXT("WQ_FOCUS_CAPTURE proof=%s focus=%s visible=%d textpercent=%d"),
             *ProofName, *Screen->GetProofFocusName(), Screen->GetProofFocusedControlVisible(), Screen->GetProofTextPercent());
+    if (ProofName.StartsWith(TEXT("interrupt")))
+        UE_LOG(LogTemp, Display, TEXT("WQ_INTERRUPT_CAPTURE proof=%s focus=%s visible=%d"),
+            *ProofName, *Screen->GetProofFocusName(), Screen->GetProofFocusedControlVisible());
     IFileManager::Get().MakeDirectory(*FPaths::GetPath(CapturePath), true);
     FScreenshotRequest::RequestScreenshot(CapturePath, true, false);
     if (FParse::Param(FCommandLine::Get(), TEXT("WQExit")))

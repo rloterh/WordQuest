@@ -24,11 +24,12 @@
 #include "Input/Reply.h"
 #include "InputCoreTypes.h"
 #include "Misc/Paths.h"
+#include "Misc/CoreDelegates.h"
+#include "Framework/Application/SlateApplication.h"
 #include "HAL/FileManager.h"
 #include "Styling/CoreStyle.h"
 #if !UE_BUILD_SHIPPING
 #include "Fonts/FontMeasure.h"
-#include "Framework/Application/SlateApplication.h"
 #include "Rendering/SlateRenderer.h"
 #endif
 
@@ -381,6 +382,38 @@ void UContextScreen::NativeConstruct()
     Accessible(PauseButton, TEXT("Pause"));
     Accessible(Progress, TEXT("Prototype question 3 of 7"));
     Refresh();
+    if (FSlateApplication::IsInitialized())
+        ActivationHandle = FSlateApplication::Get().OnApplicationActivationStateChanged()
+            .AddUObject(this, &UContextScreen::ApplicationActivationChanged);
+    DeactivationHandle = FCoreDelegates::ApplicationWillDeactivateDelegate
+        .AddUObject(this, &UContextScreen::PauseForInterruption);
+    BackgroundHandle = FCoreDelegates::ApplicationWillEnterBackgroundDelegate
+        .AddUObject(this, &UContextScreen::PauseForInterruption);
+}
+
+void UContextScreen::NativeDestruct()
+{
+    if (FSlateApplication::IsInitialized())
+        FSlateApplication::Get().OnApplicationActivationStateChanged().Remove(ActivationHandle);
+    FCoreDelegates::ApplicationWillDeactivateDelegate.Remove(DeactivationHandle);
+    FCoreDelegates::ApplicationWillEnterBackgroundDelegate.Remove(BackgroundHandle);
+    ActivationHandle.Reset();
+    DeactivationHandle.Reset();
+    BackgroundHandle.Reset();
+    Super::NativeDestruct();
+}
+
+void UContextScreen::ApplicationActivationChanged(bool bActive)
+{
+    if (!bActive) PauseForInterruption();
+}
+
+void UContextScreen::PauseForInterruption()
+{
+    // Several platform notifications may describe the same interruption. Do
+    // not toggle an existing pause or replace its saved gameplay focus.
+    if (!Attempt.bPaused) TogglePause();
+    // Returning to the application leaves Resume under the player's control.
 }
 
 void UContextScreen::NativeTick(const FGeometry& Geometry, float DeltaTime)
