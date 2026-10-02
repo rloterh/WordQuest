@@ -8,6 +8,11 @@
 #include "HAL/FileManager.h"
 #include "UnrealClient.h"
 #include "TimerManager.h"
+#if !UE_BUILD_SHIPPING
+#include "Framework/Application/SlateApplication.h"
+#include "Input/Events.h"
+#include "InputCoreTypes.h"
+#endif
 
 APrototypeGameMode::APrototypeGameMode()
 {
@@ -36,9 +41,54 @@ void APrototypeController::BeginPlay()
 }
 
 #if !UE_BUILD_SHIPPING
+void APrototypeController::RunKeyboardProof()
+{
+    int32 Step = 0;
+    auto KeyStep = [this, &Step](const FKey& Key)
+    {
+        // Route real Slate key-down/up events to the focused widget. These
+        // checks must not call Choose/Hint/Submit/TogglePause directly.
+        const FKeyEvent Event(Key, FModifierKeysState(), uint32(0), false, 0, 0);
+        const bool Down = FSlateApplication::Get().ProcessKeyDownEvent(Event);
+        const bool Up = FSlateApplication::Get().ProcessKeyUpEvent(Event);
+        const auto& A = Screen->GetAttempt();
+        UE_LOG(LogTemp, Display, TEXT("WQ_KEY_STEP proof=%s step=%d key=%s down=%d up=%d selected=%d submitted=%d correct=%d hint=%d paused=%d evaluations=%d"),
+            *ProofName, ++Step, *Key.GetFName().ToString(), Down, Up,
+            A.SelectedIndex, A.bSubmitted, A.bCorrect, A.bHintUsed, A.bPaused, A.EvaluationCount);
+    };
+    if (ProofName == TEXT("keyswitch"))
+    {
+        KeyStep(EKeys::One); KeyStep(EKeys::Three); KeyStep(EKeys::Four); KeyStep(EKeys::Two);
+    }
+    else if (ProofName == TEXT("keyempty")) KeyStep(EKeys::Enter);
+    else if (ProofName == TEXT("keysubmit"))
+    {
+        KeyStep(EKeys::One); KeyStep(EKeys::Enter); KeyStep(EKeys::Enter);
+    }
+    else if (ProofName == TEXT("keyhint"))
+    {
+        KeyStep(EKeys::H); KeyStep(EKeys::One); KeyStep(EKeys::Enter);
+    }
+    else if (ProofName == TEXT("keybuttons"))
+    {
+        // Focus setup is explicit; Space must activate the real UButton route.
+        // This is not a Tab-navigation or manual-keyboard qualification.
+        Screen->FocusProofAnswer(); KeyStep(EKeys::SpaceBar);
+        Screen->FocusProofAction(); KeyStep(EKeys::SpaceBar);
+        KeyStep(EKeys::Enter);
+    }
+    else if (ProofName == TEXT("keypaused") || ProofName == TEXT("keyresumed"))
+    {
+        KeyStep(EKeys::Two); KeyStep(EKeys::P);
+        KeyStep(EKeys::One); KeyStep(EKeys::H);
+        if (ProofName == TEXT("keyresumed")) KeyStep(EKeys::SpaceBar);
+    }
+}
+
 void APrototypeController::RunProof()
 {
-    if (ProofName == TEXT("selected")) Screen->Choose(2);
+    if (ProofName.StartsWith(TEXT("key"))) RunKeyboardProof();
+    else if (ProofName == TEXT("selected")) Screen->Choose(2);
     else if (ProofName == TEXT("correct")) { Screen->Choose(0); Screen->Submit(); Screen->Submit(); }
     else if (ProofName == TEXT("wrong")) { Screen->Choose(1); Screen->Submit(); }
     else if (ProofName == TEXT("hint")) { Screen->Hint(); Screen->Choose(0); Screen->Submit(); }

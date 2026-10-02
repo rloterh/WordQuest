@@ -17,6 +17,7 @@ private:
     UPROPERTY(Transient) TObjectPtr<UContextScreen> Screen;
 #if !UE_BUILD_SHIPPING
     void RunProof();
+    void RunKeyboardProof();
     void CaptureProof();
     FTimerHandle ProofTimer;
     FString ProofName, CapturePath;

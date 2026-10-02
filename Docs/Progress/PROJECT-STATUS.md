@@ -21,13 +21,11 @@ The owner merged [PR #9](https://github.com/rloterh/WordQuest/pull/9) at `c3eece
 on 2026-10-02; its local cooked Win64 proof is now on `dev`.
 The owner merged [PR #10](https://github.com/rloterh/WordQuest/pull/10) at `2f3c3f6`
 on 2026-10-02; its editable wordmark candidate is now on `dev`.
-Working branch: `feature/g-spirit-framing`, based on that merge, for bounded
-aspect-preserving companion framing and an art-attempt audit. Two new generated
-exports were rejected for identity/ornament differences; neither is imported.
-The existing source/Unreal texture is preserved; final native/package checks pass.
-Dedicated internal review is recorded in regular
-[PR #11](https://github.com/rloterh/WordQuest/pull/11) against `dev`, awaiting the
-owner's review/merge decision.
+The owner merged [PR #11](https://github.com/rloterh/WordQuest/pull/11) at `f0b8c4c`
+on 2026-10-02; its companion framing and rejected-art audit are now on `dev`.
+Working branch: `feature/g-keyboard-route-proof`, based on that merge, for bounded
+synthetic native Slate key-routing checks. Build, runtime/package evidence and
+internal review are pending; manual keyboard, screen-reader and phone gates remain open.
 No agent merge, game deployment or release is authorized.
 
 ## Completed work
@@ -205,8 +203,8 @@ inspected packaged captures and both Unreal tests pass at clean `30b58f8`.
 See [companion framing](../QA/UI01/G-SPIRIT-FRAMING.md). Dedicated review of clean
 `b1cb19c` against actual `dev` base `2f3c3f6` completed with exit 0 and no actionable
 introduced defects. The bounded regular
-[PR #11](https://github.com/rloterh/WordQuest/pull/11) is open against `dev` as a
-tested framing checkpoint, awaiting the owner's review/merge decision.
+[PR #11](https://github.com/rloterh/WordQuest/pull/11) was merged by the owner on
+2026-10-02 as a tested framing checkpoint; that does not accept unfinished gates.
 Framing does not accept companion identity or resolve alpha-edge,
 static art, motion, editorial, offline/phone, performance or release gates.
 
