@@ -157,8 +157,13 @@ remains open. The next bounded UI01 correction addresses disabled shading on
 submitted answer text, option letters and result symbols. Reference-size samples
 from the final PR #25 correct capture fall below the 3:1 large-text contrast target.
 A paint-only content wrapper keeps learning content readable while retaining
-disabled buttons and existing input/navigation rules. Native preflight and clean
-packaged verification are in progress; no new acceptance is claimed.
+disabled buttons and existing input/navigation rules. Clean `36972d1` passes both
+real target builds, full Win64 packaging, 15 inspected packaged checks, both Unreal
+tests and all 63 Python tests. Nine static samples improve from 2.52–2.64:1 to
+9.76–12.22:1; this is not a whole-screen contrast/accessibility pass. Initial PNG
+pixels are unchanged and submitted-state changes stay inside the answer rows.
+See [answer reading contrast](../QA/UI01/G-ANSWER-READING-CONTRAST.md).
+Dedicated review is pending; no new acceptance is claimed.
 The owner retains merge authority. Android support receipt is still absent and
 adb lists no device on this turn's recheck.
 The owner identified Epic Games Launcher as the UE installation source; its current
