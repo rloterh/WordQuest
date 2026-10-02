@@ -168,6 +168,8 @@ pipeline work was slow; no performance qualification is claimed. Dedicated revie
 of clean `3be5369` against actual `dev` base `eae3475` completed with exit 0 and no
 actionable introduced defects. Android/device/offline, art, motion, editorial and
 release gates remain open.
+The bounded [PR #9](https://github.com/rloterh/WordQuest/pull/9) is open against
+`dev` as a tested local Win64 checkpoint, awaiting the owner's review/merge decision.
 
 ## Resume
 
