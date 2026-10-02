@@ -15,3 +15,19 @@ button lettering. It lacks the reference's custom flourishes, bevel and lighting
 The native prototype uses Unreal's bundled Roboto for educational text. Its license
 is copied unchanged to `ArtSource/Licenses/ROBOTO_License.txt`; it is also a candidate
 whose metrics differ from the reference. Phone glyph and fallback checks remain open.
+
+## Genuine Bold action face candidate (2026-10-02)
+
+Unmodified `CormorantGaramond-Bold.ttf` was downloaded from the same pinned
+upstream revision, under the unchanged adjacent OFL:
+https://github.com/CatharsisFonts/Cormorant/blob/9719e26aa8e26d7a30e736667427b9e05b5db059/fonts/ttf/CormorantGaramond-Bold.ttf
+
+SHA-256: `cc23bd9f374e7497b822b53a74e0c732ee3c926624840a03e5663e5eef688be4`;
+size 1,042,268 bytes. Its Git blob SHA-1
+`39e067fb0d22e528a173ce89a78d69c255a4b1e9` matches the pinned GitHub contents API.
+Local fontTools inspection reports OS/2 weight 700 (existing SemiBold is 600) and
+coverage for current Hint/Check/disabled/Pause display strings. No font bytes,
+glyphs or license text were modified; no faux bold or original-font identification
+is claimed. Unreal import is `/Game/UI/G/G_DisplayBold`, used as the actual `Bold`
+entry beside the preserved SemiBold `Regular` entry. The outlined brand asset and
+Roboto learning text remain unchanged. Art/phone/font acceptance remains open.

@@ -132,6 +132,12 @@ void UContextScreen::Build()
         FTypefaceEntry Entry(TEXT("Regular"));
         Entry.Font = FFontData(Face);
         RuntimeFont->GetMutableInternalCompositeFont().DefaultTypeface.Fonts.Add(Entry);
+        if (auto* BoldFace = LoadObject<UFontFace>(nullptr, TEXT("/Game/UI/G/G_DisplayBold.G_DisplayBold")))
+        {
+            FTypefaceEntry BoldEntry(TEXT("Bold"));
+            BoldEntry.Font = FFontData(BoldFace);
+            RuntimeFont->GetMutableInternalCompositeFont().DefaultTypeface.Fonts.Add(BoldEntry);
+        }
         DisplayFont = RuntimeFont;
     }
     Root = Make<UCanvasPanel>(TEXT("Root"));
