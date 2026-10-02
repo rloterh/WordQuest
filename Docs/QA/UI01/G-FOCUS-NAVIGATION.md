@@ -118,9 +118,18 @@ Both existing Unreal tests passed from the clean revision in
 `20261002-042928-automation-initial` (2 succeeded, zero failed/not-run/in-process,
 exit 0). These remain isolated attempt/draft-fixture tests, not campaign or
 editorial qualification. All 22 Python tests, six supplied reference hashes, six
-SVG source/runtime pairs, `git lfs fsck` and `git diff --check` passed. Dedicated
-review against actual `origin/dev` is pending. Later commits record evidence only;
-no art or device gate is passed by these checks.
+SVG source/runtime pairs, `git lfs fsck` and `git diff --check` passed.
+
+Dedicated read-only Codex review of clean
+`2cd2670bb36ab46a5572a8b8e8e645451f07c9a0` against actual `origin/dev`
+(`b2d7a0dcceb43195901d2da301704ab4959c5363`) completed with exit 0 and no actionable
+introduced defects. Raw evidence: `Artifacts/Reviews/20261002-043148`;
+head/worktree unchanged. Report SHA-256:
+`b841c7e4c2a81ff7bc4c927c7c1590f07bf7228df40f2f18e67524f7e104f351`.
+The reviewer reran all 17 focus/keyboard Python tests; build/runtime evidence
+comes from the implementation checks above, not an independent reviewer rerun.
+Connector shutdown/auth diagnostics did not prevent successful dedicated review.
+Later commits only record review/PR publication; no art or device gate is passed.
 
 Reproduce after a clean commit:
 
