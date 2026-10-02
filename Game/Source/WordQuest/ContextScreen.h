@@ -49,6 +49,8 @@ public:
     int32 GetProofAnswerCueCode(int32 Index) const;
     FString GetProofAnswerAccessibleText(int32 Index) const;
     int32 GetProofFeedbackVisibility() const;
+    FString GetProofTextSizes() const;
+    bool GetProofActionContentsFit() const;
     FString GetProofFocusName() const;
     int32 GetProofTextPercent() const { return FMath::RoundToInt(TextScale * 100); }
     bool GetProofFocusedControlVisible() const;

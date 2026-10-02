@@ -56,9 +56,10 @@ void Fill(UWidget* Widget)
     Slot->SetAnchors(FAnchors(0, 0, 1, 1));
     Slot->SetOffsets(FMargin(0));
 }
-void Font(UTextBlock* Text, float Pixels, bool Bold = false, UObject* Face = nullptr)
+void Font(UTextBlock* Text, float Pixels, bool Bold = false, UObject* Face = nullptr, float Enlargement = 1.f)
 {
-    auto Info = FCoreStyle::GetDefaultFontStyle(Bold ? "Bold" : "Regular", FMath::Max(1, FMath::RoundToInt(Pixels * .75f)));
+    const int32 BaseSize = FMath::Max(1, FMath::RoundToInt(Pixels * .75f));
+    auto Info = FCoreStyle::GetDefaultFontStyle(Bold ? "Bold" : "Regular", FMath::RoundToInt(BaseSize * Enlargement));
     if (Face) Info.FontObject = Face;
     Text->SetFont(Info);
 }
@@ -499,7 +500,9 @@ void UContextScreen::Layout(FVector2D Size)
     Progress->SetVisibility(Hero == 521 ? ESlateVisibility::HitTestInvisible : ESlateVisibility::Collapsed);
     auto Measure = [this, S](UTextBlock* Label, float Pixels, float W, float MinHeight, bool Bold = false)
     {
-        Font(Label, FMath::Max(Pixels * S * TextScale, 14.f), Bold);
+        // Enlarge the actual normal font, including its readability floor and
+        // point-size rounding. Applying the floor afterwards shrinks the ratio.
+        Font(Label, FMath::Max(Pixels * S, 14.f), Bold, nullptr, TextScale);
         Label->SetWrapTextAt(W);
         Label->ForceLayoutPrepass();
         return FMath::Max(MinHeight, Label->GetDesiredSize().Y + 4 * S);
@@ -508,7 +511,7 @@ void UContextScreen::Layout(FVector2D Size)
     { Bounds(Label, X + Left, Y, W, H); };
     float Y = PanelY + 89 * S;
     Mode->SetText(FText::FromString(TEXT("C O N T E X T   D E T E C T I V E")));
-    Font(Mode, FMath::Max(28 * S * TextScale, 14.f));
+    Font(Mode, FMath::Max(28 * S, 14.f), false, nullptr, TextScale);
     Mode->SetWrapTextAt(0);
     Mode->ForceLayoutPrepass();
     // Drop decorative letter spacing when it would split words across lines.
@@ -536,8 +539,8 @@ void UContextScreen::Layout(FVector2D Size)
         Answer.BadgeSize->SetWidthOverride(BadgeDiameter);
         Answer.BadgeSize->SetHeightOverride(BadgeDiameter);
         Answer.MarkerSize->SetWidthOverride(MarkerWidth);
-        Font(Answer.Letter, FMath::Max(35 * S * TextScale, 14.f), true);
-        Font(Answer.Marker, FMath::Max(24 * S * TextScale, 14.f), true);
+        Font(Answer.Letter, FMath::Max(35 * S, 14.f), true, nullptr, TextScale);
+        Font(Answer.Marker, FMath::Max(24 * S, 14.f), true, nullptr, TextScale);
         const auto SlotPadding = CastChecked<UButtonSlot>(Answer.Button->GetContent()->Slot)->GetPadding();
         const float LabelWidth = 666 * S - 48 * S - BadgeDiameter - MarkerWidth - SlotPadding.Left - SlotPadding.Right;
         H = Measure(Answer.Label, 35, LabelWidth, FMath::Max(95 * S, 48.f));
@@ -561,14 +564,24 @@ void UContextScreen::Layout(FVector2D Size)
         Y += H + 17 * S;
     }
     Y += 16 * S;
-    Font(HintLabel, FMath::Max(34 * S * TextScale, 16.f), true, DisplayFont);
-    Font(SubmitLabel, FMath::Max(34 * S * TextScale, 16.f), true, DisplayFont);
+    Font(HintLabel, FMath::Max(34 * S, 16.f), true, DisplayFont, TextScale);
+    Font(SubmitLabel, FMath::Max(34 * S, 16.f), true, DisplayFont, TextScale);
     HintIconSize->SetWidthOverride(40 * S * TextScale);
     HintIconSize->SetHeightOverride(56 * S * TextScale);
     SubmitIconSize->SetWidthOverride(48 * S * TextScale);
     SubmitIconSize->SetHeightOverride(48 * S * TextScale);
     CastChecked<UHorizontalBoxSlot>(HintLabel->Slot)->SetPadding(FMargin(HintIcon->GetVisibility() == ESlateVisibility::Collapsed ? 0 : 20 * S * TextScale, 0, 0, 0));
     CastChecked<UHorizontalBoxSlot>(SubmitLabel->Slot)->SetPadding(FMargin(SubmitIcon->GetVisibility() == ESlateVisibility::Collapsed ? 0 : 20 * S * TextScale, 0, 0, 0));
+    auto WrapAction = [S, this](UButton* B, UTextBlock* Label, UImage* Icon, float IconWidth)
+    {
+        const auto ContentPadding = CastChecked<UButtonSlot>(B->GetContent()->Slot)->GetPadding();
+        const float IconSpace = Icon->GetVisibility() == ESlateVisibility::Collapsed ? 0 : (IconWidth + 20) * S * TextScale;
+        Label->SetWrappingPolicy(ETextWrappingPolicy::AllowPerCharacterWrapping);
+        Label->SetWrapTextAt(TextScale > 1.2f
+            ? FMath::Max(1.f, 640 * S - ContentPadding.Left - ContentPadding.Right - IconSpace) : 0.f);
+    };
+    WrapAction(HintButton, HintLabel, HintIcon, 40);
+    WrapAction(SubmitButton, SubmitLabel, SubmitIcon, 48);
     HintButton->GetContent()->ForceLayoutPrepass();
     SubmitButton->GetContent()->ForceLayoutPrepass();
     const FVector2D HintDesired = HintButton->GetContent()->GetDesiredSize();
@@ -856,6 +869,28 @@ FReply UContextScreen::NativeOnKeyDown(const FGeometry& Geometry, const FKeyEven
 }
 
 #if !UE_BUILD_SHIPPING
+bool UContextScreen::GetProofActionContentsFit() const
+{
+    for (auto* B : {HintButton.Get(), SubmitButton.Get()})
+    {
+        const auto Content = B->GetContent()->GetDesiredSize();
+        const auto ContentPadding = CastChecked<UButtonSlot>(B->GetContent()->Slot)->GetPadding();
+        const auto StylePadding = B->GetStyle().NormalPadding;
+        const auto Size = CastChecked<UCanvasPanelSlot>(B->Slot)->GetSize();
+        if (Content.X + ContentPadding.Left + ContentPadding.Right + StylePadding.Left + StylePadding.Right > Size.X + 1
+            || Content.Y + ContentPadding.Top + ContentPadding.Bottom + StylePadding.Top + StylePadding.Bottom > Size.Y + 1) return false;
+    }
+    return true;
+}
+
+FString UContextScreen::GetProofTextSizes() const
+{
+    auto Size = [](const UTextBlock* Label) { return FMath::RoundToInt(Label->GetFont().Size); };
+    return FString::Printf(TEXT("mode=%d word=%d clue=%d prompt=%d answer=%d marker=%d letter=%d hint=%d submit=%d feedback=%d"),
+        Size(Mode), Size(Word), Size(Clue), Size(Prompt), Size(Answers[0].Label), Size(Answers[0].Marker),
+        Size(Answers[0].Letter), Size(HintLabel), Size(SubmitLabel), Size(Feedback));
+}
+
 int32 UContextScreen::GetProofFeedbackVisibility() const
 {
     if (Feedback->GetText().IsEmpty()) return 0;
