@@ -29,7 +29,8 @@ Working branch: `feature/g-focus-navigation`, based on that merge, for bounded
 Tab/Shift-Tab focus-order and Pause text-size/retry checks. Focus cycling and rapid
 200% retry visibility are corrected. Both builds, clean Win64 package, 14 packaged
 checks, both Unreal tests and 22 Python tests pass. Dedicated read-only review
-completed with no actionable introduced defects; PR publication is next.
+completed with no actionable introduced defects. The bounded regular
+[PR #13](https://github.com/rloterh/WordQuest/pull/13) is ready for owner merge.
 Manual input, screen-reader, art and phone gates remain open.
 No agent merge, game deployment or release is authorized.
 
@@ -243,6 +244,9 @@ See [focus navigation](../QA/UI01/G-FOCUS-NAVIGATION.md). Dedicated read-only re
 of clean `2cd2670` against actual `dev` base `b2d7a0d` completed with exit 0,
 no actionable introduced defects and unchanged head/worktree.
 This is synthetic native traversal, not manual/platform accessibility acceptance.
+The bounded regular [PR #13](https://github.com/rloterh/WordQuest/pull/13) is open
+against `dev` and ready for owner merge. No GitHub status checks are configured;
+validation is recorded from the local build/runtime/review evidence above.
 Art, editorial, motion, offline/phone, performance and release gates remain open.
 
 ## Resume
