@@ -43,6 +43,8 @@ state/dimension checks, both Unreal tests and 22 Python tests pass. Missing-SVG
 fallback passes and cooked SVG matches source exactly. Dedicated read-only review
 found no actionable introduced defects. The 200% artificial long-answer landscape row remains partially visible
 at its stress-capture scroll position, reproduced in the merged baseline.
+The bounded regular [PR #15](https://github.com/rloterh/WordQuest/pull/15) is open
+for owner review/merge.
 Manual input, screen-reader, art and phone gates remain open.
 No agent merge, game deployment or release is authorized.
 
@@ -292,6 +294,8 @@ not complete-row visibility acceptance. See
 [badge material](../QA/UI01/G-ANSWER-BADGE-MATERIAL.md). Dedicated read-only review
 of clean `98d22a1` against actual `dev` base `3312e95` completed with exit 0,
 no actionable introduced defects and unchanged head/worktree.
+The bounded regular [PR #15](https://github.com/rloterh/WordQuest/pull/15) is open
+against `dev`. No GitHub status checks are configured; validation above is local.
 Exact static art, manual accessibility/input, editorial, phone/offline, performance,
 motion and release gates remain open.
 
