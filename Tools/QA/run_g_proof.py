@@ -204,9 +204,13 @@ def main():
         if report.is_file():
             data = json.loads(report.read_text(encoding='utf-8-sig'))
             result['automation'] = {k: data.get(k) for k in ['succeeded', 'failed', 'notRun', 'inProcess']}
-            result['evidence_complete'] = data.get('succeeded') == 2 and data.get('failed') == 0
+            result['evidence_complete'] = (data.get('succeeded') == 2 and
+                all(data.get(key) == 0 for key in ('failed', 'notRun', 'inProcess')))
         else:
             result['evidence_complete'] = False
+    # A capture/report may be written before Unreal crashes or times out. Keep
+    # the persisted verdict consistent with the command's failure status.
+    result['evidence_complete'] = result['exit_code'] == 0 and result['evidence_complete']
     (run / 'run.json').write_text(json.dumps(result, indent=2), encoding='utf-8')
     print(json.dumps(result, indent=2), flush=True)
     return 0 if result['exit_code'] == 0 and result['evidence_complete'] else 1
