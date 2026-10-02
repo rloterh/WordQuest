@@ -14,6 +14,7 @@ targets; shape, faceting and lighting still require visual acceptance.
 | `G-Reading-Divider-v001.svg` | `Game/Content/UI/G/Vector/G_ReadingDivider.svg` | 314x29 viewBox; longer matching lines and central star |
 | `G-Pause-Bars-v001.svg` | `Game/Content/UI/G/Vector/G_PauseBars.svg` | 24x30 viewBox; two white rounded bars, runtime tint follows skin availability |
 | `G-Wordmark-v001.svg` | `Game/Content/UI/G/Vector/G_Wordmark.svg` | 430x140 viewBox; outlined licensed lettering, gold finish, capital curls, Q swash and star |
+| `G-Answer-Badge-v001.svg` | `Game/Content/UI/G/Vector/G_AnswerBadge.svg` | 70x70 viewBox; lilac shaded disc and pale rim, with no baked letter |
 
 From the repository root:
 
@@ -69,3 +70,15 @@ and transformed glyph outlines. No supplied image pixels are changed or extracte
 
 No rights clearance beyond supplied-reference provenance is established. Release
 clearance and faithful-art acceptance remain open.
+
+The seventh resource reconstructs the reference's softly shaded answer badge.
+Four native overlays reuse that SVG under separate live A–D labels. A transparent
+native border supplies the selected navy ring; the existing selection marker and
+button outline remain. Missing SVG retains the original solid native badge.
+It is decoration with hit testing and accessibility disabled; the answer button
+retains the semantic label and interaction region. The existing 70-reference-pixel
+badge sizing, 32-unit minimum, 200% text scaling and row measurements are preserved.
+No original image pixels were edited/extracted and no raster or binary asset was
+generated. The staging helper now checks all seven masters/runtime copies.
+Native/cooked verification and remaining differences are recorded in
+`Docs/QA/UI01/G-ANSWER-BADGE-MATERIAL.md`.

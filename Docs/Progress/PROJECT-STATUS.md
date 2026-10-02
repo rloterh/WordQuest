@@ -31,14 +31,15 @@ on `dev`. Both builds, clean Win64 package,
 14 packaged checks, both Unreal tests and 22 Python tests passed; dedicated
 read-only review found no actionable introduced defects. The owner requested a
 playtest preview; that interactive 480x960 session closed cleanly. Manual observations
-are pending. Working branch: `feature/g-action-font-weight`, based on the merge,
-for a genuine licensed Bold action-face candidate. Import/editor build and preliminary
-native weight comparison, missing-face fallback, both real builds, full Win64
-cook/stage/archive, seven inspected packaged captures, both Unreal tests and
-22 Python tests pass. Cooked Bold payload matches the licensed source exactly.
-Dedicated read-only review found no actionable introduced defects. The bounded
-regular [PR #14](https://github.com/rloterh/WordQuest/pull/14) is open for owner
-review/merge. Manual input, screen-reader, art and phone gates remain open.
+are pending. The owner merged [PR #14](https://github.com/rloterh/WordQuest/pull/14)
+at `3312e95` on 2026-10-02; its genuine licensed Bold action face is now on `dev`.
+Both real builds, full Win64 cook/stage/archive, seven inspected packaged captures,
+both Unreal tests and 22 Python tests passed; cooked Bold payload matched its source
+and dedicated read-only review found no actionable introduced defects.
+Working branch: `feature/g-answer-badge-material`, based on that merge, for an
+editable shaded badge candidate retaining live A–D letters and selected-state
+outline/marker. Editor build passes; native/package/fallback checks and review
+are in progress. Manual input, screen-reader, art and phone gates remain open.
 No agent merge, game deployment or release is authorized.
 
 ## Completed work
@@ -270,9 +271,10 @@ of clean `6267858` against actual `dev` base `793a192` completed with exit 0,
 no actionable introduced defects and unchanged head/worktree. Exact typeface
 identification, static fidelity, manual accessibility,
 editorial, phone/offline, performance, motion and release gates remain open.
-The bounded regular [PR #14](https://github.com/rloterh/WordQuest/pull/14) is open;
-its later commits record evidence/review/publication only. GitHub has no configured
-status checks; local validation is recorded above. The owner retains merge authority.
+The owner merged the bounded regular
+[PR #14](https://github.com/rloterh/WordQuest/pull/14) on 2026-10-02 at `3312e95`.
+GitHub has no configured status checks; local validation is recorded above.
+This does not accept unfinished art/device gates. The owner retains merge authority.
 
 ## Owner playtest preview
 
