@@ -688,7 +688,10 @@ void UContextScreen::Layout(FVector2D Size)
         Bounds(B, ModalX, ModalControlY, ModalWidth, Height);
         ModalControlY += Height + 12.f;
     }
-    ModalContentSize->SetHeightOverride(FMath::Max(float(ModalSize.Y), ModalControlY + 4.f));
+    const float ModalContentHeight = ModalControlY + 4.f;
+    ModalContentSize->SetHeightOverride(ModalContentHeight);
+    ModalScroll->SetScrollBarVisibility(ModalContentHeight > ModalSize.Y
+        ? ESlateVisibility::Visible : ESlateVisibility::Collapsed);
     StyleButtons();
     if (bRevealFeedback)
     {
