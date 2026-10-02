@@ -45,6 +45,8 @@ public:
     void FocusProofAnswer();
     void FocusProofAction();
     void FocusProofPause();
+    FString GetProofFocusName() const;
+    int32 GetProofTextPercent() const { return FMath::RoundToInt(TextScale * 100); }
 #endif
 protected:
     virtual TSharedRef<SWidget> RebuildWidget() override;
@@ -60,6 +62,7 @@ private:
     void Build();
     void Layout(FVector2D Size);
     void Refresh();
+    TArray<UButton*> EnabledGameplayControls() const;
     void StyleButtons();
     UTextBlock* ButtonLabel(UButton* Target) const;
     UImage* ButtonSkin(UButton* Target) const;

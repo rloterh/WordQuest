@@ -23,12 +23,12 @@ The owner merged [PR #10](https://github.com/rloterh/WordQuest/pull/10) at `2f3c
 on 2026-10-02; its editable wordmark candidate is now on `dev`.
 The owner merged [PR #11](https://github.com/rloterh/WordQuest/pull/11) at `f0b8c4c`
 on 2026-10-02; its companion framing and rejected-art audit are now on `dev`.
-Working branch: `feature/g-keyboard-route-proof`, based on that merge, for bounded
-synthetic native Slate key-routing checks. Both builds, clean Win64 package, seven
-routed packaged checks, both Unreal tests and 13 Python tests pass. Dedicated
-read-only review completed with no actionable introduced defects. The bounded
-regular [PR #12](https://github.com/rloterh/WordQuest/pull/12) is ready for owner
-merge; manual keyboard, screen-reader and phone gates remain open.
+The owner merged [PR #12](https://github.com/rloterh/WordQuest/pull/12) at `b2d7a0d`
+on 2026-10-02; its synthetic native keyboard routing evidence is now on `dev`.
+Working branch: `feature/g-focus-navigation`, based on that merge, for bounded
+Tab/Shift-Tab focus-order and Pause text-size/retry checks. Native baseline,
+corrections, final build/runtime evidence and review are in progress. Manual input,
+screen-reader, art and phone gates remain open.
 No agent merge, game deployment or release is authorized.
 
 ## Completed work
@@ -221,8 +221,8 @@ both Unreal tests and 13 Python trace/package-helper tests pass at clean `1fa4d1
 See [keyboard routing](../QA/UI01/G-KEYBOARD-ROUTING.md). Dedicated read-only review
 at clean `462ef2e` against actual `dev` base `f0b8c4c` completed with exit 0,
 no actionable introduced defects and unchanged head/worktree.
-The bounded regular [PR #12](https://github.com/rloterh/WordQuest/pull/12) is open
-against `dev` and ready for owner merge. GitHub reports no configured status checks;
+The owner merged the bounded regular
+[PR #12](https://github.com/rloterh/WordQuest/pull/12) on 2026-10-02. GitHub reports no configured status checks;
 the local build/runtime/review evidence above supplies the recorded validation.
 This synthetic route evidence does not establish manual/OS keyboard input, Tab
 traversal, screen-reader, pointer/touch, offline/phone or performance acceptance.

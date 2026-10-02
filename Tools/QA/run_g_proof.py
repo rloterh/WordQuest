@@ -13,6 +13,18 @@ import sys
 # Expected routed steps: key, state tuple, require handled key-down. Paused
 # shortcuts may be unhandled, but must leave selection/hint/evaluation unchanged.
 KEYBOARD_STEPS = {
+    'keyback': [('Tab', (-1,0,0,0,0,0), True)] * 4,
+    'keyskip': [('H', (-1,0,0,1,0,0), True)] + [('Tab', (-1,0,0,1,0,0), True)] * 8,
+    'keytab': [('Tab', (-1,0,0,0,0,0), True)] * 11,
+    'keymodal': [('P', (-1,0,0,0,1,0), True), ('Tab', (-1,0,0,0,1,0), True),
+                 ('SpaceBar', (-1,0,0,0,1,0), True)] + [('Tab', (-1,0,0,0,1,0), True)] * 6,
+    'keyretry': [('H', (-1,0,0,1,0,0), True), ('One', (0,0,0,1,0,0), True),
+                 ('Enter', (0,1,1,1,0,1), True), ('P', (0,1,1,1,1,1), True),
+                 ('Tab', (0,1,1,1,1,1), True), ('SpaceBar', (0,1,1,1,1,1), True),
+                 ('Tab', (0,1,1,1,1,1), True), ('SpaceBar', (-1,0,0,0,0,0), True),
+                 ('Tab', (-1,0,0,0,0,0), True), ('SpaceBar', (0,0,0,0,0,0), True)],
+    'keydisabled': [('One', (0,0,0,0,0,0), True), ('Enter', (0,1,1,0,0,1), True)] +
+        [('Tab', (0,1,1,0,0,1), True)] * 3 + [('P', (0,1,1,0,1,1), True), ('SpaceBar', (0,1,1,0,0,1), True)],
     'keyswitch': [('One', (0,0,0,0,0,0), True), ('Three', (2,0,0,0,0,0), True),
                   ('Four', (3,0,0,0,0,0), True), ('Two', (1,0,0,0,0,0), True)],
     'keyempty': [('Enter', (-1,0,0,0,0,0), True)],
@@ -28,6 +40,34 @@ KEYBOARD_STEPS = {
                    ('One', (1,0,0,0,1,0), False), ('H', (1,0,0,0,1,0), False),
                    ('SpaceBar', (1,0,0,0,0,0), True)],
 }
+
+# These routes use no programmatic button focus setup. Check the focused semantic
+# control, Shift modifier and text setting at every routed transition.
+FOCUS_STEPS = {
+    'keyback': [('Pause',1,100), ('Answer0',0,100), ('Pause',1,100), ('Submit',1,100)],
+    'keyskip': [('Screen',0,100), ('Answer0',0,100), ('Answer1',0,100), ('Answer2',0,100),
+                ('Answer3',0,100), ('Submit',0,100), ('Pause',0,100), ('Submit',1,100), ('Answer3',1,100)],
+    'keytab': [('Answer0',0,100), ('Answer1',0,100), ('Answer2',0,100), ('Answer3',0,100),
+               ('Hint',0,100), ('Submit',0,100), ('Pause',0,100), ('Answer0',0,100),
+               ('Pause',1,100), ('Submit',1,100), ('Hint',1,100)],
+    'keymodal': [('Resume',0,100), ('TextSize',0,100), ('TextSize',0,200), ('Reset',0,200),
+                 ('Resume',0,200), ('Reset',1,200), ('TextSize',1,200), ('Resume',1,200), ('TextSize',0,200)],
+    'keyretry': [('Screen',0,100), ('Screen',0,100), ('Screen',0,100), ('Resume',0,100),
+                 ('TextSize',0,100), ('TextSize',0,200), ('Reset',0,200), ('Screen',0,200),
+                 ('Answer0',0,200), ('Answer0',0,200)],
+    'keydisabled': [('Screen',0,100), ('Screen',0,100), ('Pause',0,100), ('Pause',0,100),
+                    ('Pause',1,100), ('Resume',0,100), ('Pause',0,100)],
+}
+
+
+def check_focus_steps(log, proof):
+    rows = re.findall(r'WQ_KEY_STEP proof=(\w+) step=(\d+) key=\w+ down=\d+ up=\d+ selected=-?\d+ submitted=\d+ correct=\d+ hint=\d+ paused=\d+ evaluations=\d+ shift=(\d+) focus=(\w+) textpercent=(\d+)', log)
+    expected = FOCUS_STEPS[proof]
+    passed = len(rows) == len(expected)
+    for index, (row, (focus, shift, percent)) in enumerate(zip(rows, expected), 1):
+        passed = passed and row[0] == proof and int(row[1]) == index
+        passed = passed and (row[3], int(row[2]), int(row[4])) == (focus, shift, percent)
+    return passed, rows
 
 
 def check_keyboard_steps(log, proof):
@@ -127,6 +167,10 @@ def main():
         if args.proof in KEYBOARD_STEPS:
             passed, rows = check_keyboard_steps(log, args.proof)
             result.update({'keyboard_steps_passed': passed, 'keyboard_steps': rows})
+            result['evidence_complete'] = result['evidence_complete'] and passed
+        if args.proof in FOCUS_STEPS:
+            passed, rows = check_focus_steps(log, args.proof)
+            result.update({'focus_steps_passed': passed, 'focus_steps': rows})
             result['evidence_complete'] = result['evidence_complete'] and passed
     else:
         report = run / 'Report/index.json'

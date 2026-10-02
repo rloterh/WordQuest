@@ -612,6 +612,16 @@ void UContextScreen::StyleButtons()
     for (auto* B : {HintButton.Get(), PauseButton.Get(), ResumeButton.Get(), TextSizeButton.Get(), ResetButton.Get()}) Apply(B, false, false);
 }
 
+TArray<UButton*> UContextScreen::EnabledGameplayControls() const
+{
+    TArray<UButton*> Order;
+    for (const auto& Answer : Answers)
+        if (Answer.Button->GetIsEnabled()) Order.Add(Answer.Button);
+    for (auto* B : {HintButton.Get(), SubmitButton.Get(), PauseButton.Get()})
+        if (B->GetIsEnabled()) Order.Add(B);
+    return Order;
+}
+
 void UContextScreen::Refresh()
 {
     for (int32 I = 0; I < Answers.Num(); ++I)
@@ -632,6 +642,14 @@ void UContextScreen::Refresh()
     SetButtonLabel(TextSizeButton, TextScale > 1 ? TEXT("Text size: 200%") : TEXT("Text size: 100%"));
     Scroll->SetIsEnabled(!Attempt.bPaused);
     Modal->SetVisibility(Attempt.bPaused ? ESlateVisibility::Visible : ESlateVisibility::Collapsed);
+    // Keep a stable semantic Tab order across reflow, and skip controls disabled
+    // by Hint/submission. Pause remains reachable when the attempt is complete.
+    const auto Order = EnabledGameplayControls();
+    for (int32 I = 0; I < Order.Num(); ++I)
+    {
+        Order[I]->SetNavigationRuleExplicit(EUINavigation::Next, Order[(I + 1) % Order.Num()]);
+        Order[I]->SetNavigationRuleExplicit(EUINavigation::Previous, Order[(I + Order.Num() - 1) % Order.Num()]);
+    }
     StyleButtons();
     bLayoutDirty = true;
 }
@@ -703,6 +721,15 @@ FReply UContextScreen::NativeOnKeyDown(const FGeometry& Geometry, const FKeyEven
     if (Key == EKeys::Escape || Key == EKeys::P) { TogglePause(); return FReply::Handled(); }
     if (!Attempt.bPaused)
     {
+        if (Key == EKeys::Tab && HasUserFocus(GetOwningPlayer()))
+        {
+            const auto Order = EnabledGameplayControls();
+            if (!Order.IsEmpty())
+            {
+                (Event.IsShiftDown() ? Order.Last() : Order[0])->SetUserFocus(GetOwningPlayer());
+                return FReply::Handled();
+            }
+        }
         if (Key == EKeys::One) Choose(0);
         else if (Key == EKeys::Two) Choose(1);
         else if (Key == EKeys::Three) Choose(2);
@@ -720,6 +747,14 @@ void UContextScreen::SetProofTextScale(float Value) { TextScale = FMath::Clamp(V
 void UContextScreen::FocusProofAnswer() { Answers[1].Button->SetUserFocus(GetOwningPlayer()); }
 void UContextScreen::FocusProofAction() { SubmitButton->SetUserFocus(GetOwningPlayer()); }
 void UContextScreen::FocusProofPause() { PauseButton->SetUserFocus(GetOwningPlayer()); }
+FString UContextScreen::GetProofFocusName() const
+{
+    for (const auto& Answer : Answers)
+        if (Answer.Button->HasUserFocus(GetOwningPlayer())) return Answer.Button->GetName();
+    for (auto* B : {HintButton.Get(), SubmitButton.Get(), PauseButton.Get(), ResumeButton.Get(), TextSizeButton.Get(), ResetButton.Get()})
+        if (B->HasUserFocus(GetOwningPlayer())) return B->GetName();
+    return HasUserFocus(GetOwningPlayer()) ? TEXT("Screen") : TEXT("None");
+}
 void UContextScreen::SetProofLongText()
 {
     if (!bReady) return;
