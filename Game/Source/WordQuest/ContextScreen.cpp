@@ -171,6 +171,13 @@ void UContextScreen::Build()
     Brand->SetShadowOffset(FVector2D(1, 2));
     Brand->SetShadowColorAndOpacity(Violet);
     Canvas->AddChild(Brand);
+    BrandMark = VectorPicture(TEXT("BrandMark"), TEXT("G_Wordmark.svg"), FVector2D(430, 140));
+    if (BrandMark->GetVisibility() != ESlateVisibility::Collapsed)
+    {
+        Accessible(BrandMark, TEXT("WordQuest"));
+        Brand->SetVisibility(ESlateVisibility::Collapsed);
+    }
+    Canvas->AddChild(BrandMark);
     ProgressPlaque = Picture(TEXT("ProgressPlaque"), TEXT("/Game/UI/G/G_ProgressPlaque.G_ProgressPlaque"));
     auto PlaqueBrush = ProgressPlaque->GetBrush();
     // Frame the generated core without editing its raster master.
@@ -369,6 +376,7 @@ void UContextScreen::Layout(FVector2D Size)
     Bounds(Background, (RootSize.X - 884 * BGScale) / 2, 0, 884 * BGScale, 1779 * BGScale);
     Place(Brand, 211, 16, 465, 137);
     Font(Brand, 108 * S, false, DisplayFont);
+    Place(BrandMark, 229, 23, 430, 140);
     Place(ProgressPlaque, 352, 169, 178, 61);
     Font(Progress, 35 * S, true);
     Progress->ForceLayoutPrepass();

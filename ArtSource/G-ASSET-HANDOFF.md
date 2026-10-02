@@ -105,6 +105,10 @@ gates. Earlier unverified-package statements describe their original increments.
 5. Accepted brand mark, progress plaque, divider ornament, Hint/Check/Pause icons
    and font sources with redistribution licenses and glyph/metric evidence.
    Hint/Check SVG and plaque candidates exist; faithful-art acceptance remains open.
+   A separate outlined G wordmark candidate with authored gold/capital/swash
+   ornament is now under `UI/G/Vector`; its OFL font source and optional builder
+   are documented in the vector README and `Docs/QA/UI01/G-WORDMARK.md`.
+   It does not identify or accept the original title lettering.
 
 Use sRGB exports with straight alpha unless the importer explicitly converts it.
 Retain source masks, painted hidden regions and editable layers in the artist's real
