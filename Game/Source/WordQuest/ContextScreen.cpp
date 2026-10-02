@@ -1,4 +1,5 @@
 #include "ContextScreen.h"
+#include "ReadingContentBox.h"
 #include "Blueprint/WidgetTree.h"
 #include "Brushes/SlateRoundedBoxBrush.h"
 #include "Brushes/SlateImageBrush.h"
@@ -280,8 +281,11 @@ void UContextScreen::Build()
         auto* LabelSlot = Row->AddChildToHorizontalBox(Answer.Label);
         LabelSlot->SetSize(FSlateChildSize(ESlateSizeRule::Fill));
         LabelSlot->SetVerticalAlignment(VAlign_Center);
-        Answer.Button->SetContent(Row);
-        auto* ContentSlot = CastChecked<UButtonSlot>(Row->Slot);
+        auto* ReadingContent = Make<UReadingContentBox>(*(Name + TEXT("ReadingContent")));
+        ReadingContent->SetVisibility(ESlateVisibility::HitTestInvisible);
+        ReadingContent->AddChild(Row);
+        Answer.Button->SetContent(ReadingContent);
+        auto* ContentSlot = CastChecked<UButtonSlot>(ReadingContent->Slot);
         ContentSlot->SetHorizontalAlignment(HAlign_Fill);
         ContentSlot->SetVerticalAlignment(VAlign_Center);
         Canvas->AddChild(Answer.Skin);
