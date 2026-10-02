@@ -1,0 +1,20 @@
+{
+  "status": "unapproved UI01 material candidate; not original lettering or release art",
+  "master": "ArtSource/UI/G/Vector/G-Wordmark-v002.svg",
+  "runtime": "Game/Content/UI/G/Vector/G_Wordmark.svg",
+  "sha256": "34eb2dc12e2c1be40db36f862924431ee5b26ce82fe5424ecec4098d6fd9b6b2",
+  "preserved_previous_master": "ArtSource/UI/G/Vector/G-Wordmark-v001.svg",
+  "reference": "Planning/WordQuest-UI-Realms-Addendum/references/G-Celestial-Reverie-Gameplay.png",
+  "reference_sha256": "306dae4f6352749edcf1d8edf73f26339a4ba6407b4a394ec50b5898418bedae",
+  "font": "ArtSource/Fonts/CormorantGaramond/CormorantGaramond-SemiBold.ttf",
+  "font_sha256": "dc4bc094dc3c55cf79ff2f6f0ba1e501b712fc3cf3742296cd8fdcc6e995127d",
+  "license": "adjacent unmodified SIL OFL 1.1",
+  "builder": "Tools/AssetImport/build_g_wordmark.py --revision v002",
+  "development_dependency": "fonttools==4.61.1; not required for runtime or normal builds",
+  "method": "preserved licensed glyph paths and authored ornament; warm gradient, ivory rim, lower offset bevel and thin upper highlight in editable SVG",
+  "raster_editing": false,
+  "image_generation": false,
+  "unreal_binary_generation": false,
+  "layout": "existing 430x140 SVG and x229/y23 reference-size placement unchanged",
+  "remaining": "font/letterform and ornament mismatch; exact original identification, art, device and release acceptance pending"
+}

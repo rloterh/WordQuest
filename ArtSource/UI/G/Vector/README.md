@@ -13,7 +13,7 @@ targets; shape, faceting and lighting still require visual acceptance.
 | `G-Header-Divider-v001.svg` | `Game/Content/UI/G/Vector/G_HeaderDivider.svg` | 214x29 viewBox; tapered short gold lines, diamond terminals and faceted central star |
 | `G-Reading-Divider-v001.svg` | `Game/Content/UI/G/Vector/G_ReadingDivider.svg` | 314x29 viewBox; longer matching lines and central star |
 | `G-Pause-Bars-v001.svg` | `Game/Content/UI/G/Vector/G_PauseBars.svg` | 24x30 viewBox; two white rounded bars, runtime tint follows skin availability |
-| `G-Wordmark-v001.svg` | `Game/Content/UI/G/Vector/G_Wordmark.svg` | 430x140 viewBox; outlined licensed lettering, gold finish, capital curls, Q swash and star |
+| `G-Wordmark-v002.svg` | `Game/Content/UI/G/Vector/G_Wordmark.svg` | 430x140 viewBox; preserved licensed outlines/ornament with layered ivory rim and warm gold bevel |
 | `G-Answer-Badge-v001.svg` | `Game/Content/UI/G/Vector/G_AnswerBadge.svg` | 70x70 viewBox; lilac shaded disc and pale rim, with no baked letter |
 
 From the repository root:
@@ -59,7 +59,7 @@ development-only outline tool outside tracked source, then stage normally:
 ```powershell
 python -m pip install --target Artifacts/Tools/fonttools fonttools==4.61.1
 $env:PYTHONPATH = "$PWD/Artifacts/Tools/fonttools"
-python Tools/AssetImport/build_g_wordmark.py
+python Tools/AssetImport/build_g_wordmark.py --revision v002
 python Tools/AssetImport/stage_g_action_icons.py
 ```
 
@@ -67,6 +67,14 @@ The checked-in SVGs are sufficient for normal builds; neither Unreal nor the
 parity check requires this Python package. The builder uses
 [fontTools SVGPathPen](https://fonttools.readthedocs.io/en/latest/pens/svgPathPen.html)
 and transformed glyph outlines. No supplied image pixels are changed or extracted.
+
+Revision v002 keeps the v001 master unchanged and adds separate vector bevel/rim
+layers over the same glyph paths and authored ornament. It changes palette/strokes,
+not title placement, font source, learning text or interactive controls. Use
+`--revision v001` to reproduce the preserved first candidate; the default is v002.
+Provenance and remaining limitations are in `G-Wordmark-v002-PROVENANCE.json`
+and `Docs/QA/UI01/G-WORDMARK-BEVEL.md`. Letterform, flourish, lighting and faithful
+art acceptance remain open. The package claims above describe earlier revisions.
 
 No rights clearance beyond supplied-reference provenance is established. Release
 clearance and faithful-art acceptance remain open.

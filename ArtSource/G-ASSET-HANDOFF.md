@@ -128,6 +128,13 @@ layered format, plus export settings and provenance. Do not fabricate `.blend` o
 other editable-source files from a filename alone. No rights clearance beyond the
 supplied reference provenance has been established; release clearance remains open.
 
+The preserved v001 wordmark now has a v002 editable material candidate under
+`UI/G/Vector`. It retains glyph/ornament paths and placement while adding warm
+gradient, ivory rim and offset bevel layers. Cooked SVG bytes and normal-size title-
+only pixel differences are verified; eight packaged captures were inspected.
+See `Docs/QA/UI01/G-WORDMARK-BEVEL.md` and adjacent v002 provenance. This does not
+identify or accept the original font, letterforms, flourishes or final brand art.
+
 ## Runtime handoff after static art and build prerequisites
 
 Use one common Context Detective screen; realm data selects art/fonts/skins, while

@@ -12,7 +12,8 @@ Branch `feature/g-focus-dev-integration` starts at `origin/dev` (`551a085`) and
 locally integrates the owner's merged feature branch. It does not merge remotely,
 deploy, release or introduce new gameplay/art. The owner retains merge authority.
 [PR #17](https://github.com/rloterh/WordQuest/pull/17) is published as a regular
-PR against `dev`, ready for the owner's merge decision. GitHub has no configured
+PR against `dev`; the owner merged it on 2026-10-02, 10:55:10 UTC, at
+`f0fd74b24585e7f48688970c589f072cc72f9dec`. GitHub has no configured
 status checks; the local verification below supplies its evidence.
 
 ## Identity and verification

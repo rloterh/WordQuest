@@ -9,6 +9,10 @@
 /ArtSource/UI/G/Vector/G-Answer-Badge-v001.svg text eol=lf
 /Game/Content/UI/G/Vector/G_AnswerBadge.svg text eol=lf
 
+# Preserve exact staged bytes for the revised wordmark candidate.
+/ArtSource/UI/G/Vector/G-Wordmark-v002.svg text eol=lf
+/Game/Content/UI/G/Vector/G_Wordmark.svg text eol=lf
+
 # Unreal binary assets.
 *.uasset filter=lfs diff=lfs merge=lfs -text
 *.umap filter=lfs diff=lfs merge=lfs -text
