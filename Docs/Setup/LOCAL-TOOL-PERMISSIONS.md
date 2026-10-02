@@ -70,3 +70,9 @@ Sources checked 2026-10-02:
 - [Config basics](https://learn.chatgpt.com/docs/config-file/config-basic)
 - [Configuration reference](https://learn.chatgpt.com/docs/config-file/config-reference)
 - [Computer Use setup and Windows app policy](https://learn.chatgpt.com/docs/computer-use)
+
+Dedicated read-only PR review of clean `7fc6d40` against actual `origin/dev`
+(`e2ef2b0`) completed with exit 0 and no actionable introduced defects. Head
+and worktree were unchanged; local evidence is in
+`Artifacts/Reviews/20261002-205247`. The review covers this documentation, not a
+live GUI permission test.
