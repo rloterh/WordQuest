@@ -25,13 +25,16 @@ The owner merged [PR #11](https://github.com/rloterh/WordQuest/pull/11) at `f0b8
 on 2026-10-02; its companion framing and rejected-art audit are now on `dev`.
 The owner merged [PR #12](https://github.com/rloterh/WordQuest/pull/12) at `b2d7a0d`
 on 2026-10-02; its synthetic native keyboard routing evidence is now on `dev`.
-Working branch: `feature/g-focus-navigation`, based on that merge, for bounded
-Tab/Shift-Tab focus-order and Pause text-size/retry checks. Focus cycling and rapid
-200% retry visibility are corrected. Both builds, clean Win64 package, 14 packaged
-checks, both Unreal tests and 22 Python tests pass. Dedicated read-only review
-completed with no actionable introduced defects. The bounded regular
-[PR #13](https://github.com/rloterh/WordQuest/pull/13) is ready for owner merge.
-Manual input, screen-reader, art and phone gates remain open.
+The owner merged [PR #13](https://github.com/rloterh/WordQuest/pull/13) at `793a192`
+on 2026-10-02; focus cycling and rapid 200% retry visibility corrections are now
+on `dev`. Both builds, clean Win64 package,
+14 packaged checks, both Unreal tests and 22 Python tests passed; dedicated
+read-only review found no actionable introduced defects. The owner requested a
+playtest preview; that interactive 480x960 session closed cleanly. Manual observations
+are pending. Working branch: `feature/g-action-font-weight`, based on the merge,
+for a genuine licensed Bold action-face candidate. Import/editor build and preliminary
+native weight comparison pass; fallback/final package/runtime checks and review
+are in progress. Manual input, screen-reader, art and phone gates remain open.
 No agent merge, game deployment or release is authorized.
 
 ## Completed work
@@ -244,10 +247,27 @@ See [focus navigation](../QA/UI01/G-FOCUS-NAVIGATION.md). Dedicated read-only re
 of clean `2cd2670` against actual `dev` base `b2d7a0d` completed with exit 0,
 no actionable introduced defects and unchanged head/worktree.
 This is synthetic native traversal, not manual/platform accessibility acceptance.
-The bounded regular [PR #13](https://github.com/rloterh/WordQuest/pull/13) is open
-against `dev` and ready for owner merge. No GitHub status checks are configured;
+The owner merged the bounded regular
+[PR #13](https://github.com/rloterh/WordQuest/pull/13) on 2026-10-02. No GitHub status checks are configured;
 validation is recorded from the local build/runtime/review evidence above.
 Art, editorial, motion, offline/phone, performance and release gates remain open.
+
+## Owner playtest preview
+
+On 2026-10-02 the owner requested to see/test the current work. The existing
+`Artifacts/Packages/Win64/20261002-042431-180556/Archive` package was opened as an
+ordinary interactive native game at 480x960, without proof, offscreen or auto-exit
+flags. All 48 archived payload hashes were verified; game source/config/assets
+match merged `dev` (`793a192`) exactly despite package source revision `554079e`.
+Process 27500 had a responding WordQuest window and the log confirms GPrototype
+loaded successfully. On resume, the log records viewport-close request and clean
+shutdown at 04:45:37; no click/input behavior is inferred from startup/exit.
+Startup/session evidence is retained in
+`Artifacts/Playtests/20261002-044139`. This establishes launch only; the owner's
+clicks, keyboard observations and feedback are not yet recorded or passed.
+The preview remains one draft EQUIVOCAL question and static G candidate art, with
+live answers, feedback, Hint, Pause, 100/200% text, retry and focus navigation.
+The displayed `3 / 7` is a prototype fixture, not campaign progress.
 
 ## Resume
 
