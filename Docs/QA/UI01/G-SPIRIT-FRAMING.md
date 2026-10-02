@@ -76,7 +76,14 @@ remains unverified; prior local-navigation blocks were not bypassed. No physical
 phone, manual pointer/keyboard, screen-reader service, offline-isolation or
 performance verification is claimed.
 
-Dedicated read-only internal review is pending.
+Dedicated read-only Codex review of clean `b1cb19c` against actual `origin/dev`
+(`2f3c3f6`) completed with exit 0 and no actionable introduced defects. It confirmed
+that the UV/layout aspect calculation and the recorded limits matched the declared
+scope; builds/runtime/device checks were not independently rerun. Raw evidence:
+`Artifacts/Reviews/20261002-032154`; HEAD/worktree were unchanged. Optional connector
+warnings did not prevent review completion. Subsequent changes only record review/
+publication status in documentation. Review does not authorize merge or replace
+art/device acceptance.
 
 ## Remaining gates
 
