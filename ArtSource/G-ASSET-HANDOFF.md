@@ -35,6 +35,11 @@ colored fringe. No text, no logo, no panel, no palace, no clouds."
   flowing silhouette/lantern concept retained, but mouth, eyes, lantern and fine wisps
   differ. **Not accepted as faithful identity**. Re-extract/mask original source pixels
   or commission a traced paintover with matched face, proportions and light.
+  On 2026-10-02 two new built-in reconstructions were rejected for gold ornament/
+  face/lantern differences and were not imported. The preserved v001 now has a
+  documented UV frame and aspect-preserving reference-region placement; this
+  changes framing only. Exact prompts/provenance are under `Companions/G/Reconstruction`;
+  evidence is in `Docs/QA/UI01/G-SPIRIT-FRAMING.md`. Identity remains unaccepted.
 - `UI/G/Reconstruction/G-Panel-v001-Rejected.png`: **rejected**. RGB checkerboard was
   baked into the image. Retained only to explain the alpha correction; never import it.
 - `UI/G/Reconstruction/G-Panel-v002-Candidate.png`: RGBA correction, corner alpha 0;

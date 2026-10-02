@@ -165,6 +165,11 @@ void UContextScreen::Build()
     Slice(PanelBottom, .88f, 1);
     for (auto* Part : {Panel.Get(), PanelBody.Get(), PanelBottom.Get()}) Canvas->AddChild(Part);
     Spirit = Picture(TEXT("Spirit"), TEXT("/Game/UI/G/G_Spirit.G_Spirit"));
+    // Keep the unchanged v001 master; frame its alpha core plus a small margin.
+    // Faint generated gutter specks are excluded, not edited out of the source.
+    auto SpiritBrush = Spirit->GetBrush();
+    SpiritBrush.SetUVRegion(FBox2f(FVector2f(106.f / 1405, 54.f / 1119), FVector2f(1251.f / 1405, 1)));
+    Spirit->SetBrush(SpiritBrush);
     Canvas->AddChild(Spirit);
     Brand = Text(TEXT("Brand"), TEXT("WordQuest"));
     Brand->SetColorAndOpacity(FLinearColor::FromSRGBColor(FColor(255, 238, 211)));
@@ -392,7 +397,12 @@ void UContextScreen::Layout(FVector2D Size)
         PauseIconSize->SetWidthOverride(FMath::Max(24 * S, 14.f));
         PauseIconSize->SetHeightOverride(FMath::Max(30 * S, 18.f));
     }
-    Place(Spirit, 82, Hero == 521 ? 276 : 85, 207, 165);
+    // Contain the framed 1145x1065 export in the reference's 207x185 region.
+    // Preserve its aspect rather than stretching the companion/lantern.
+    const float SpiritAspect = 1145.f / 1065;
+    const float SpiritW = FMath::Min(207.f, 185.f * SpiritAspect);
+    const float SpiritH = SpiritW / SpiritAspect;
+    Place(Spirit, 82 + (207 - SpiritW) * .5f, (Hero == 521 ? 276 : 85) + (185 - SpiritH) * .5f, SpiritW, SpiritH);
     Spirit->SetVisibility(Hero == 521 ? ESlateVisibility::HitTestInvisible : ESlateVisibility::Collapsed);
     ProgressPlaque->SetVisibility(Hero == 521 && ProgressPlaque->GetBrush().GetResourceObject()
         ? ESlateVisibility::HitTestInvisible : ESlateVisibility::Collapsed);

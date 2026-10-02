@@ -19,10 +19,12 @@ The owner merged [PR #8](https://github.com/rloterh/WordQuest/pull/8) at `eae347
 on 2026-10-02; its divider/Pause SVG candidates are now on `dev`.
 The owner merged [PR #9](https://github.com/rloterh/WordQuest/pull/9) at `c3eece4`
 on 2026-10-02; its local cooked Win64 proof is now on `dev`.
-Working branch: `feature/g-vector-wordmark`, based on that merge, for the bounded
-static G brand candidate. Final build/native/package evidence and dedicated
-internal review are recorded in regular [PR #10](https://github.com/rloterh/WordQuest/pull/10)
-against `dev`, awaiting the owner's review/merge decision.
+The owner merged [PR #10](https://github.com/rloterh/WordQuest/pull/10) at `2f3c3f6`
+on 2026-10-02; its editable wordmark candidate is now on `dev`.
+Working branch: `feature/g-spirit-framing`, based on that merge, for bounded
+aspect-preserving companion framing and an art-attempt audit. Two new generated
+exports were rejected for identity/ornament differences; neither is imported.
+The existing source/Unreal texture is preserved; native/package checks are pending.
 No agent merge, game deployment or release is authorized.
 
 ## Completed work
@@ -185,8 +187,8 @@ and six SVGs match input hashes; the missing-resource editor capture preserves a
 smaller live title beside focused Pause. See [wordmark](../QA/UI01/G-WORDMARK.md).
 Dedicated review of clean `0f9ed17` against actual `dev` base `c3eece4` completed
 with exit 0 and no actionable introduced defects. The bounded regular
-[PR #10](https://github.com/rloterh/WordQuest/pull/10) is open against `dev` as a
-tested candidate checkpoint, awaiting the owner's review/merge decision.
+[PR #10](https://github.com/rloterh/WordQuest/pull/10) was merged by the owner on
+2026-10-02 as a tested candidate checkpoint; that does not accept unfinished art.
 Art, screen-reader/input, offline/phone,
 performance, motion, editorial and release gates remain open.
 

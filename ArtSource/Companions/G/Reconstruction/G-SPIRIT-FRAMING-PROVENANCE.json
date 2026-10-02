@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-02",
+  "status": "existing_unapproved_candidate_framing_only",
+  "source": "ArtSource/Companions/G/Reconstruction/G-Spirit-v001-Candidate.png",
+  "source_sha256": "50a8856d82cc0b2d1ac96e7e69d3b17366fa9a18f123156b673ded115b6ad42f",
+  "source_size": [1405, 1119],
+  "source_mode": "RGBA",
+  "corner_alpha": [0, 0, 0, 0],
+  "alpha_extrema": [0, 255],
+  "alpha_bbox": [0, 9, 1357, 1119],
+  "alpha_greater_than_16_bbox": [114, 62, 1243, 1116],
+  "runtime_asset": "Game/Content/UI/G/G_Spirit.uasset",
+  "runtime_asset_sha256": "db0e3bef3a7d41603e179404f45f54804e4f6bd8b8a698f1b68b6b75d958c57a",
+  "uv_frame_pixels": [106, 54, 1251, 1119],
+  "uv_formula": ["106/1405", "54/1119", "1251/1405", "1"],
+  "frame_size": [1145, 1065],
+  "reference_region_xywh": [82, 276, 207, 185],
+  "contain_region_xywh": [86.05164319248826, 276, 198.8967136150235, 185],
+  "inspection": "Pillow 12.1.0 read-only alpha/dimension/hash inspection; no pixel writes",
+  "framing_limit": "Frame includes alpha>16 core plus 8px margin, clamped to source bottom; low-alpha gutter specks excluded. This is not alpha cleanup or exact original extraction.",
+  "rejected_attempts": [
+    {
+      "local_copy": "Artifacts/QA/UI01/g-spirit-rejected-20261002/attempt-1.png",
+      "generated_filename": "exec-1fb81368-5c37-4feb-b1bb-c81fbce4ef85.png",
+      "sha256": "7f30ae97d80d6e8dd56a9241916301e354d789be33da3e0e9118dd7a0c56d206",
+      "size": [1480, 1063],
+      "mode": "RGBA",
+      "reason": "Oversized lantern, invented spherical head ornament, altered face/lantern details; not imported."
+    },
+    {
+      "local_copy": "Artifacts/QA/UI01/g-spirit-rejected-20261002/attempt-2.png",
+      "generated_filename": "exec-43a5f12f-4a9a-4970-87bd-4dbfe189a640.png",
+      "sha256": "1e876250d54d6683b1e7113631907d3337651910b5ef9eda20ad8585ad28702b",
+      "size": [1479, 1063],
+      "mode": "RGBA",
+      "reason": "Smaller lantern but prominent new four-point circlet star and different face/lantern proportions; not imported."
+    }
+  ]
+}
