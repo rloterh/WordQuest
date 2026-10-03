@@ -149,8 +149,15 @@ pointers match actual asset/export hashes and sizes.
 
 ## Internal review
 
-Dedicated read-only review against actual `origin/dev` is pending. Build/runtime
-evidence never authorizes a merge; the owner retains that decision.
+Dedicated read-only review completed at `Artifacts/Reviews/20261003-152243`,
+actual `origin/dev` base `3c04337859519735ca0a50bc7fcbc1eee6fc1ab2`, reviewed head
+`cb614fc9409fed952061c919ddd11dc857a04a37`. Starting worktree was empty, exit 0,
+head/worktree unchanged. No actionable introduced defects were found in texture
+integration, import/render helpers or bounded firewall retries. Reviewer verified
+LFS hashes and acceptance-gate disclosures; it did not independently rerun build,
+runtime or device checks. Subsequent review/publication records change docs only;
+tested package/runtime source remains `e6be5eb`. Build/runtime evidence never
+authorizes a merge; the owner retains that decision.
 
 ## Remaining gates
 
