@@ -173,6 +173,8 @@ checks; the build/runtime evidence above is separate. Connector startup/shutdown
 warnings are diagnostic and did not prevent this completed review.
 Subsequent review/publication records change documentation only. The owner retains
 the merge decision; this is not UI01 art or release approval.
+Non-draft [PR #34](https://github.com/rloterh/WordQuest/pull/34) is open against
+`dev` for owner review and merge of this bounded candidate.
 
 ## Remaining gates
 

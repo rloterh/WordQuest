@@ -17,6 +17,9 @@ to the composited panel region; nine normal reading contrast samples have a
 unfinished. Dedicated read-only review against actual `dev` found no actionable
 introduced defects. See
 [authored panel evidence](../QA/UI01/G-AUTHORED-READING-PANEL.md).
+Non-draft [PR #34](https://github.com/rloterh/WordQuest/pull/34) is open against
+`dev` for owner review/merge. Publication records change documentation only;
+the tested native/package source remains `38cbc1c`.
 UI01 art acceptance, UI02 motion and physical-device/release gates remain open.
 
 The owner merged [PR #32](https://github.com/rloterh/WordQuest/pull/32) into `dev`
