@@ -183,6 +183,18 @@ void UContextScreen::Build()
         }
         DisplayFont = RuntimeFont;
     }
+    if (auto* Face = LoadObject<UFontFace>(nullptr, TEXT("/Game/UI/G/G_ActionBold.G_ActionBold")))
+    {
+        auto* RuntimeFont = NewObject<UFont>(this);
+        RuntimeFont->FontCacheType = EFontCacheType::Runtime;
+        auto& Composite = RuntimeFont->GetMutableInternalCompositeFont();
+        Composite = *FCoreStyle::GetDefaultFont();
+        for (auto& Entry : Composite.DefaultTypeface.Fonts)
+        {
+            if (Entry.Name == FName(TEXT("Bold"))) Entry.Font = FFontData(Face);
+        }
+        ActionFont = RuntimeFont;
+    }
     Root = Make<UCanvasPanel>(TEXT("Root"));
     WidgetTree->RootWidget = Root;
     Background = Picture(TEXT("Background"), TEXT("/Game/UI/G/G_Background.G_Background"));
@@ -616,24 +628,29 @@ void UContextScreen::Layout(FVector2D Size)
         Y += H + 17 * S;
     }
     Y += 16 * S;
-    Font(HintLabel, FMath::Max(34 * S, 16.f), true, DisplayFont, TextScale);
-    Font(SubmitLabel, FMath::Max(34 * S, 16.f), true, DisplayFont, TextScale);
+    const float ActionPixels = ActionFont ? 31.f : 34.f;
+    const float HintGap = ActionFont ? 26.f : 20.f;
+    const float SubmitGap = ActionFont ? 14.f : 20.f;
+    // Optical baseline compensation belongs to this face; fallback keeps its layout.
+    const float LabelTopPadding = ActionFont ? 3.f : 0.f;
+    Font(HintLabel, FMath::Max(ActionPixels * S, 16.f), true, ActionFont ? ActionFont.Get() : DisplayFont.Get(), TextScale);
+    Font(SubmitLabel, FMath::Max(ActionPixels * S, 16.f), true, ActionFont ? ActionFont.Get() : DisplayFont.Get(), TextScale);
     HintIconSize->SetWidthOverride(40 * S * TextScale);
     HintIconSize->SetHeightOverride(56 * S * TextScale);
     SubmitIconSize->SetWidthOverride(48 * S * TextScale);
     SubmitIconSize->SetHeightOverride(48 * S * TextScale);
-    CastChecked<UHorizontalBoxSlot>(HintLabel->Slot)->SetPadding(FMargin(HintIcon->GetVisibility() == ESlateVisibility::Collapsed ? 0 : 20 * S * TextScale, 0, 0, 0));
-    CastChecked<UHorizontalBoxSlot>(SubmitLabel->Slot)->SetPadding(FMargin(SubmitIcon->GetVisibility() == ESlateVisibility::Collapsed ? 0 : 20 * S * TextScale, 0, 0, 0));
-    auto WrapAction = [S, this](UButton* B, UTextBlock* Label, UImage* Icon, float IconWidth)
+    CastChecked<UHorizontalBoxSlot>(HintLabel->Slot)->SetPadding(FMargin(HintIcon->GetVisibility() == ESlateVisibility::Collapsed ? 0 : HintGap * S * TextScale, LabelTopPadding * S * TextScale, 0, 0));
+    CastChecked<UHorizontalBoxSlot>(SubmitLabel->Slot)->SetPadding(FMargin(SubmitIcon->GetVisibility() == ESlateVisibility::Collapsed ? 0 : SubmitGap * S * TextScale, LabelTopPadding * S * TextScale, 0, 0));
+    auto WrapAction = [S, this](UButton* B, UTextBlock* Label, UImage* Icon, float IconWidth, float Gap)
     {
         const auto ContentPadding = CastChecked<UButtonSlot>(B->GetContent()->Slot)->GetPadding();
-        const float IconSpace = Icon->GetVisibility() == ESlateVisibility::Collapsed ? 0 : (IconWidth + 20) * S * TextScale;
+        const float IconSpace = Icon->GetVisibility() == ESlateVisibility::Collapsed ? 0 : (IconWidth + Gap) * S * TextScale;
         Label->SetWrappingPolicy(ETextWrappingPolicy::AllowPerCharacterWrapping);
         Label->SetWrapTextAt(TextScale > 1.2f
             ? FMath::Max(1.f, 640 * S - ContentPadding.Left - ContentPadding.Right - IconSpace) : 0.f);
     };
-    WrapAction(HintButton, HintLabel, HintIcon, 40);
-    WrapAction(SubmitButton, SubmitLabel, SubmitIcon, 48);
+    WrapAction(HintButton, HintLabel, HintIcon, 40, HintGap);
+    WrapAction(SubmitButton, SubmitLabel, SubmitIcon, 48, SubmitGap);
     HintButton->GetContent()->ForceLayoutPrepass();
     SubmitButton->GetContent()->ForceLayoutPrepass();
     const FVector2D HintDesired = HintButton->GetContent()->GetDesiredSize();

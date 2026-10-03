@@ -53,6 +53,13 @@ colored fringe. No text, no logo, no panel, no palace, no clouds."
 
 ## Concrete missing deliverables
 
+The live Hint/Check labels now have a separate measured Liberation Serif Bold
+2.1.5 candidate under `Fonts/LiberationSerif`, imported as `G_ActionBold` with
+unchanged licensed source bytes. Candidate spacing/baseline compensation retains
+measured wrapping and enlargement; missing candidate retains the earlier display
+face and layout. See `Docs/QA/UI01/G-ACTION-SERIF-METRICS.md` for the native proof
+and remaining gates. This does not identify or accept the reference's exact font.
+
 The live G word/clue/prompt/answer/feedback roles now have a measured, unmodified
 Liberation Sans 2.1.5 Regular/Bold candidate under `Fonts/LiberationSans`, with
 source provenance and an unchanged OFL license staged in the package. Genuine
