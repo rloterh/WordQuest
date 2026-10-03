@@ -1,5 +1,33 @@
 # G vector icon and divider candidates
 
+## Authored pearl surface export
+
+`G-Answer-Pearl-v001.svg` is a separate editable blank surface candidate. A thin
+ivory/lilac rim, broad diffuse gradients and soft shadow replace the previous
+generated skin's rolled gloss. Its 690x119 canvas contains a 666x95 core at (12,4).
+The 2x rendered `../Exports/G-Answer-Pearl-v001.png` (1380x238) is imported by Unreal as
+`/Game/UI/G/G_AnswerPearl`; it is not loaded as a runtime SVG. Native nine-slice
+insets (56,48,56,68 reference units; doubled in texture pixels) retain
+corners/shadow while the center grows. Earlier
+generated PNG/texture are preserved. No supplied pixels are changed; no imagegen
+or raster paintover is used. Material and full fidelity acceptance remain open.
+
+Reproduce the export using the development-only renderer, outside tracked source:
+
+```powershell
+python -m pip install --only-binary=:all: --target Artifacts/Tools/resvg resvg-py==0.5.0
+python Tools/AssetImport/render_g_answer_pearl.py --check
+```
+
+Omit `--check` to regenerate from the editable master. See the renderer's
+[SVG-to-PNG API](https://resvg-py.readthedocs.io/en/latest/api.html).
+Normal builds use checked-in art and require no Python renderer. Import with
+`Tools/AssetImport/import_g_answer_pearl.py` through the same texture-only Unreal
+Python commandlet described in `Docs/QA/UI01/G-ANSWER-PEARL-SURFACE.md`.
+Exact dimensions, hashes and remaining limits are in the adjacent provenance.
+
+## Runtime SVG resources
+
 These are hand-authored editable SVG reconstructions informed by the immutable
 G Celestial Reverie gameplay reference. They are not exact original-pixel
 extractions or accepted production art. No image generation or raster editing

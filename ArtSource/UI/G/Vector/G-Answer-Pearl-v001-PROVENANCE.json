@@ -1,0 +1,18 @@
+{
+  "status": "authored_reference_guided_candidate_not_accepted_art",
+  "reference": "Planning/WordQuest-UI-Realms-Addendum/references/G-Celestial-Reverie-Gameplay.png",
+  "reference_sha256": "306dae4f6352749edcf1d8edf73f26339a4ba6407b4a394ec50b5898418bedae",
+  "master": "ArtSource/UI/G/Vector/G-Answer-Pearl-v001.svg",
+  "master_sha256": "0a28e455523de73de9fb050801ff0efa12d803ddbb4171299c45d6ec07f45ec4",
+  "export": "ArtSource/UI/G/Exports/G-Answer-Pearl-v001.png",
+  "export_sha256": "94ad1b8f825bcb9182e2dae961409a7360d701958123176f2760cabe2e158d5e",
+  "renderer": "resvg-py 0.5.0 / resvg 0.48.1; development-only",
+  "export_dimensions": [1380, 238],
+  "logical_canvas": [690, 119],
+  "core_bounds_reference_units_xywh": [12, 4, 666, 95],
+  "nine_slice_texture_pixels_left_top_right_bottom": [112, 96, 112, 136],
+  "unreal_asset": "/Game/UI/G/G_AnswerPearl.G_AnswerPearl",
+  "source_method": "Authored SVG curves, gradients and shadow; rendered directly to a new RGBA export. No supplied image pixels extracted or edited.",
+  "preserved": "Earlier generated skin master and G_AnswerSkin.uasset remain unchanged.",
+  "limits": "Simplified pearl shading and soft shadow; no painterly grain, exact reference pixels, art/device acceptance or performance qualification. Educational text, badges and input stay live."
+}

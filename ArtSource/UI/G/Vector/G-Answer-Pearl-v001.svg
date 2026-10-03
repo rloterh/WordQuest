@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="690" height="119" viewBox="0 0 690 119">
+  <title>G pearl answer surface candidate; no baked text</title>
+  <defs>
+    <linearGradient id="pearl" x1="0" y1="4" x2="0" y2="99" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ece9ff"/>
+      <stop offset=".5" stop-color="#ddd9fc"/>
+      <stop offset="1" stop-color="#cbc7f5"/>
+    </linearGradient>
+    <radialGradient id="softLight" cx="200" cy="20" r="230" gradientTransform="translate(0 12) scale(1 .7)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ffffff" stop-opacity=".31"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="lilacWash" cx="590" cy="58" r="250" gradientTransform="translate(0 17) scale(1 .7)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#bbb7f3" stop-opacity=".28"/>
+      <stop offset="1" stop-color="#bbb7f3" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="rim" x1="0" y1="4" x2="0" y2="99" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ffffff"/>
+      <stop offset=".62" stop-color="#eceaff"/>
+      <stop offset="1" stop-color="#b3abed"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-60%" width="120%" height="240%" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="4.5"/>
+    </filter>
+  </defs>
+  <rect x="12" y="10" width="666" height="95" rx="44" fill="#6d6090" fill-opacity=".24" filter="url(#shadow)"/>
+  <rect x="12.75" y="4.75" width="664.5" height="93.5" rx="43.25" fill="url(#pearl)"/>
+  <rect x="12.75" y="4.75" width="664.5" height="93.5" rx="43.25" fill="url(#softLight)"/>
+  <rect x="12.75" y="4.75" width="664.5" height="93.5" rx="43.25" fill="url(#lilacWash)"/>
+  <rect x="12.75" y="4.75" width="664.5" height="93.5" rx="43.25" fill="none" stroke="url(#rim)" stroke-width="1.5"/>
+</svg>

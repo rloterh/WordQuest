@@ -8,6 +8,7 @@
 # Keep the new badge master/runtime bytes stable across checkout platforms.
 /ArtSource/UI/G/Vector/G-Answer-Badge-v001.svg text eol=lf
 /Game/Content/UI/G/Vector/G_AnswerBadge.svg text eol=lf
+/ArtSource/UI/G/Vector/G-Answer-Pearl-v001.svg text eol=lf
 
 # Preserve exact staged bytes for the revised wordmark candidate.
 /ArtSource/UI/G/Vector/G-Wordmark-v002.svg text eol=lf
