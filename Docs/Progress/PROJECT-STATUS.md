@@ -9,9 +9,16 @@ The next bounded UI01 candidate replaces the generated answer skin's rolled glos
 with an authored editable pearl surface, rendered to a new RGBA import source.
 Unreal imported its separate texture successfully; earlier art remains unchanged.
 Native fixed corner/shadow margins preserve growing rows, live labels/badges and
-hit regions. Working branch: `feature/g-answer-pearl-surface`. Builds, native
-comparison, responsive checks, packaging and review are in progress.
-Art/device acceptance remains open.
+hit regions. Working branch: `feature/g-answer-pearl-surface`. Both real target
+checks, fresh full Win64 packaging and all 14 inspected final packaged captures
+pass. Both Unreal tests passed on unchanged native code; all 66 Python QA tests,
+reference/SVG checks, PNG reproduction and archive/LFS hashes pass. Static answer
+comparisons change no pixels outside answer/shadow regions; nine contrast samples
+have a 9.76:1 minimum. See [pearl surface evidence](../QA/UI01/G-ANSWER-PEARL-SURFACE.md).
+The owner's new firewall request installed a protected local automatic refresh
+task and program-specific Private/Public LocalSubnet rules. Fresh package-helper
+integration verification and dedicated review are in progress. Art/device
+acceptance remains open.
 
 The owner requested unattended local development-tool permissions on 2026-10-02.
 WordQuest-only shell defaults and a user-level Unreal/Blender/Android Studio/Epic

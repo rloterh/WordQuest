@@ -45,7 +45,7 @@ rim; native hovered/pressed/selected/focused outlines remain, with a matching
 Static answer content retains the submitted-reading contrast wrapper; disabled
 buttons remain disabled and skipped by navigation. No scoring or fixture changes.
 
-## Verification in progress
+## Final art verification
 
 The real Editor target compiled the edited C++ successfully (71.81s).
 Two dirty-source 1x preflights on `00e044e` passed and were inspected:
@@ -56,11 +56,7 @@ They are preliminary, not final 2x evidence. The final export increased to
 1380x238, with matching native drawing scale; its reimport also completed with
 exit 0 and zero commandlet errors/warnings. Earlier import log/metadata use
 the `answer-pearl-import-1x` prefix under `Artifacts/Logs/UI01`.
-Native preflight, clean package, responsive/result/contrast checks, Unreal/Python
-tests and dedicated read-only review are pending. This is simplified authored
-art, not original painterly texture or accepted fidelity. Draft learning/progress
-fixtures, editorial, manual/platform accessibility, UI02 motion, phone/offline/
-performance and release gates remain open.
+These preflights are retained as intermediate evidence, not acceptance.
 
 At clean implementation `0e17385e237cdec792adac4469e3ae12296ec360`, the first
 2x candidate passed actual Editor/Game compilation (12.07s/46.22s), full Win64
@@ -73,7 +69,68 @@ evidence: source export SHA was `94ad1b8f825bcb9182e2dae961409a7360d701958123176
 Its inspected reference-row comparison found the lower rim too muted. Only the
 editable rim gradient's last stop changed from darker lilac to pale ivory/lilac;
 geometry, body shading, shadow and native code remain unchanged. The revised
-2x export was genuinely reimported with zero commandlet errors/warnings. Fresh
-final art packaging/captures and review are pending. Preserved batch/analysis
+2x export was genuinely reimported with zero commandlet errors/warnings. Preserved batch/analysis
 scripts and results use `answer-pearl-muted-rim-` under `Artifacts/QA/UI01`;
 their earlier import metadata/log use the same suffix under `Artifacts/Logs/UI01`.
+
+Final art source is clean `def5c5f459371213a4c853a8f5376a1d27babc58`.
+The real Editor/Game checks passed in 1.76s/1.72s, both up to date (zero compile
+actions); the native code is identical to the compiled/tested `0e17385` revision.
+Fresh full Win64 BuildCookRun passed in 67.08s, including BGRA8 1380x238 texture
+cooking. Archive `Artifacts/Packages/Win64/20261003-043958-979684` has 48 verified
+payload hashes, unchanged head/worktree/inputs and complete evidence. Manifest
+SHA-256: `c599a41124f2cb03476de3d8ca01211b602bbbd7f15fe5f06993f8a1d23bf512`.
+
+All 14 final packaged captures below exited 0, passed applicable native state,
+layout/reading/focus/result checks, verified package hashes and have complete
+evidence. All PNGs were inspected; raw logs contain no `Error:`/`Fatal:` lines.
+Paths are under `Artifacts/QA/UI01/20261003-`:
+
+| Run suffix | Viewport | Reading/proof |
+| --- | --- | --- |
+| 044231-packaged-capture-initial | 884x1780 | initial |
+| 044302-packaged-capture-selected | 884x1780 | selected |
+| 044331-packaged-capture-correct | 884x1780 | correct |
+| 044356-packaged-capture-wrong | 884x1780 | wrong |
+| 044420-packaged-capture-initial | 1768x3560 | 2x viewport |
+| 044443-packaged-capture-initial | 260x640 | safe .9 |
+| 044508-packaged-capture-focus | 844x390 | landscape, safe .9 |
+| 044534-packaged-capture-large | 390x844 | 200%, safe .9 |
+| 044558-packaged-capture-longfocus | 390x844 | long answers, 200%, safe .9 |
+| 044623-packaged-capture-longselectedfocus | 260x640 | long selected B, 200%, safe .9 |
+| 044647-packaged-capture-correct | 390x844 | 200%, safe .9 |
+| 044713-packaged-capture-wrong | 390x844 | 200%, safe .9 |
+| 044739-packaged-capture-keydisabled | 390x844 | routed disabled navigation, safe .9 |
+| 044804-packaged-capture-keyretry | 390x844 | routed retry/200% focus, safe .9 |
+
+`answer-pearl-analysis.py`/`.json` preserve read-only comparisons and nine static
+opaque-core/adjacent-backing contrast samples. Minimum sample ratio is 9.76:1,
+including submitted letters, answer text and the correct marker; this is not
+whole-screen or platform accessibility certification. Initial/correct comparisons
+against the PR #30 native baseline change 279,000/275,069 pixels, with zero changes
+outside the four answer/shadow regions (2px diagnostic margins). Baseline runtime
+source/content/art under `ArtSource/UI` match merged `dev`; only handoff prose
+differs. Original/reference/native input hashes remain unchanged. Inspected row
+crops and the 50% reference overlay use the `answer-pearl-` diagnostic prefix.
+The double rolled highlights are removed and the thin lower rim is closer to
+the reference. Painterly grain, precise surface tone/rim softness and existing
+panel/character/wordmark/action/type differences remain unaccepted.
+
+`answer-pearl-verification.py` is named `verify-answer-pearl.py` locally; its
+`answer-pearl-verification.json` records archive/capture hashes and unchanged old
+art. Final SVG/PNG/Unreal texture hashes are respectively:
+
+- `26f749f73ce702bfee4f927067a776788ca109076428a5b4db455676382978d4`
+- `613ba83c8f251936929cc5a6877d6c267237c17eb34d8ac702e9020084f09424`
+- `0192b1783ed8c267d36949b853e2fa21311762fb94f12e4b0d5a209326c975f7`
+
+Binary export/texture LFS pointer OIDs match the actual files. Six supplied
+references, seven SVG pairs and final byte-exact PNG reproduction pass. Both
+Unreal tests passed at unchanged native implementation `0e17385`. After the
+owner's firewall request, all 66 Python QA tests passed (including three optional
+firewall-helper failure/coverage checks). The new package refresh integration is
+being verified with a fresh archive; dedicated review is pending.
+
+This is simplified candidate art. Draft learning/progress fixtures, editorial,
+manual/platform accessibility, UI02 motion, phone/offline/performance and release
+gates remain open. Android engine payload is still absent and adb reports no phone.
