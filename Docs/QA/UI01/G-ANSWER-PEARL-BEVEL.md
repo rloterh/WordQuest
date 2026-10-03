@@ -158,6 +158,8 @@ LFS hashes and acceptance-gate disclosures; it did not independently rerun build
 runtime or device checks. Subsequent review/publication records change docs only;
 tested package/runtime source remains `e6be5eb`. Build/runtime evidence never
 authorizes a merge; the owner retains that decision.
+Non-draft [PR #38](https://github.com/rloterh/WordQuest/pull/38) is open against
+`dev` for review/merge of this bounded tile candidate and observed refresh fix.
 
 ## Remaining gates
 
