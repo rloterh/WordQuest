@@ -154,4 +154,5 @@ private:
     UPROPERTY(Transient) TObjectPtr<UWidget> PreviousFocus;
     UPROPERTY(Transient) TObjectPtr<UObject> DisplayFont;
     UPROPERTY(Transient) TObjectPtr<UObject> ReadingFont;
+    UPROPERTY(Transient) TObjectPtr<UObject> ActionFont;
 };

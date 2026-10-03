@@ -2,6 +2,25 @@
 
 ## Current stage: native static G implementation; acceptance incomplete
 
+The owner merged [PR #32](https://github.com/rloterh/WordQuest/pull/32) into `dev`
+on 2026-10-03 at 08:20:47 UTC (`3d76c9f`). The licensed reading faces and their
+recorded packaged evidence are integrated. The next bounded UI01 correction tests
+Liberation Serif Bold for the live Hint/Check labels against the supplied original;
+the current Cormorant Bold is already genuine Bold, but its letterforms remain
+lighter and thinner. Working branch: `feature/g-action-serif-metrics`. Genuine
+FontFace import, both real target checks, full Win64 packaging and all 15 inspected
+packaged captures pass. Missing-candidate fallback preserves the prior matched-size
+screen pixel for pixel; 200% fallback also passes. Both Unreal tests and 66 Python
+tests pass. Cooked font/source/license, LFS/archive hashes and original reference/SVG
+checks pass. Letterforms and label centers are closer; shorter/narrower metrics
+remain disclosed. Matched initial changes are confined to the live labels and
+the Check star's measured group position.
+See [action serif evidence](../QA/UI01/G-ACTION-SERIF-METRICS.md). Dedicated read-only
+review against actual `dev` found no actionable introduced defects.
+[PR #33](https://github.com/rloterh/WordQuest/pull/33) is a regular PR against
+`dev`, ready for the owner's review/merge decision. UI01 art acceptance, UI02 motion
+and physical-device/release gates remain open.
+
 The owner merged [PR #31](https://github.com/rloterh/WordQuest/pull/31) into `dev`
 on 2026-10-03 at 05:16:39 UTC (`8377541`). The authored pearl answer candidate
 and optional automatic package firewall refresh are integrated. The next bounded
@@ -16,8 +35,8 @@ pass. Four matched-size glyph bounds are closer to the original. Dedicated read-
 review against actual `dev` found no actionable introduced defects. See
 [reading typography](../QA/UI01/G-READING-FONT-METRICS.md).
 Art/device acceptance remains open.
-[PR #32](https://github.com/rloterh/WordQuest/pull/32) is a regular PR against
-`dev`, ready for the owner's review/merge decision.
+[PR #32](https://github.com/rloterh/WordQuest/pull/32) was merged by the owner into
+`dev`; its reading typography is integrated.
 
 The owner merged [PR #30](https://github.com/rloterh/WordQuest/pull/30) into `dev`
 on 2026-10-03 at 04:05:55 UTC (`00e044e`). Its fixed panel-slice proportions and
