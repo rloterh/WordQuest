@@ -147,6 +147,8 @@ sizing/measurement and fallback but did not independently rerun build/runtime
 checks; their evidence above is separate. Connector diagnostics did not prevent
 the completed review. Subsequent review/publication records change documentation
 only. The owner retains the merge decision; this is not art or release acceptance.
+Non-draft [PR #36](https://github.com/rloterh/WordQuest/pull/36) is open against
+`dev` for owner review/merge of this bounded header typography candidate.
 
 ## Remaining gates
 

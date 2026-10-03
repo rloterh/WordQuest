@@ -17,6 +17,9 @@ glyph/shadow regions. Dedicated read-only review against actual `dev` found no
 actionable introduced defects. See
 [header type evidence](../QA/UI01/G-HEADER-TYPE-METRICS.md). Full UI01 art,
 UI02 motion and physical-device/release gates remain open.
+Non-draft [PR #36](https://github.com/rloterh/WordQuest/pull/36) is open against
+`dev` for owner review/merge. Review/publication records change documentation only;
+the tested native/package source remains `2b3893c`.
 
 The owner merged [PR #34](https://github.com/rloterh/WordQuest/pull/34) into `dev`
 on 2026-10-03 at 10:32:21 UTC (`58b21fa`). The authored panel and separate star
