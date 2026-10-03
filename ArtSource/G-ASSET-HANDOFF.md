@@ -53,6 +53,14 @@ colored fringe. No text, no logo, no panel, no palace, no clouds."
 
 ## Concrete missing deliverables
 
+The live G word/clue/prompt/answer/feedback roles now have a measured, unmodified
+Liberation Sans 2.1.5 Regular/Bold candidate under `Fonts/LiberationSans`, with
+source provenance and an unchanged OFL license staged in the package. Genuine
+FontFaces and fallback retain editable live text; display assets and earlier
+fonts are unchanged. Native metrics/package/fallback evidence is in
+`Docs/QA/UI01/G-READING-FONT-METRICS.md`. Exact original-font and art/device
+acceptance remain open.
+
 On 2026-10-01 a blank pearl answer-skin v002 candidate was added under
 `UI/G/Reconstruction` and imported as `/Game/UI/G/G_AnswerSkin`. Native initial and
 enlarged focused-answer captures show its separate live text/badges and retained
