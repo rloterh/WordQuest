@@ -4,16 +4,19 @@
 
 The owner merged [PR #33](https://github.com/rloterh/WordQuest/pull/33) into `dev`
 on 2026-10-03 at 09:20:43 UTC (`373de75`). Live action serif metrics are integrated.
-The next bounded UI01 attempt addresses the reading panel's bright/thick rim,
-oversized star and outer fringe through built-in imagegen, preserving earlier
-masters and the supplied original. Working branch: `feature/g-authored-reading-panel`.
-The generated edit was rejected for retained fringe/star differences. A separate
-editable authored panel and small SVG star are now genuine Unreal/native candidates,
-with preserved old texture fallback. Working branch is now
-`feature/g-authored-reading-panel`. Editor compilation and inspected preliminary
-native comparison pass; clean packaging and final evidence are in progress. See
-[authored panel evidence](../QA/UI01/G-AUTHORED-READING-PANEL.md). UI01 art acceptance,
-UI02 motion and physical-device/release gates remain open.
+The bounded UI01 panel correction rejected a built-in generated edit for retained
+fringe/star differences, then authored an editable panel with a finer rim and a
+separate smaller lilac star. Earlier masters and the supplied original remain
+unchanged; the missing-texture fallback exactly matches the prior native screen.
+Working branch: `feature/g-authored-reading-panel`. Actual Editor/Game compilation,
+full Win64 packaging and all 16 inspected final packaged checks pass. Both Unreal
+tests, 66 Python QA tests, PNG reproduction, eight SVG pairs, original reference
+hashes, LFS pointers and 49 archive hashes pass. Matched initial changes are confined
+to the composited panel region; nine normal reading contrast samples have a
+12.87:1 minimum. The simplified surface/star facets and art identity remain
+unfinished. Dedicated read-only review against actual `dev` is next. See
+[authored panel evidence](../QA/UI01/G-AUTHORED-READING-PANEL.md).
+UI01 art acceptance, UI02 motion and physical-device/release gates remain open.
 
 The owner merged [PR #32](https://github.com/rloterh/WordQuest/pull/32) into `dev`
 on 2026-10-03 at 08:20:47 UTC (`3d76c9f`). The licensed reading faces and their
