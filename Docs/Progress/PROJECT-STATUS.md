@@ -15,7 +15,8 @@ tests pass. Cooked font/source/license, LFS/archive hashes and original referenc
 checks pass. Letterforms and label centers are closer; shorter/narrower metrics
 remain disclosed. Matched initial changes are confined to the live labels and
 the Check star's measured group position.
-See [action serif evidence](../QA/UI01/G-ACTION-SERIF-METRICS.md). Internal review
+See [action serif evidence](../QA/UI01/G-ACTION-SERIF-METRICS.md). Dedicated read-only
+review against actual `dev` found no actionable introduced defects. Publication
 is next. UI01 art acceptance, UI02 motion and physical-device/release gates remain open.
 
 The owner merged [PR #31](https://github.com/rloterh/WordQuest/pull/31) into `dev`

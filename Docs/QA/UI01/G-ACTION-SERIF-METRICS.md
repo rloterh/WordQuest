@@ -150,6 +150,19 @@ source editing or new contrast certification is claimed.
 Fresh prerequisites still show missing engine Android target support and no adb
 device. The existing Android handoff remains applicable.
 
+## Internal review
+
+Dedicated Codex read-only review against actual `origin/dev`
+`3d76c9fd9a737c971563c688287b60ca5f0c8504` completed on clean evidence head
+`59afb2056664c0191aa5a91d51ad20e60bea2faf`, exit 0, unchanged head/worktree,
+with no actionable introduced defects. Raw report/metadata:
+`Artifacts/Reviews/20261003-085906`. The reviewer independently checked reference
+verification and both new binary/LFS hashes; it did not rerun Unreal build/runtime
+or device tests. Earlier review at `20261003-085544` also found no actionable
+defects; the final review includes the corrected Check-star pixel-scope disclosure.
+Subsequent commits record review/publication only; runtime trees remain those
+of `4ab90b2`. Review does not authorize a merge or replace native/device evidence.
+
 ## Remaining gates
 
 The panel rim/star, companion identity, wordmark and generated surface materials
