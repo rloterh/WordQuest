@@ -2,6 +2,26 @@
 
 ## Current stage: native static G implementation; acceptance incomplete
 
+The owner merged [PR #33](https://github.com/rloterh/WordQuest/pull/33) into `dev`
+on 2026-10-03 at 09:20:43 UTC (`373de75`). Live action serif metrics are integrated.
+The bounded UI01 panel correction rejected a built-in generated edit for retained
+fringe/star differences, then authored an editable panel with a finer rim and a
+separate smaller lilac star. Earlier masters and the supplied original remain
+unchanged; the missing-texture fallback exactly matches the prior native screen.
+Working branch: `feature/g-authored-reading-panel`. Actual Editor/Game compilation,
+full Win64 packaging and all 16 inspected final packaged checks pass. Both Unreal
+tests, 66 Python QA tests, PNG reproduction, eight SVG pairs, original reference
+hashes, LFS pointers and 49 archive hashes pass. Matched initial changes are confined
+to the composited panel region; nine normal reading contrast samples have a
+12.87:1 minimum. The simplified surface/star facets and art identity remain
+unfinished. Dedicated read-only review against actual `dev` found no actionable
+introduced defects. See
+[authored panel evidence](../QA/UI01/G-AUTHORED-READING-PANEL.md).
+Non-draft [PR #34](https://github.com/rloterh/WordQuest/pull/34) is open against
+`dev` for owner review/merge. Publication records change documentation only;
+the tested native/package source remains `38cbc1c`.
+UI01 art acceptance, UI02 motion and physical-device/release gates remain open.
+
 The owner merged [PR #32](https://github.com/rloterh/WordQuest/pull/32) into `dev`
 on 2026-10-03 at 08:20:47 UTC (`3d76c9f`). The licensed reading faces and their
 recorded packaged evidence are integrated. The next bounded UI01 correction tests
@@ -17,8 +37,8 @@ remain disclosed. Matched initial changes are confined to the live labels and
 the Check star's measured group position.
 See [action serif evidence](../QA/UI01/G-ACTION-SERIF-METRICS.md). Dedicated read-only
 review against actual `dev` found no actionable introduced defects.
-[PR #33](https://github.com/rloterh/WordQuest/pull/33) is a regular PR against
-`dev`, ready for the owner's review/merge decision. UI01 art acceptance, UI02 motion
+[PR #33](https://github.com/rloterh/WordQuest/pull/33) was merged by the owner into
+`dev`; its action metrics are integrated. UI01 art acceptance, UI02 motion
 and physical-device/release gates remain open.
 
 The owner merged [PR #31](https://github.com/rloterh/WordQuest/pull/31) into `dev`

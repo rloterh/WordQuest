@@ -212,9 +212,11 @@ void UContextScreen::Build()
     Scroll->AddChild(ContentSize);
     Canvas = Make<UCanvasPanel>(TEXT("Composition"));
     ContentSize->AddChild(Canvas);
-    Panel = Picture(TEXT("ReadingPanel"), TEXT("/Game/UI/G/G_Panel.G_Panel"));
-    PanelBody = Picture(TEXT("ReadingPanelBody"), TEXT("/Game/UI/G/G_Panel.G_Panel"));
-    PanelBottom = Picture(TEXT("ReadingPanelBottom"), TEXT("/Game/UI/G/G_Panel.G_Panel"));
+    bAuthoredPanel = LoadObject<UTexture2D>(nullptr, TEXT("/Game/UI/G/G_ReadingPanel.G_ReadingPanel")) != nullptr;
+    const TCHAR* PanelPath = bAuthoredPanel ? TEXT("/Game/UI/G/G_ReadingPanel.G_ReadingPanel") : TEXT("/Game/UI/G/G_Panel.G_Panel");
+    Panel = Picture(TEXT("ReadingPanel"), PanelPath);
+    PanelBody = Picture(TEXT("ReadingPanelBody"), PanelPath);
+    PanelBottom = Picture(TEXT("ReadingPanelBottom"), PanelPath);
     // Fixed-height UV slices keep ornaments out of the stretchable reading surface.
     auto Slice = [](UImage* Part, float Top, float Bottom)
     {
@@ -222,10 +224,15 @@ void UContextScreen::Build()
         Brush.SetUVRegion(FBox2f(FVector2f(0, Top), FVector2f(1, Bottom)));
         Part->SetBrush(Brush);
     };
-    Slice(Panel, 0, .22f);
-    Slice(PanelBody, .22f, .88f);
-    Slice(PanelBottom, .88f, 1);
+    const float TopCut = bAuthoredPanel ? 220.f / 1140 : .22f;
+    const float BottomCut = bAuthoredPanel ? 1010.f / 1140 : .88f;
+    Slice(Panel, 0, TopCut);
+    Slice(PanelBody, TopCut, BottomCut);
+    Slice(PanelBottom, BottomCut, 1);
     for (auto* Part : {Panel.Get(), PanelBody.Get(), PanelBottom.Get()}) Canvas->AddChild(Part);
+    PanelStar = VectorPicture(TEXT("PanelStar"), TEXT("G_PanelStar.svg"), FVector2D(36, 42));
+    if (!bAuthoredPanel) PanelStar->SetVisibility(ESlateVisibility::Collapsed);
+    Canvas->AddChild(PanelStar);
     Spirit = Picture(TEXT("Spirit"), TEXT("/Game/UI/G/G_Spirit.G_Spirit"));
     // Keep the unchanged v001 master; frame its alpha core plus a small margin.
     // Faint generated gutter specks are excluded, not edited out of the source.
@@ -691,8 +698,7 @@ void UContextScreen::Layout(FVector2D Size)
         PutText(Feedback, 127 * S, Y, 630 * S, H);
         Y += H;
     }
-    // Keep the candidate's shoulders and lower corners out of the stretchable
-    // body. The former 160px top flattened the reference's arch and star.
+    // Only the body stretches; authored and legacy UV cuts share fixed corners.
     const float PanelTop = PanelY - 12 * S;
     const float PanelEnd = Y + 80 * S;
     const float PanelTopHeight = 220 * S;
@@ -701,6 +707,7 @@ void UContextScreen::Layout(FVector2D Size)
     Bounds(PanelBody, X + 47 * S, PanelTop + PanelTopHeight, 790 * S,
         PanelEnd - PanelTop - PanelTopHeight - PanelBottomHeight);
     Bounds(PanelBottom, X + 47 * S, PanelEnd - PanelBottomHeight, 790 * S, PanelBottomHeight);
+    Bounds(PanelStar, X + 424 * S, PanelY + 29 * S, 36 * S, 42 * S);
     ContentSize->SetHeightOverride(FMath::Max(float(Size.Y), Y + 214 * S));
     // Keep a full-size shade, but place the scrollable controls inside the safe
     // area. Side margins also leave space for the ordinary scroll indicator.

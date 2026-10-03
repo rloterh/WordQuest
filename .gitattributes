@@ -12,6 +12,9 @@
 /ArtSource/UI/G/Vector/G-Answer-Badge-v001.svg text eol=lf
 /Game/Content/UI/G/Vector/G_AnswerBadge.svg text eol=lf
 /ArtSource/UI/G/Vector/G-Answer-Pearl-v001.svg text eol=lf
+/ArtSource/UI/G/Vector/G-Reading-Panel-v001.svg text eol=lf
+/ArtSource/UI/G/Vector/G-Panel-Star-v001.svg text eol=lf
+/Game/Content/UI/G/Vector/G_PanelStar.svg text eol=lf
 
 # Preserve exact staged bytes for the revised wordmark candidate.
 /ArtSource/UI/G/Vector/G-Wordmark-v002.svg text eol=lf

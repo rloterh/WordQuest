@@ -1,0 +1,55 @@
+{
+  "status": "unapproved_authored_reconstruction_candidate",
+  "date": "2026-10-03",
+  "reference": "Planning/WordQuest-UI-Realms-Addendum/references/G-Celestial-Reverie-Gameplay.png",
+  "reference_sha256": "306dae4f6352749edcf1d8edf73f26339a4ba6407b4a394ec50b5898418bedae",
+  "files": [
+    {
+      "path": "ArtSource/UI/G/Vector/G-Reading-Panel-v001.svg",
+      "bytes": 2688,
+      "sha256": "b6bbea4e2a5b10444b8d00dd5c73cd8f74aa5993c400b5090622b1472cb5eba6"
+    },
+    {
+      "path": "ArtSource/UI/G/Exports/G-Reading-Panel-v001.png",
+      "bytes": 503956,
+      "sha256": "b179748f71d1977d1df26f0f7985418e867d94e0ac8d8f270fbe2981e8bfa734"
+    },
+    {
+      "path": "ArtSource/UI/G/Vector/G-Panel-Star-v001.svg",
+      "bytes": 716,
+      "sha256": "6e5ff094cfb2493f310f3d078253f846817b391c2c175b57aa89dfed4cb95ad2"
+    },
+    {
+      "path": "Game/Content/UI/G/Vector/G_PanelStar.svg",
+      "bytes": 716,
+      "sha256": "6e5ff094cfb2493f310f3d078253f846817b391c2c175b57aa89dfed4cb95ad2"
+    },
+    {
+      "path": "Game/Content/UI/G/G_ReadingPanel.uasset",
+      "bytes": 557502,
+      "sha256": "337cb0d335db5076c8bf69b4f2c351eea4ec461822780d1bfef14d9eee6aa5ac"
+    }
+  ],
+  "renderer": {
+    "resvg_py": "0.5.0",
+    "resvg": "0.48.1",
+    "dimensions": [
+      1185,
+      1710
+    ],
+    "scale": 1.5
+  },
+  "logical_canvas": [
+    790,
+    1140
+  ],
+  "uv_cut_reference_rows": [
+    220,
+    1010
+  ],
+  "limits": [
+    "Hand-authored geometry/material, no original pixels extracted or edited",
+    "Simplified surface and star facets; full visual/device acceptance open",
+    "Rejected built-in raster edit is documented separately and not imported"
+  ]
+}
