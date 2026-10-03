@@ -142,6 +142,8 @@ verified references and new asset/provenance/LFS hashes; it did not independentl
 rerun Unreal build/rendering or device checks. Connector shutdown warnings did
 not prevent completion. Subsequent review/publication records change docs only;
 tested runtime/package source remains `ea3c0a0`. The owner retains the merge decision.
+Non-draft [PR #37](https://github.com/rloterh/WordQuest/pull/37) is open against
+`dev` for review/merge of this bounded material candidate.
 
 ## Remaining gates
 
@@ -149,3 +151,5 @@ Full UI01 material/brand/companion fidelity and art acceptance, editorial approv
 UI02 motion, manual/platform accessibility, Android/physical-phone evidence,
 offline isolation, performance and the original release gates remain open.
 Windows offscreen rendering and synthetic input do not pass manual/device gates.
+Fresh local checks still show no same-engine Android platform receipt and adb
+lists no device; Android Studio alone does not supply the missing UE platform.
