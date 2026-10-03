@@ -92,7 +92,65 @@ with at most three invocations; no unlimited retry is introduced.
 The added regression checks stale-success then exact coverage through identical
 task invocations; existing checks now verify bounded rejection and immediate
 task failure. All 67 Python checks pass. Native code/art are unchanged by this fix.
-Fresh complete packaging, final responsive checks and dedicated review are pending.
+
+## Final complete package and native checks
+
+Fresh clean source `e6be5ebc8c4863a4c5223d6e99518a9e890cc673` passes full packaging
+in `Artifacts/Packages/Win64/20261003-151040-676833`. Native code/art are identical
+to tested `caa9dd3`; the change is the refresh helper/tests and evidence docs.
+Editor/Game checks are up to date (zero actions, 2.61s/2.34s); full BuildCookRun
+passes in 71.06s with 518 cooked packages and 0 errors/warnings. The earlier
+four-action Editor and three-action Game runs are actual compilation evidence.
+All 49 archive payload hashes match; manifest SHA-256 is
+`074e13b55aa9521a875518bbde234f6ecc82338a70f44338d55af956948207e8`.
+Head/worktree/input invariants pass. The exact new executable is covered by the
+existing protected task at 15:12:54 UTC, Private/Public LocalSubnet, one attempt.
+This run verifies live success; stale-receipt retry is covered by the regression
+test, not a claim that the live run reproduced the race. No new UAC was required.
+No privileged updater/task/firewall-policy change or manual security-dialog test
+is claimed. The failed earlier helper record remains untouched.
+
+All 16 native PNGs below were inspected. Each run exited 0, has complete evidence,
+recorded expected dimensions, passed applicable state/cue/focus/layout checks
+and verified package hashes. No Error/Fatal log lines were found. Runs are under
+`Artifacts/QA/UI01`; timestamps are 2026-10-03 UTC. `AnswerBevel/verification.json`
+records individual checks and PNG hashes at the final clean package source.
+
+| Run | Case | Dimensions / text / simulated inset |
+| --- | --- | --- |
+| `20261003-151412-packaged-capture-initial` | Initial | 884x1780, 100% |
+| `20261003-151427-packaged-capture-selected` | Selected C | 884x1780, 100% |
+| `20261003-151440-packaged-capture-correct` | Correct feedback | 884x1780, 100% |
+| `20261003-151454-packaged-capture-wrong` | Wrong feedback | 884x1780, 100% |
+| `20261003-151507-packaged-capture-initial` | High resolution | 1768x3560, 100% |
+| `20261003-151523-packaged-capture-initial` | Narrow initial | 260x640, 100%, .9 |
+| `20261003-151536-packaged-capture-actionfocus` | Narrow action focus | 260x640, 100%, .9 |
+| `20261003-151548-packaged-capture-actions` | Enlarged actions | 390x844, 200%, .9 |
+| `20261003-151601-packaged-capture-actions` | Landscape actions | 844x390, 200%, .9 |
+| `20261003-151614-packaged-capture-hint` | Assisted/disabled feedback | 390x844, 200%, .9 |
+| `20261003-151627-packaged-capture-keytab` | Synthetic Tab | 390x844, 100%, .9 |
+| `20261003-151640-packaged-capture-keymodal` | Modal/text toggle | 390x844, 200%, .9 |
+| `20261003-151653-packaged-capture-keydisabled` | Disabled traversal | 390x844, 100%, .9 |
+| `20261003-151709-packaged-capture-keyretry` | Retry focus | 390x844, 200%, .9 |
+| `20261003-151727-packaged-capture-longfocus` | Long-label focus | 390x844, 200%, .9 |
+| `20261003-151744-packaged-capture-longselectedfocus` | Narrow long selected focus | 260x640, 200%, .9 |
+
+Tall content scrolls; oversized selected/focused labels stay readable through
+the existing scroll behavior. Tile corners/bevel retain their fixed regions.
+Raw high-resolution dimensions are verified; the inspection viewer displayed a
+resized image. These checks use Windows offscreen rendering and synthetic input.
+
+Final initial PNG SHA-256 is
+`e2b62fdbed1859d7e76dc9272d9bd07f7f8a5129650bb1c5739f39d3d0826121`, identical
+to preflight. Final sample/region analysis reproduces the scoped results above;
+the original and baseline remain unchanged. It does not accept exact material,
+all-state contrast, manual accessibility or overall art identity. Both new LFS
+pointers match actual asset/export hashes and sizes.
+
+## Internal review
+
+Dedicated read-only review against actual `origin/dev` is pending. Build/runtime
+evidence never authorizes a merge; the owner retains that decision.
 
 ## Remaining gates
 
@@ -100,3 +158,5 @@ Painterly surface/rim softness, brand/companion identity and full UI01 art accep
 draft-fixture editorial approval, UI02 motion, manual/platform accessibility,
 Android/physical phone, isolated offline play, performance and original release
 gates remain open. Windows offscreen/synthetic checks do not pass manual/device gates.
+Fresh local checks still show no same-engine Android platform receipt and adb
+lists no device; installed Android Studio does not supply the missing UE platform.

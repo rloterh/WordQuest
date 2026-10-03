@@ -16,8 +16,11 @@ Both Unreal Context tests pass. First full build/cook/archive succeeded, but its
 helper correctly failed on a successful firewall receipt omitting the new path.
 The helper now retries the same protected task up to three times while preserving
 exact coverage and failure propagation; 67 Python checks pass. No privileged
-policy/task installer changed. Fresh complete packaging, final captures and review
-are in progress.
+policy/task installer changed. Fresh complete Win64 packaging passes, with exact
+automatic firewall coverage. All 16 inspected final native captures and 49 archive
+hashes pass at clean `e6be5eb`; the failed earlier helper record is retained.
+Native code/art are unchanged from the two Unreal tests at `caa9dd3`.
+Dedicated internal review and PR publication are in progress.
 See [answer bevel evidence](../QA/UI01/G-ANSWER-PEARL-BEVEL.md).
 Full UI01 fidelity, UI02 motion and physical-device/release gates remain open.
 
