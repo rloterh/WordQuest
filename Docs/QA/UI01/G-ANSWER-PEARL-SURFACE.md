@@ -116,8 +116,8 @@ The double rolled highlights are removed and the thin lower rim is closer to
 the reference. Painterly grain, precise surface tone/rim softness and existing
 panel/character/wordmark/action/type differences remain unaccepted.
 
-`answer-pearl-verification.py` is named `verify-answer-pearl.py` locally; its
-`answer-pearl-verification.json` records archive/capture hashes and unchanged old
+`verify-answer-pearl.py` and `answer-pearl-verification.json` locally record
+archive/capture hashes and unchanged old
 art. Final SVG/PNG/Unreal texture hashes are respectively:
 
 - `26f749f73ce702bfee4f927067a776788ca109076428a5b4db455676382978d4`
@@ -128,8 +128,24 @@ Binary export/texture LFS pointer OIDs match the actual files. Six supplied
 references, seven SVG pairs and final byte-exact PNG reproduction pass. Both
 Unreal tests passed at unchanged native implementation `0e17385`. After the
 owner's firewall request, all 66 Python QA tests passed (including three optional
-firewall-helper failure/coverage checks). The new package refresh integration is
-being verified with a fresh archive; dedicated review is pending.
+firewall-helper failure/coverage checks).
+
+The owner's automatic firewall request was additionally verified on clean
+`a8745af6eaed9ac8d94424b9dadc71a699dbe871`. Archive
+`Artifacts/Packages/Win64/20261003-050358-635571` passed Editor/Game up-to-date
+checks (2.74s/2.10s) and full BuildCookRun (145.79s). All 48 payload hashes and
+source invariants pass; manifest SHA-256 is
+`774bfe8d9052497e1f2a24b5818112a412874a2bbaee5b655cdd5d9e8324e355`.
+The package helper automatically refreshed the protected local task and confirmed
+this new archive's executable at 05:06:45 UTC. ActiveStore has an enabled Allow rule
+for that exact binary, Private/Public and LocalSubnet. No additional UAC was needed.
+Native launch `20261003-050715-packaged-capture-initial` exited 0 with complete,
+hash-verified evidence and passed state/option-cue checks. Its inspected 884x1780
+PNG is byte-identical to final-art initial capture `044231`; no new visual change
+was introduced by this build-tool integration. Local metadata is in
+`answer-pearl-firewall-verification.json`. These are native/policy checks; the
+unavailable desktop connection does not establish a visual security-dialog test.
+Dedicated read-only review is pending.
 
 This is simplified candidate art. Draft learning/progress fixtures, editorial,
 manual/platform accessibility, UI02 motion, phone/offline/performance and release

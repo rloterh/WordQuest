@@ -16,8 +16,9 @@ reference/SVG checks, PNG reproduction and archive/LFS hashes pass. Static answe
 comparisons change no pixels outside answer/shadow regions; nine contrast samples
 have a 9.76:1 minimum. See [pearl surface evidence](../QA/UI01/G-ANSWER-PEARL-SURFACE.md).
 The owner's new firewall request installed a protected local automatic refresh
-task and program-specific Private/Public LocalSubnet rules. Fresh package-helper
-integration verification and dedicated review are in progress. Art/device
+task and program-specific Private/Public LocalSubnet rules. A fresh package
+automatically covered its new executable path and passed an inspected native
+launch without additional UAC. Dedicated review is in progress. Art/device
 acceptance remains open.
 
 The owner requested unattended local development-tool permissions on 2026-10-02.

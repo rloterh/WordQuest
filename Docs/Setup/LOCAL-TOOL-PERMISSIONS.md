@@ -96,7 +96,7 @@ Personal SIDs and local installation JSON are not committed.
 The updater permits inbound traffic from `LocalSubnet` on Private/Public profiles
 for the installed UE 5.8 UnrealEditor, UnrealEditor-Cmd and UnrealGame executables,
 the project Game binary, and exact WordQuest binaries in recognized dated
-Stage/Archive paths beneath this checkout. It creates stable program-specific
+Archive paths beneath this checkout. It creates stable program-specific
 rules in group `WordQuest local development (owner authorized)`. It removes only
 Windows-generated Query User block rules for those exact apps, where present.
 Firewall profiles remain enabled and notification settings for other apps are
@@ -112,7 +112,13 @@ Verification: 34 program-specific allow rules; Private/Public, LocalSubnet, task
 result 0; protected-file ACL inspected. A non-elevated task invocation and Python
 helper refresh for the final art archive succeeded with no new administrator
 prompt. Current receipts are `installation.json` / `last-run.json` in the protected
-directory. A fresh package verifies automatic handling of a newly dated path.
+directory. Fresh clean package `20261003-050358-635571` passed with a successful
+automatic refresh receipt at 05:06:45 UTC. The new archived executable has an
+enabled ActiveStore Allow rule with the intended profile/address scope, and its
+native capture launch passed. No additional UAC was required. The desktop pipe
+remains unavailable, so no visual inspection of Windows Security is claimed.
+The task uses process-only RemoteSigned script policy; global execution policies
+were not changed.
 
 To undo this local setup from an administrator PowerShell, remove the named task
 and only the named rule group. Keep the firewall enabled. This setup does not grant
