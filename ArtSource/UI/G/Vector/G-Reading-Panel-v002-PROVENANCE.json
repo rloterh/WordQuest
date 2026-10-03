@@ -1,0 +1,55 @@
+{
+  "status": "unapproved_authored_material_candidate",
+  "date": "2026-10-03",
+  "reference": "Planning/WordQuest-UI-Realms-Addendum/references/G-Celestial-Reverie-Gameplay.png",
+  "reference_sha256": "306dae4f6352749edcf1d8edf73f26339a4ba6407b4a394ec50b5898418bedae",
+  "files": [
+    {
+      "path": "ArtSource/UI/G/Vector/G-Reading-Panel-v002.svg",
+      "bytes": 3824,
+      "sha256": "2e11a9824ec7331f591f921ff3b24bb7a69b6081d2213c65f5b8e0ea4c7a0b05"
+    },
+    {
+      "path": "ArtSource/UI/G/Exports/G-Reading-Panel-v002.png",
+      "bytes": 859855,
+      "sha256": "2fbf91f124eb3ec20e59035f6e8111e53760b925d7a966ca2ed337caf23df794"
+    },
+    {
+      "path": "Game/Content/UI/G/G_ReadingPanelPearl.uasset",
+      "bytes": 931404,
+      "sha256": "86a5d1155a40882bcf9593eba1e72406b3d4426c3e85f34f381b11f98359e449"
+    }
+  ],
+  "renderer": {
+    "resvg_py": "0.5.0",
+    "resvg": "0.48.1",
+    "dimensions": [
+      1185,
+      1710
+    ],
+    "scale": 1.5
+  },
+  "logical_canvas": [
+    790,
+    1140
+  ],
+  "uv_cut_reference_rows": [
+    220,
+    1010
+  ],
+  "preserved_source": "ArtSource/UI/G/Vector/G-Reading-Panel-v001.svg",
+  "import_settings": {
+    "srgb": true,
+    "compression": "TC_EDITOR_ICON",
+    "group": "TEXTUREGROUP_UI",
+    "filter": "TF_BILINEAR",
+    "mips": false,
+    "streaming": false
+  },
+  "limits": [
+    "Hand-authored diffuse material; no original pixels extracted or painted over",
+    "Canvas/contour/rim preserved; prior authored and legacy textures retained as fallbacks",
+    "Material in the middle UV slice stretches with accessible content",
+    "Simplified painterly finish; full art, phone, motion and performance gates remain open"
+  ]
+}

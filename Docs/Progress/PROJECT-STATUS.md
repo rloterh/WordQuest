@@ -2,6 +2,26 @@
 
 ## Current stage: native static G implementation; acceptance incomplete
 
+The owner merged [PR #36](https://github.com/rloterh/WordQuest/pull/36) into `dev`
+on 2026-10-03 at 12:36:52 UTC (`b316266`). Header typography is integrated.
+The next bounded UI01 correction authors a separate pearl/mauve panel material
+candidate on `feature/g-panel-pearl-material`, preserving contour, fixed UV cuts,
+live text/controls and the prior authored fallback. Actual import and Editor
+compilation pass, with 66 Python checks, eight SVG pairs and six reference hashes.
+Twelve scoped material samples are closer; no initial changes occur outside the
+panel region. Missing candidate restores the prior native screen exactly and
+passes enlarged actions; the texture is restored with its exact hash.
+Full Win64 packaging and all 16 inspected native captures pass, including feedback,
+simulated insets, landscape, 200% text and synthetic focus/retry/long-label routes.
+Both Unreal tests and all 49 archive hashes pass at clean source `ea3c0a0`.
+The existing firewall task automatically covered the new packaged executable.
+Dedicated read-only review against actual `dev` found no actionable introduced
+defects. Non-draft [PR #37](https://github.com/rloterh/WordQuest/pull/37) is open
+against `dev` for owner review/merge. Review/publication records change docs only;
+tested runtime/package source remains `ea3c0a0`.
+See [panel material evidence](../QA/UI01/G-PANEL-PEARL-MATERIAL.md).
+Full UI01 fidelity, UI02 motion and physical-device/release gates remain open.
+
 The owner merged [PR #35](https://github.com/rloterh/WordQuest/pull/35) into `dev`
 on 2026-10-03 at 11:20:09 UTC (`5160d1a`). Star facets are integrated. The next
 bounded UI01 correction tests the existing licensed reading font for live mode
@@ -17,8 +37,8 @@ glyph/shadow regions. Dedicated read-only review against actual `dev` found no
 actionable introduced defects. See
 [header type evidence](../QA/UI01/G-HEADER-TYPE-METRICS.md). Full UI01 art,
 UI02 motion and physical-device/release gates remain open.
-Non-draft [PR #36](https://github.com/rloterh/WordQuest/pull/36) is open against
-`dev` for owner review/merge. Review/publication records change documentation only;
+[PR #36](https://github.com/rloterh/WordQuest/pull/36) was merged by the owner into
+`dev`. Review/publication records change documentation only;
 the tested native/package source remains `2b3893c`.
 
 The owner merged [PR #34](https://github.com/rloterh/WordQuest/pull/34) into `dev`
