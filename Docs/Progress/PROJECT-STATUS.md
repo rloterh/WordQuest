@@ -21,6 +21,9 @@ automatically covered its new executable path and passed an inspected native
 launch without additional UAC. Dedicated read-only review against actual `dev`
 found no actionable introduced defects. Art/device
 acceptance remains open.
+[PR #31](https://github.com/rloterh/WordQuest/pull/31) is a regular PR against
+`dev`, ready for the owner's review/merge decision. Its local firewall settings
+are already applied on this machine.
 
 The owner requested unattended local development-tool permissions on 2026-10-02.
 WordQuest-only shell defaults and a user-level Unreal/Blender/Android Studio/Epic

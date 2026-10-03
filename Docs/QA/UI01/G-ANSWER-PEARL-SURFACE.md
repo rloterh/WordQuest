@@ -151,6 +151,11 @@ introduced defects. Head/worktree remained unchanged; raw report and metadata ar
 under `Artifacts/Reviews/20261003-050853`. The reviewer did not independently rerun
 builds, runtime checks or device tests. Owner retains the merge decision.
 
+[PR #31](https://github.com/rloterh/WordQuest/pull/31) publishes the answer-surface
+candidate and optional package refresh against `dev` as a regular PR. The local
+firewall configuration is already applied on the owner's machine; merging code
+does not install that privileged task on another computer.
+
 This is simplified candidate art. Draft learning/progress fixtures, editorial,
 manual/platform accessibility, UI02 motion, phone/offline/performance and release
 gates remain open. Android engine payload is still absent and adb reports no phone.
