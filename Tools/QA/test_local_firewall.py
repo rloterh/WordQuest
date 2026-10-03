@@ -34,14 +34,30 @@ class LocalFirewallTests(unittest.TestCase):
     def test_receipt_for_another_executable_is_rejected(self):
         self.configure()
         receipt = {'programs': [str(self.state / 'Other.exe')]}
-        with patch.object(firewall.subprocess, 'run', return_value=subprocess.CompletedProcess([], 0, json.dumps(receipt))), self.assertRaises(RuntimeError):
+        with patch.object(firewall.subprocess, 'run', return_value=subprocess.CompletedProcess([], 0, json.dumps(receipt))) as launch, self.assertRaises(RuntimeError):
             firewall.refresh_local_firewall(self.program, self.state)
+        self.assertEqual(launch.call_count, 3)
+
+    @unittest.skipUnless(firewall.os.name == 'nt', 'Windows task integration')
+    def test_successful_receipt_without_new_path_retries_same_task(self):
+        self.configure()
+        stale = {'programs': [str(self.state / 'Other.exe')]}
+        current = {'programs': [str(self.program)], 'completed_utc': '2026-10-03T15:10:00Z',
+                   'profile': 'Private,Public', 'remote_address': 'LocalSubnet'}
+        results = [subprocess.CompletedProcess([], 0, json.dumps(r)) for r in [stale, current]]
+        with patch.object(firewall.subprocess, 'run', side_effect=results) as launch:
+            receipt = firewall.refresh_local_firewall(self.program, self.state)
+        self.assertEqual(receipt['attempts'], 2)
+        self.assertTrue(receipt['refreshed'])
+        self.assertEqual(launch.call_count, 2)
+        self.assertEqual(launch.call_args_list[0], launch.call_args_list[1])
 
     @unittest.skipUnless(firewall.os.name == 'nt', 'Windows task integration')
     def test_task_failure_propagates(self):
         self.configure()
-        with patch.object(firewall.subprocess, 'run', side_effect=subprocess.CalledProcessError(1, ['powershell'])), self.assertRaises(subprocess.CalledProcessError):
+        with patch.object(firewall.subprocess, 'run', side_effect=subprocess.CalledProcessError(1, ['powershell'])) as launch, self.assertRaises(subprocess.CalledProcessError):
             firewall.refresh_local_firewall(self.program, self.state)
+        self.assertEqual(launch.call_count, 1)
 
 
 if __name__ == '__main__':

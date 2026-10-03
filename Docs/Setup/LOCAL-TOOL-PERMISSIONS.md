@@ -108,6 +108,13 @@ requires the exact packaged binary in the receipt. Refresh failure leaves packag
 evidence incomplete; it does not silently claim permission. Other machines skip
 the optional task without requesting elevation or changing firewall policy.
 
+On 2026-10-03, a successful receipt omitted a just-archived executable; a later
+task receipt included it. An already-running minute-triggered task can enumerate
+paths before archive completion. The helper now retries that same protected task
+up to three times for missing exact coverage. Each invocation remains bounded at
+135s; task/timeout/invalid-receipt errors propagate and three uncovered receipts
+still fail packaging. No privileged updater, task ACL or firewall policy changed.
+
 Verification: 34 program-specific allow rules; Private/Public, LocalSubnet, task
 result 0; protected-file ACL inspected. A non-elevated task invocation and Python
 helper refresh for the final art archive succeeded with no new administrator

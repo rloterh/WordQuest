@@ -33,14 +33,18 @@ do {
 } while ([DateTime]::UtcNow -lt $deadline)
 throw 'Timed out refreshing the local WordQuest firewall task.'
 '''
-    result = subprocess.run(
-        [r'C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe',
-         '-NoProfile', '-NonInteractive', '-Command', command],
-        capture_output=True, text=True, timeout=135, check=True)
-    receipt = json.loads(result.stdout.lstrip('\ufeff'))
     expected = str(Path(program).resolve()).casefold()
-    if expected not in {str(Path(p).resolve()).casefold() for p in receipt.get('programs', [])}:
-        raise RuntimeError('The local firewall task did not cover this packaged executable.')
-    return {'configured': True, 'refreshed': True, 'program': str(Path(program).resolve()),
-            'completed_utc': receipt['completed_utc'], 'profile': receipt['profile'],
-            'remote_address': receipt['remote_address']}
+    # An already-running minute-triggered task may have enumerated paths before
+    # archive completion. A successful receipt can therefore omit this new path.
+    # Ask the same protected task to refresh again; never bypass exact coverage.
+    for attempt in range(3):
+        result = subprocess.run(
+            [r'C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe',
+             '-NoProfile', '-NonInteractive', '-Command', command],
+            capture_output=True, text=True, timeout=135, check=True)
+        receipt = json.loads(result.stdout.lstrip('\ufeff'))
+        if expected in {str(Path(p).resolve()).casefold() for p in receipt.get('programs', [])}:
+            return {'configured': True, 'refreshed': True, 'program': str(Path(program).resolve()),
+                    'completed_utc': receipt['completed_utc'], 'profile': receipt['profile'],
+                    'remote_address': receipt['remote_address'], 'attempts': attempt + 1}
+    raise RuntimeError('The local firewall task did not cover this packaged executable after three refreshes.')

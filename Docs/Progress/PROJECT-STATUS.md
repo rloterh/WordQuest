@@ -12,7 +12,12 @@ reproduce exactly; 66 Python checks, eight SVG pairs and six reference hashes pa
 Native initial changes stay within the four tile regions; scoped face/shadow
 profiles are closer. Missing candidate restores the previous native screen exactly
 and passes enlarged actions; its texture is restored with its exact hash.
-Full packaging, final responsive/input checks and review are in progress.
+Both Unreal Context tests pass. First full build/cook/archive succeeded, but its
+helper correctly failed on a successful firewall receipt omitting the new path.
+The helper now retries the same protected task up to three times while preserving
+exact coverage and failure propagation; 67 Python checks pass. No privileged
+policy/task installer changed. Fresh complete packaging, final captures and review
+are in progress.
 See [answer bevel evidence](../QA/UI01/G-ANSWER-PEARL-BEVEL.md).
 Full UI01 fidelity, UI02 motion and physical-device/release gates remain open.
 

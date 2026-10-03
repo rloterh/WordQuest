@@ -68,7 +68,31 @@ with complete applicable native checks. Both PNGs were inspected; initial is
 RGB-identical to the merged PR #37 baseline. The owned texture was restored
 with its exact hash in `AnswerBevel/fallback.json`. Missing-package warnings
 are expected for this editor omission test; it does not corrupt/qualify a package.
-Game compilation/package, final responsive checks and dedicated review are pending.
+Both Unreal Context tests pass at clean `caa9dd3f2bcc6fb1b3ce347cfd19525fa4112e18`
+in `20261003-145726-automation-initial`: 2 succeeded, none failed/not run/in process.
+
+## Package refresh race and bounded fix
+
+First clean package `Artifacts/Packages/Win64/20261003-145924-242871` passed
+Editor/Game checks (three Editor relink/metadata actions, 7.72s; three Game actions,
+48.97s), full BuildCookRun (132.63s, 518 cooked packages, 0 errors/warnings).
+Its helper nevertheless exited 1 and correctly marked evidence incomplete:
+the successful protected-task receipt did not include the new executable.
+It is retained as failed helper evidence, not the final qualified archive.
+A later protected `last-run.json` includes that exact archived executable.
+The minute-triggered task can already be running while archiving completes,
+having enumerated executable paths earlier; this is the inferred timing scenario.
+
+`local_firewall.py` now retries the same owner-installed protected task up to
+three times only when a successful receipt omits the exact requested executable.
+It never changes firewall policy, passes arbitrary arguments, requests elevation
+or runs project code as SYSTEM. Task/timeout/JSON failures still propagate; three
+uncovered receipts still fail packaging. Per-invocation timeout remains 135s,
+with at most three invocations; no unlimited retry is introduced.
+The added regression checks stale-success then exact coverage through identical
+task invocations; existing checks now verify bounded rejection and immediate
+task failure. All 67 Python checks pass. Native code/art are unchanged by this fix.
+Fresh complete packaging, final responsive checks and dedicated review are pending.
 
 ## Remaining gates
 
