@@ -106,6 +106,8 @@ SVG parity and original-reference integrity but did not independently rerun nati
 or device acceptance; runtime evidence above is separate. Connector diagnostics
 did not prevent the completed review. Subsequent review/publication records change
 documentation only. The owner retains the merge decision.
+Non-draft [PR #35](https://github.com/rloterh/WordQuest/pull/35) is open against
+`dev` for owner review/merge of the bounded ornament candidate.
 
 ## Remaining gates
 

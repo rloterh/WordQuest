@@ -13,6 +13,9 @@ tests, eight SVG pairs, original reference hashes and 49 archive hashes pass.
 Extracted packaged star matches its master. Matched initial rendering changes
 376 pixels, all within the ornament region. Dedicated read-only review against
 actual `dev` found no actionable introduced defects.
+Non-draft [PR #35](https://github.com/rloterh/WordQuest/pull/35) is open against
+`dev` for owner review/merge. Review/publication records change documentation
+only; tested source remains `ad9a86a`.
 See [ornament evidence](../QA/UI01/G-PANEL-ORNAMENT-FACETS.md). Full UI01 art,
 UI02 motion and physical-device/release acceptance remain open.
 
