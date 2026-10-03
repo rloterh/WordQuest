@@ -94,9 +94,22 @@ The reference's face direction and small center glint are better represented;
 the reference has a broader/softer bevel and different highlight/contour finish,
 which remain open. No overall pixel score is used as acceptance.
 
+## Internal review
+
+Dedicated read-only review against actual `origin/dev` completed at
+`Artifacts/Reviews/20261003-104852`, base
+`58b21fa97a8b97098d08f2657dce65a9a9818311`, reviewed head
+`705e27552176e0024bf48227dfc5b9d0844cd3ef`. This adds only evidence docs beyond
+the tested source. Starting worktree was empty; review exit 0 and head/worktree
+unchanged. No actionable introduced defects were found. The reviewer verified
+SVG parity and original-reference integrity but did not independently rerun native
+or device acceptance; runtime evidence above is separate. Connector diagnostics
+did not prevent the completed review. Subsequent review/publication records change
+documentation only. The owner retains the merge decision.
+
 ## Remaining gates
 
-Dedicated read-only review against actual `dev` follows. Same-engine Android
+Same-engine Android
 platform receipt is still absent and adb lists no device (fresh local check).
 Scope stays within G UI01. Original-font/wordmark/companion identity, panel/surface material,
 full UI01 acceptance, fixture editorial approval, manual/platform accessibility,

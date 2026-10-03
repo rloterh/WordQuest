@@ -11,7 +11,8 @@ Both real targets pass warm checks (no fresh compilation); full Win64 packaging
 and nine inspected native captures pass. Both Unreal tests, all 66 Python QA
 tests, eight SVG pairs, original reference hashes and 49 archive hashes pass.
 Extracted packaged star matches its master. Matched initial rendering changes
-376 pixels, all within the ornament region. Dedicated read-only review is next.
+376 pixels, all within the ornament region. Dedicated read-only review against
+actual `dev` found no actionable introduced defects.
 See [ornament evidence](../QA/UI01/G-PANEL-ORNAMENT-FACETS.md). Full UI01 art,
 UI02 motion and physical-device/release acceptance remain open.
 
