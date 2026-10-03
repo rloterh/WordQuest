@@ -6,8 +6,15 @@ The owner merged [PR #35](https://github.com/rloterh/WordQuest/pull/35) into `de
 on 2026-10-03 at 11:20:09 UTC (`5160d1a`). Star facets are integrated. The next
 bounded UI01 correction tests the existing licensed reading font for live mode
 and progress headers against the original. No new font/asset is imported.
-Working branch: `feature/g-header-type-metrics`; native measurements, fallback,
-build/package evidence and dedicated review are in progress. Full UI01 art,
+Working branch: `feature/g-header-type-metrics`. Actual Editor/Game compilation,
+full Win64 packaging and all 16 inspected final packaged checks pass. Both Unreal
+tests, 66 Python QA tests, eight SVG pairs, original reference hashes and 49 archive
+hashes pass. Cooked reading fonts and license preserve exact source bytes. Missing
+font restores prior mode/progress crops exactly; the owned font is restored with
+its exact hash. Mode dimensions and progress width/center are closer, with remaining
+letterform/height differences disclosed. Initial changes stay within the two header
+glyph/shadow regions. Dedicated read-only review against actual `dev` is next. See
+[header type evidence](../QA/UI01/G-HEADER-TYPE-METRICS.md). Full UI01 art,
 UI02 motion and physical-device/release gates remain open.
 
 The owner merged [PR #34](https://github.com/rloterh/WordQuest/pull/34) into `dev`
