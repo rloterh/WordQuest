@@ -12,8 +12,9 @@ heights and lower padding. Working branch: `feature/g-panel-proportions`.
 Both final targets compiled successfully, full clean Win64 packaging passed,
 nine packaged captures were inspected and both Unreal/all 63 Python tests pass.
 The 50% reference comparison and state-specific pixel checks record improved
-panel placement and remaining art differences. Dedicated review is pending;
-art/device acceptance remains open. See
+panel placement and remaining art differences. Dedicated read-only review against
+actual `dev` found no actionable introduced defects and left head/worktree
+unchanged. Art/device acceptance remains open. See
 [panel proportions](../QA/UI01/G-PANEL-PROPORTIONS.md).
 
 The owner requested unattended local development-tool permissions on 2026-10-02.

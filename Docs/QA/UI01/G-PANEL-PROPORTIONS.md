@@ -100,8 +100,18 @@ control skins still diverge. No pixel count establishes visual acceptance.
 
 ## Remaining verification and gates
 
-Dedicated read-only review is pending. The panel remains unapproved art; companion identity,
+The panel remains unapproved art; companion identity,
 typography, answer/action materials and full UI01 fidelity remain unresolved.
 No editorial, UI02 motion, manual accessibility, OS-interruption, network-isolated
 offline or physical-phone acceptance follows from this source change.
 The Android engine receipt remains absent and adb lists no device on 2026-10-03.
+
+Dedicated read-only Codex review of clean
+`f1d337d60f61b49b3fd6b01800686125cd2202f4` against actual `origin/dev`
+(`4ed600b15ca96dd69c506fe544f563ab91ce5132`) completed with exit 0 and no
+actionable introduced defects. The reviewer checked contiguous content-driven
+slices and the evidence caveats; it did not independently rerun builds or runtime
+checks. Head/worktree remained unchanged. Raw report/metadata are under
+`Artifacts/Reviews/20261003-034356`. Optional connector startup/shutdown warnings
+did not prevent the completed review. The owner retains merge authority; no
+agent merge, game deployment or release occurs.
