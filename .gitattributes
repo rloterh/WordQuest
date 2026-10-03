@@ -3,6 +3,8 @@
 /Planning/** -text
 /ArtSource/Fonts/CormorantGaramond/OFL.txt -text whitespace=-blank-at-eol
 /ArtSource/Licenses/ROBOTO_License.txt -text whitespace=-blank-at-eol
+/ArtSource/Fonts/LiberationSans/LICENSE -text whitespace=-blank-at-eol
+/Game/Content/ThirdPartyLicenses/LiberationSans-LICENSE.txt -text whitespace=-blank-at-eol
 .gitkeep -text
 
 # Keep the new badge master/runtime bytes stable across checkout platforms.
