@@ -115,3 +115,7 @@ checks. Head/worktree remained unchanged. Raw report/metadata are under
 `Artifacts/Reviews/20261003-034356`. Optional connector startup/shutdown warnings
 did not prevent the completed review. The owner retains merge authority; no
 agent merge, game deployment or release occurs.
+
+Published as regular [PR #30](https://github.com/rloterh/WordQuest/pull/30)
+against `dev`. Review/publication commits change documentation only; the tested
+implementation remains the clean `5e915a4` source recorded above.

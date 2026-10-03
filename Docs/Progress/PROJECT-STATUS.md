@@ -16,6 +16,8 @@ panel placement and remaining art differences. Dedicated read-only review agains
 actual `dev` found no actionable introduced defects and left head/worktree
 unchanged. Art/device acceptance remains open. See
 [panel proportions](../QA/UI01/G-PANEL-PROPORTIONS.md).
+Published as regular [PR #30](https://github.com/rloterh/WordQuest/pull/30)
+against `dev`; the owner retains the merge decision.
 
 The owner requested unattended local development-tool permissions on 2026-10-02.
 WordQuest-only shell defaults and a user-level Unreal/Blender/Android Studio/Epic
