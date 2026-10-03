@@ -13,7 +13,8 @@ hashes pass. Cooked reading fonts and license preserve exact source bytes. Missi
 font restores prior mode/progress crops exactly; the owned font is restored with
 its exact hash. Mode dimensions and progress width/center are closer, with remaining
 letterform/height differences disclosed. Initial changes stay within the two header
-glyph/shadow regions. Dedicated read-only review against actual `dev` is next. See
+glyph/shadow regions. Dedicated read-only review against actual `dev` found no
+actionable introduced defects. See
 [header type evidence](../QA/UI01/G-HEADER-TYPE-METRICS.md). Full UI01 art,
 UI02 motion and physical-device/release gates remain open.
 

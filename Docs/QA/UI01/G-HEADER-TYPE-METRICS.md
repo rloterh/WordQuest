@@ -136,9 +136,21 @@ inspected. All three input images remain unchanged after analysis. Dimensions
 and face character improve, while the disclosed center/height/letterform differences
 and overall art acceptance remain open.
 
+## Internal review
+
+Dedicated read-only review completed at `Artifacts/Reviews/20261003-120519`,
+actual `origin/dev` base `5160d1afbd2c496ac2ee291c68aba4f9e59ff8ca`, reviewed head
+`c06263381b01542bfbb727a733c41499e5da6201`. This adds only evidence docs beyond
+the tested source. Starting worktree was empty, exit 0, and head/worktree unchanged.
+No actionable introduced defects were found. Reviewer confirmed consistent font
+sizing/measurement and fallback but did not independently rerun build/runtime
+checks; their evidence above is separate. Connector diagnostics did not prevent
+the completed review. Subsequent review/publication records change documentation
+only. The owner retains the merge decision; this is not art or release acceptance.
+
 ## Remaining gates
 
-Dedicated read-only review against actual `dev` follows. Fresh local prerequisites
+Fresh local prerequisites
 still show no same-engine Android platform receipt and adb lists no device.
 Full UI01 art/material/brand/companion identity, editorial approval,
 manual/platform accessibility, Android/physical phone, offline isolation,
