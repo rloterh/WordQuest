@@ -142,8 +142,9 @@ verified references and new asset/provenance/LFS hashes; it did not independentl
 rerun Unreal build/rendering or device checks. Connector shutdown warnings did
 not prevent completion. Subsequent review/publication records change docs only;
 tested runtime/package source remains `ea3c0a0`. The owner retains the merge decision.
-Non-draft [PR #37](https://github.com/rloterh/WordQuest/pull/37) is open against
-`dev` for review/merge of this bounded material candidate.
+[PR #37](https://github.com/rloterh/WordQuest/pull/37) was merged by the owner into
+`dev` on 2026-10-03 at 14:16:49 UTC (`3c04337`). This integrates the material
+candidate without accepting full art/device fidelity.
 
 ## Remaining gates
 

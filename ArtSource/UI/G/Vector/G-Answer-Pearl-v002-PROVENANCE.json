@@ -1,0 +1,61 @@
+{
+  "status": "unapproved_authored_answer_bevel_candidate",
+  "date": "2026-10-03",
+  "reference": "Planning/WordQuest-UI-Realms-Addendum/references/G-Celestial-Reverie-Gameplay.png",
+  "reference_sha256": "306dae4f6352749edcf1d8edf73f26339a4ba6407b4a394ec50b5898418bedae",
+  "files": [
+    {
+      "path": "ArtSource/UI/G/Vector/G-Answer-Pearl-v002.svg",
+      "bytes": 2849,
+      "sha256": "b94c21467070e24d3adb90adb186192588e227935fec64cc788e5c1177b57615"
+    },
+    {
+      "path": "ArtSource/UI/G/Exports/G-Answer-Pearl-v002.png",
+      "bytes": 40281,
+      "sha256": "fdd93e9178c2f1f9f9a1dc0390eecc150260abcb27d62b661133456905b01465"
+    },
+    {
+      "path": "Game/Content/UI/G/G_AnswerPearlBevel.uasset",
+      "bytes": 51017,
+      "sha256": "4f45be0325d11dbfb01b6da0a629d7563ca60499dbec7a2d594faa981e33fd5b"
+    }
+  ],
+  "renderer": {
+    "resvg_py": "0.5.0",
+    "resvg": "0.48.1",
+    "dimensions": [
+      1380,
+      238
+    ],
+    "scale": 2
+  },
+  "logical_canvas": [
+    690,
+    119
+  ],
+  "core_bounds_reference_units_xywh": [
+    12,
+    4,
+    666,
+    95
+  ],
+  "nine_slice_texture_pixels_left_top_right_bottom": [
+    112,
+    96,
+    112,
+    136
+  ],
+  "import_settings": {
+    "srgb": true,
+    "compression": "TC_EDITOR_ICON",
+    "group": "TEXTUREGROUP_UI",
+    "filter": "TF_BILINEAR",
+    "mips": false,
+    "streaming": false
+  },
+  "limits": [
+    "Hand-authored gradient/bevel/shadow; no original pixels extracted or painted over",
+    "Prior v001 master/export/G_AnswerPearl texture retained for fallback; no learning or layout changes",
+    "Full material/art, device, motion and performance gates remain open"
+  ]
+}
