@@ -2,21 +2,15 @@
 
 ## Current stage: native static G implementation; acceptance incomplete
 
-The owner merged [PR #27](https://github.com/rloterh/WordQuest/pull/27) and
-[PR #28](https://github.com/rloterh/WordQuest/pull/28) into `dev` on 2026-10-02
-at 21:50:42 and 21:50:59 UTC (`63e6919` and `77d4fde`). The next bounded UI01
-candidate refines the Q loop and tapered swash in a new editable v004 master,
-preserving earlier masters, the font file, authored W, other glyphs and controls.
-The corrected clean source passes both real target checks, full Win64 packaging,
-nine inspected packaged captures, both Unreal tests and all 63 Python QA tests.
-The shared glyph gradients retain their old bounds to avoid reshading the other
-letters. Cooked SVG matches source; initial/result pixel changes stay inside the
-title. Dedicated read-only review against actual `dev` found no actionable introduced
-defects and left head/worktree unchanged. Art/device acceptance remains open. Desktop control
-still returns a missing-pipe error, the Android support receipt remains absent
-and adb lists no device. See [Q swash](../QA/UI01/G-WORDMARK-SWASH.md).
-Published as regular [PR #29](https://github.com/rloterh/WordQuest/pull/29)
-against `dev`; no agent merge occurred.
+The owner merged [PR #29](https://github.com/rloterh/WordQuest/pull/29) into `dev`
+on 2026-10-03 at 03:18:03 UTC (`4ed600b`). Its Q-loop/swash and pinned glyph
+shading are integrated; see [Q swash](../QA/UI01/G-WORDMARK-SWASH.md).
+The next bounded UI01 correction addresses the reading panel's vertically
+compressed upper curve and lower corners. It retains the existing unapproved
+RGBA candidate and live content positions, adjusting only the fixed UV-slice
+heights and lower padding. Working branch: `feature/g-panel-proportions`.
+The edited Editor target compiled successfully; native comparison, responsive
+checks, packaging and review are in progress. Art/device acceptance remains open.
 
 The owner requested unattended local development-tool permissions on 2026-10-02.
 WordQuest-only shell defaults and a user-level Unreal/Blender/Android Studio/Epic
