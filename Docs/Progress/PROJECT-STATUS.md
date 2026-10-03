@@ -16,8 +16,10 @@ checks pass. Letterforms and label centers are closer; shorter/narrower metrics
 remain disclosed. Matched initial changes are confined to the live labels and
 the Check star's measured group position.
 See [action serif evidence](../QA/UI01/G-ACTION-SERIF-METRICS.md). Dedicated read-only
-review against actual `dev` found no actionable introduced defects. Publication
-is next. UI01 art acceptance, UI02 motion and physical-device/release gates remain open.
+review against actual `dev` found no actionable introduced defects.
+[PR #33](https://github.com/rloterh/WordQuest/pull/33) is a regular PR against
+`dev`, ready for the owner's review/merge decision. UI01 art acceptance, UI02 motion
+and physical-device/release gates remain open.
 
 The owner merged [PR #31](https://github.com/rloterh/WordQuest/pull/31) into `dev`
 on 2026-10-03 at 05:16:39 UTC (`8377541`). The authored pearl answer candidate
