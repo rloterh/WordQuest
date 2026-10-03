@@ -61,3 +61,19 @@ tests and dedicated read-only review are pending. This is simplified authored
 art, not original painterly texture or accepted fidelity. Draft learning/progress
 fixtures, editorial, manual/platform accessibility, UI02 motion, phone/offline/
 performance and release gates remain open.
+
+At clean implementation `0e17385e237cdec792adac4469e3ae12296ec360`, the first
+2x candidate passed actual Editor/Game compilation (12.07s/46.22s), full Win64
+packaging (155.56s), all 14 inspected packaged captures and both Unreal tests
+(`20261003-043521-automation-initial`, failed/notRun/inProcess 0). All 63 Python
+tests, six reference hashes, seven SVG parity checks and byte-exact PNG reproduction
+passed. The native source change is preserved by the final art adjustment below.
+Archive `Artifacts/Packages/Win64/20261003-042733-699999` remains preliminary art
+evidence: source export SHA was `94ad1b8f825bcb9182e2dae961409a7360d701958123176f2760cabe2e158d5e`.
+Its inspected reference-row comparison found the lower rim too muted. Only the
+editable rim gradient's last stop changed from darker lilac to pale ivory/lilac;
+geometry, body shading, shadow and native code remain unchanged. The revised
+2x export was genuinely reimported with zero commandlet errors/warnings. Fresh
+final art packaging/captures and review are pending. Preserved batch/analysis
+scripts and results use `answer-pearl-muted-rim-` under `Artifacts/QA/UI01`;
+their earlier import metadata/log use the same suffix under `Artifacts/Logs/UI01`.

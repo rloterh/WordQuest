@@ -17,7 +17,7 @@
     <linearGradient id="rim" x1="0" y1="4" x2="0" y2="99" gradientUnits="userSpaceOnUse">
       <stop stop-color="#ffffff"/>
       <stop offset=".62" stop-color="#eceaff"/>
-      <stop offset="1" stop-color="#b3abed"/>
+      <stop offset="1" stop-color="#eae7ff"/>
     </linearGradient>
     <filter id="shadow" x="-10%" y="-60%" width="120%" height="240%" color-interpolation-filters="sRGB">
       <feGaussianBlur stdDeviation="4.5"/>
