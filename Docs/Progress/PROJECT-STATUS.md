@@ -7,8 +7,13 @@ on 2026-10-03 at 10:32:21 UTC (`58b21fa`). The authored panel and separate star
 are integrated. The next bounded UI01 correction refines that star's directional
 facets and center highlight against the original, preserving its outline, canvas,
 native placement and behavior. Working branch: `feature/g-panel-ornament-facets`.
-Native visual/package evidence and dedicated review are in progress; full UI01
-art, UI02 motion and physical-device/release acceptance remain open.
+Both real targets pass warm checks (no fresh compilation); full Win64 packaging
+and nine inspected native captures pass. Both Unreal tests, all 66 Python QA
+tests, eight SVG pairs, original reference hashes and 49 archive hashes pass.
+Extracted packaged star matches its master. Matched initial rendering changes
+376 pixels, all within the ornament region. Dedicated read-only review is next.
+See [ornament evidence](../QA/UI01/G-PANEL-ORNAMENT-FACETS.md). Full UI01 art,
+UI02 motion and physical-device/release acceptance remain open.
 
 The owner merged [PR #33](https://github.com/rloterh/WordQuest/pull/33) into `dev`
 on 2026-10-03 at 09:20:43 UTC (`373de75`). Live action serif metrics are integrated.
