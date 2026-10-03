@@ -2,6 +2,22 @@
 
 ## Current stage: native static G implementation; acceptance incomplete
 
+The owner merged [PR #27](https://github.com/rloterh/WordQuest/pull/27) and
+[PR #28](https://github.com/rloterh/WordQuest/pull/28) into `dev` on 2026-10-02
+at 21:50:42 and 21:50:59 UTC (`63e6919` and `77d4fde`). The next bounded UI01
+candidate refines the Q loop and tapered swash in a new editable v004 master,
+preserving earlier masters, the font file, authored W, other glyphs and controls.
+The corrected clean source passes both real target checks, full Win64 packaging,
+nine inspected packaged captures, both Unreal tests and all 63 Python QA tests.
+The shared glyph gradients retain their old bounds to avoid reshading the other
+letters. Cooked SVG matches source; initial/result pixel changes stay inside the
+title. Dedicated read-only review against actual `dev` found no actionable introduced
+defects and left head/worktree unchanged. Art/device acceptance remains open. Desktop control
+still returns a missing-pipe error, the Android support receipt remains absent
+and adb lists no device. See [Q swash](../QA/UI01/G-WORDMARK-SWASH.md).
+Published as regular [PR #29](https://github.com/rloterh/WordQuest/pull/29)
+against `dev`; no agent merge occurred.
+
 The owner requested unattended local development-tool permissions on 2026-10-02.
 WordQuest-only shell defaults and a user-level Unreal/Blender/Android Studio/Epic
 Launcher/WordQuest allow list are saved outside Git. Configuration parsing and the
@@ -53,7 +69,7 @@ closed/merged. Initially #16's focus correction was absent from `dev` because th
 merge occurred after #15. The owner merged
 [PR #17](https://github.com/rloterh/WordQuest/pull/17) into `dev` at `f0fd74b` on
 2026-10-02, 10:55:10 UTC; the tested correction is now integrated. No remote branch
-merge was performed by the agent. Working branch: `feature/g-wordmark-capital`.
+merge was performed by the agent. Working branch: `feature/g-wordmark-swash`.
 Oversized focused answers reveal their option letter and first line, while the
 rest remains scrollable. The original correction passed both builds, full Win64
 packaging, 24 capture checks, both Unreal tests and 27 Python tests. Fresh integration
@@ -189,7 +205,8 @@ Dedicated read-only review against actual `dev` found no actionable introduced
 defects and independently checked references/SVG parity/whitespace. Head/worktree
 stayed unchanged; builds/runtime/device acceptance were not independently repeated.
 The owner retains merge authority. The bounded regular
-[PR #27](https://github.com/rloterh/WordQuest/pull/27) is published against `dev`.
+[PR #27](https://github.com/rloterh/WordQuest/pull/27) was merged by the owner
+into `dev` at `63e6919` on 2026-10-02, 21:50:42 UTC.
 The owner identified Epic Games Launcher as the UE installation source; its current
 manifest/installation record now confirms exact UE 5.8.2 at the existing path.
 Android target receipt remains absent and adb lists no device. See

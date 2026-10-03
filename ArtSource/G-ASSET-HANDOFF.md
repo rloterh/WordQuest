@@ -162,3 +162,10 @@ UI02 follows accepted UI01. Use a local cloud layer and small lantern emission p
 full/reduced/battery profiles, inactive cancellation and explicit frozen time/seed.
 Exclude reading and control masks. Do not animate these unresolved candidates and
 call a motion render accepted.
+
+The v004 wordmark candidate now replaces the outlined Q descender with an
+adapted bowl segment, closed loop and tapered ribbons. Earlier masters, the
+font file, authored W, seven other glyphs, title layout and under-title ornament
+are preserved. Provenance is adjacent to the SVG and bounded verification is
+in `Docs/QA/UI01/G-WORDMARK-SWASH.md`. Exact Q connection, letterforms, material
+and all existing art/device/motion/release gates remain unaccepted.

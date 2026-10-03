@@ -1,7 +1,7 @@
 """Rebuild the editable G wordmark candidate; requires fonttools==4.61.1.
 
 Outlines the repository's OFL Cormorant font, then adds authored ornament.
-Revision v003 replaces only W and its curls with reference-guided vector curves.
+Revision v004 adds a looped Q swash to v003's reference-guided W.
 No reference pixels, raster edits, external fonts or Unreal assets are generated.
 """
 import argparse
@@ -10,12 +10,33 @@ from fontTools.ttLib import TTFont
 from fontTools.pens.svgPathPen import SVGPathPen
 from fontTools.pens.boundsPen import BoundsPen
 from fontTools.pens.transformPen import TransformPen
+from fontTools.pens.recordingPen import RecordingPen
+
+
+def draw_q_bowl(glyph, pen):
+    """Outline the licensed bowl without its straight descender; leave font intact."""
+    recording = RecordingPen()
+    glyph.draw(recording)
+    tail = [
+        ('qCurveTo', ((522, -72), (652, -175), (710, -175))),
+        ('qCurveTo', ((729, -175), (745, -173))),
+        ('qCurveTo', ((747, -172), (751, -182), (749, -183))),
+        ('qCurveTo', ((704, -195), (667, -195))),
+        ('qCurveTo', ((593, -195), (432, -99), (374, -12))),
+        ('lineTo', ((366, -12),)),
+    ]
+    if recording.value[4:10] != tail:
+        raise RuntimeError('Q outline differs from the pinned Cormorant SemiBold source.')
+    # Restore the bottom oval between its existing endpoints; all other outer
+    # and counter segments are the unmodified licensed outline.
+    recording.value[4:10] = [('qCurveTo', ((425, -12), (366, -12)))]
+    recording.replay(pen)
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--revision', choices=['v001', 'v002', 'v003'], default='v003',
-                        help='v003 reconstructs the capital W; v001/v002 reproduce preserved candidates')
+    parser.add_argument('--revision', choices=['v001', 'v002', 'v003', 'v004'], default='v004',
+                        help='v004 reconstructs the Q swash; earlier options reproduce preserved candidates')
     args = parser.parse_args()
     root = Path(__file__).resolve().parents[2]
     font = TTFont(root / 'ArtSource/Fonts/CormorantGaramond/CormorantGaramond-SemiBold.ttf')
@@ -26,16 +47,24 @@ def main():
     glyphs[cmap[ord('W')]].draw(cap)
     scale = 76 / (cap.bounds[3] - cap.bounds[1])
     paths, advance = [], 0
+    previous_lettering_bounds = BoundsPen(glyphs)
     for letter in 'WordQuest':
         glyph = glyphs[cmap[ord(letter)]]
         factor = 1.13 if letter == 'Q' else 1
         pen = SVGPathPen(glyphs, ntos=lambda n: f'{n:.3f}'.rstrip('0').rstrip('.'))
-        glyph.draw(TransformPen(pen, (scale, 0, 0, -scale * factor, advance, 91)))
+        if letter != 'W':
+            glyph.draw(TransformPen(previous_lettering_bounds,
+                                   (scale, 0, 0, -scale * factor, advance, 91)))
+        transformed = TransformPen(pen, (scale, 0, 0, -scale * factor, advance, 91))
+        if letter == 'Q' and args.revision == 'v004':
+            draw_q_bowl(glyph, transformed)
+        else:
+            glyph.draw(transformed)
         paths.append(pen.getCommands())
         advance += glyph.width * scale - 1.5
     # A single horizontal fit preserves cap/lowercase proportions. Authored
     # curves remain editable separately from the licensed glyph outlines.
-    lettering = ' '.join(paths[1:] if args.revision == 'v003' else paths)
+    lettering = ' '.join(paths[1:] if args.revision in ('v003', 'v004') else paths)
     svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="430" height="140" viewBox="0 0 430 140">
   <title>WordQuest — G wordmark candidate</title>
   <desc>OFL Cormorant outlines with authored gold finish, capital curls, Q swash and star. Not accepted original lettering.</desc>
@@ -69,7 +98,7 @@ def main():
   <path d="M235 124 L254 125 L235 127 L232 125Z" fill="#efcca5"/>
 </svg>
 '''
-    if args.revision in ('v002', 'v003'):
+    if args.revision in ('v002', 'v003', 'v004'):
         # Keep licensed glyph and ornament geometry intact. Separate closed-vector
         # layers supply the warm interior, ivory rim and offset lower bevel.
         svg = svg.replace('stop-color="#fff3e5"', 'stop-color="#f5d2ba"')
@@ -83,7 +112,7 @@ def main():
     <path d="{lettering}" fill="url(#pearlGold)" stroke="url(#edgeGold)" stroke-width="1.2" stroke-linejoin="round"/>
     <path d="{lettering}" transform="translate(-.3 -.4)" fill="none" stroke="#fffaf4" stroke-width=".35" stroke-opacity=".65" stroke-linejoin="round"/>'''
         svg = svg.replace(original_layers, bevel_layers)
-    if args.revision == 'v003':
+    if args.revision in ('v003', 'v004'):
         # Authored closed curves reconstruct the reference W's splayed stems,
         # deeper tips and curled terminals in the existing SVG coordinate space.
         # Keep the other eight licensed glyphs, advance/fit, Q and ornaments intact.
@@ -112,6 +141,46 @@ def main():
         svg = svg[:start] + capital_layers + svg[end:]
         svg = svg.replace('OFL Cormorant outlines with authored gold finish, capital curls, Q swash and star.',
                           'OFL Cormorant ordQuest outlines with a reference-guided authored W, gold finish, Q swash and star.')
+    if args.revision == 'v004':
+        # The original shared glyph path used object-bounding-box gradients.
+        # Removing the Q descender shrinks that box and would reshade all other
+        # letters. Pin only this path's gradients to its v003 vertical bounds;
+        # W and independent ornament keep their existing local gradient mapping.
+        top, bottom = previous_lettering_bounds.bounds[1::2]
+        definition_start = svg.index('    <linearGradient id="pearlGold"')
+        definition_end = svg.index('  </defs>')
+        fixed_gradients = svg[definition_start:definition_end]
+        fixed_gradients = fixed_gradients.replace('id="pearlGold"', 'id="letterPearlGold"')
+        fixed_gradients = fixed_gradients.replace('id="edgeGold"', 'id="letterEdgeGold"')
+        fixed_gradients = fixed_gradients.replace('x1="0%" y1="0%" x2="0%" y2="100%"',
+            f'gradientUnits="userSpaceOnUse" x1="0" y1="{top:.3f}" x2="0" y2="{bottom:.3f}"')
+        svg = svg[:definition_end] + fixed_gradients + svg[definition_end:]
+        group_start = svg.index('  <g transform=')
+        group_end = svg.index('  </g>', group_start)
+        group = svg[group_start:group_end].replace('url(#pearlGold)', 'url(#letterPearlGold)')
+        group = group.replace('url(#edgeGold)', 'url(#letterEdgeGold)')
+        svg = svg[:group_start] + group + svg[group_end:]
+        # Closed curves reconstruct the reference's loop and two sweeping,
+        # tapered ribbons. Keep canvas, W, other glyphs and ornament unchanged.
+        loop = '''M262 88 C259 78 246 71 235 75 C225 78 222 84 225 90
+            C228 95 244 95 256 92 L255 89 C244 92 232 92 229 88
+            C226 84 232 78 237 78 C246 78 253 82 255 87Z'''
+        sweep = '''M232 86 C252 92 279 112 315 116 C346 122 369 120 385 104
+            C368 126 341 128 314 122 C283 118 254 103 232 86Z'''
+        curl = '''M232 86 C253 93 277 109 299 115 C307 117 315 112 315 106
+            C314 101 311 102 312 106 C313 113 304 119 294 120
+            C277 120 251 102 232 86Z'''
+        swash = '  <!-- Independent loop and tapered Q ribbons; no font dependency. -->\n  <g id="Q-swash">\n'
+        for curve in (loop, sweep, curl):
+            swash += f'''    <path d="{curve}" transform="translate(.5 .8)" fill="#79506c" stroke="#79506c" stroke-width="1" stroke-linejoin="round"/>
+    <path d="{curve}" fill="url(#pearlGold)" stroke="#fff2e1" stroke-width=".8" stroke-linejoin="round"/>
+'''
+        swash += '  </g>\n'
+        start = svg.index('  <path d="M219 91')
+        end = svg.index('  <path d="M75 134', start)
+        svg = svg[:start] + swash + svg[end:]
+        svg = svg.replace('OFL Cormorant ordQuest outlines with a reference-guided authored W, gold finish, Q swash and star.',
+                          'OFL Cormorant outlines with an authored W, adapted Q bowl, looped Q swash, gold finish and star.')
     target = root / f'ArtSource/UI/G/Vector/G-Wordmark-{args.revision}.svg'
     target.write_text(svg, encoding='utf-8', newline='\n')
     print(target)

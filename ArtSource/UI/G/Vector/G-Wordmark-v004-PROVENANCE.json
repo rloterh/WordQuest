@@ -1,0 +1,24 @@
+{
+  "status": "unapproved UI01 Q-swash reconstruction candidate; not accepted original lettering or release art",
+  "master": "ArtSource/UI/G/Vector/G-Wordmark-v004.svg",
+  "runtime": "Game/Content/UI/G/Vector/G_Wordmark.svg",
+  "sha256": "99c52f406eb50596945f32b2ccd43faec3112c44f942e90ea1c84f6b5bae0428",
+  "preserved_previous_masters": [
+    "ArtSource/UI/G/Vector/G-Wordmark-v001.svg",
+    "ArtSource/UI/G/Vector/G-Wordmark-v002.svg",
+    "ArtSource/UI/G/Vector/G-Wordmark-v003.svg"
+  ],
+  "reference": "Planning/WordQuest-UI-Realms-Addendum/references/G-Celestial-Reverie-Gameplay.png",
+  "reference_sha256": "306dae4f6352749edcf1d8edf73f26339a4ba6407b4a394ec50b5898418bedae",
+  "font_source": "ArtSource/Fonts/CormorantGaramond/CormorantGaramond-SemiBold.ttf",
+  "font_sha256": "dc4bc094dc3c55cf79ff2f6f0ba1e501b712fc3cf3742296cd8fdcc6e995127d",
+  "font_license": "adjacent unmodified SIL OFL 1.1; derivative outlined graphic, not a modified font",
+  "builder": "Tools/AssetImport/build_g_wordmark.py --revision v004",
+  "development_dependency": "fonttools==4.61.1; not required for runtime or normal builds",
+  "method": "replace only the outlined Q descender with a restored bowl segment and independent closed loop/tapered ribbon paths; retain all other bowl/counter segments, seven other licensed glyphs, authored W, glyph advances, fit transform, under-title ornament, gradients, canvas and native placement; original gradient definitions retained for W/ornament, with separate shared-glyph gradients pinned to v003 bounds to prevent reshading the other lettering",
+  "raster_editing": false,
+  "image_generation": false,
+  "unreal_binary_generation": false,
+  "layout": "existing 430x140 canvas and x229/y23 reference-size native placement preserved",
+  "remaining": "precise loop/connection, Q bowl and other letterforms, ornament and lighting remain candidates; art, accessibility, editorial, device, motion and release acceptance remain open"
+}
