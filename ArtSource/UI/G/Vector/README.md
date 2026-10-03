@@ -7,10 +7,17 @@ gold/ivory rim, restrained gradient/grain surface and fixed corner regions.
 `python Tools/AssetImport/render_g_reading_panel.py --check` reproduces its 1.5x
 RGBA export using the same development-only renderer below. Unreal imports the
 export as `G_ReadingPanel`; the earlier panel remains the missing-asset fallback.
-The separate `G-Panel-Star-v001.svg` stages as `G_PanelStar.svg`; the parity helper
+The separate `G-Panel-Star-v002.svg` stages as `G_PanelStar.svg`; the parity helper
 now checks eight pairs. Source/export/asset provenance and native evidence are in
 `G-Reading-Panel-v001-PROVENANCE.json` and `Docs/QA/UI01/G-AUTHORED-READING-PANEL.md`.
 These are unapproved reconstructions with simpler material than the original.
+
+Star v002 preserves v001's canvas, outer path and native placement. It replaces
+the continuous pale cross with violet directional facets, a pale upper-right
+face, warmer lower-left face and small center glint. Earlier v001 remains unchanged.
+`G-Panel-Star-v002-PROVENANCE.json` supersedes the earlier panel provenance's
+staged-star entry only; panel source/export/texture are unchanged. See
+`Docs/QA/UI01/G-PANEL-ORNAMENT-FACETS.md` for native/package comparisons and limits.
 
 ## Authored pearl surface export
 

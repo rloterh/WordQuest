@@ -1,0 +1,23 @@
+{
+  "status": "unapproved_authored_ornament_candidate",
+  "date": "2026-10-03",
+  "reference": "Planning/WordQuest-UI-Realms-Addendum/references/G-Celestial-Reverie-Gameplay.png",
+  "reference_sha256": "306dae4f6352749edcf1d8edf73f26339a4ba6407b4a394ec50b5898418bedae",
+  "master": "ArtSource/UI/G/Vector/G-Panel-Star-v002.svg",
+  "runtime": "Game/Content/UI/G/Vector/G_PanelStar.svg",
+  "sha256": "f48cc9ea9c8e6f75eb63b508b7c931e5c700efe49506af8802b6f54c560f5fb5",
+  "preserved_master": "ArtSource/UI/G/Vector/G-Panel-Star-v001.svg",
+  "preserved_master_sha256": "6e5ff094cfb2493f310f3d078253f846817b391c2c175b57aa89dfed4cb95ad2",
+  "canvas": [36, 42],
+  "changes": [
+    "Preserved canvas, outer path coordinates and 0.8-unit outer stroke width",
+    "Violet upper-left/lower-right faces, pale upper-right face, warm lower-left face",
+    "Directional bevel facets and small center highlight replace continuous pale cross",
+    "No raster generation/editing, source pixel extraction, native layout or behavior changes"
+  ],
+  "limits": [
+    "Exact silhouette/material/lighting remain unapproved",
+    "SVG rendering is verified separately in native and packaged captures",
+    "Earlier panel provenance describes its v001 runtime star; this revision supersedes that staged star only"
+  ]
+}

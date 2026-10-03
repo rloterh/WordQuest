@@ -2,6 +2,14 @@
 
 ## Current stage: native static G implementation; acceptance incomplete
 
+The owner merged [PR #34](https://github.com/rloterh/WordQuest/pull/34) into `dev`
+on 2026-10-03 at 10:32:21 UTC (`58b21fa`). The authored panel and separate star
+are integrated. The next bounded UI01 correction refines that star's directional
+facets and center highlight against the original, preserving its outline, canvas,
+native placement and behavior. Working branch: `feature/g-panel-ornament-facets`.
+Native visual/package evidence and dedicated review are in progress; full UI01
+art, UI02 motion and physical-device/release acceptance remain open.
+
 The owner merged [PR #33](https://github.com/rloterh/WordQuest/pull/33) into `dev`
 on 2026-10-03 at 09:20:43 UTC (`373de75`). Live action serif metrics are integrated.
 The bounded UI01 panel correction rejected a built-in generated edit for retained
@@ -17,8 +25,8 @@ to the composited panel region; nine normal reading contrast samples have a
 unfinished. Dedicated read-only review against actual `dev` found no actionable
 introduced defects. See
 [authored panel evidence](../QA/UI01/G-AUTHORED-READING-PANEL.md).
-Non-draft [PR #34](https://github.com/rloterh/WordQuest/pull/34) is open against
-`dev` for owner review/merge. Publication records change documentation only;
+[PR #34](https://github.com/rloterh/WordQuest/pull/34) was merged by the owner into
+`dev`. Publication records change documentation only;
 the tested native/package source remains `38cbc1c`.
 UI01 art acceptance, UI02 motion and physical-device/release gates remain open.
 
