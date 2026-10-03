@@ -16,6 +16,8 @@ pass. Four matched-size glyph bounds are closer to the original. Dedicated read-
 review against actual `dev` found no actionable introduced defects. See
 [reading typography](../QA/UI01/G-READING-FONT-METRICS.md).
 Art/device acceptance remains open.
+[PR #32](https://github.com/rloterh/WordQuest/pull/32) is a regular PR against
+`dev`, ready for the owner's review/merge decision.
 
 The owner merged [PR #30](https://github.com/rloterh/WordQuest/pull/30) into `dev`
 on 2026-10-03 at 04:05:55 UTC (`00e044e`). Its fixed panel-slice proportions and

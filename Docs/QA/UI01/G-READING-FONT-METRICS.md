@@ -149,6 +149,11 @@ introduced defects. Head/worktree remained unchanged. Raw report/metadata are
 under `Artifacts/Reviews/20261003-055403`; reviewer did not independently repeat
 builds, runtime or device checks. Owner retains the merge decision.
 
+[PR #32](https://github.com/rloterh/WordQuest/pull/32) publishes this bounded
+reading-font candidate against `dev` as a regular PR. Subsequent documentation
+records review/publication; the tested native implementation and font bytes are
+unchanged.
+
 Simplified art, exact lettering/type/color,
 editorial/manual accessibility, UI02 motion, real-phone/offline/performance and
 release gates remain open. No new H/I work, deployment or release is included.
