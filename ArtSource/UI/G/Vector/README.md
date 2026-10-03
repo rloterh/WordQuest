@@ -1,5 +1,17 @@
 # G vector icon and divider candidates
 
+## Authored reading panel and separate star
+
+`G-Reading-Panel-v001.svg` is a blank editable 790x1140 panel with a thin pale
+gold/ivory rim, restrained gradient/grain surface and fixed corner regions.
+`python Tools/AssetImport/render_g_reading_panel.py --check` reproduces its 1.5x
+RGBA export using the same development-only renderer below. Unreal imports the
+export as `G_ReadingPanel`; the earlier panel remains the missing-asset fallback.
+The separate `G-Panel-Star-v001.svg` stages as `G_PanelStar.svg`; the parity helper
+now checks eight pairs. Source/export/asset provenance and native evidence are in
+`G-Reading-Panel-v001-PROVENANCE.json` and `Docs/QA/UI01/G-AUTHORED-READING-PANEL.md`.
+These are unapproved reconstructions with simpler material than the original.
+
 ## Authored pearl surface export
 
 `G-Answer-Pearl-v001.svg` is a separate editable blank surface candidate. A thin

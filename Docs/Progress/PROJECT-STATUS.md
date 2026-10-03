@@ -2,6 +2,19 @@
 
 ## Current stage: native static G implementation; acceptance incomplete
 
+The owner merged [PR #33](https://github.com/rloterh/WordQuest/pull/33) into `dev`
+on 2026-10-03 at 09:20:43 UTC (`373de75`). Live action serif metrics are integrated.
+The next bounded UI01 attempt addresses the reading panel's bright/thick rim,
+oversized star and outer fringe through built-in imagegen, preserving earlier
+masters and the supplied original. Working branch: `feature/g-authored-reading-panel`.
+The generated edit was rejected for retained fringe/star differences. A separate
+editable authored panel and small SVG star are now genuine Unreal/native candidates,
+with preserved old texture fallback. Working branch is now
+`feature/g-authored-reading-panel`. Editor compilation and inspected preliminary
+native comparison pass; clean packaging and final evidence are in progress. See
+[authored panel evidence](../QA/UI01/G-AUTHORED-READING-PANEL.md). UI01 art acceptance,
+UI02 motion and physical-device/release gates remain open.
+
 The owner merged [PR #32](https://github.com/rloterh/WordQuest/pull/32) into `dev`
 on 2026-10-03 at 08:20:47 UTC (`3d76c9f`). The licensed reading faces and their
 recorded packaged evidence are integrated. The next bounded UI01 correction tests
@@ -17,8 +30,8 @@ remain disclosed. Matched initial changes are confined to the live labels and
 the Check star's measured group position.
 See [action serif evidence](../QA/UI01/G-ACTION-SERIF-METRICS.md). Dedicated read-only
 review against actual `dev` found no actionable introduced defects.
-[PR #33](https://github.com/rloterh/WordQuest/pull/33) is a regular PR against
-`dev`, ready for the owner's review/merge decision. UI01 art acceptance, UI02 motion
+[PR #33](https://github.com/rloterh/WordQuest/pull/33) was merged by the owner into
+`dev`; its action metrics are integrated. UI01 art acceptance, UI02 motion
 and physical-device/release gates remain open.
 
 The owner merged [PR #31](https://github.com/rloterh/WordQuest/pull/31) into `dev`

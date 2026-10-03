@@ -53,6 +53,15 @@ colored fringe. No text, no logo, no panel, no palace, no clouds."
 
 ## Concrete missing deliverables
 
+On 2026-10-03 an imagegen panel v003 attempt was rejected before import for
+retained fringe/star differences; its exact prompt and disposition are in
+`UI/G/Reconstruction/G-Panel-v003-ATTEMPT.md`. A separate authored panel candidate
+under `UI/G/Vector/G-Reading-Panel-v001.svg`, with reproducible RGBA export and
+genuine `G_ReadingPanel` texture, now permits precise contour/rim edits. A separate
+small lilac SVG star remains a native decorative layer. Old panel/master are
+preserved as fallback. Surface material remains simplified and unapproved;
+see `Docs/QA/UI01/G-AUTHORED-READING-PANEL.md` for verification and gates.
+
 The live Hint/Check labels now have a separate measured Liberation Serif Bold
 2.1.5 candidate under `Fonts/LiberationSerif`, imported as `G_ActionBold` with
 unchanged licensed source bytes. Candidate spacing/baseline compensation retains

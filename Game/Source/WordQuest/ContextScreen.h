@@ -98,6 +98,7 @@ private:
     float Scale = 1.f;
     bool bLayoutDirty = true;
     bool bReady = false;
+    bool bAuthoredPanel = false;
     bool bRevealFeedback = false;
     bool bRevealFeedbackAfterLayout = false;
     bool bRevealFocusAfterLayout = false;
@@ -118,6 +119,7 @@ private:
     UPROPERTY(Transient) TObjectPtr<UImage> Panel;
     UPROPERTY(Transient) TObjectPtr<UImage> PanelBody;
     UPROPERTY(Transient) TObjectPtr<UImage> PanelBottom;
+    UPROPERTY(Transient) TObjectPtr<UImage> PanelStar;
     UPROPERTY(Transient) TObjectPtr<UImage> Spirit;
     UPROPERTY(Transient) TObjectPtr<UImage> ProgressPlaque;
     UPROPERTY(Transient) TObjectPtr<UImage> HintSkin;
