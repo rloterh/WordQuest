@@ -12,8 +12,9 @@ wrapping, reading size and shared behavior. Working branch:
 Win64 packaging, all 15 inspected packaged checks, missing-Bold fallback, both
 Unreal tests and all 66 Python QA tests pass. Cooked fonts preserve their exact
 source bytes and the packaged OFL license matches its master; LFS/archive hashes
-pass. Four matched-size glyph bounds are closer to the original. Dedicated review
-is in progress. See [reading typography](../QA/UI01/G-READING-FONT-METRICS.md).
+pass. Four matched-size glyph bounds are closer to the original. Dedicated read-only
+review against actual `dev` found no actionable introduced defects. See
+[reading typography](../QA/UI01/G-READING-FONT-METRICS.md).
 Art/device acceptance remains open.
 
 The owner merged [PR #30](https://github.com/rloterh/WordQuest/pull/30) into `dev`
