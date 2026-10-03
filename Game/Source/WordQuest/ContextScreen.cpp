@@ -280,11 +280,14 @@ void UContextScreen::Build()
     for (auto* Label : {Mode.Get(), Word.Get(), Clue.Get(), Prompt.Get(), Feedback.Get()}) Canvas->AddChild(Label);
     Canvas->AddChild(Divider);
     Canvas->AddChild(HeaderDivider);
+    const TCHAR* AnswerSkinPath = TEXT("/Game/UI/G/G_AnswerPearlBevel.G_AnswerPearlBevel");
+    if (!LoadObject<UTexture2D>(nullptr, AnswerSkinPath))
+        AnswerSkinPath = TEXT("/Game/UI/G/G_AnswerPearl.G_AnswerPearl");
     for (int32 I = 0; I < 4; ++I)
     {
         const FString Name = FString::Printf(TEXT("Answer%d"), I);
         FContextAnswerWidgets Answer;
-        Answer.Skin = Picture(*(Name + TEXT("Skin")), TEXT("/Game/UI/G/G_AnswerPearl.G_AnswerPearl"));
+        Answer.Skin = Picture(*(Name + TEXT("Skin")), AnswerSkinPath);
         auto SkinBrush = Answer.Skin->GetBrush();
         SkinBrush.DrawAs = ESlateBrushDrawType::Box;
         // Authored 690x119 logical canvas, exported at 2x: 666x95 core with

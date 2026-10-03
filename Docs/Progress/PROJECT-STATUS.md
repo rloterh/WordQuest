@@ -2,6 +2,20 @@
 
 ## Current stage: native static G implementation; acceptance incomplete
 
+The owner merged [PR #37](https://github.com/rloterh/WordQuest/pull/37) into `dev`
+on 2026-10-03 at 14:16:49 UTC (`3c04337`). Panel material is integrated.
+The next bounded UI01 correction refines the editable answer tile's bevel,
+face tone and contact shadow on `feature/g-answer-pearl-bevel`. Prior tile art
+remains a fallback; live labels, badges, state outlines and layout are unchanged.
+Actual texture import and four-action Editor compilation pass. Both PNG versions
+reproduce exactly; 66 Python checks, eight SVG pairs and six reference hashes pass.
+Native initial changes stay within the four tile regions; scoped face/shadow
+profiles are closer. Missing candidate restores the previous native screen exactly
+and passes enlarged actions; its texture is restored with its exact hash.
+Full packaging, final responsive/input checks and review are in progress.
+See [answer bevel evidence](../QA/UI01/G-ANSWER-PEARL-BEVEL.md).
+Full UI01 fidelity, UI02 motion and physical-device/release gates remain open.
+
 The owner merged [PR #36](https://github.com/rloterh/WordQuest/pull/36) into `dev`
 on 2026-10-03 at 12:36:52 UTC (`b316266`). Header typography is integrated.
 The next bounded UI01 correction authors a separate pearl/mauve panel material
@@ -16,8 +30,8 @@ simulated insets, landscape, 200% text and synthetic focus/retry/long-label rout
 Both Unreal tests and all 49 archive hashes pass at clean source `ea3c0a0`.
 The existing firewall task automatically covered the new packaged executable.
 Dedicated read-only review against actual `dev` found no actionable introduced
-defects. Non-draft [PR #37](https://github.com/rloterh/WordQuest/pull/37) is open
-against `dev` for owner review/merge. Review/publication records change docs only;
+defects. [PR #37](https://github.com/rloterh/WordQuest/pull/37) was merged by the
+owner into `dev`. Review/publication records change docs only;
 tested runtime/package source remains `ea3c0a0`.
 See [panel material evidence](../QA/UI01/G-PANEL-PEARL-MATERIAL.md).
 Full UI01 fidelity, UI02 motion and physical-device/release gates remain open.
