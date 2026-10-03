@@ -62,6 +62,16 @@ release art. Exact prompts, unchanged raster master and UV/import provenance are
 stored alongside the source PNG; no layered source is claimed. The remaining items
 below still require art work and acceptance, including the purple check skin.
 
+On 2026-10-03 a separate authored pearl answer-surface candidate was added as
+`UI/G/Vector/G-Answer-Pearl-v001.svg`, rendered at 2x to
+`UI/G/Exports/G-Answer-Pearl-v001.png` and genuinely imported by Unreal as
+`/Game/UI/G/G_AnswerPearl`. Thin rim/diffuse shading and a soft shadow replace
+the generated rolled gloss; native corner margins preserve growing rows and
+live content. The older generated master/texture remain intact. Simplified
+material, silhouette and full fidelity still need acceptance; no painterly
+source pixels or layered raster source are claimed. See
+`Docs/QA/UI01/G-ANSWER-PEARL-SURFACE.md` and adjacent vector provenance.
+
 The subsequent blank progress-plaque v002 candidate is imported as
 `/Game/UI/G/G_ProgressPlaque`. Its unchanged RGBA master, exact prompts and UV/import
 provenance are under `UI/G/Reconstruction`. Native captures show live centered

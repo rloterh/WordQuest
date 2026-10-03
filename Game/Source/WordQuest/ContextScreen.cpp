@@ -242,13 +242,13 @@ void UContextScreen::Build()
     {
         const FString Name = FString::Printf(TEXT("Answer%d"), I);
         FContextAnswerWidgets Answer;
-        Answer.Skin = Picture(*(Name + TEXT("Skin")), TEXT("/Game/UI/G/G_AnswerSkin.G_AnswerSkin"));
+        Answer.Skin = Picture(*(Name + TEXT("Skin")), TEXT("/Game/UI/G/G_AnswerPearl.G_AnswerPearl"));
         auto SkinBrush = Answer.Skin->GetBrush();
         SkinBrush.DrawAs = ESlateBrushDrawType::Box;
-        SkinBrush.Margin = FMargin(.085f, .45f);
-        // This UV window excludes the generated export's empty margin and stray fringe.
-        // The source PNG remains intact; coordinates are recorded in its provenance.
-        SkinBrush.SetUVRegion(FBox2f(FVector2f(50.f / 2172, 168.f / 724), FVector2f(2125.f / 2172, 528.f / 724)));
+        // Authored 690x119 logical canvas, exported at 2x: 666x95 core with
+        // 12px side / 4px top gutter in reference units.
+        // Preserve its 44px corners and shadow; only the middle surface grows.
+        SkinBrush.Margin = FMargin(56.f / 690, 48.f / 119, 56.f / 690, 68.f / 119);
         Answer.Skin->SetBrush(SkinBrush);
         Answer.Skin->SetRenderTransformPivot(FVector2D::ZeroVector);
         if (!SkinBrush.GetResourceObject()) Answer.Skin->SetVisibility(ESlateVisibility::Collapsed);
@@ -590,8 +590,8 @@ void UContextScreen::Layout(FVector2D Size)
             // Scale a texture-sized image so borders keep their reference size as rows grow.
             const float TextureWidth = FMath::Max(Texture->GetSizeX(), 1);
             const float TextureHeight = FMath::Max(Texture->GetSizeY(), 1);
-            const FVector2D SkinScale(666 * S / TextureWidth, 95 * S / TextureHeight);
-            Bounds(Answer.Skin, X + 109 * S, Y, TextureWidth, H / SkinScale.Y);
+            const FVector2D SkinScale(690 * S / TextureWidth, 119 * S / TextureHeight);
+            Bounds(Answer.Skin, X + 97 * S, Y - 4 * S, TextureWidth, (H + 24 * S) / SkinScale.Y);
             Answer.Skin->SetRenderScale(SkinScale);
         }
         Y += H + 17 * S;
@@ -765,18 +765,22 @@ void UContextScreen::StyleButtons()
         const auto FillColor = HasSkin ? FLinearColor::Transparent : (Primary ? Violet : Pearl);
         const auto Border = Focused ? Ink : (Selected ? Violet : (Primary ? Gold : FLinearColor::White));
         const bool SkinnedAction = HasSkin && (B == HintButton || B == SubmitButton || B == PauseButton);
+        const bool SkinnedAnswer = HasSkin && Answers.ContainsByPredicate([B](const auto& A) { return A.Button == B; });
         float Radius = FMath::Max(35 * Scale, 12.f);
         if (SkinnedAction)
         {
             const auto* Slot = CastChecked<UCanvasPanelSlot>(B->Slot);
             Radius = .5f * FMath::Min(float(Slot->GetSize().X), float(Slot->GetSize().Y));
         }
-        const float NormalOutline = SkinnedAction && !Focused ? 0.f : (Focused || Selected ? 4.f : 2.f);
+        if (SkinnedAnswer) Radius = 44 * Scale;
+        const float NormalOutline = (SkinnedAction || SkinnedAnswer) && !Focused && !Selected
+            ? 0.f : (Focused || Selected ? 4.f : 2.f);
         FButtonStyle Style;
         Style.SetNormal(FSlateRoundedBoxBrush(FillColor, Radius, Border, NormalOutline));
         Style.SetHovered(FSlateRoundedBoxBrush(HasSkin ? FLinearColor(.9f, .86f, 1, .16f) : (Primary ? Violet * .8f : FLinearColor(.78f, .73f, 1)), Radius, Focused ? Ink : Gold, Focused ? 4.f : 3.f));
         Style.SetPressed(FSlateRoundedBoxBrush(HasSkin ? FLinearColor(.22f, .16f, .5f, .16f) : (Primary ? Violet * .6f : FLinearColor(.64f, .58f, .91f)), Radius, Ink, 3.f));
-        Style.SetDisabled(FSlateRoundedBoxBrush(FillColor, Radius, Border, SkinnedAction ? 0.f : 2.f));
+        Style.SetDisabled(FSlateRoundedBoxBrush(FillColor, Radius, Border,
+            SkinnedAction || (SkinnedAnswer && !Selected) ? 0.f : 2.f));
         const float HorizontalPadding = (B == PauseButton ? 8 : 24) * Scale;
         Style.SetNormalPadding(FMargin(HorizontalPadding, 5 * Scale));
         Style.SetPressedPadding(FMargin(HorizontalPadding, 6 * Scale, HorizontalPadding, 4 * Scale));

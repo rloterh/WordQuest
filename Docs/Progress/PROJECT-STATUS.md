@@ -2,22 +2,28 @@
 
 ## Current stage: native static G implementation; acceptance incomplete
 
-The owner merged [PR #29](https://github.com/rloterh/WordQuest/pull/29) into `dev`
-on 2026-10-03 at 03:18:03 UTC (`4ed600b`). Its Q-loop/swash and pinned glyph
-shading are integrated; see [Q swash](../QA/UI01/G-WORDMARK-SWASH.md).
-The next bounded UI01 correction addresses the reading panel's vertically
-compressed upper curve and lower corners. It retains the existing unapproved
-RGBA candidate and live content positions, adjusting only the fixed UV-slice
-heights and lower padding. Working branch: `feature/g-panel-proportions`.
-Both final targets compiled successfully, full clean Win64 packaging passed,
-nine packaged captures were inspected and both Unreal/all 63 Python tests pass.
-The 50% reference comparison and state-specific pixel checks record improved
-panel placement and remaining art differences. Dedicated read-only review against
-actual `dev` found no actionable introduced defects and left head/worktree
-unchanged. Art/device acceptance remains open. See
-[panel proportions](../QA/UI01/G-PANEL-PROPORTIONS.md).
-Published as regular [PR #30](https://github.com/rloterh/WordQuest/pull/30)
-against `dev`; the owner retains the merge decision.
+The owner merged [PR #30](https://github.com/rloterh/WordQuest/pull/30) into `dev`
+on 2026-10-03 at 04:05:55 UTC (`00e044e`). Its fixed panel-slice proportions and
+lower padding are integrated; see [panel evidence](../QA/UI01/G-PANEL-PROPORTIONS.md).
+The next bounded UI01 candidate replaces the generated answer skin's rolled gloss
+with an authored editable pearl surface, rendered to a new RGBA import source.
+Unreal imported its separate texture successfully; earlier art remains unchanged.
+Native fixed corner/shadow margins preserve growing rows, live labels/badges and
+hit regions. Working branch: `feature/g-answer-pearl-surface`. Both real target
+checks, fresh full Win64 packaging and all 14 inspected final packaged captures
+pass. Both Unreal tests passed on unchanged native code; all 66 Python QA tests,
+reference/SVG checks, PNG reproduction and archive/LFS hashes pass. Static answer
+comparisons change no pixels outside answer/shadow regions; nine contrast samples
+have a 9.76:1 minimum. See [pearl surface evidence](../QA/UI01/G-ANSWER-PEARL-SURFACE.md).
+The owner's new firewall request installed a protected local automatic refresh
+task and program-specific Private/Public LocalSubnet rules. A fresh package
+automatically covered its new executable path and passed an inspected native
+launch without additional UAC. Dedicated read-only review against actual `dev`
+found no actionable introduced defects. Art/device
+acceptance remains open.
+[PR #31](https://github.com/rloterh/WordQuest/pull/31) is a regular PR against
+`dev`, ready for the owner's review/merge decision. Its local firewall settings
+are already applied on this machine.
 
 The owner requested unattended local development-tool permissions on 2026-10-02.
 WordQuest-only shell defaults and a user-level Unreal/Blender/Android Studio/Epic
@@ -70,7 +76,7 @@ closed/merged. Initially #16's focus correction was absent from `dev` because th
 merge occurred after #15. The owner merged
 [PR #17](https://github.com/rloterh/WordQuest/pull/17) into `dev` at `f0fd74b` on
 2026-10-02, 10:55:10 UTC; the tested correction is now integrated. No remote branch
-merge was performed by the agent. Working branch: `feature/g-panel-proportions`.
+merge was performed by the agent. Working branch: `feature/g-answer-pearl-surface`.
 Oversized focused answers reveal their option letter and first line, while the
 rest remains scrollable. The original correction passed both builds, full Win64
 packaging, 24 capture checks, both Unreal tests and 27 Python tests. Fresh integration

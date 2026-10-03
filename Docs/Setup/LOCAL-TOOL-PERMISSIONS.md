@@ -76,3 +76,60 @@ Dedicated read-only PR review of clean `7fc6d40` against actual `origin/dev`
 and worktree were unchanged; local evidence is in
 `Artifacts/Reviews/20261002-205247`. The review covers this documentation, not a
 live GUI permission test.
+
+## Windows Firewall prompts on dated builds
+
+On 2026-10-03 the owner explicitly requested automatic permission for the Windows
+Security UnrealGame prompt. Each dated packaged executable has a new full path,
+so approving one archive does not cover the next. This is separate from Codex's
+already-saved approval Never settings.
+
+A one-time elevated installer completed successfully at 04:58:41 UTC. The local
+`WordQuest-Development-Firewall` scheduled task runs as SYSTEM every minute and
+can be invoked by the owner with read/execute task access, without further UAC.
+Its updater is installed under `C:/ProgramData/WordQuestDevelopmentFirewall`,
+owned by Administrators; only SYSTEM/Administrators can write it. The owner has
+read/execute access. It never executes project code or accepts arbitrary arguments.
+Installer/source/logs are local and excluded under `Artifacts/Tools/WindowsFirewall`.
+Personal SIDs and local installation JSON are not committed.
+
+The updater permits inbound traffic from `LocalSubnet` on Private/Public profiles
+for the installed UE 5.8 UnrealEditor, UnrealEditor-Cmd and UnrealGame executables,
+the project Game binary, and exact WordQuest binaries in recognized dated
+Archive paths beneath this checkout. It creates stable program-specific
+rules in group `WordQuest local development (owner authorized)`. It removes only
+Windows-generated Query User block rules for those exact apps, where present.
+Firewall profiles remain enabled and notification settings for other apps are
+unchanged. This grants local-network access, not arbitrary internet inbound access.
+
+`package_g_win64.py` invokes `local_firewall.py` before completing a package on a
+machine with this installed task. The helper waits for successful refresh and
+requires the exact packaged binary in the receipt. Refresh failure leaves package
+evidence incomplete; it does not silently claim permission. Other machines skip
+the optional task without requesting elevation or changing firewall policy.
+
+Verification: 34 program-specific allow rules; Private/Public, LocalSubnet, task
+result 0; protected-file ACL inspected. A non-elevated task invocation and Python
+helper refresh for the final art archive succeeded with no new administrator
+prompt. Current receipts are `installation.json` / `last-run.json` in the protected
+directory. Fresh clean package `20261003-050358-635571` passed with a successful
+automatic refresh receipt at 05:06:45 UTC. The new archived executable has an
+enabled ActiveStore Allow rule with the intended profile/address scope, and its
+native capture launch passed. No additional UAC was required. The desktop pipe
+remains unavailable, so no visual inspection of Windows Security is claimed.
+The task uses process-only RemoteSigned script policy; global execution policies
+were not changed.
+
+To undo this local setup from an administrator PowerShell, remove the named task
+and only the named rule group. Keep the firewall enabled. This setup does not grant
+general administrator rights, approve owner merges or establish desktop GUI access.
+
+Microsoft references checked 2026-10-03:
+
+- [Program-specific firewall rules and LocalSubnet](https://learn.microsoft.com/en-us/powershell/module/netsecurity/new-netfirewallrule)
+- [Scheduled-task access rights](https://learn.microsoft.com/en-us/windows/win32/taskschd/task-security-hardening)
+
+Dedicated read-only review of clean `f32f158` against actual `origin/dev`
+(`00e044e`) completed with exit 0 and no actionable introduced defects; head and
+worktree were unchanged. Raw review is `Artifacts/Reviews/20261003-050853`.
+Review did not independently repeat firewall/native/build/device checks.

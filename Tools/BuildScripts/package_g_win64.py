@@ -7,6 +7,8 @@ import os
 from pathlib import Path
 import subprocess
 import sys
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from local_firewall import refresh_local_firewall
 
 
 def sha256(path):
@@ -77,10 +79,11 @@ def main():
         executable = package / 'WordQuest.exe'
         evidence['package_directory'] = str(package)
         if evidence['exit_code'] == 0 and executable.is_file() and list(package.rglob('*.utoc')) and list(package.rglob('*.pak')):
+            evidence['local_firewall'] = refresh_local_firewall(package / 'WordQuest/Binaries/Win64/WordQuest.exe')
             evidence['files'] = {p.relative_to(package).as_posix(): {'size': p.stat().st_size, 'sha256': sha256(p)}
                                  for p in sorted(package.rglob('*')) if p.is_file()}
             evidence['evidence_complete'] = True
-    except OSError as error:
+    except (OSError, RuntimeError, ValueError, subprocess.SubprocessError) as error:
         evidence['exit_code'] = 1
         evidence['error'] = str(error)
     evidence['head_unchanged'] = git('rev-parse', 'HEAD') == head
