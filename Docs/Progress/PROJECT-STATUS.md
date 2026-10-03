@@ -11,7 +11,11 @@ compilation pass, with 66 Python checks, eight SVG pairs and six reference hashe
 Twelve scoped material samples are closer; no initial changes occur outside the
 panel region. Missing candidate restores the prior native screen exactly and
 passes enlarged actions; the texture is restored with its exact hash.
-Full packaging, final responsive/input checks and internal review are in progress.
+Full Win64 packaging and all 16 inspected native captures pass, including feedback,
+simulated insets, landscape, 200% text and synthetic focus/retry/long-label routes.
+Both Unreal tests and all 49 archive hashes pass at clean source `ea3c0a0`.
+The existing firewall task automatically covered the new packaged executable.
+Dedicated internal review and PR publication are in progress.
 See [panel material evidence](../QA/UI01/G-PANEL-PEARL-MATERIAL.md).
 Full UI01 fidelity, UI02 motion and physical-device/release gates remain open.
 
