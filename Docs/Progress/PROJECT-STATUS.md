@@ -8,8 +8,14 @@ recorded packaged evidence are integrated. The next bounded UI01 correction test
 Liberation Serif Bold for the live Hint/Check labels against the supplied original;
 the current Cormorant Bold is already genuine Bold, but its letterforms remain
 lighter and thinner. Working branch: `feature/g-action-serif-metrics`. Genuine
-font import, real builds and native comparison are in progress. UI01 art acceptance,
-UI02 motion and physical-device/release gates remain open.
+FontFace import, both real target checks, full Win64 packaging and all 15 inspected
+packaged captures pass. Missing-candidate fallback preserves the prior matched-size
+screen pixel for pixel; 200% fallback also passes. Both Unreal tests and 66 Python
+tests pass. Cooked font/source/license, LFS/archive hashes and original reference/SVG
+checks pass. Letterforms and label centers are closer; shorter/narrower metrics
+remain disclosed. Matched initial changes are confined to the two live labels.
+See [action serif evidence](../QA/UI01/G-ACTION-SERIF-METRICS.md). Internal review
+is next. UI01 art acceptance, UI02 motion and physical-device/release gates remain open.
 
 The owner merged [PR #31](https://github.com/rloterh/WordQuest/pull/31) into `dev`
 on 2026-10-03 at 05:16:39 UTC (`8377541`). The authored pearl answer candidate
@@ -25,8 +31,8 @@ pass. Four matched-size glyph bounds are closer to the original. Dedicated read-
 review against actual `dev` found no actionable introduced defects. See
 [reading typography](../QA/UI01/G-READING-FONT-METRICS.md).
 Art/device acceptance remains open.
-[PR #32](https://github.com/rloterh/WordQuest/pull/32) is a regular PR against
-`dev`, ready for the owner's review/merge decision.
+[PR #32](https://github.com/rloterh/WordQuest/pull/32) was merged by the owner into
+`dev`; its reading typography is integrated.
 
 The owner merged [PR #30](https://github.com/rloterh/WordQuest/pull/30) into `dev`
 on 2026-10-03 at 04:05:55 UTC (`00e044e`). Its fixed panel-slice proportions and
