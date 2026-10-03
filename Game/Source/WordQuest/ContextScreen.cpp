@@ -151,6 +151,23 @@ void UContextScreen::Build()
 {
     SetIsFocusable(true);
     bReady = Question.Load(FPaths::ProjectContentDir() / TEXT("Data/G-Equivocal-Prototype.json"), ContentError);
+    auto* ReadingRegular = LoadObject<UFontFace>(nullptr, TEXT("/Game/UI/G/G_ReadingRegular.G_ReadingRegular"));
+    auto* ReadingBold = LoadObject<UFontFace>(nullptr, TEXT("/Game/UI/G/G_ReadingBold.G_ReadingBold"));
+    if (ReadingRegular && ReadingBold)
+    {
+        auto* RuntimeFont = NewObject<UFont>(this);
+        RuntimeFont->FontCacheType = EFontCacheType::Runtime;
+        // Preserve the engine's fallback faces and script routing. Override only
+        // the two reading weights with genuine, licensed imported FontFaces.
+        auto& Composite = RuntimeFont->GetMutableInternalCompositeFont();
+        Composite = *FCoreStyle::GetDefaultFont();
+        for (auto& Entry : Composite.DefaultTypeface.Fonts)
+        {
+            if (Entry.Name == FName(TEXT("Regular"))) Entry.Font = FFontData(ReadingRegular);
+            if (Entry.Name == FName(TEXT("Bold"))) Entry.Font = FFontData(ReadingBold);
+        }
+        ReadingFont = RuntimeFont;
+    }
     if (auto* Face = LoadObject<UFontFace>(nullptr, TEXT("/Game/UI/G/G_Display.G_Display")))
     {
         auto* RuntimeFont = NewObject<UFont>(this);
@@ -535,7 +552,7 @@ void UContextScreen::Layout(FVector2D Size)
     {
         // Enlarge the actual normal font, including its readability floor and
         // point-size rounding. Applying the floor afterwards shrinks the ratio.
-        Font(Label, FMath::Max(Pixels * S, 14.f), Bold, nullptr, TextScale);
+        Font(Label, FMath::Max(Pixels * S, 14.f), Bold, Label == Mode ? nullptr : ReadingFont.Get(), TextScale);
         Label->SetWrapTextAt(W);
         Label->ForceLayoutPrepass();
         return FMath::Max(MinHeight, Label->GetDesiredSize().Y + 4 * S);
@@ -554,15 +571,17 @@ void UContextScreen::Layout(FVector2D Size)
     PutText(Mode, 112 * S, Y, 660 * S, H);
     Bounds(HeaderDivider, X + 335 * S, Y + H - 4 * S, 214 * S, 29 * S);
     Y += H + 29 * S;
-    H = Measure(Word, 80, 670 * S, 90 * S, true);
+    // Keep normal reference reading anchors as the candidate face has a shorter
+    // line box. Larger/longer text still expands through measured desired size.
+    H = Measure(Word, 76, 670 * S, 95 * S, true);
     PutText(Word, 107 * S, Y, 670 * S, H);
     Y += H + 14 * S;
-    H = Measure(Clue, 37, 580 * S, 90 * S);
+    H = Measure(Clue, 36, 580 * S, 92 * S);
     PutText(Clue, 152 * S, Y, 580 * S, H);
     Y += H + 8 * S;
     Bounds(Divider, X + 285 * S, Y - 2 * S, 314 * S, 29 * S);
     Y += 32 * S;
-    H = Measure(Prompt, 35, 650 * S, 55 * S, true);
+    H = Measure(Prompt, 32, 650 * S, 55 * S, true);
     PutText(Prompt, 117 * S, Y, 650 * S, H);
     Y += H + 12 * S;
     for (const auto& Answer : Answers)
@@ -576,7 +595,7 @@ void UContextScreen::Layout(FVector2D Size)
         Font(Answer.Marker, FMath::Max(24 * S, 14.f), true, nullptr, TextScale);
         const auto SlotPadding = CastChecked<UButtonSlot>(Answer.Button->GetContent()->Slot)->GetPadding();
         const float LabelWidth = 666 * S - 48 * S - BadgeDiameter - MarkerWidth - SlotPadding.Left - SlotPadding.Right;
-        H = Measure(Answer.Label, 35, LabelWidth, FMath::Max(95 * S, 48.f));
+        H = Measure(Answer.Label, 32, LabelWidth, FMath::Max(95 * S, 48.f));
         H = FMath::Max3(H, float(Answer.Label->GetDesiredSize().Y) + 30 * S, BadgeDiameter + 12 * S);
         // An oversized row starts with its option identity beside the first lines.
         // Centered identifiers can otherwise be outside the initial reading view.

@@ -2,6 +2,23 @@
 
 ## Current stage: native static G implementation; acceptance incomplete
 
+The owner merged [PR #31](https://github.com/rloterh/WordQuest/pull/31) into `dev`
+on 2026-10-03 at 05:16:39 UTC (`8377541`). The authored pearl answer candidate
+and optional automatic package firewall refresh are integrated. The next bounded
+UI01 correction measures live G reading typography against the supplied original,
+using unmodified licensed Regular/Bold sans candidates while preserving fallback,
+wrapping, reading size and shared behavior. Working branch:
+`feature/g-reading-font-metrics`. Genuine font import, both real targets, full
+Win64 packaging, all 15 inspected packaged checks, missing-Bold fallback, both
+Unreal tests and all 66 Python QA tests pass. Cooked fonts preserve their exact
+source bytes and the packaged OFL license matches its master; LFS/archive hashes
+pass. Four matched-size glyph bounds are closer to the original. Dedicated read-only
+review against actual `dev` found no actionable introduced defects. See
+[reading typography](../QA/UI01/G-READING-FONT-METRICS.md).
+Art/device acceptance remains open.
+[PR #32](https://github.com/rloterh/WordQuest/pull/32) is a regular PR against
+`dev`, ready for the owner's review/merge decision.
+
 The owner merged [PR #30](https://github.com/rloterh/WordQuest/pull/30) into `dev`
 on 2026-10-03 at 04:05:55 UTC (`00e044e`). Its fixed panel-slice proportions and
 lower padding are integrated; see [panel evidence](../QA/UI01/G-PANEL-PROPORTIONS.md).
@@ -21,9 +38,8 @@ automatically covered its new executable path and passed an inspected native
 launch without additional UAC. Dedicated read-only review against actual `dev`
 found no actionable introduced defects. Art/device
 acceptance remains open.
-[PR #31](https://github.com/rloterh/WordQuest/pull/31) is a regular PR against
-`dev`, ready for the owner's review/merge decision. Its local firewall settings
-are already applied on this machine.
+[PR #31](https://github.com/rloterh/WordQuest/pull/31) was merged by the owner into
+`dev`; its local firewall settings are already applied on this machine.
 
 The owner requested unattended local development-tool permissions on 2026-10-02.
 WordQuest-only shell defaults and a user-level Unreal/Blender/Android Studio/Epic
