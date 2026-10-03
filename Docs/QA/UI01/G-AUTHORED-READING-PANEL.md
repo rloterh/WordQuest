@@ -160,6 +160,20 @@ The surface remains flatter/simpler, the star facets differ, and exact outline,
 material and whole-screen identity are not accepted. Earlier sources remain
 available for comparison/fallback.
 
+## Internal review
+
+Dedicated read-only `review_pr.py --base origin/dev` completed successfully at
+`Artifacts/Reviews/20261003-101351`. Actual base is
+`373de75d304596289ba1c98837e8c551a43bc9ad`; reviewed head is
+`90987a9ad9897e335a9be4557fe843d605e929e3`, which adds only evidence documentation
+to the clean packaged source. Starting worktree was empty, exit 0, head/worktree
+unchanged. No actionable introduced defects were found. The reviewer verified
+reference/SVG/binary hashes but did not independently rerun Unreal or device
+checks; the build/runtime evidence above is separate. Connector startup/shutdown
+warnings are diagnostic and did not prevent this completed review.
+Subsequent review/publication records change documentation only. The owner retains
+the merge decision; this is not UI01 art or release approval.
+
 ## Remaining gates
 
 The same UE 5.8 Android platform receipt is still absent and adb lists no device.
