@@ -544,7 +544,7 @@ void UContextScreen::Layout(FVector2D Size)
     Font(Brand, 95 * S, false, DisplayFont);
     Place(BrandMark, 229, 23, 430, 140);
     Place(ProgressPlaque, 352, 169, 178, 61);
-    Font(Progress, 35 * S, true);
+    Font(Progress, 35 * S, true, ReadingFont);
     Progress->ForceLayoutPrepass();
     const float ProgressHeight = Progress->GetDesiredSize().Y;
     Bounds(Progress, X + 352 * S, 169 * S + FMath::Max(0.f, (61 * S - ProgressHeight) * .5f), 178 * S, ProgressHeight);
@@ -567,11 +567,12 @@ void UContextScreen::Layout(FVector2D Size)
     ProgressPlaque->SetVisibility(Hero == 521 && ProgressPlaque->GetBrush().GetResourceObject()
         ? ESlateVisibility::HitTestInvisible : ESlateVisibility::Collapsed);
     Progress->SetVisibility(Hero == 521 ? ESlateVisibility::HitTestInvisible : ESlateVisibility::Collapsed);
+    const float ModePixels = ReadingFont ? 25.f : 28.f;
     auto Measure = [this, S](UTextBlock* Label, float Pixels, float W, float MinHeight, bool Bold = false)
     {
         // Enlarge the actual normal font, including its readability floor and
         // point-size rounding. Applying the floor afterwards shrinks the ratio.
-        Font(Label, FMath::Max(Pixels * S, 14.f), Bold, Label == Mode ? nullptr : ReadingFont.Get(), TextScale);
+        Font(Label, FMath::Max(Pixels * S, 14.f), Bold || (Label == Mode && ReadingFont != nullptr), ReadingFont.Get(), TextScale);
         Label->SetWrapTextAt(W);
         Label->ForceLayoutPrepass();
         return FMath::Max(MinHeight, Label->GetDesiredSize().Y + 4 * S);
@@ -580,13 +581,13 @@ void UContextScreen::Layout(FVector2D Size)
     { Bounds(Label, X + Left, Y, W, H); };
     float Y = PanelY + 89 * S;
     Mode->SetText(FText::FromString(TEXT("C O N T E X T   D E T E C T I V E")));
-    Font(Mode, FMath::Max(28 * S, 14.f), false, nullptr, TextScale);
+    Font(Mode, FMath::Max(ModePixels * S, 14.f), ReadingFont != nullptr, ReadingFont.Get(), TextScale);
     Mode->SetWrapTextAt(0);
     Mode->ForceLayoutPrepass();
     // Drop decorative letter spacing when it would split words across lines.
     if (Mode->GetDesiredSize().X > 660 * S)
         Mode->SetText(FText::FromString(TEXT("CONTEXT DETECTIVE")));
-    float H = Measure(Mode, 28, 660 * S, 40 * S);
+    float H = Measure(Mode, ModePixels, 660 * S, 40 * S);
     PutText(Mode, 112 * S, Y, 660 * S, H);
     Bounds(HeaderDivider, X + 335 * S, Y + H - 4 * S, 214 * S, 29 * S);
     Y += H + 29 * S;
