@@ -2,21 +2,22 @@
 
 ## Current stage: native static G implementation; acceptance incomplete
 
-The owner merged [PR #27](https://github.com/rloterh/WordQuest/pull/27) and
-[PR #28](https://github.com/rloterh/WordQuest/pull/28) into `dev` on 2026-10-02
-at 21:50:42 and 21:50:59 UTC (`63e6919` and `77d4fde`). The next bounded UI01
-candidate refines the Q loop and tapered swash in a new editable v004 master,
-preserving earlier masters, the font file, authored W, other glyphs and controls.
-The corrected clean source passes both real target checks, full Win64 packaging,
-nine inspected packaged captures, both Unreal tests and all 63 Python QA tests.
-The shared glyph gradients retain their old bounds to avoid reshading the other
-letters. Cooked SVG matches source; initial/result pixel changes stay inside the
-title. Dedicated read-only review against actual `dev` found no actionable introduced
-defects and left head/worktree unchanged. Art/device acceptance remains open. Desktop control
-still returns a missing-pipe error, the Android support receipt remains absent
-and adb lists no device. See [Q swash](../QA/UI01/G-WORDMARK-SWASH.md).
-Published as regular [PR #29](https://github.com/rloterh/WordQuest/pull/29)
-against `dev`; no agent merge occurred.
+The owner merged [PR #29](https://github.com/rloterh/WordQuest/pull/29) into `dev`
+on 2026-10-03 at 03:18:03 UTC (`4ed600b`). Its Q-loop/swash and pinned glyph
+shading are integrated; see [Q swash](../QA/UI01/G-WORDMARK-SWASH.md).
+The next bounded UI01 correction addresses the reading panel's vertically
+compressed upper curve and lower corners. It retains the existing unapproved
+RGBA candidate and live content positions, adjusting only the fixed UV-slice
+heights and lower padding. Working branch: `feature/g-panel-proportions`.
+Both final targets compiled successfully, full clean Win64 packaging passed,
+nine packaged captures were inspected and both Unreal/all 63 Python tests pass.
+The 50% reference comparison and state-specific pixel checks record improved
+panel placement and remaining art differences. Dedicated read-only review against
+actual `dev` found no actionable introduced defects and left head/worktree
+unchanged. Art/device acceptance remains open. See
+[panel proportions](../QA/UI01/G-PANEL-PROPORTIONS.md).
+Published as regular [PR #30](https://github.com/rloterh/WordQuest/pull/30)
+against `dev`; the owner retains the merge decision.
 
 The owner requested unattended local development-tool permissions on 2026-10-02.
 WordQuest-only shell defaults and a user-level Unreal/Blender/Android Studio/Epic
@@ -69,7 +70,7 @@ closed/merged. Initially #16's focus correction was absent from `dev` because th
 merge occurred after #15. The owner merged
 [PR #17](https://github.com/rloterh/WordQuest/pull/17) into `dev` at `f0fd74b` on
 2026-10-02, 10:55:10 UTC; the tested correction is now integrated. No remote branch
-merge was performed by the agent. Working branch: `feature/g-wordmark-swash`.
+merge was performed by the agent. Working branch: `feature/g-panel-proportions`.
 Oversized focused answers reveal their option letter and first line, while the
 rest remains scrollable. The original correction passed both builds, full Win64
 packaging, 24 capture checks, both Unreal tests and 27 Python tests. Fresh integration

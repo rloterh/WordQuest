@@ -655,12 +655,16 @@ void UContextScreen::Layout(FVector2D Size)
         PutText(Feedback, 127 * S, Y, 630 * S, H);
         Y += H;
     }
-    // Compensate for transparent export padding, keeping top and bottom fixed.
+    // Keep the candidate's shoulders and lower corners out of the stretchable
+    // body. The former 160px top flattened the reference's arch and star.
     const float PanelTop = PanelY - 12 * S;
-    const float PanelEnd = Y + 62 * S;
-    Bounds(Panel, X + 47 * S, PanelTop, 790 * S, 160 * S);
-    Bounds(PanelBody, X + 47 * S, PanelTop + 160 * S, 790 * S, PanelEnd - PanelTop - 260 * S);
-    Bounds(PanelBottom, X + 47 * S, PanelEnd - 100 * S, 790 * S, 100 * S);
+    const float PanelEnd = Y + 80 * S;
+    const float PanelTopHeight = 220 * S;
+    const float PanelBottomHeight = 130 * S;
+    Bounds(Panel, X + 47 * S, PanelTop, 790 * S, PanelTopHeight);
+    Bounds(PanelBody, X + 47 * S, PanelTop + PanelTopHeight, 790 * S,
+        PanelEnd - PanelTop - PanelTopHeight - PanelBottomHeight);
+    Bounds(PanelBottom, X + 47 * S, PanelEnd - PanelBottomHeight, 790 * S, PanelBottomHeight);
     ContentSize->SetHeightOverride(FMath::Max(float(Size.Y), Y + 214 * S));
     // Keep a full-size shade, but place the scrollable controls inside the safe
     // area. Side margins also leave space for the ordinary scroll indicator.

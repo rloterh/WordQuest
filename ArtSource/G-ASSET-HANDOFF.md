@@ -45,6 +45,11 @@ colored fringe. No text, no logo, no panel, no palace, no clouds."
 - `UI/G/Reconstruction/G-Panel-v002-Candidate.png`: RGBA correction, corner alpha 0;
   blank surface has no educational text. Needs edge-fringe cleanup, proportion and
   gold-bevel comparison. A correct alpha channel does not establish visual acceptance.
+  On 2026-10-03 native fixed top/bottom UV slices increased to 220/130px at the
+  reference width, with 80px lower padding; only the body stretches with content.
+  The raster master and imported texture are unchanged. Real builds, clean packaging,
+  responsive captures and reference comparison are recorded in
+  `Docs/QA/UI01/G-PANEL-PROPORTIONS.md`; this remains unapproved panel art.
 
 ## Concrete missing deliverables
 
