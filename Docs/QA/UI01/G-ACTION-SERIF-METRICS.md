@@ -138,10 +138,13 @@ The stronger letterforms and centers are closer; Hint width matches this thresho
 while Check is 4px narrower and both labels remain shorter. This is not an
 improvement in every metric or accepted exact lettering. Core counts describe
 thresholded rendered stroke coverage, not a contrast or fidelity score.
-All 4,214 changed RGB pixels are inside the two documented live-label regions
-(difference bounds x239..724/y1487..1529, half-open); zero changes occur outside
-them. Icons, skins, reading panel and backdrop pixels are identical in this
-matched initial comparison. All input PNG hashes remain unchanged. No raster
+All 4,214 changed RGB pixels are inside the documented action-content region
+(difference bounds x239..724/y1487..1529, half-open). Of these, 3,537 are in the two
+live-label regions and 677 in the Check-star region: the star moves horizontally
+with the newly measured group. Zero changes occur outside the label/star union.
+Hint icon, skins, reading panel and backdrop pixels are identical in this
+matched initial comparison. The star's editable source is unchanged; this is a
+group-layout shift, not raster art editing. All input PNG hashes remain unchanged. No raster
 source editing or new contrast certification is claimed.
 
 Fresh prerequisites still show missing engine Android target support and no adb

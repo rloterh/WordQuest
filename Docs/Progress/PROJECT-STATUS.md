@@ -13,7 +13,8 @@ packaged captures pass. Missing-candidate fallback preserves the prior matched-s
 screen pixel for pixel; 200% fallback also passes. Both Unreal tests and 66 Python
 tests pass. Cooked font/source/license, LFS/archive hashes and original reference/SVG
 checks pass. Letterforms and label centers are closer; shorter/narrower metrics
-remain disclosed. Matched initial changes are confined to the two live labels.
+remain disclosed. Matched initial changes are confined to the live labels and
+the Check star's measured group position.
 See [action serif evidence](../QA/UI01/G-ACTION-SERIF-METRICS.md). Internal review
 is next. UI01 art acceptance, UI02 motion and physical-device/release gates remain open.
 
