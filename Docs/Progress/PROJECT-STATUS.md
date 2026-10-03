@@ -15,7 +15,9 @@ Full Win64 packaging and all 16 inspected native captures pass, including feedba
 simulated insets, landscape, 200% text and synthetic focus/retry/long-label routes.
 Both Unreal tests and all 49 archive hashes pass at clean source `ea3c0a0`.
 The existing firewall task automatically covered the new packaged executable.
-Dedicated internal review and PR publication are in progress.
+Dedicated read-only review against actual `dev` found no actionable introduced
+defects. PR publication is in progress. Review/publication records change docs
+only; tested runtime/package source remains `ea3c0a0`.
 See [panel material evidence](../QA/UI01/G-PANEL-PEARL-MATERIAL.md).
 Full UI01 fidelity, UI02 motion and physical-device/release gates remain open.
 
