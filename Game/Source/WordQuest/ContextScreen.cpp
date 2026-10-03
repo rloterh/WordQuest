@@ -212,8 +212,14 @@ void UContextScreen::Build()
     Scroll->AddChild(ContentSize);
     Canvas = Make<UCanvasPanel>(TEXT("Composition"));
     ContentSize->AddChild(Canvas);
-    bAuthoredPanel = LoadObject<UTexture2D>(nullptr, TEXT("/Game/UI/G/G_ReadingPanel.G_ReadingPanel")) != nullptr;
-    const TCHAR* PanelPath = bAuthoredPanel ? TEXT("/Game/UI/G/G_ReadingPanel.G_ReadingPanel") : TEXT("/Game/UI/G/G_Panel.G_Panel");
+    const TCHAR* PanelPath = TEXT("/Game/UI/G/G_ReadingPanelPearl.G_ReadingPanelPearl");
+    bAuthoredPanel = LoadObject<UTexture2D>(nullptr, PanelPath) != nullptr;
+    if (!bAuthoredPanel)
+    {
+        PanelPath = TEXT("/Game/UI/G/G_ReadingPanel.G_ReadingPanel");
+        bAuthoredPanel = LoadObject<UTexture2D>(nullptr, PanelPath) != nullptr;
+    }
+    if (!bAuthoredPanel) PanelPath = TEXT("/Game/UI/G/G_Panel.G_Panel");
     Panel = Picture(TEXT("ReadingPanel"), PanelPath);
     PanelBody = Picture(TEXT("ReadingPanelBody"), PanelPath);
     PanelBottom = Picture(TEXT("ReadingPanelBottom"), PanelPath);

@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="790" height="1140" viewBox="0 0 790 1140">
+  <title>G editable reading panel candidate; diffuse pearl and mauve surface</title>
+  <defs>
+    <path id="panel" d="M395 17 C376 45 291 59 166 68 C131 69 109 84 96 118 C43 131 18 155 18 206 L18 1010 C18 1047 32 1065 74 1080 C154 1104 261 1107 395 1108 C529 1107 636 1104 716 1080 C758 1065 772 1047 772 1010 L772 206 C772 155 747 131 694 118 C681 84 659 69 624 68 C499 59 414 45 395 17 Z"/>
+    <clipPath id="inside"><use href="#panel"/></clipPath>
+    <linearGradient id="pearl" x1="18" y1="0" x2="772" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#e5d3ee"/><stop offset=".22" stop-color="#efdff8"/><stop offset=".5" stop-color="#f6eafd"/><stop offset=".78" stop-color="#efdff5"/><stop offset="1" stop-color="#e8d7ed"/>
+    </linearGradient>
+    <linearGradient id="reflection" x1="0" y1="17" x2="0" y2="1108" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#d8c7e1" stop-opacity="0"/><stop offset=".64" stop-color="#d8c7e1" stop-opacity=".05"/><stop offset=".84" stop-color="#c9b6d7" stop-opacity=".18"/><stop offset="1" stop-color="#e9c5c0" stop-opacity=".48"/>
+    </linearGradient>
+    <radialGradient id="ivory" cx="250" cy="98" r="360" gradientTransform="translate(0 -20) scale(1 1.3)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff8e9" stop-opacity=".22"/><stop offset="1" stop-color="#fff8e9" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="gold" x1="18" y1="17" x2="772" y2="1108" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#c4a67b"/><stop offset=".25" stop-color="#d8b99a"/><stop offset=".56" stop-color="#c0a28b"/><stop offset=".85" stop-color="#ddbea0"/><stop offset="1" stop-color="#c4a67b"/>
+    </linearGradient>
+    <filter id="shadow" x="-4%" y="-4%" width="108%" height="108%" color-interpolation-filters="sRGB"><feGaussianBlur stdDeviation="3"/></filter>
+    <filter id="haze" x="-25%" y="-25%" width="150%" height="150%" color-interpolation-filters="sRGB"><feGaussianBlur stdDeviation="24"/></filter>
+    <filter id="grain" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency=".028 .042" numOctaves="3" seed="23"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+    <filter id="mottle" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency=".011 .009" numOctaves="2" seed="11"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 .69  0 0 0 0 .55  0 0 0 0 .78  0 0 0 .3 -.08"/>
+    </filter>
+  </defs>
+  <use href="#panel" transform="translate(0 3)" fill="#5d496d" opacity=".18" filter="url(#shadow)"/>
+  <use href="#panel" fill="url(#pearl)"/>
+  <g clip-path="url(#inside)">
+    <rect width="790" height="1140" fill="url(#reflection)"/>
+    <rect width="790" height="1140" fill="url(#ivory)"/>
+    <g filter="url(#haze)">
+      <path d="M40 215 C150 150 180 295 85 395 C10 475 135 550 120 680" fill="none" stroke="#cdb3df" stroke-width="58" opacity=".075"/>
+      <path d="M690 155 C580 275 765 360 700 490 C660 570 730 650 675 740" fill="none" stroke="#fff4fb" stroke-width="55" opacity=".10"/>
+      <path d="M260 520 C360 580 335 685 455 690 C520 695 535 840 615 890" fill="none" stroke="#bfa6d4" stroke-width="74" opacity=".045"/>
+    </g>
+    <rect width="790" height="1140" filter="url(#mottle)"/>
+    <rect width="790" height="1140" filter="url(#grain)" opacity=".035"/>
+    <use href="#panel" fill="none" stroke="#8b789c" stroke-width="10" opacity=".18"/>
+  </g>
+  <use href="#panel" fill="none" stroke="url(#gold)" stroke-width="5.5" stroke-linejoin="round"/>
+  <use href="#panel" fill="none" stroke="#fff9ed" stroke-width="2.1" stroke-linejoin="round"/>
+</svg>
