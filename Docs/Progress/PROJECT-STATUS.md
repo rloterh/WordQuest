@@ -9,8 +9,12 @@ The next bounded UI01 correction addresses the reading panel's vertically
 compressed upper curve and lower corners. It retains the existing unapproved
 RGBA candidate and live content positions, adjusting only the fixed UV-slice
 heights and lower padding. Working branch: `feature/g-panel-proportions`.
-The edited Editor target compiled successfully; native comparison, responsive
-checks, packaging and review are in progress. Art/device acceptance remains open.
+Both final targets compiled successfully, full clean Win64 packaging passed,
+nine packaged captures were inspected and both Unreal/all 63 Python tests pass.
+The 50% reference comparison and state-specific pixel checks record improved
+panel placement and remaining art differences. Dedicated review is pending;
+art/device acceptance remains open. See
+[panel proportions](../QA/UI01/G-PANEL-PROPORTIONS.md).
 
 The owner requested unattended local development-tool permissions on 2026-10-02.
 WordQuest-only shell defaults and a user-level Unreal/Blender/Android Studio/Epic
@@ -63,7 +67,7 @@ closed/merged. Initially #16's focus correction was absent from `dev` because th
 merge occurred after #15. The owner merged
 [PR #17](https://github.com/rloterh/WordQuest/pull/17) into `dev` at `f0fd74b` on
 2026-10-02, 10:55:10 UTC; the tested correction is now integrated. No remote branch
-merge was performed by the agent. Working branch: `feature/g-wordmark-swash`.
+merge was performed by the agent. Working branch: `feature/g-panel-proportions`.
 Oversized focused answers reveal their option letter and first line, while the
 rest remains scrollable. The original correction passed both builds, full Win64
 packaging, 24 capture checks, both Unreal tests and 27 Python tests. Fresh integration
