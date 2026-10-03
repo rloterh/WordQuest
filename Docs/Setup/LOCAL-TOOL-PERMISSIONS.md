@@ -128,3 +128,8 @@ Microsoft references checked 2026-10-03:
 
 - [Program-specific firewall rules and LocalSubnet](https://learn.microsoft.com/en-us/powershell/module/netsecurity/new-netfirewallrule)
 - [Scheduled-task access rights](https://learn.microsoft.com/en-us/windows/win32/taskschd/task-security-hardening)
+
+Dedicated read-only review of clean `f32f158` against actual `origin/dev`
+(`00e044e`) completed with exit 0 and no actionable introduced defects; head and
+worktree were unchanged. Raw review is `Artifacts/Reviews/20261003-050853`.
+Review did not independently repeat firewall/native/build/device checks.
