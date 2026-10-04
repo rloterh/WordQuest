@@ -156,6 +156,10 @@ independently; Unreal builds, runtime captures and device gates were not indepen
 rerun. Subsequent changes record review/publication only. The owner retains merge
 authority; review does not accept the visual tradeoffs or pass any original gate.
 
+Non-draft [PR #43](https://github.com/rloterh/WordQuest/pull/43) is open against
+`dev`. Publication records add docs only after the reviewed head; tested runtime
+source/art remains `905b475`.
+
 ## Open gates
 
 The candidate has simpler material/glints than the original. Exact contour, bevel,

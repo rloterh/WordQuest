@@ -24,6 +24,8 @@ no actionable introduced defects; original reference integrity passed independen
 Review/publication updates are docs only; tested source/art remains `905b475`. See
 [Check surface evidence](../QA/UI01/G-CHECK-SURFACE.md).
 No UI01/UI02/device/release gate is marked passed.
+Non-draft [PR #43](https://github.com/rloterh/WordQuest/pull/43) is open against
+`dev` for owner review/merge consideration, with material tradeoffs disclosed.
 
 The owner merged [PR #40](https://github.com/rloterh/WordQuest/pull/40) into `dev`
 on 2026-10-04 at 16:07:31 UTC (`d7311ae`). The original-pixel static companion is
