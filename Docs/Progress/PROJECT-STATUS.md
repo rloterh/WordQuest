@@ -13,8 +13,14 @@ pairs and six original reference hashes pass. Native changes stay inside the pla
 fixed face-color samples are closer. An initial unsupported SVG shape reuse was
 corrected to explicit paths before packaging. Missing SVG restores the prior full
 screen exactly and passes 200% text; its source is restored byte-for-byte.
-Clean packaging/native checks and dedicated review are in progress. Full UI01 fidelity, UI02 motion and original
-physical-device/release gates remain open.
+The first archive passed Unreal stages but its helper failed during protected-task
+refresh; the failed record is retained. A subsequent refresh and fresh complete
+Win64 package pass without policy/task changes or a new owner prompt. All 49
+payload hashes, nine cooked SVGs, ten inspected packaged captures and both Unreal
+Context tests pass at clean `30e09f8`. The package differs from Editor preflight
+by 298 plaque pixels at most one color level; no outside changes or exact PNG
+equivalence claim. Dedicated review is in progress. Full UI01 fidelity, UI02 motion
+and original physical-device/release gates remain open.
 See [progress-plaque material evidence](../QA/UI01/G-PROGRESS-PLAQUE-MATERIAL.md).
 
 The owner merged [PR #39](https://github.com/rloterh/WordQuest/pull/39) into `dev`

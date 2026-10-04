@@ -56,9 +56,69 @@ The new runtime SVG was restored byte-for-byte, SHA-256
 `4b1f8e673307e376056742827f27eebc60bdb5573951d56ad9207b814db655e3`.
 Prior generated source/texture hashes remain unchanged (see source provenance).
 
-Clean Win64 build/cook/archive, packaged captures, genuine Unreal tests and
-dedicated review remain in progress. Raw source/fallback/comparison evidence is
-retained under `Artifacts/QA/UI01/PlaqueMaterial20261004`.
+## Clean Win64 package and native evidence
+
+All runtime/source checks use clean `30e09f883260964727f2b556530a3c4c338275e5`.
+First package `20261004-161941-356049` compiled the Editor (three actions, 5.57s)
+and Game (five actions, 44.42s), cooked/staged/archived successfully (BuildCookRun
+115.85s, zero cook errors/warnings), but the helper failed on a nonzero protected
+firewall-task invocation. Its manifest remains incomplete, exit 1, with the original
+error preserved. No failed receipt is treated as successful package evidence.
+The same non-elevated refresh helper subsequently confirmed that executable's
+exact coverage at 16:26:04.8610303 UTC, first attempt; no policy/task/ACL change.
+
+Fresh final package `Artifacts/Packages/Win64/20261004-162743-349975` passes all
+helper stages, exit 0. Both already-compiled targets pass with zero actions (Editor
+1.56s, Game 1.62s); full cook processes 519 packages, zero errors/warnings;
+stage/archive and BuildCookRun complete in 61.13s. All 49 payload sizes/hashes,
+clean source identity and unchanged head/worktree/input checks pass. Manifest SHA-256:
+`c7e3efa75e345a402bac4c2aa2d818d848e4c4542c3ec77f84684b44789f66e4`.
+Automatic exact executable coverage succeeds on the first attempt at
+16:28:59.9406125 UTC, Private/Public LocalSubnet, without a new owner prompt.
+
+All ten final packaged runs below exit 0 and record clean matching source/package
+identity, verified archive hashes and complete requested state/dimension/cue
+checks. Every native PNG was viewed. The 1768x3560 PNG was displayed by the viewer
+at 1017x2048; raw dimensions are independently recorded. Paths are under
+`Artifacts/QA/UI01`; .9 is a simulated desktop safe zone, not physical-phone proof.
+
+| Run | Proof | Window / text / safe zone |
+| --- | --- | --- |
+| `20261004-162904-packaged-capture-initial` | Reference-sized initial | 884x1780 / 100% / 1 |
+| `20261004-162917-packaged-capture-initial` | High-resolution initial | 1768x3560 / 100% / 1 |
+| `20261004-162928-packaged-capture-initial` | Phone-sized composition | 390x844 / 100% / .9 |
+| `20261004-162939-packaged-capture-initial` | Enlarged reading, scrolling | 390x844 / 200% / .9 |
+| `20261004-162949-packaged-capture-initial` | Narrow initial, scrollable actions | 260x640 / 100% / .9 |
+| `20261004-162959-packaged-capture-initial` | Compact landscape, plaque/progress hidden | 844x390 / 100% / .9 |
+| `20261004-163009-packaged-capture-selected` | Selected C with separate cues | 884x1780 / 100% / 1 |
+| `20261004-163020-packaged-capture-correct` | Disabled options and feedback | 884x1780 / 100% / 1 |
+| `20261004-163031-packaged-capture-longselectedfocus` | Long selected B, leading content visible | 260x640 / intrinsic 200% / .9 |
+| `20261004-163042-packaged-capture-keymodal` | Synthetic Pause/text-size routing | 390x844 / ends 200% / .9 |
+
+Both genuine Unreal `WordQuest.Context` tests pass, zero failed/not-run/in-process,
+exit 0, clean source, in `20261004-163507-automation-initial/Report`.
+All nine cooked SVGs extracted with UnrealPak's documented separate `-Extract`
+directory arguments match the staged sources byte-for-byte; pak hash unchanged.
+The original reference/baseline/new runtime comparisons remain scoped to the
+plaque: 8,800 changed pixels, identical bounds and sample means above. The packaged
+PNG SHA-256 is
+`bc46bd8226877fdc0ca805a764440be0b9dfed603ed846956b76933ff7260fcc`.
+It differs from Editor preflight by 298 RGB pixels within [362,190,523,198), at
+most one channel level; no exact Editor/package PNG equivalence is claimed.
+The initial QA assertion expecting identical PNG hashes is retained as failed
+diagnostic evidence; the corrected comparison explicitly records this small
+bounded difference rather than ignoring it. The final package comparison crops
+and overlay were generated; native images and earlier same-composition overlay
+were inspected. Exact contours, gold/inner bevel and type metrics remain candidate.
+
+Raw source/fallback/package/batch/cooked/comparison evidence is retained under
+`Artifacts/QA/UI01/PlaqueMaterial20261004`. Subsequent evidence/review/publication
+documentation does not change the tested runtime/source/art revision.
+
+## Dedicated review
+
+Dedicated read-only review against the actual `origin/dev` base is pending. The
+owner retains merge authority; review does not replace native/device evidence.
 
 ## Open gates
 
