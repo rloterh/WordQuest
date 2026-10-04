@@ -121,9 +121,14 @@ edge and companion mismatches are visible. The overlay is diagnostic, not proof
 of accepted fidelity or a runtime image. Earlier v001 badge, spirit source and
 genuine spirit asset retain their original hashes; no binary asset changes.
 
-Dedicated read-only review against actual `origin/dev` is pending. Subsequent
-evidence/review/publication records change documentation only; tested runtime
-remains `5bb1360`. None of these checks authorizes a merge.
+Dedicated read-only review completed at `Artifacts/Reviews/20261004-130249`,
+actual `origin/dev` base `04a14fba09af8b217d300d4790459026277305b4`, reviewed head
+`6c476e686296954cb4aa0c9c86cd272566fc3f6d`. Worktree was clean, exit 0,
+head/worktree unchanged. No actionable introduced defects were found in the badge
+revision, staging update or documentation. The reviewer checked SVG parity and
+immutable reference hashes; it did not independently rerun builds/runtime/device
+acceptance. Subsequent review/publication records change documentation only;
+tested runtime remains `5bb1360`. The owner retains the merge decision.
 
 ## Remaining gates
 

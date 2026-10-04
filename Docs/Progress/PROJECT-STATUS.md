@@ -18,8 +18,9 @@ The missing-SVG native fallback passes enlarged long selected-answer focus, with
 exact restoration. Full Win64 packaging, 49 payload hashes, cooked badge parity,
 all 11 inspected packaged captures and both Unreal Context tests pass at clean
 `5bb1360`. Automatic firewall coverage succeeds on its second bounded retry.
-Final native pixels match preflight. Dedicated read-only review is pending;
-subsequent evidence documentation does not change the tested runtime source.
+Final native pixels match preflight. Dedicated read-only review against actual
+`dev` found no actionable introduced defects. Subsequent evidence/review/publication
+documentation does not change the tested runtime source.
 See [badge refinement evidence](../QA/UI01/G-ANSWER-BADGE-SOFTNESS.md).
 Full UI01 fidelity, UI02 motion and physical-device/release gates remain open.
 
