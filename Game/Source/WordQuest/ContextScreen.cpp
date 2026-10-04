@@ -1125,7 +1125,7 @@ UButton* UContextScreen::GetProofPointerButton(FName Name) const
 void UContextScreen::PrepareProofPointerTarget(FName Name)
 {
     auto* Target = GetProofPointerButton(Name);
-    if (!Target || Target == PauseButton) return;
+    if (!Target) return;
     // Explicit setup only: reveal the target without setting keyboard focus.
     // Routed pointer events must still pass actual clipping and hit testing.
     auto* Region = Target == ResumeButton || Target == TextSizeButton || Target == ResetButton ? ModalScroll.Get() : Scroll.Get();
@@ -1137,8 +1137,7 @@ bool UContextScreen::GetProofPointerPoint(FName Name, FVector2D& Point) const
     const auto* Target = GetProofPointerButton(Name);
     if (!Target) return false;
     const auto Rect = Target->GetCachedGeometry().GetLayoutBoundingRect();
-    const auto Clip = (Target == PauseButton ? Root->GetCachedGeometry()
-        : Target == ResumeButton || Target == TextSizeButton || Target == ResetButton
+    const auto Clip = (Target == ResumeButton || Target == TextSizeButton || Target == ResetButton
             ? ModalScroll->GetCachedGeometry() : Scroll->GetCachedGeometry()).GetLayoutBoundingRect();
     const float Left = FMath::Max(Rect.Left, Clip.Left), Right = FMath::Min(Rect.Right, Clip.Right);
     const float Top = FMath::Max(Rect.Top, Clip.Top), Bottom = FMath::Min(Rect.Bottom, Clip.Bottom);
