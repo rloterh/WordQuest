@@ -86,7 +86,9 @@ def check_pointer_steps(log, proof):
     for index, (row, (event, target, state, active)) in enumerate(zip(rows, expected), 1):
         pressed = int(active and event == 'down')
         local_enabled = int(not state[1] and (target != 'Hint' or not state[3])) if target in ('Hint', 'Submit') or target.startswith('Answer') else 1
-        passed = passed and row[:4] == (proof, str(index), event, target)
+        # FName display casing can differ between cooked and editor name pools.
+        # Keep raw evidence, but compare this case-insensitive event identifier.
+        passed = passed and (row[0], row[1], row[2].lower(), row[3]) == (proof, str(index), event, target)
         passed = passed and all(value in ('0', '1') for value in row[4:11])
         passed = passed and row[5] == '1' and row[7] == str(local_enabled)
         passed = passed and row[9:11] == (str(pressed), str(pressed))

@@ -62,6 +62,13 @@ class PointerEvidenceTests(unittest.TestCase):
         self.assertTrue(check_pointer_steps(PRESS, 'pointerpress')[0])
         self.assertTrue(check_pointer_steps(click_trace(), 'pointerclick')[0])
 
+    def test_cooked_fname_event_casing_preserves_raw_trace(self):
+        trace = PRESS.replace('event=down', 'event=Down').replace('event=move', 'event=Move')
+        passed, rows, _, _ = check_pointer_steps(trace, 'pointerpress')
+        self.assertTrue(passed)
+        self.assertEqual(rows[1][2], 'Down')
+        self.assertFalse(check_pointer_steps(trace.replace('event=Down', 'event=Drag'), 'pointerpress')[0])
+
     def test_final_state_without_input_trace_is_rejected(self):
         self.assertFalse(check_pointer_steps('WQ_STATE proof=pointerpress selected=-1 submitted=0 correct=0 hint=0 paused=0 evaluations=0', 'pointerpress')[0])
 
