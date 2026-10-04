@@ -41,6 +41,78 @@ KEYBOARD_STEPS = {
                    ('SpaceBar', (1,0,0,0,0,0), True)],
 }
 
+POINTER_PROOFS = ('pointerhover', 'pointerpress', 'pointerhintpress', 'pointeranswerpress',
+                  'pointerpausepress', 'pointerclick', 'pointerhint', 'pointerpaused', 'pointerresumed')
+
+
+def pointer_contract(proof):
+    """Independent expected transitions: mouse-down cannot activate a button."""
+    initial = (-1, 0, 0, 0, 0, 0)
+    selected_b = (1, 0, 0, 0, 0, 0)
+    wrong = (1, 1, 0, 0, 0, 1)
+    assisted = (-1, 0, 0, 1, 0, 0)
+    selected_a = (0, 0, 0, 1, 0, 0)
+    correct = (0, 1, 1, 1, 0, 1)
+    paused = (1, 0, 0, 0, 1, 0)
+    steps = []
+    def click(target, before, after, active=True):
+        steps.extend([(event, target, before if event != 'up' else after, active)
+                      for event in ('move', 'down', 'up')])
+    if proof == 'pointerhover':
+        steps = [('move', target, initial, True) for target in ('Answer0', 'Hint', 'Submit', 'Pause', 'Submit')]
+    elif proof in POINTER_PROOFS and proof.endswith('press'):
+        target = {'pointerhintpress': 'Hint', 'pointeranswerpress': 'Answer0',
+                  'pointerpausepress': 'Pause'}.get(proof, 'Submit')
+        steps = [(event, target, initial, True) for event in ('move', 'down')]
+    elif proof == 'pointerclick':
+        click('Submit', initial, initial); click('Answer1', initial, selected_b)
+        click('Submit', selected_b, wrong); click('Submit', wrong, wrong, False)
+        click('Answer0', wrong, wrong, False)
+    elif proof == 'pointerhint':
+        click('Hint', initial, assisted); click('Answer0', assisted, selected_a)
+        click('Submit', selected_a, correct); click('Hint', correct, correct, False)
+    elif proof in ('pointerpaused', 'pointerresumed'):
+        click('Answer1', initial, selected_b); click('Pause', selected_b, paused)
+        click('Answer0', paused, paused, False); click('Hint', paused, paused, False)
+        if proof == 'pointerresumed': click('Resume', paused, selected_b)
+    return steps
+
+
+def check_pointer_steps(log, proof):
+    pattern = r'WQ_POINTER_STEP proof=(\w+) step=(\d+) event=(\w+) target=(\w+) hit=(\d+) inside=(\d+) handled=(\d+) enabled=(\d+) hovered=(\d+) pressed=(\d+) captured=(\d+) selected=(-?\d+) submitted=(\d+) correct=(\d+) hint=(\d+) paused=(\d+) evaluations=(\d+)'
+    rows = re.findall(pattern, log)
+    expected = pointer_contract(proof)
+    passed = bool(expected) and len(rows) == len(expected) and log.count('WQ_POINTER_STEP ') == len(rows)
+    for index, (row, (event, target, state, active)) in enumerate(zip(rows, expected), 1):
+        pressed = int(active and event == 'down')
+        local_enabled = int(not state[1] and (target != 'Hint' or not state[3])) if target in ('Hint', 'Submit') or target.startswith('Answer') else 1
+        passed = passed and row[:4] == (proof, str(index), event, target)
+        passed = passed and all(value in ('0', '1') for value in row[4:11])
+        passed = passed and row[5] == '1' and row[7] == str(local_enabled)
+        passed = passed and row[9:11] == (str(pressed), str(pressed))
+        passed = passed and tuple(map(int, row[11:17])) == state
+        if active:
+            passed = passed and row[4] == '1'
+            if event != 'move': passed = passed and row[6] == '1'
+            if event != 'up': passed = passed and row[8] == '1'
+        elif state[4]:
+            passed = passed and row[4] == '0'  # Modal shade blocks underlying controls.
+    captures = re.findall(r'WQ_POINTER_CAPTURE proof=(\w+) target=(\w+) enabled=(\d+) hovered=(\d+) pressed=(\d+) captured=(\d+)', log)
+    passed = passed and len(captures) == 1 and bool(expected) and log.count('WQ_POINTER_CAPTURE ') == 1
+    if len(captures) == 1 and expected:
+        event, target, state, active = expected[-1]
+        pressed = int(active and event == 'down')
+        passed = passed and captures[0][:2] == (proof, target)
+        passed = passed and all(value in ('0', '1') for value in captures[0][2:6])
+        passed = passed and bool(rows) and captures[0][2] == rows[-1][7]
+        passed = passed and captures[0][4:6] == (str(pressed), str(pressed))
+        if active and event in ('move', 'down'): passed = passed and captures[0][3] == '1'
+    cleanup = re.findall(r'WQ_POINTER_CLEANUP proof=(\w+) pressed=(\d+) captured=(\d+) selected=(-?\d+) submitted=(\d+) correct=(\d+) hint=(\d+) paused=(\d+) evaluations=(\d+)', log)
+    passed = passed and len(cleanup) == 1 and log.count('WQ_POINTER_CLEANUP ') == 1
+    if len(cleanup) == 1 and expected:
+        passed = passed and cleanup[0][:3] == (proof, '0', '0') and tuple(map(int, cleanup[0][3:9])) == expected[-1][2]
+    return passed, rows, captures, cleanup
+
 # These routes use no programmatic button focus setup. Check the focused semantic
 # control, Shift modifier and text setting at every routed transition.
 FOCUS_STEPS = {
@@ -223,7 +295,7 @@ def check_interruption_steps(log, proof):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('mode', choices=['automation', 'capture'])
-    parser.add_argument('--proof', default='initial', choices=['initial', 'selected', 'correct', 'wrong', 'hint', 'empty', 'paused', 'resumed', 'pausefocus', 'large', 'long', 'longfocus', 'longselectedfocus', 'focus', 'actions', 'actionfocus', *KEYBOARD_STEPS, *INTERRUPTION_PROOFS, *SCROLL_PROOFS, *MODAL_PROOFS])
+    parser.add_argument('--proof', default='initial', choices=['initial', 'selected', 'correct', 'wrong', 'hint', 'empty', 'paused', 'resumed', 'pausefocus', 'large', 'long', 'longfocus', 'longselectedfocus', 'focus', 'actions', 'actionfocus', *KEYBOARD_STEPS, *INTERRUPTION_PROOFS, *SCROLL_PROOFS, *MODAL_PROOFS, *POINTER_PROOFS])
     parser.add_argument('--width', type=int, default=884)
     parser.add_argument('--height', type=int, default=1780)
     parser.add_argument('--safe-zone', type=float, default=1.0, help='Desktop simulated safe-area ratio, 0.5 to 1')
@@ -232,8 +304,10 @@ def main():
     parser.add_argument('--engine-root', type=Path, default=Path(r'C:\Program Files\Epic Games\UE_5.8'))
     parser.add_argument('--package-run', type=Path, help='Use a completed local package run instead of the editor (capture only)')
     args = parser.parse_args()
-    if args.large_text and (args.mode != 'capture' or args.proof not in ('initial', 'selected', 'correct', 'wrong', 'hint', 'empty')):
-        parser.error('--large-text supports initial/selected/correct/wrong/hint/empty captures only.')
+    if args.proof in POINTER_PROOFS and args.mode != 'capture':
+        parser.error('Pointer proofs require capture mode.')
+    if args.large_text and (args.mode != 'capture' or args.proof not in ('initial', 'selected', 'correct', 'wrong', 'hint', 'empty', *POINTER_PROOFS)):
+        parser.error('--large-text supports question-state and pointer captures only.')
     if not .5 <= args.safe_zone <= 1 or args.width < 200 or args.height < 200:
         parser.error('Use safe-zone 0.5..1 and dimensions at least 200 pixels.')
     root = Path(__file__).resolve().parents[2]
@@ -317,6 +391,7 @@ def main():
             **{proof: (0, 1, 1, 1, int(proof == 'scrollpaused'), 1) for proof in SCROLL_PROOFS},
             **{proof: (0, 1, 1, 1, 1, 1) for proof in MODAL_PROOFS},
             **{proof: steps[-1][1] for proof, steps in KEYBOARD_STEPS.items()},
+            **{proof: pointer_contract(proof)[-1][2] for proof in POINTER_PROOFS},
         }.get(args.proof, (-1, 0, 0, 0, 0, 0))
         matches = re.findall(r'WQ_STATE proof=\w+ selected=(-?\d+) submitted=(\d+) correct=(\d+) hint=(\d+) paused=(\d+) evaluations=(\d+)', log)
         result['state_passed'] = len(matches) == 1 and tuple(map(int, matches[0])) == expected
@@ -348,6 +423,11 @@ def main():
             passed, rows, capture_rows = check_interruption_steps(log, args.proof)
             result.update({'interruption_steps_passed': passed, 'interruption_steps': rows,
                            'interruption_capture': capture_rows})
+            result['evidence_complete'] = result['evidence_complete'] and passed
+        if args.proof in POINTER_PROOFS:
+            passed, rows, capture_rows, cleanup_rows = check_pointer_steps(log, args.proof)
+            result.update({'pointer_steps_passed': passed, 'pointer_steps': rows,
+                           'pointer_capture': capture_rows, 'pointer_cleanup': cleanup_rows})
             result['evidence_complete'] = result['evidence_complete'] and passed
         if args.proof in KEYBOARD_STEPS:
             passed, rows = check_keyboard_steps(log, args.proof)

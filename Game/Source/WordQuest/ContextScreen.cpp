@@ -1113,6 +1113,40 @@ void UContextScreen::SetProofTextScale(float Value) { TextScale = FMath::Clamp(V
 void UContextScreen::FocusProofAnswer() { Answers[1].Button->SetUserFocus(GetOwningPlayer()); }
 void UContextScreen::FocusProofAction() { SubmitButton->SetUserFocus(GetOwningPlayer()); }
 void UContextScreen::FocusProofPause() { PauseButton->SetUserFocus(GetOwningPlayer()); }
+UButton* UContextScreen::GetProofPointerButton(FName Name) const
+{
+    for (const auto& Answer : Answers)
+        if (Answer.Button->GetFName() == Name) return Answer.Button;
+    for (auto* B : {HintButton.Get(), SubmitButton.Get(), PauseButton.Get(), ResumeButton.Get(), TextSizeButton.Get(), ResetButton.Get()})
+        if (B->GetFName() == Name) return B;
+    return nullptr;
+}
+
+void UContextScreen::PrepareProofPointerTarget(FName Name)
+{
+    auto* Target = GetProofPointerButton(Name);
+    if (!Target || Target == PauseButton) return;
+    // Explicit setup only: reveal the target without setting keyboard focus.
+    // Routed pointer events must still pass actual clipping and hit testing.
+    auto* Region = Target == ResumeButton || Target == TextSizeButton || Target == ResetButton ? ModalScroll.Get() : Scroll.Get();
+    Region->ScrollWidgetIntoView(Target, false, EDescendantScrollDestination::IntoView);
+}
+
+bool UContextScreen::GetProofPointerPoint(FName Name, FVector2D& Point) const
+{
+    const auto* Target = GetProofPointerButton(Name);
+    if (!Target) return false;
+    const auto Rect = Target->GetCachedGeometry().GetLayoutBoundingRect();
+    const auto Clip = (Target == PauseButton ? Root->GetCachedGeometry()
+        : Target == ResumeButton || Target == TextSizeButton || Target == ResetButton
+            ? ModalScroll->GetCachedGeometry() : Scroll->GetCachedGeometry()).GetLayoutBoundingRect();
+    const float Left = FMath::Max(Rect.Left, Clip.Left), Right = FMath::Min(Rect.Right, Clip.Right);
+    const float Top = FMath::Max(Rect.Top, Clip.Top), Bottom = FMath::Min(Rect.Bottom, Clip.Bottom);
+    if (Right <= Left || Bottom <= Top) return false;
+    Point = FVector2D((Left + Right) * .5f, (Top + Bottom) * .5f);
+    return true;
+}
+
 FString UContextScreen::GetProofFocusName() const
 {
     for (const auto& Answer : Answers)

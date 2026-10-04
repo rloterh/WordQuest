@@ -156,9 +156,10 @@ independently; Unreal builds, runtime captures and device gates were not indepen
 rerun. Subsequent changes record review/publication only. The owner retains merge
 authority; review does not accept the visual tradeoffs or pass any original gate.
 
-Non-draft [PR #43](https://github.com/rloterh/WordQuest/pull/43) is open against
-`dev`. Publication records add docs only after the reviewed head; tested runtime
-source/art remains `905b475`.
+[PR #43](https://github.com/rloterh/WordQuest/pull/43) was merged by the owner
+on 2026-10-04 at 21:34:53 UTC (`baa03aa`). Publication records added docs only
+after the reviewed head; tested runtime source/art remains `905b475`. Merging
+does not accept the material tradeoffs or pass visual/device gates.
 
 ## Open gates
 

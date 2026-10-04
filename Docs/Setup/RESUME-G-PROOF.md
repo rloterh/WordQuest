@@ -50,6 +50,10 @@ there is a documented need to re-enable that plugin with local credential handli
    The subsequent [focus navigation](../QA/UI01/G-FOCUS-NAVIGATION.md) checks
    synthetic Tab/Shift-Tab and Pause text-size/retry routes; manual/platform
    accessibility acceptance remains separate.
+   Development-only [virtual pointer proofs](../QA/UI01/G-POINTER-ROUTING.md)
+   route hit-tested hover/down/up events, held presses, disabled/modal barriers
+   and cleanup. Explicit scroll setup and a virtual Slate user leave desktop
+   cursor/manual/device acceptance separate.
    Desktop reading also supports Page Up/Page Down (one viewport with overlap)
    and Home/End (beginning/end). These keys preserve the answer and Hint state;
    Pause blocks them. A control focus move resumes automatic control reveal.

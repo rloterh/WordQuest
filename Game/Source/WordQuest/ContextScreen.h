@@ -46,6 +46,9 @@ public:
     void FocusProofAnswer();
     void FocusProofAction();
     void FocusProofPause();
+    UButton* GetProofPointerButton(FName Name) const;
+    void PrepareProofPointerTarget(FName Name);
+    bool GetProofPointerPoint(FName Name, FVector2D& Point) const;
     int32 GetProofAnswerCueCode(int32 Index) const;
     FString GetProofAnswerAccessibleText(int32 Index) const;
     int32 GetProofFeedbackVisibility(bool bEnd = false) const;
