@@ -1,0 +1,98 @@
+{
+  "date": "2026-10-04",
+  "status": "static_original_pixel_mask_candidate_acceptance_pending",
+  "authority": "Planning/WordQuest-UI-Realms-Addendum/references/G-Celestial-Reverie-Gameplay.png",
+  "authority_sha256": "306dae4f6352749edcf1d8edf73f26339a4ba6407b4a394ec50b5898418bedae",
+  "crop_ltrb": [
+    72,
+    266,
+    300,
+    471
+  ],
+  "dimensions": [
+    228,
+    205
+  ],
+  "files": {
+    "ArtSource/Companions/G/SourcePixels/G-Spirit-Reference-Detail-v001.png": {
+      "sha256": "881c06f6b4dc6e885fca63827474f567d3e08a17a7e8af3be04e7ed87da6358f",
+      "size": 87049
+    },
+    "ArtSource/Companions/G/Masks/G-Spirit-Reference-v001.svg": {
+      "sha256": "edeac9c65be121e372c0d6bbf8a23aeb0b345cc5d97aa480c2704cf3a2ee2db7",
+      "size": 1846
+    },
+    "ArtSource/Companions/G/Exports/G-Spirit-Reference-v001.png": {
+      "sha256": "dbff1ccb7e9f4eec9fbb785bc2f35b5fa12c304fddd98c0f1331f7996ebfe44a",
+      "size": 50021
+    },
+    "Game/Content/UI/G/G_SpiritReference.uasset": {
+      "sha256": "fe57fb3326084dddbfea05bcf928780edbb8d4ad56e09e3be2c9d4a6ad68e5e1",
+      "size": 60542
+    }
+  },
+  "source_integrity": {
+    "export_sha256": "dbff1ccb7e9f4eec9fbb785bc2f35b5fa12c304fddd98c0f1331f7996ebfe44a",
+    "dimensions": [
+      228,
+      205
+    ],
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "alpha_bbox": [
+      9,
+      12,
+      200,
+      200
+    ],
+    "corners": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "fully_opaque_pixels": 10821,
+    "fully_opaque_source_rgb_changes": 0,
+    "detail_crop_pixels_exact": true,
+    "mask_feather_sigma_source_pixels": 0.35,
+    "limits": "Masks are hand traced; alpha and original baked scene-color/translucency are not proven recovered. RGB equality of opaque pixels establishes source integrity, not final visual or motion acceptance."
+  },
+  "renderer": {
+    "resvg_py": "0.5.0",
+    "resvg": "0.48.1",
+    "scale": 1
+  },
+  "native": {
+    "placement_xywh": [
+      72,
+      266,
+      228,
+      205
+    ],
+    "full_uv": true,
+    "fallback": "/Game/UI/G/G_Spirit.G_Spirit",
+    "fallback_uv_pixels": [
+      106,
+      54,
+      1251,
+      1119
+    ],
+    "fallback_source_dimensions": [
+      1405,
+      1119
+    ]
+  },
+  "import_settings": {
+    "sRGB": true,
+    "compression": "TC_EDITOR_ICON",
+    "group": "TEXTUREGROUP_UI",
+    "filter": "TF_BILINEAR",
+    "mips": "TMGS_NO_MIPMAPS",
+    "never_stream": true
+  },
+  "limits": "Hand-traced mask; not exact alpha/scene-color decontamination, independent animation layers or new high-resolution art. No complete UI01/UI02/phone/release acceptance.",
+  "qa": "Docs/QA/UI01/G-SPIRIT-SOURCE-MASK.md"
+}

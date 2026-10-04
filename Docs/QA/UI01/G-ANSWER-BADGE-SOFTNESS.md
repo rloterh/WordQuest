@@ -129,8 +129,9 @@ revision, staging update or documentation. The reviewer checked SVG parity and
 immutable reference hashes; it did not independently rerun builds/runtime/device
 acceptance. Subsequent review/publication records change documentation only;
 tested runtime remains `5bb1360`. The owner retains the merge decision.
-Non-draft [PR #39](https://github.com/rloterh/WordQuest/pull/39) is open against
-`dev` for this bounded badge correction and recorded companion handoff.
+The owner merged non-draft [PR #39](https://github.com/rloterh/WordQuest/pull/39)
+into `dev` on 2026-10-04 at 13:18:57 UTC,
+`51b62411a75e8e4a1320ec6ac128d0097eb3363a`.
 
 ## Remaining gates
 
