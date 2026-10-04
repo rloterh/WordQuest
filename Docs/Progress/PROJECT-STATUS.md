@@ -12,9 +12,16 @@ task failure's cause remains unverified; its diagnostic loss was corrected.
 The next bounded UI01 refinement on `feature/g-check-surface-pearl` reconstructs
 the Check surface with an editable violet/pale-gold SVG and genuine imported
 texture. The label, separate star, native focus/input, responsive nine-slice layout
-and generated texture fallback remain. The real Editor build passes; native
-comparison, enlarged/focused layouts, fallback checks and clean package evidence
-are in progress. No UI01/UI02/device/release gate is marked passed.
+and generated texture fallback remain. The real Editor build, 68 Python checks,
+four inspected final fallbacks, clean Win64 package at `905b475`, twelve inspected
+packaged captures and both Unreal Context tests pass. All 49 payload hashes, ten
+cooked SVGs and the cooked Check IoStore entry verify; automatic scoped firewall
+coverage passes on its first attempt. Changes stay inside Check. The reconstructed
+material has simpler gloss/texture; eight face samples worsen slightly (9.08 to
+9.88), so no overall fidelity improvement or acceptance is claimed. Source/export/
+texture provenance matches. Read-only PR review is pending. See
+[Check surface evidence](../QA/UI01/G-CHECK-SURFACE.md).
+No UI01/UI02/device/release gate is marked passed.
 
 The owner merged [PR #40](https://github.com/rloterh/WordQuest/pull/40) into `dev`
 on 2026-10-04 at 16:07:31 UTC (`d7311ae`). The original-pixel static companion is
