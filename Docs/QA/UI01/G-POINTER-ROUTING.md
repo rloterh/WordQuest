@@ -146,7 +146,14 @@ source. Python evidence is `Artifacts/Logs/UI01/pointer-python-final-checks.log`
 The local batch, verification (including every PNG hash) and pipeline records are
 under `Artifacts/QA/UI01/Pointer20261004/`. No art/binary/reference files changed.
 Review/publication documentation will not change the tested runtime source.
-Dedicated read-only review against actual `origin/dev` is pending.
+Dedicated read-only Codex review completes in `Artifacts/Reviews/20261004-224525`
+against actual `origin/dev` base `baa03aabf874264a6bd4947a7ef0e4c335f732b2`,
+reviewed head `dda891cf30d4e8c326a98958513910db3e344756`. Process exit is zero,
+start worktree is clean and head/worktree remain unchanged. The report identifies
+no actionable introduced defects and independently passes all 14 pointer tests.
+It does not independently rerun Unreal builds, visual fidelity or device checks;
+those evidence boundaries remain unchanged. Tested runtime source remains
+`e7a343e`; subsequent commits update documentation only. Owner retains merge.
 
 ## Open gates
 

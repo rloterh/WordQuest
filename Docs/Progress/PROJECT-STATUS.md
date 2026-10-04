@@ -18,7 +18,9 @@ Context tests pass. All 49 payload hashes and automatic scoped firewall coverage
 verify; the initial screen matches PR #43's packaged baseline exactly in RGB.
 The new harness's cooked event-case validation and incorrect fixed-Pause setup
 were corrected and rerun, including 260x640 at 200% text. Art, production handlers
-and learning rules are unchanged. Dedicated read-only review is pending.
+and learning rules are unchanged. Dedicated read-only review against actual `dev`
+at `baa03aa`, reviewed head `dda891c`, found no actionable introduced defects;
+review head/worktree remained unchanged. Review/publication changes are docs only.
 No UI01/UI02/manual-pointer/device/release gate is marked passed.
 See [pointer proof](../QA/UI01/G-POINTER-ROUTING.md).
 
