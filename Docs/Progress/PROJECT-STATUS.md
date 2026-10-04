@@ -21,6 +21,8 @@ all 11 inspected packaged captures and both Unreal Context tests pass at clean
 Final native pixels match preflight. Dedicated read-only review against actual
 `dev` found no actionable introduced defects. Subsequent evidence/review/publication
 documentation does not change the tested runtime source.
+Non-draft [PR #39](https://github.com/rloterh/WordQuest/pull/39) is open against
+`dev` for owner review/merge of this bounded badge correction and art handoff.
 See [badge refinement evidence](../QA/UI01/G-ANSWER-BADGE-SOFTNESS.md).
 Full UI01 fidelity, UI02 motion and physical-device/release gates remain open.
 
