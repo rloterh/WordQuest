@@ -24,6 +24,8 @@ succeeds on the second bounded retry. Dedicated read-only review against actual
 `dev` found no actionable introduced defects. Its optional reproduction attempt
 could not read the ignored renderer dependency folder; main-session byte-exact
 reproduction passed again. Subsequent review/publication records are docs only.
+Non-draft [PR #40](https://github.com/rloterh/WordQuest/pull/40) is open against
+`dev`; the owner retains merge authority.
 Mask edges/scene-color contamination, low source resolution
 and lack of independently movable layers are disclosed; no UI01/UI02 acceptance.
 See [source-mask evidence](../QA/UI01/G-SPIRIT-SOURCE-MASK.md).
