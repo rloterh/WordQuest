@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-04",
+  "status": "authored_static_reconstruction_candidate_acceptance_pending",
+  "master": "ArtSource/UI/G/Vector/G-Pause-Surface-v001.svg",
+  "runtime": "Game/Content/UI/G/Vector/G_PauseSurface.svg",
+  "sha256": "07390f8660e70a63ef678ffba8e65da4df2bbba1781989a3060d9b7f2af6555e",
+  "reference": "Planning/WordQuest-UI-Realms-Addendum/references/G-Celestial-Reverie-Gameplay.png",
+  "reference_sha256": "306dae4f6352749edcf1d8edf73f26339a4ba6407b4a394ec50b5898418bedae",
+  "canvas": [71, 75],
+  "reference_slot_xywh": [788, 31, 71, 75],
+  "main_circle": {"center": [35.5, 37.5], "radius": 33.4, "rim_width": 2.4},
+  "method": "Hand-authored explicit SVG circles, path and percentage gradients; native FSlateVectorImageBrush/NanoSVG rasterization. No imagegen, raster paintover, original-pixel extraction or new binary Unreal asset.",
+  "behavior": "Blank decoration under the existing separate Pause bars/text and native button. Normal rim supplied by vector; native focus/hover/press retained. Existing minimum size, layout and semantic name unchanged.",
+  "fallback": {
+    "source": "ArtSource/UI/G/Reconstruction/G-Pause-Skin-v001-Candidate.png",
+    "source_sha256": "0f4d3636c830ce7993f5ae2efb4f5fc3aa128846aa2e83424da437030fb38ccc",
+    "unreal_asset": "Game/Content/UI/G/G_PauseSkin.uasset",
+    "unreal_asset_sha256": "5e2f00f2d4329a1df61a08a66a8d4120e02dab3d7051dcfd6ddb6a5a37b16c40",
+    "uv_half_open_source_pixels": [96, 100, 1159, 1129],
+    "limits": "Source/texture preserved byte-for-byte. Missing SVG retains prior framed texture; missing both retains native fill and dark Pause bars/text."
+  },
+  "limits": "Candidate only. Exact contour, bevel/softness/bars, full UI01 fidelity, UI02 motion and manual/platform/device/offline/performance/editorial/release gates remain open.",
+  "qa": "Docs/QA/UI01/G-PAUSE-PEARL-RIM.md"
+}

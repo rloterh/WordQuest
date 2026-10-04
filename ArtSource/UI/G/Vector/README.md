@@ -146,6 +146,15 @@ No raster edit, new font or original-lettering acceptance is claimed.
 No rights clearance beyond supplied-reference provenance is established. Release
 clearance and faithful-art acceptance remain open.
 
+The tenth staged resource is `G-Pause-Surface-v001.svg`: a blank, hand-authored
+71x75 blue-violet surface with pale-gold rim and restrained directional lighting.
+Its runtime copy is `G_PauseSurface.svg`. The separate Pause-bars icon and native
+button retain their semantic/input path. Missing SVG preserves the original
+generated texture; missing both preserves the native fill and dark bars/text.
+Normal vector rim, existing focus ring and hover/press overlays are separate.
+See `G-Pause-Surface-v001-PROVENANCE.json` and `Docs/QA/UI01/G-PAUSE-PEARL-RIM.md`.
+Contour, material, manual input, full art and physical-device gates remain open.
+
 The ninth staged resource is `G-Progress-Plaque-v001.svg`: a blank, hand-authored
 178x61 progress decoration with curved shoulders, softly shaded purple face and
 thin pale-gold bevel. `G_ProgressPlaque.svg` is its byte-identical runtime copy.

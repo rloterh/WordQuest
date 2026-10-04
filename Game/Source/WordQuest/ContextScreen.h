@@ -101,6 +101,7 @@ private:
     bool bAuthoredPanel = false;
     bool bReferenceSpirit = false;
     bool bVectorProgressPlaque = false;
+    bool bVectorPauseSkin = false;
     bool bRevealFeedback = false;
     bool bRevealFeedbackAfterLayout = false;
     bool bRevealFocusAfterLayout = false;

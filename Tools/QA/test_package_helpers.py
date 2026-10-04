@@ -26,7 +26,7 @@ qa = load('qa', 'Tools/QA/run_g_proof.py')
 
 
 class PackageFailureTests(unittest.TestCase):
-    def run_package(self, exits):
+    def run_package(self, exits, launch_error=None):
         fixture = tempfile.TemporaryDirectory(dir=ROOT / 'Artifacts/QA')
         self.addCleanup(fixture.cleanup)
         fixture_root = Path(fixture.name).resolve()
@@ -51,7 +51,7 @@ class PackageFailureTests(unittest.TestCase):
              patch.object(package, '__file__', str(fixture_root / 'Tools/BuildScripts/package_g_win64.py')), \
              patch.object(package.subprocess, 'check_output', side_effect=lambda args, **kw: 'test-fixture' if args[1] == 'rev-parse' else ''), \
              patch.object(package.subprocess, 'run', return_value=Mock(returncode=0)), \
-             patch.object(package.subprocess, 'Popen', side_effect=processes) as launch, \
+             patch.object(package.subprocess, 'Popen', side_effect=launch_error or processes) as launch, \
              contextlib.redirect_stdout(io.StringIO()):
             result = package.main()
         created = set(directory.glob('*/run.json')) - before
@@ -76,6 +76,16 @@ class PackageFailureTests(unittest.TestCase):
         self.assertEqual(result, 1)
         self.assertEqual(report['exit_code'], 0)
         self.assertFalse(report['evidence_complete'])
+
+    def test_captured_process_failure_keeps_diagnostics(self):
+        error = subprocess.CalledProcessError(5, ['test-fixture-command'],
+            output='task fixture output', stderr='task fixture failure reason')
+        result, report, count = self.run_package([0], launch_error=error)
+        self.assertEqual((result, count), (1, 1))
+        self.assertFalse(report['evidence_complete'])
+        self.assertEqual(report['subprocess_exit_code'], 5)
+        self.assertEqual(report['subprocess_stdout'], 'task fixture output')
+        self.assertEqual(report['subprocess_stderr'], 'task fixture failure reason')
 
 
 class CaptureFailureTests(unittest.TestCase):

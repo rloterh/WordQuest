@@ -86,6 +86,12 @@ def main():
     except (OSError, RuntimeError, ValueError, subprocess.SubprocessError) as error:
         evidence['exit_code'] = 1
         evidence['error'] = str(error)
+        if isinstance(error, subprocess.CalledProcessError):
+            # Captured task stderr explains a failure that str(error) omits.
+            # Retain it locally without changing failure or retry behavior.
+            evidence['subprocess_exit_code'] = error.returncode
+            evidence['subprocess_stdout'] = error.stdout
+            evidence['subprocess_stderr'] = error.stderr
     evidence['head_unchanged'] = git('rev-parse', 'HEAD') == head
     evidence['worktree_unchanged'] = git('status', '--porcelain') == status
     evidence['inputs_unchanged'] = all(p.is_file() and sha256(p) == evidence['input_sha256'][str(p.relative_to(root))] for p in inputs)
