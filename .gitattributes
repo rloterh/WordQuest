@@ -10,6 +10,7 @@
 
 # Keep the new badge master/runtime bytes stable across checkout platforms.
 /ArtSource/UI/G/Vector/G-Answer-Badge-v001.svg text eol=lf
+/ArtSource/UI/G/Vector/G-Answer-Badge-v002.svg text eol=lf
 /Game/Content/UI/G/Vector/G_AnswerBadge.svg text eol=lf
 /ArtSource/UI/G/Vector/G-Answer-Pearl-v001.svg text eol=lf
 /ArtSource/UI/G/Vector/G-Answer-Pearl-v002.svg text eol=lf

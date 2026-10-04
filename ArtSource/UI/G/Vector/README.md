@@ -1,5 +1,15 @@
 # G vector icon and divider candidates
 
+## Refined answer badge
+
+`G-Answer-Badge-v002.svg` stages as `G_AnswerBadge.svg`. It preserves the 70x70
+canvas, centered circular face and outer extent while lightening the upper lilac
+fill and splitting the rim into two thin translucent layers. v001 stays unchanged;
+letters and selected/focus feedback remain live native widgets. No raster or
+binary asset is added. Exact hashes, native evidence and remaining limits are in
+`G-Answer-Badge-v002-PROVENANCE.json` and
+`Docs/QA/UI01/G-ANSWER-BADGE-SOFTNESS.md`. Fidelity is not yet accepted.
+
 ## Authored reading panel and separate star
 
 `G-Reading-Panel-v001.svg` is a blank editable 790x1140 panel with a thin pale
@@ -61,7 +71,7 @@ targets; shape, faceting and lighting still require visual acceptance.
 | `G-Reading-Divider-v002.svg` | `Game/Content/UI/G/Vector/G_ReadingDivider.svg` | 314x29 viewBox; matching long divider with the same material treatment |
 | `G-Pause-Bars-v001.svg` | `Game/Content/UI/G/Vector/G_PauseBars.svg` | 24x30 viewBox; two white rounded bars, runtime tint follows skin availability |
 | `G-Wordmark-v004.svg` | `Game/Content/UI/G/Vector/G_Wordmark.svg` | 430x140 viewBox; authored W, adapted Q bowl/looped swash, seven other licensed outlines and retained ivory/gold ornament |
-| `G-Answer-Badge-v001.svg` | `Game/Content/UI/G/Vector/G_AnswerBadge.svg` | 70x70 viewBox; lilac shaded disc and pale rim, with no baked letter |
+| `G-Answer-Badge-v002.svg` | `Game/Content/UI/G/Vector/G_AnswerBadge.svg` | 70x70 viewBox; refined lilac disc and layered pale rim, with no baked letter |
 
 From the repository root:
 
