@@ -6,7 +6,7 @@ import unreal
 
 root = Path(__file__).resolve().parents[2]
 source = root / 'ArtSource/UI/G/Exports/G-Check-Surface-v001.png'
-expected = '3a7faea0e1787cc77047855da00f4882f5969f6751004bc4eff08d24ba5967a7'
+expected = '575c3fd7496a6c130f4a414c63a904ed8b16f7cd41601c366b622bc59d2fc828'
 if not source.is_file() or hashlib.sha256(source.read_bytes()).hexdigest() != expected:
     raise RuntimeError('Missing or changed authored Check export; inspect before updating its pin')
 task = unreal.AssetImportTask()

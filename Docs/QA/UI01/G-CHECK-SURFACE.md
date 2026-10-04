@@ -17,7 +17,7 @@ extraction or reference modification occurred. Adjacent provenance records hashe
 
 The real Unreal texture-only commandlet imports `G_CheckReverie.uasset`: sRGB,
 UI compression/group, bilinear, no mips or streaming. Final import exit 0 and
-zero errors/warnings; raw evidence is `Artifacts/Logs/UI01/check-surface-import-final.log`
+zero errors/warnings; raw evidence is `Artifacts/Logs/UI01/check-surface-import-rim.log`
 and `check-surface-import.json`. It reports the genuine `/Game/UI/G/G_CheckReverie`
 object and 776x226 dimensions. Git LFS 3.7.1/process filter were verified before
 adding the new PNG and Unreal binary. Earlier generated PNG/asset remain unchanged.
@@ -42,17 +42,27 @@ references and byte-identical PNG reproduction pass. The initial native prefligh
 `20261004-201343-capture-initial` showed a flatter bevel; edge softness and peripheral
 glow were revised and genuinely reimported before final preflight
 `20261004-201856-capture-initial`. Both captures were inspected. These dirty-source
-captures are preliminary evidence; final clean package evidence is pending.
+captures are preliminary evidence. An initial clean package at `ac6c621`
+(`Artifacts/Packages/Win64/20261004-203609-989777`) and twelve native checks passed,
+but visual inspection still found a flatter rim. Darker edge separation, warmer
+gold, faint peripheral texture and a continuous highlight replace the earlier
+hard-ended highlight. The final genuine reimport and inspected dirty preflight
+`20261004-205213-capture-initial` pass. Earlier verification/batch/fallback records
+are retained with `-early` suffixes. The local comparison's integer Y assumption
+was corrected to the observed footprint [399,1451,787,1564); cooked asset inspection
+uses IoStore rather than assuming textures are in the loose-file PAK. No product
+code change was needed for these diagnostic assumptions. Final clean package
+evidence for the revised art is pending.
 
 Missing-art checks in `Artifacts/QA/UI01/CheckMaterial20261004/fallback.json`
 all pass and all four captures were inspected:
 
 | Art available | Proof | Capture |
 |---|---|---|
-| Earlier generated texture | Initial 884x1780 | `20261004-202222-capture-initial` |
-| Earlier generated texture | Focused Check, 200%, 260x640 safe .9 | `20261004-203045-capture-actions` |
-| Neither Check texture | Initial 884x1780 | `20261004-203103-capture-initial` |
-| Neither Check texture | Focused Check, 200%, 260x640 safe .9 | `20261004-203119-capture-actions` |
+| Earlier generated texture | Initial 884x1780 | `20261004-205512-capture-initial` |
+| Earlier generated texture | Focused Check, 200%, 260x640 safe .9 | `20261004-205537-capture-actions` |
+| Neither Check texture | Initial 884x1780 | `20261004-205600-capture-initial` |
+| Neither Check texture | Focused Check, 200%, 260x640 safe .9 | `20261004-205623-capture-actions` |
 
 Each helper/native exit is 0 with complete state/focus/large-text evidence. The
 generated fallback's entire PNG matches prior Editor evidence
