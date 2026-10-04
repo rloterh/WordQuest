@@ -6,14 +6,19 @@ The owner merged [PR #43](https://github.com/rloterh/WordQuest/pull/43) into `de
 on 2026-10-04 at 21:34:53 UTC (`baa03aa`). Merging does not accept full UI01
 fidelity or the recorded Check material differences.
 
-The next bounded UI01 increment on `feature/g-pointer-proof` adds Development-only
+The bounded UI01 increment on `feature/g-pointer-proof` adds Development-only
 virtual Slate pointer evidence: hover, held press, release activation, disabled
 actions, assisted feedback and the Pause barrier. It hit-tests rendered controls,
 uses explicit scroll setup without keyboard-focus setup and routes events through
 Slate rather than directly calling gameplay handlers. The desktop cursor is not
 moved. Ordered state, hit/clip, hover/press/capture, screenshot and cleanup evidence
-must all pass. Real Editor builds, native press/click/resume/200% held-press
-preflights and 81 Python checks pass. Clean package/matrix and review are pending.
+all pass at clean source `e7a343e`. Real Editor builds, 82 Python QA checks, a clean
+Win64 Development archive, thirteen inspected packaged captures and both Unreal
+Context tests pass. All 49 payload hashes and automatic scoped firewall coverage
+verify; the initial screen matches PR #43's packaged baseline exactly in RGB.
+The new harness's cooked event-case validation and incorrect fixed-Pause setup
+were corrected and rerun, including 260x640 at 200% text. Art, production handlers
+and learning rules are unchanged. Dedicated read-only review is pending.
 No UI01/UI02/manual-pointer/device/release gate is marked passed.
 See [pointer proof](../QA/UI01/G-POINTER-ROUTING.md).
 
