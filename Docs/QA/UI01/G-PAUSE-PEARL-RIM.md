@@ -73,9 +73,66 @@ so its cause is unverified. The helper now preserves captured subprocess exit,
 stdout and stderr in local failure evidence. Failure propagation, bounded retry,
 protected task/ACL and firewall policy are unchanged. A negative-path fixture
 test checks those diagnostics survive without a successful package verdict.
-Fresh clean packaging/cooked/native checks, genuine Unreal tests and dedicated
-read-only review remain in progress. Raw evidence stays local under
-`Artifacts/QA/UI01/PauseMaterial20261004`.
+## Clean package and native evidence
+
+First archive's Editor (three actions, 6.03s) and Game (five actions, 58.71s)
+compile/link checks passed, and full cook/stage/archive completed in 205.73s with
+zero cook errors/warnings. The task-refresh failure remains excluded from successful
+package evidence. Runtime/art remain unchanged after `e1b08f9`; the diagnostic
+correction and its negative-path test pass with all 68 Python checks.
+
+Final package `Artifacts/Packages/Win64/20261004-180126-675354` passes at clean
+`e8dd2fb5a3bbd34c2b7bf795b1ce1165ef44e78d`. The already-compiled Editor and Game
+pass with zero actions (2.11s/2.17s); full cook processes 519 packages, zero errors/
+warnings, followed by successful stage/archive (BuildCookRun 71.12s), all exits 0.
+All 49 payload sizes/hashes, clean source identity and unchanged head/worktree/input
+checks pass. Manifest SHA-256:
+`2805c544f2819b68d6b741bf425829d1cff8d98861b026884bb4cfb4057ac1ac`.
+Automatic exact executable coverage passes on its first attempt at
+18:02:56.1843581 UTC, Private/Public LocalSubnet; no owner prompt or security-policy/
+task/ACL change. This successful run does not diagnose the earlier transient failure.
+
+All twelve native packaged runs below exit 0 and record clean matching source/
+package identity, verified archive hashes and complete requested state/dimension/
+cue checks. Every PNG was viewed. The 1768x3560 image was displayed by the viewer
+at 1017x2048; raw dimensions are recorded independently. Paths are under
+`Artifacts/QA/UI01`; .9 is a simulated desktop safe zone, not physical-phone proof.
+
+| Run | Proof | Window / text / safe zone |
+| --- | --- | --- |
+| `20261004-180301-packaged-capture-initial` | Reference-sized normal rim | 884x1780 / 100% / 1 |
+| `20261004-180317-packaged-capture-initial` | High-resolution vector | 1768x3560 / 100% / 1 |
+| `20261004-180329-packaged-capture-initial` | Phone-sized composition | 390x844 / 100% / .9 |
+| `20261004-180339-packaged-capture-initial` | Enlarged reading, scrolling | 390x844 / 200% / .9 |
+| `20261004-180350-packaged-capture-pausefocus` | Focused minimum-size Pause, visible navy ring | 260x640 / 100% / .9 |
+| `20261004-180401-packaged-capture-initial` | Compact landscape, Pause retained | 844x390 / 100% / .9 |
+| `20261004-180412-packaged-capture-correct` | Submitted feedback, Pause retained | 884x1780 / 100% / 1 |
+| `20261004-180424-packaged-capture-keypaused` | Pause blocks answer/Hint keys | 390x844 / 100% / .9 |
+| `20261004-180435-packaged-capture-keyresumed` | Explicit Resume preserves selected B | 390x844 / 100% / .9 |
+| `20261004-180446-packaged-capture-keydisabled` | Disabled traversal and Resume retain one evaluation | 390x844 / 100% / .9 |
+| `20261004-180457-packaged-capture-keymodal` | Pause text-size routing | 390x844 / ends 200% / .9 |
+| `20261004-180509-packaged-capture-modalcycle` | Short modal scroll, focused retry visible | 260x200 / ends 200% / .9 |
+
+Both genuine Unreal `WordQuest.Context` tests pass, zero failed/not-run/in-process,
+exit 0, clean matching source in `20261004-180528-automation-initial/Report`.
+UnrealPak extraction uses documented separate `-Extract` directory arguments;
+all ten cooked SVGs match staged/master bytes, with the pak hash unchanged.
+Against PR #41's packaged initial, the final package changes 4,096 pixels only
+inside [788,31,859,106); zero outside changes. Eight fixed face-color samples have
+mean channel error 28.96 before and 7.38 after. Original/baseline/new diagnostics
+and 50% overlay were viewed; art acceptance remains separate from these samples.
+Final PNG SHA-256:
+`58e987aa19fc0250d0ebc5401b068e36f5613dfc9f698abea61b7c0762d93b84`.
+Editor/package captures differ by 964 RGB pixels within [362,38,855,198), at most
+one channel level (Pause plus previously documented plaque variation). Exact cross-
+backend PNG equivalence is not claimed. Raw source/fallback/package/batch/cooked/
+comparison evidence stays under `Artifacts/QA/UI01/PauseMaterial20261004`.
+Subsequent evidence/review/publication records change documentation only.
+
+## Dedicated review
+
+Dedicated read-only review against actual `origin/dev` is pending. The owner
+retains merge authority; review does not replace native/device evidence.
 
 ## Open gates
 

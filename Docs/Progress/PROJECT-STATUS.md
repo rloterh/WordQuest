@@ -17,9 +17,13 @@ The first archive passed Unreal stages but failed its task refresh; a subsequent
 refresh confirms exact coverage. Its cause is unverified because the package
 handler omitted captured stderr. It now records subprocess diagnostics locally
 while preserving failure propagation, bounded retries and unchanged security
-policy/task/ACL. Fresh packaging/cooked/native checks and review are in progress.
-No UI01/UI02/device/release gate
-is marked passed. See [Pause material evidence](../QA/UI01/G-PAUSE-PEARL-RIM.md).
+policy/task/ACL. All 68 Python checks pass. A fresh complete Win64 package passes
+automatic exact firewall coverage on its first attempt. All 49 payload hashes,
+ten cooked SVGs, twelve inspected packaged captures and both Unreal Context tests
+pass at clean `e8dd2fb`. Packaged reference-size differences stay inside Pause only;
+cross-backend one-level color variation is disclosed. Dedicated review is in progress.
+No UI01/UI02/device/release gate is marked passed.
+See [Pause material evidence](../QA/UI01/G-PAUSE-PEARL-RIM.md).
 
 The owner merged [PR #40](https://github.com/rloterh/WordQuest/pull/40) into `dev`
 on 2026-10-04 at 16:07:31 UTC (`d7311ae`). The original-pixel static companion is
