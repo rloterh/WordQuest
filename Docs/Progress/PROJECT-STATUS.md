@@ -14,8 +14,14 @@ original character RGB pixels at their original coordinates/scale. It has a genu
 new Unreal texture, preserving the previous generated source/texture as fallback.
 Import and six-action Editor compilation pass, as do export reproduction, 67 Python
 checks, eight SVG pairs and six original reference hashes. All 10,821 fully opaque
-export pixels match the original exactly. Native/fallback/package checks and dedicated
-review remain pending. Mask edges/scene-color contamination, low source resolution
+export pixels match the original exactly. Both native source and clean packaged
+reference-sized interiors match those same original pixels; changes are confined
+to the companion crop region. Missing candidate restores the prior full screen
+exactly and passes 200% text; its texture is restored byte-for-byte.
+Full Win64 packaging, all 49 payload hashes, ten inspected native packaged captures
+and both Unreal Context tests pass at clean `0d52982`. Automatic firewall coverage
+succeeds on the second bounded retry. Dedicated review remains pending.
+Mask edges/scene-color contamination, low source resolution
 and lack of independently movable layers are disclosed; no UI01/UI02 acceptance.
 See [source-mask evidence](../QA/UI01/G-SPIRIT-SOURCE-MASK.md).
 Physical-device, editorial, accessibility, offline and original release gates remain open.

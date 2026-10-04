@@ -83,7 +83,55 @@ over the entire screen to PR #39's initial baseline. The new owned texture was
 temporarily moved into ignored QA storage and restored in `finally` with exact
 SHA-256; source/old texture remained untouched. Raw metadata:
 `Artifacts/QA/UI01/SpiritRetry20261004/fallback.json`.
-Clean Win64 packaging and dedicated review are pending.
+## Clean package and runtime checks
+
+Tested source: clean `0d529822b3d913765c81b5aecd78a36639c71e59`.
+Full Win64 Development package passes at
+`Artifacts/Packages/Win64/20261004-142310-186663`: warm Editor check (zero actions,
+1.82 seconds), fresh Game compilation/link/metadata (five actions, 43.87 seconds),
+519-package cook with zero errors/warnings, stage/archive and BuildCookRun 120.37
+seconds, all exits 0. Head/worktree/input invariants and all 49 archive size/hash
+checks pass. Manifest SHA-256:
+`58caf6c61e2973557982045aeeca9b6e2c4b56a9c14608f48f5ed67a9ef8d924`.
+Existing automatic firewall task covers the exact new packaged executable at
+14:25:30.9979590 UTC on its second bounded invocation; no security policy or
+privileged installer changes occur here.
+
+Every native run below records clean matching source/package identity, verified
+archive hashes, exit 0 and complete requested dimension/state/cue checks. Every
+PNG was viewed. The high-resolution viewer resized to 1017x2048 for display;
+raw dimensions are verified as 1768x3560. Paths are under `Artifacts/QA/UI01`.
+Safe-zone .9 is a desktop simulation, not physical-phone evidence.
+
+| Run | Proof | Window / text / safe zone |
+| --- | --- | --- |
+| `20261004-142630-packaged-capture-initial` | Reference-sized initial | 884x1780 / 100% / 1 |
+| `20261004-142642-packaged-capture-initial` | High-resolution initial | 1768x3560 / 100% / 1 |
+| `20261004-142653-packaged-capture-initial` | Phone-sized composition | 390x844 / 100% / .9 |
+| `20261004-142703-packaged-capture-initial` | Enlarged reading, scrolling | 390x844 / 200% / .9 |
+| `20261004-142714-packaged-capture-initial` | Narrow initial, scrollable actions | 260x640 / 100% / .9 |
+| `20261004-142725-packaged-capture-initial` | Compact landscape, companion hidden | 844x390 / 100% / .9 |
+| `20261004-142735-packaged-capture-selected` | Selected C with separate cues | 884x1780 / 100% / 1 |
+| `20261004-142746-packaged-capture-correct` | Disabled options and feedback | 884x1780 / 100% / 1 |
+| `20261004-142756-packaged-capture-longselectedfocus` | Long selected B, leading content visible | 260x640 / intrinsic 200% / .9 |
+| `20261004-142807-packaged-capture-keymodal` | Synthetic Pause/text-size routing | 390x844 / ends 200% / .9 |
+
+Both Unreal `WordQuest.Context` tests pass, zero failed/not-run/in-process,
+exit 0, clean source, in `20261004-142941-automation-initial/Report`.
+The final packaged initial PNG matches preflight exactly, including its recorded
+SHA-256. Thus the same 10,821 fully opaque interior correspondence and scoped
+region comparison hold; uncertain edges are excluded from that assertion.
+Original/baseline/final close-ups and the 50% overlay were inspected. Native normal
+and simulated phone-sized composition show the retained original face/lantern;
+high-resolution inspection shows the disclosed source softness. No opaque export
+rectangle or duplicate character is introduced. Mask boundaries/translucent
+contamination and independent animation source remain unaccepted.
+All three new LFS pointers match their actual source/export/Unreal hashes and sizes.
+
+Raw batch/verification/fallback/source evidence is under
+`Artifacts/QA/UI01/SpiritRetry20261004`. Dedicated read-only review against actual
+`origin/dev` remains pending. Subsequent evidence/review/publication documentation
+does not change tested runtime source `0d52982`. The owner retains merge authority.
 
 ## Open gates
 
