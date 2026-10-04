@@ -139,6 +139,8 @@ integration, fallback, staging or diagnostic change. Original-reference integrit
 and whitespace checks passed independently. Unreal builds/runtime/device gates
 were not independently rerun. Subsequent review/publication records are docs only;
 tested package/source remains `e8dd2fb`. The owner retains merge authority.
+Non-draft [PR #42](https://github.com/rloterh/WordQuest/pull/42) is open against
+`dev`; publication adds documentation only after the reviewed head.
 
 ## Open gates
 

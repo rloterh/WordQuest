@@ -26,6 +26,8 @@ against actual `dev` found no actionable introduced defects; reference integrity
 and whitespace checks passed independently. Subsequent review/publication records
 change docs only; tested package/source remains `e8dd2fb`.
 No UI01/UI02/device/release gate is marked passed.
+Non-draft [PR #42](https://github.com/rloterh/WordQuest/pull/42) is open against
+`dev`; the owner retains the merge decision.
 See [Pause material evidence](../QA/UI01/G-PAUSE-PEARL-RIM.md).
 
 The owner merged [PR #40](https://github.com/rloterh/WordQuest/pull/40) into `dev`
