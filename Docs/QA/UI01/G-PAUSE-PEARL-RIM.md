@@ -64,8 +64,16 @@ complete applicable checks; all PNGs were viewed. The SVG and original genuine
 texture were restored byte-for-byte; source/provenance hashes remain intact.
 Earlier fallback runs before the normal-border refinement are retained separately.
 
-All 67 Python checks pass again after the native border correction. Clean Win64
-packaging/cooked bytes/native captures, genuine Unreal tests and dedicated
+All 67 Python checks pass again after the native border correction. First clean
+package `20261004-175042-485258` at `e1b08f9` passed Unreal build/cook/archive but
+failed its protected-task refresh; its manifest remains incomplete. The same
+helper subsequently confirmed exact coverage at 17:56:35.9026055 UTC, first attempt.
+The first failure's stderr was omitted by the existing package exception handler,
+so its cause is unverified. The helper now preserves captured subprocess exit,
+stdout and stderr in local failure evidence. Failure propagation, bounded retry,
+protected task/ACL and firewall policy are unchanged. A negative-path fixture
+test checks those diagnostics survive without a successful package verdict.
+Fresh clean packaging/cooked/native checks, genuine Unreal tests and dedicated
 read-only review remain in progress. Raw evidence stays local under
 `Artifacts/QA/UI01/PauseMaterial20261004`.
 

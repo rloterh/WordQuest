@@ -13,7 +13,12 @@ samples are closer. A faint unfocused native border was corrected without changi
 focus/hover/press styles. Missing SVG restores the prior Editor screen exactly;
 missing both art paths retains native fill/bars and focused Pause. All art is
 restored byte-for-byte. Ten staged SVG pairs and six immutable references pass.
-Clean packaging/cooked/native checks and dedicated review are in progress. No UI01/UI02/device/release gate
+The first archive passed Unreal stages but failed its task refresh; a subsequent
+refresh confirms exact coverage. Its cause is unverified because the package
+handler omitted captured stderr. It now records subprocess diagnostics locally
+while preserving failure propagation, bounded retries and unchanged security
+policy/task/ACL. Fresh packaging/cooked/native checks and review are in progress.
+No UI01/UI02/device/release gate
 is marked passed. See [Pause material evidence](../QA/UI01/G-PAUSE-PEARL-RIM.md).
 
 The owner merged [PR #40](https://github.com/rloterh/WordQuest/pull/40) into `dev`
