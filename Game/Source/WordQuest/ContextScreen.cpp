@@ -387,7 +387,10 @@ void UContextScreen::Build()
     }
     HintSkin = Picture(TEXT("HintSkin"), TEXT("/Game/UI/G/G_HintSkin.G_HintSkin"));
     SubmitSkin = Picture(TEXT("SubmitSkin"), TEXT("/Game/UI/G/G_CheckSkin.G_CheckSkin"));
-    PauseSkin = Picture(TEXT("PauseSkin"), TEXT("/Game/UI/G/G_PauseSkin.G_PauseSkin"));
+    PauseSkin = VectorPicture(TEXT("PauseSkin"), TEXT("G_PauseSurface.svg"), FVector2D(71, 75));
+    bVectorPauseSkin = PauseSkin->GetVisibility() != ESlateVisibility::Collapsed;
+    if (!bVectorPauseSkin)
+        PauseSkin = Picture(TEXT("PauseSkinFallback"), TEXT("/Game/UI/G/G_PauseSkin.G_PauseSkin"));
     auto ActionBox = [](UImage* Image, float HorizontalMargin)
     {
         auto Brush = Image->GetBrush();
@@ -407,7 +410,8 @@ void UContextScreen::Build()
     // Runtime framing excludes export padding; unchanged masters/provenance live in ArtSource.
     FrameSkin(HintSkin, FVector2f(86.f / 1998, 125.f / 787), FVector2f(1908.f / 1998, 646.f / 787));
     FrameSkin(SubmitSkin, FVector2f(108.f / 1983, 151.f / 793), FVector2f(1876.f / 1983, 627.f / 793));
-    FrameSkin(PauseSkin, FVector2f(96.f / 1254, 100.f / 1254), FVector2f(1159.f / 1254, 1129.f / 1254));
+    if (!bVectorPauseSkin)
+        FrameSkin(PauseSkin, FVector2f(96.f / 1254, 100.f / 1254), FVector2f(1159.f / 1254, 1129.f / 1254));
     Canvas->AddChild(HintSkin);
     Canvas->AddChild(HintButton);
     Canvas->AddChild(SubmitSkin);
@@ -824,7 +828,7 @@ void UContextScreen::StyleButtons()
     {
         const bool Focused = B->HasKeyboardFocus();
         auto* Skin = ButtonSkin(B);
-        const bool HasSkin = Skin && Skin->GetBrush().GetResourceObject();
+        const bool HasSkin = Skin && ((B == PauseButton && bVectorPauseSkin) || Skin->GetBrush().GetResourceObject());
         if (Skin)
         {
             Skin->SetVisibility(HasSkin ? ESlateVisibility::HitTestInvisible : ESlateVisibility::Collapsed);
@@ -843,11 +847,15 @@ void UContextScreen::StyleButtons()
         if (SkinnedAnswer) Radius = 44 * Scale;
         const float NormalOutline = (SkinnedAction || SkinnedAnswer) && !Focused && !Selected
             ? 0.f : (Focused || Selected ? 4.f : 2.f);
+        // A zero-width colored outline still leaves antialiased edge pixels in
+        // the rounded-box shader. The vector Pause already supplies its rim.
+        const auto NormalBorder = B == PauseButton && bVectorPauseSkin && !Focused
+            ? FLinearColor::Transparent : Border;
         FButtonStyle Style;
-        Style.SetNormal(FSlateRoundedBoxBrush(FillColor, Radius, Border, NormalOutline));
+        Style.SetNormal(FSlateRoundedBoxBrush(FillColor, Radius, NormalBorder, NormalOutline));
         Style.SetHovered(FSlateRoundedBoxBrush(HasSkin ? FLinearColor(.9f, .86f, 1, .16f) : (Primary ? Violet * .8f : FLinearColor(.78f, .73f, 1)), Radius, Focused ? Ink : Gold, Focused ? 4.f : 3.f));
         Style.SetPressed(FSlateRoundedBoxBrush(HasSkin ? FLinearColor(.22f, .16f, .5f, .16f) : (Primary ? Violet * .6f : FLinearColor(.64f, .58f, .91f)), Radius, Ink, 3.f));
-        Style.SetDisabled(FSlateRoundedBoxBrush(FillColor, Radius, Border,
+        Style.SetDisabled(FSlateRoundedBoxBrush(FillColor, Radius, NormalBorder,
             SkinnedAction || (SkinnedAnswer && !Selected) ? 0.f : 2.f));
         const float HorizontalPadding = (B == PauseButton ? 8 : 24) * Scale;
         Style.SetNormalPadding(FMargin(HorizontalPadding, 5 * Scale));
