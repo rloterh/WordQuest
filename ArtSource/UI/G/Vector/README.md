@@ -1,5 +1,16 @@
 # G vector icon and divider candidates
 
+## Editable Check surface
+
+`G-Check-Surface-v001.svg` is a blank 388x113 violet/pale-gold surface with soft
+bevel and four static glints. It renders at 2x using the same development-only
+resvg renderer (`python Tools/AssetImport/render_g_check_surface.py --check`).
+Unreal imports the PNG as `G_CheckReverie`; native nine-slice scaling preserves
+the live label/star, controls and earlier generated texture fallback. This PNG
+pipeline adds no staged runtime SVG pair. Provenance and native/package evidence
+are in `G-Check-Surface-v001-PROVENANCE.json` and `Docs/QA/UI01/G-CHECK-SURFACE.md`.
+The simplified material remains an unapproved reconstruction.
+
 ## Refined answer badge
 
 `G-Answer-Badge-v002.svg` stages as `G_AnswerBadge.svg`. It preserves the 70x70

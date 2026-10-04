@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="388" height="113" viewBox="0 0 388 113">
+  <title>G Check surface candidate; violet face and pale gold, no baked label or icon</title>
+  <defs>
+    <linearGradient id="gold" x1="0" y1="2" x2="0" y2="110" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff4de"/><stop offset=".14" stop-color="#d8b78f"/><stop offset=".46" stop-color="#fff0c9"/><stop offset=".72" stop-color="#b99870"/><stop offset=".94" stop-color="#f4d7ac"/><stop offset="1" stop-color="#fff1d6"/>
+    </linearGradient>
+    <linearGradient id="violet" x1="0" y1="8" x2="0" y2="105" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#9479ef"/><stop offset=".19" stop-color="#6243d7"/><stop offset=".53" stop-color="#30238d"/><stop offset=".78" stop-color="#302693"/><stop offset=".93" stop-color="#3b35b0"/><stop offset="1" stop-color="#6552cf"/>
+    </linearGradient>
+    <linearGradient id="edgeLight" x1="0" y1="8" x2="0" y2="106" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#e9dfff"/><stop offset=".12" stop-color="#bfb2ff"/><stop offset=".42" stop-color="#8a70db"/><stop offset=".74" stop-color="#7562cc"/><stop offset="1" stop-color="#b4a4f4"/>
+    </linearGradient>
+    <radialGradient id="upperWash" cx="315" cy="18" r="80" gradientTransform="translate(0 7.2) scale(1 .6)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#b390ff" stop-opacity=".46"/><stop offset="1" stop-color="#ad88ff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="leftWash" cx="49" cy="97" r="68" gradientTransform="translate(0 19.4) scale(1 .8)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#667bff" stop-opacity=".58"/><stop offset="1" stop-color="#7180ff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="rightWash" cx="344" cy="95" r="60" gradientTransform="translate(0 19) scale(1 .8)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6274f7" stop-opacity=".36"/><stop offset="1" stop-color="#6274f7" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glint"><stop stop-color="#eee8ff" stop-opacity=".80"/><stop offset=".18" stop-color="#b5adff" stop-opacity=".50"/><stop offset="1" stop-color="#aaa0ff" stop-opacity="0"/></radialGradient>
+    <clipPath id="face"><rect x="8" y="9" width="372" height="95" rx="46.5"/></clipPath>
+    <linearGradient id="bevel" x1="0" y1="10" x2="0" y2="103" gradientUnits="userSpaceOnUse"><stop stop-color="#fff5ff" stop-opacity=".60"/><stop offset=".12" stop-color="#d7bdff" stop-opacity=".24"/><stop offset=".38" stop-color="#bdb4ff" stop-opacity="0"/><stop offset=".76" stop-color="#817aff" stop-opacity=".08"/><stop offset="1" stop-color="#a8aaff" stop-opacity=".60"/></linearGradient>
+    <filter id="softEdge" x="-10%" y="-40%" width="120%" height="180%" color-interpolation-filters="sRGB"><feGaussianBlur stdDeviation="1.8"/></filter>
+    <filter id="rimSoft" x="-10%" y="-40%" width="120%" height="180%" color-interpolation-filters="sRGB"><feGaussianBlur stdDeviation=".5"/></filter>
+  </defs>
+  <rect x="1.5" y="3" width="385" height="108" rx="54" fill="#766279" fill-opacity=".35"/>
+  <rect x="1.5" y="1.5" width="385" height="108" rx="54" fill="#67517e" stroke="#867189" stroke-width="1"/>
+  <rect x="3.5" y="3.5" width="381" height="104" rx="52" fill="#665185" stroke="url(#gold)" stroke-width="3.1" filter="url(#rimSoft)"/>
+  <rect x="6.2" y="6.2" width="375.6" height="98.6" rx="49.3" fill="#503888" stroke="#f3e3d6" stroke-width="1.1"/>
+  <rect x="8" y="9" width="372" height="95" rx="46.5" fill="url(#violet)"/>
+  <g clip-path="url(#face)">
+    <rect x="8" y="9" width="372" height="95" fill="url(#upperWash)"/>
+    <rect x="8" y="9" width="372" height="95" fill="url(#leftWash)"/>
+    <rect x="8" y="9" width="372" height="95" fill="url(#rightWash)"/>
+    <circle cx="45" cy="83" r="9" fill="url(#glint)"/>
+    <circle cx="346" cy="93" r="6" fill="url(#glint)" opacity=".55"/>
+    <circle cx="80" cy="72" r="3" fill="url(#glint)" opacity=".55"/>
+    <circle cx="327" cy="40" r="2.5" fill="url(#glint)" opacity=".30"/>
+    <path d="M27 76 Q33 94 57 94 M341 94 Q358 91 366 73" fill="none" stroke="#8fa4ff" stroke-width="2.4" opacity=".25" filter="url(#softEdge)"/>
+    <rect x="10.7" y="11.7" width="366.6" height="89.6" rx="44.8" fill="none" stroke="url(#bevel)" stroke-width="4.6" filter="url(#softEdge)"/>
+  </g>
+  <rect x="8" y="9" width="372" height="95" rx="46.5" fill="none" stroke="url(#edgeLight)" stroke-width="1.8"/>
+  <path d="M58 10.5 H330" fill="none" stroke="#fff4ff" stroke-width="1.1" opacity=".42" filter="url(#rimSoft)"/>
+</svg>

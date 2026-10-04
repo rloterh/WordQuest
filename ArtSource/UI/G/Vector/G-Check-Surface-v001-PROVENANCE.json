@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-04",
+  "status": "authored_static_reconstruction_candidate_acceptance_pending",
+  "master": "ArtSource/UI/G/Vector/G-Check-Surface-v001.svg",
+  "master_sha256": "e4e882c66713dc5bfd77b2ecbf791bbdb19c6a06c4312ea0529ea1431b9133ec",
+  "export": "ArtSource/UI/G/Exports/G-Check-Surface-v001.png",
+  "export_sha256": "3a7faea0e1787cc77047855da00f4882f5969f6751004bc4eff08d24ba5967a7",
+  "export_dimensions": [776, 226],
+  "unreal_asset": "Game/Content/UI/G/G_CheckReverie.uasset",
+  "unreal_asset_sha256": "c03d1b106e9bb64c31dd58502da45f7a6aceaf65067258e1f71b4ceaf7c857ca",
+  "reference": "Planning/WordQuest-UI-Realms-Addendum/references/G-Celestial-Reverie-Gameplay.png",
+  "reference_sha256": "306dae4f6352749edcf1d8edf73f26339a4ba6407b4a394ec50b5898418bedae",
+  "canvas": [388, 113],
+  "method": "Hand-authored SVG gradients, explicit geometry, soft filtered bevel and four static glints. Rendered with development-only resvg-py 0.5.0 / resvg 0.48.1. Real Unreal texture commandlet import, sRGB UI group/compression, bilinear, no mips/streaming. No imagegen or supplied-reference pixel extraction/editing.",
+  "native": "Full export UVs, existing nine-slice margins .145 horizontal / .45 vertical, existing 388x113 responsive reference slot. Blank decoration beneath separate live Check label/star and native button. No behavior changes.",
+  "fallback": {
+    "source": "ArtSource/UI/G/Reconstruction/G-Check-Skin-v001-Candidate.png",
+    "source_sha256": "45a237ed49cab0385fadd70649f3c775271cd2fe2f2ae82bc0dfbb03ca8e33ec",
+    "asset": "Game/Content/UI/G/G_CheckSkin.uasset",
+    "asset_sha256": "41c7f5557d14b8b3c163dec3f8d2bc20af86d74ee66d158a20342037ab37ccfd",
+    "uv_half_open_source_pixels": [108, 151, 1876, 627],
+    "source_dimensions": [1983, 793],
+    "limits": "Previous source/texture preserved unchanged. Missing authored texture restores prior generated surface; missing both retains ordinary live native control."
+  },
+  "limits": "Simpler static shading/glints than reference; exact bevel, gold finish, material fidelity and full UI01 acceptance remain open. No motion/device/manual accessibility/editorial/offline/performance/release qualification.",
+  "qa": "Docs/QA/UI01/G-CHECK-SURFACE.md"
+}

@@ -2,33 +2,19 @@
 
 ## Current stage: native static G implementation; acceptance incomplete
 
-The owner merged [PR #41](https://github.com/rloterh/WordQuest/pull/41) into `dev`
-on 2026-10-04 at 16:59:11 UTC (`a248b2c`). Editable progress decoration is integrated.
-The next bounded UI01 correction replaces the generated Pause background with a
-hand-authored SVG on `feature/g-pause-pearl-rim`: softer blue-violet lighting and
-a pale-gold rim. The native button, separate bars/icon, semantic label, layout,
-48-unit minimum, focus/hover/press behavior and original texture fallback remain.
-The real Editor builds and 67 existing Python checks pass; fixed native face-color
-samples are closer. A faint unfocused native border was corrected without changing
-focus/hover/press styles. Missing SVG restores the prior Editor screen exactly;
-missing both art paths retains native fill/bars and focused Pause. All art is
-restored byte-for-byte. Ten staged SVG pairs and six immutable references pass.
-The first archive passed Unreal stages but failed its task refresh; a subsequent
-refresh confirms exact coverage. Its cause is unverified because the package
-handler omitted captured stderr. It now records subprocess diagnostics locally
-while preserving failure propagation, bounded retries and unchanged security
-policy/task/ACL. All 68 Python checks pass. A fresh complete Win64 package passes
-automatic exact firewall coverage on its first attempt. All 49 payload hashes,
-ten cooked SVGs, twelve inspected packaged captures and both Unreal Context tests
-pass at clean `e8dd2fb`. Packaged reference-size differences stay inside Pause only;
-cross-backend one-level color variation is disclosed. Dedicated read-only review
-against actual `dev` found no actionable introduced defects; reference integrity
-and whitespace checks passed independently. Subsequent review/publication records
-change docs only; tested package/source remains `e8dd2fb`.
-No UI01/UI02/device/release gate is marked passed.
-Non-draft [PR #42](https://github.com/rloterh/WordQuest/pull/42) is open against
-`dev`; the owner retains the merge decision.
-See [Pause material evidence](../QA/UI01/G-PAUSE-PEARL-RIM.md).
+The owner merged [PR #42](https://github.com/rloterh/WordQuest/pull/42) into `dev`
+on 2026-10-04 at 18:30:42 UTC (`39d757f`). The editable Pause surface and package
+failure diagnostics are integrated. Its clean package at `e8dd2fb`, twelve inspected
+captures, 68 Python checks, two Unreal tests and read-only review are recorded in
+[Pause material evidence](../QA/UI01/G-PAUSE-PEARL-RIM.md). The intermittent protected
+task failure's cause remains unverified; its diagnostic loss was corrected.
+
+The next bounded UI01 refinement on `feature/g-check-surface-pearl` reconstructs
+the Check surface with an editable violet/pale-gold SVG and genuine imported
+texture. The label, separate star, native focus/input, responsive nine-slice layout
+and generated texture fallback remain. The real Editor build passes; native
+comparison, enlarged/focused layouts, fallback checks and clean package evidence
+are in progress. No UI01/UI02/device/release gate is marked passed.
 
 The owner merged [PR #40](https://github.com/rloterh/WordQuest/pull/40) into `dev`
 on 2026-10-04 at 16:07:31 UTC (`d7311ae`). The original-pixel static companion is
