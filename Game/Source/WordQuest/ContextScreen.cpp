@@ -262,11 +262,16 @@ void UContextScreen::Build()
         Brand->SetVisibility(ESlateVisibility::Collapsed);
     }
     Canvas->AddChild(BrandMark);
-    ProgressPlaque = Picture(TEXT("ProgressPlaque"), TEXT("/Game/UI/G/G_ProgressPlaque.G_ProgressPlaque"));
-    auto PlaqueBrush = ProgressPlaque->GetBrush();
-    // Frame the generated core without editing its raster master.
-    PlaqueBrush.SetUVRegion(FBox2f(FVector2f(34.f / 2141, 94.f / 734), FVector2f(2108.f / 2141, 608.f / 734)));
-    ProgressPlaque->SetBrush(PlaqueBrush);
+    ProgressPlaque = VectorPicture(TEXT("ProgressPlaque"), TEXT("G_ProgressPlaque.svg"), FVector2D(178, 61));
+    bVectorProgressPlaque = ProgressPlaque->GetVisibility() != ESlateVisibility::Collapsed;
+    if (!bVectorProgressPlaque)
+    {
+        ProgressPlaque = Picture(TEXT("ProgressPlaqueFallback"), TEXT("/Game/UI/G/G_ProgressPlaque.G_ProgressPlaque"));
+        auto PlaqueBrush = ProgressPlaque->GetBrush();
+        // Preserve the previous generated texture and framing as the fallback.
+        PlaqueBrush.SetUVRegion(FBox2f(FVector2f(34.f / 2141, 94.f / 734), FVector2f(2108.f / 2141, 608.f / 734)));
+        ProgressPlaque->SetBrush(PlaqueBrush);
+    }
     Canvas->AddChild(ProgressPlaque);
     Progress = Text(TEXT("Progress"), TEXT("3 / 7"));
     Progress->SetColorAndOpacity(FLinearColor::White);
@@ -583,7 +588,7 @@ void UContextScreen::Layout(FVector2D Size)
         Place(Spirit, 82 + (207 - SpiritW) * .5f, (Hero == 521 ? 276 : 85) + (185 - SpiritH) * .5f, SpiritW, SpiritH);
     }
     Spirit->SetVisibility(Hero == 521 ? ESlateVisibility::HitTestInvisible : ESlateVisibility::Collapsed);
-    ProgressPlaque->SetVisibility(Hero == 521 && ProgressPlaque->GetBrush().GetResourceObject()
+    ProgressPlaque->SetVisibility(Hero == 521 && (bVectorProgressPlaque || ProgressPlaque->GetBrush().GetResourceObject())
         ? ESlateVisibility::HitTestInvisible : ESlateVisibility::Collapsed);
     Progress->SetVisibility(Hero == 521 ? ESlateVisibility::HitTestInvisible : ESlateVisibility::Collapsed);
     const float ModePixels = ReadingFont ? 25.f : 28.f;

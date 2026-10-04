@@ -146,6 +146,15 @@ No raster edit, new font or original-lettering acceptance is claimed.
 No rights clearance beyond supplied-reference provenance is established. Release
 clearance and faithful-art acceptance remain open.
 
+The ninth staged resource is `G-Progress-Plaque-v001.svg`: a blank, hand-authored
+178x61 progress decoration with curved shoulders, softly shaded purple face and
+thin pale-gold bevel. `G_ProgressPlaque.svg` is its byte-identical runtime copy.
+The separate native `3 / 7` remains live and semantically labelled. Missing SVG
+retains the previous generated texture with its exact framing; compact landscape
+hides both decoration and progress. Earlier plaque master/texture are preserved.
+See `G-Progress-Plaque-v001-PROVENANCE.json` and
+`Docs/QA/UI01/G-PROGRESS-PLAQUE-MATERIAL.md`; full art/device gates remain open.
+
 Divider revision v002 preserves both v001 masters and all path coordinates/canvas
 sizes. Explicit-percentage SVG gradients shade the tapered lines and star bevel;
 an ivory upper facet and darker lower facet supply directional light. Staging uses

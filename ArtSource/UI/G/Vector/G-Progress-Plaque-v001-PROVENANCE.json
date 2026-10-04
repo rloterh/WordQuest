@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-04",
+  "status": "authored_static_reconstruction_candidate_acceptance_pending",
+  "master": "ArtSource/UI/G/Vector/G-Progress-Plaque-v001.svg",
+  "runtime": "Game/Content/UI/G/Vector/G_ProgressPlaque.svg",
+  "sha256": "4b1f8e673307e376056742827f27eebc60bdb5573951d56ad9207b814db655e3",
+  "reference": "Planning/WordQuest-UI-Realms-Addendum/references/G-Celestial-Reverie-Gameplay.png",
+  "reference_sha256": "306dae4f6352749edcf1d8edf73f26339a4ba6407b4a394ec50b5898418bedae",
+  "canvas": [178, 61],
+  "reference_slot_xywh": [352, 169, 178, 61],
+  "method": "Hand-authored explicit SVG paths and percentage gradients; native FSlateVectorImageBrush rasterization through the installed Unreal NanoSVG renderer. No raster edit, imagegen, extracted original pixels or new binary Unreal asset.",
+  "content": "Blank decoration only. The separate native live label remains the draft prototype value 3 / 7, with unchanged font, centering, shadow and accessibility label.",
+  "fallback": {
+    "source": "ArtSource/UI/G/Reconstruction/G-Progress-Plaque-v002-Candidate.png",
+    "source_sha256": "ceca26d93eeb5568b956bdbffdad56298f61659dc7d80ba6387ee5f6cedc8c30",
+    "unreal_asset": "Game/Content/UI/G/G_ProgressPlaque.uasset",
+    "unreal_asset_sha256": "303509c9be802fd1e5fafa9652c90ecc3c16a4d3e5c80c5486cc42af29a761f6",
+    "uv_half_open_source_pixels": [34, 94, 2108, 608],
+    "limits": "Preserved byte-for-byte. Missing SVG uses prior texture; missing both leaves native progress text. Both plaque and text remain hidden in compact landscape."
+  },
+  "limits": "Candidate only. Exact contour, bevel, texture softness, live progress type metrics, full UI01 fidelity and all UI02/manual/device/release gates remain open.",
+  "qa": "Docs/QA/UI01/G-PROGRESS-PLAQUE-MATERIAL.md"
+}
