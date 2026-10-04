@@ -23,6 +23,8 @@ at `baa03aa`, reviewed head `dda891c`, found no actionable introduced defects;
 review head/worktree remained unchanged. Review/publication changes are docs only.
 No UI01/UI02/manual-pointer/device/release gate is marked passed.
 See [pointer proof](../QA/UI01/G-POINTER-ROUTING.md).
+Non-draft [PR #44](https://github.com/rloterh/WordQuest/pull/44) is open against
+`dev` for owner review/merge; merging will not accept the remaining gates.
 
 The owner merged [PR #42](https://github.com/rloterh/WordQuest/pull/42) into `dev`
 on 2026-10-04 at 18:30:42 UTC (`39d757f`). The editable Pause surface and package

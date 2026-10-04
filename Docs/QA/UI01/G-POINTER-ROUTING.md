@@ -154,6 +154,8 @@ no actionable introduced defects and independently passes all 14 pointer tests.
 It does not independently rerun Unreal builds, visual fidelity or device checks;
 those evidence boundaries remain unchanged. Tested runtime source remains
 `e7a343e`; subsequent commits update documentation only. Owner retains merge.
+Non-draft [PR #44](https://github.com/rloterh/WordQuest/pull/44) is published against
+`dev`. No merge is performed by the implementation or review helper.
 
 ## Open gates
 
