@@ -37,6 +37,14 @@ preserve the reference's actual identity; UI01 and UI02 acceptance remain open.
 
 ## Concrete art handoff
 
+Clarification after the owner's retry request on 2026-10-04: closer original-pixel
+inspection shows substantial gold banding and a tiny pink mouth detail already
+present in the original. The earlier "thin" / "no tongue" prompt was overly
+restrictive; those features alone should not be rejection criteria. The candidate
+remains discarded, not imported: it is a redrawn approximation with alpha residue,
+not demonstrated original-pixel extraction. New evidence and the source-mask
+alternative are recorded in `Docs/QA/UI01/G-SPIRIT-SOURCE-MASK.md`.
+
 Reconstruct the original upper-left spirit in its x82/y276, 207x185 region;
 the original gameplay PNG above remains the sole identity authority, with no
 new character design. Match the face/eye spacing and tiny smile, thin circlet,

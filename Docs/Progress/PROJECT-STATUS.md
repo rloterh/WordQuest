@@ -2,6 +2,35 @@
 
 ## Current stage: native static G implementation; acceptance incomplete
 
+The owner merged [PR #39](https://github.com/rloterh/WordQuest/pull/39) into `dev`
+on 2026-10-04 at 13:18:57 UTC (`51b6241`). Badge refinement is integrated.
+The owner requested a companion retry and authorized a better alternative if the
+built-in imagegen result was unsuitable. A close-up background-removal retry still
+redrew details and left alpha residue. Inspection also corrected overly restrictive
+earlier prompt assumptions: the original has substantial gold banding and a tiny
+pink mouth detail; those features alone are not defects.
+On `feature/g-spirit-reference-retry`, an editable static SVG mask now uses the
+original character RGB pixels at their original coordinates/scale. It has a genuine
+new Unreal texture, preserving the previous generated source/texture as fallback.
+Import and six-action Editor compilation pass, as do export reproduction, 67 Python
+checks, eight SVG pairs and six original reference hashes. All 10,821 fully opaque
+export pixels match the original exactly. Both native source and clean packaged
+reference-sized interiors match those same original pixels; changes are confined
+to the companion crop region. Missing candidate restores the prior full screen
+exactly and passes 200% text; its texture is restored byte-for-byte.
+Full Win64 packaging, all 49 payload hashes, ten inspected native packaged captures
+and both Unreal Context tests pass at clean `0d52982`. Automatic firewall coverage
+succeeds on the second bounded retry. Dedicated read-only review against actual
+`dev` found no actionable introduced defects. Its optional reproduction attempt
+could not read the ignored renderer dependency folder; main-session byte-exact
+reproduction passed again. Subsequent review/publication records are docs only.
+Non-draft [PR #40](https://github.com/rloterh/WordQuest/pull/40) is open against
+`dev`; the owner retains merge authority.
+Mask edges/scene-color contamination, low source resolution
+and lack of independently movable layers are disclosed; no UI01/UI02 acceptance.
+See [source-mask evidence](../QA/UI01/G-SPIRIT-SOURCE-MASK.md).
+Physical-device, editorial, accessibility, offline and original release gates remain open.
+
 The owner merged [PR #38](https://github.com/rloterh/WordQuest/pull/38) into `dev`
 on 2026-10-03 at 17:49:26 UTC (`04a14fb`). Answer bevel and bounded firewall
 receipt retries are integrated. A third built-in companion extraction was inspected
@@ -21,8 +50,8 @@ all 11 inspected packaged captures and both Unreal Context tests pass at clean
 Final native pixels match preflight. Dedicated read-only review against actual
 `dev` found no actionable introduced defects. Subsequent evidence/review/publication
 documentation does not change the tested runtime source.
-Non-draft [PR #39](https://github.com/rloterh/WordQuest/pull/39) is open against
-`dev` for owner review/merge of this bounded badge correction and art handoff.
+The owner merged non-draft [PR #39](https://github.com/rloterh/WordQuest/pull/39)
+into `dev`.
 See [badge refinement evidence](../QA/UI01/G-ANSWER-BADGE-SOFTNESS.md).
 Full UI01 fidelity, UI02 motion and physical-device/release gates remain open.
 

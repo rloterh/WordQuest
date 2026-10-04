@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="228" height="205" viewBox="0 0 228 205">
+  <!-- Editable static alpha mask over unchanged original RGB pixels. -->
+  <defs>
+    <filter id="edge" x="0" y="0" width="228" height="205" filterUnits="userSpaceOnUse"><feGaussianBlur stdDeviation="0.35"/></filter>
+    <mask id="spirit" x="0" y="0" width="228" height="205" maskUnits="userSpaceOnUse">
+      <g fill="white" filter="url(#edge)">
+        <path id="top-wisp" d="M77 34 C75 29 80 24 87 26 C91 26 90 33 96 35 C113 43 125 22 140 17 C158 8 174 15 176 29 C177 35 175 41 171 45 C168 48 161 52 155 50 C140 49 132 43 121 41 C108 38 98 39 91 35 C86 28 82 29 80 32 Z"/>
+        <path id="body" d="M110 60 C111 54 122 50 128 50 L132 49 C143 45 155 46 156 41 L158 35 L162 34 L164 40 L167 44 C173 49 187 55 193 68 C198 77 199 87 198 98 C198 119 183 129 161 130 C162 138 164 142 168 143 C173 144 174 148 169 150 C165 152 161 149 157 148 C155 157 147 164 138 165 C130 169 122 166 114 166 L105 163 C100 165 95 164 93 164 L91 164 L92 161 L95 155 C91 159 87 161 83 162 C67 168 53 155 50 143 C48 132 49 120 42 115 C34 111 25 117 25 124 C25 128 27 130 31 129 L32 131 C26 136 17 136 13 130 C7 119 13 106 23 101 C33 96 43 99 49 103 C54 107 67 110 77 105 C92 101 101 91 108 78 C95 94 81 96 68 95 C56 94 51 87 50 79 C49 74 47 73 45 75 L42 80 C39 75 40 68 47 65 C58 60 63 66 69 73 C80 85 95 86 108 71 Z"/>
+        <path id="lantern" d="M119 122 C124 121 131 125 134 128 L136 130 L142 132 L147 136 L145 139 L142 140 L137 179 L141 181 L140 184 L125 189 L120 192 L117 199 L114 197 L113 191 L112 190 L108 189 L103 187 L100 186 L96 184 L96 181 L99 180 L101 139 L99 139 L97 137 L97 135 L103 133 L110 129 L115 125 Z"/>
+      </g>
+    </mask>
+  </defs>
+  <image href="../SourcePixels/G-Spirit-Reference-Detail-v001.png" width="228" height="205" mask="url(#spirit)"/>
+</svg>
