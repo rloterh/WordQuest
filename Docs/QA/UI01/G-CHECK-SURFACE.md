@@ -142,7 +142,19 @@ benefit of this increment is editable art ownership and a reproducible import
 pipeline with preserved live controls/fallbacks, not completion of UI01.
 
 Subsequent evidence/review/publication records change docs only; tested source/art
-remains `905b475`. Dedicated read-only review against actual `origin/dev` is pending.
+remains `905b475`.
+
+## Internal PR review
+
+Dedicated read-only Codex review at `Artifacts/Reviews/20261004-211606` completed
+with exit 0 against actual `origin/dev`, base
+`39d757f88dc1cccc2396250196b6c0cec552b6fc`, clean reviewed head
+`f5c174245373155a43810bb31899703b891a3007`. HEAD/worktree are unchanged during
+review. No actionable introduced defects were found in the Check integration,
+fallback handling or asset tooling. Reference integrity verification passed
+independently; Unreal builds, runtime captures and device gates were not independently
+rerun. Subsequent changes record review/publication only. The owner retains merge
+authority; review does not accept the visual tradeoffs or pass any original gate.
 
 ## Open gates
 

@@ -19,7 +19,9 @@ cooked SVGs and the cooked Check IoStore entry verify; automatic scoped firewall
 coverage passes on its first attempt. Changes stay inside Check. The reconstructed
 material has simpler gloss/texture; eight face samples worsen slightly (9.08 to
 9.88), so no overall fidelity improvement or acceptance is claimed. Source/export/
-texture provenance matches. Read-only PR review is pending. See
+texture provenance matches. Dedicated read-only review against actual `dev` found
+no actionable introduced defects; original reference integrity passed independently.
+Review/publication updates are docs only; tested source/art remains `905b475`. See
 [Check surface evidence](../QA/UI01/G-CHECK-SURFACE.md).
 No UI01/UI02/device/release gate is marked passed.
 
