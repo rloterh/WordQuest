@@ -64,8 +64,71 @@ The parity helper correctly failed while absent. Raw record:
 `Artifacts/QA/UI01/BadgeMaterial/fallback.json`. This is a dirty Editor omission
 test, not packaged corruption or manual/device accessibility acceptance.
 
+## Clean packaged verification
+
+Tested runtime/package source: clean
+`5bb13608ab8287a6f4c5016cf11cbb539fd8f49a`.
+`python Tools/BuildScripts/package_g_win64.py` passes the real Editor/Game checks
+with zero actions (2.59/3.01 seconds; no fresh C++ compilation is claimed).
+Full Win64 Development build/cook/stage/archive passes; 518 packages,
+zero cook errors/warnings, BuildCookRun 160.51 seconds. Package:
+`Artifacts/Packages/Win64/20261004-122858-730711`.
+Manifest SHA-256:
+`f4d8b5dbcc0b83986f6749476065f890f7b711e6a9a6bc5db792a472713863ef`.
+Head/worktree/input invariants and all 49 payload size/hash checks pass.
+Automatic local firewall refresh covers the exact new packaged executable at
+12:32:47.0458184 UTC on the second identical bounded task invocation; no new
+firewall policy, protected task or privileged installer is changed here.
+
+Corrected UnrealPak extraction exits 0; all 876 badge bytes match master/runtime,
+with the recorded hash. The first verification command mistakenly used
+`-Extract=directory`; this tool treated it as creation and refused the existing
+pak (exit 1). That failed log is retained as `BadgeExtract.log`. Using the
+documented separate arguments `-Extract <directory>` succeeds, recorded in
+`BadgeExtract-corrected.log`. All archive hashes were rechecked before the
+corrected invocation, and the pak hash remains unchanged afterward.
+The failed verification command is not a failed application build or accepted
+extraction result. Raw verification script/result:
+`Artifacts/QA/UI01/BadgeMaterial/verify.py` and `verification.json`.
+
+All runs below exit 0, verify the matching package hashes, pass their requested
+state/dimension/native cue checks and record clean `5bb1360` source. Every PNG
+was viewed, including the actual high-resolution image (the viewer displayed a
+1017x2048 resize; raw dimensions are 1768x3560). Runs live under
+`Artifacts/QA/UI01`; .9 denotes simulated safe-zone ratio, not a phone inset test.
+
+| Run | Proof | Window / text / safe zone |
+| --- | --- | --- |
+| `20261004-123324-packaged-capture-initial` | Unselected initial | 884x1780 / 100% / 1 |
+| `20261004-123347-packaged-capture-selected` | Selected C, separate ring/marker | 884x1780 / 100% / 1 |
+| `20261004-123402-packaged-capture-correct` | Correct A, disabled options, explanation | 884x1780 / 100% / 1 |
+| `20261004-123417-packaged-capture-wrong` | Wrong B, disabled options, explanation | 884x1780 / 100% / 1 |
+| `20261004-123432-packaged-capture-initial` | High-resolution initial | 1768x3560 / 100% / 1 |
+| `20261004-123451-packaged-capture-initial` | Narrow initial, scrollable actions | 260x640 / 100% / .9 |
+| `20261004-123506-packaged-capture-actionfocus` | Focused Check, actions revealed | 260x640 / 100% / .9 |
+| `20261004-123521-packaged-capture-actions` | Landscape enlarged actions | 844x390 / intrinsic 200% / .9 |
+| `20261004-123537-packaged-capture-hint` | Assisted correct feedback | 390x844 / explicit 200% / .9 |
+| `20261004-123552-packaged-capture-longfocus` | Focused long B, leading content visible | 390x844 / intrinsic 200% / .9 |
+| `20261004-123607-packaged-capture-longselectedfocus` | Selected/focused long B | 260x640 / intrinsic 200% / .9 |
+
+Both existing Unreal `WordQuest.Context` tests pass, zero failed/not-run/in-process,
+exit 0, clean source, in `20261004-123719-automation-initial/Report`.
+The final native initial PNG matches preflight exactly, SHA-256
+`7e431bf97c79a3f853dafdacdd7f8e3af8bfd35b11150afa7b945f86c26781b0`.
+The scoped comparison reproduces the recorded pixel/sample results. Original,
+baseline and final crops and the 50% overlay were inspected; remaining letter,
+edge and companion mismatches are visible. The overlay is diagnostic, not proof
+of accepted fidelity or a runtime image. Earlier v001 badge, spirit source and
+genuine spirit asset retain their original hashes; no binary asset changes.
+
+Dedicated read-only review against actual `origin/dev` is pending. Subsequent
+evidence/review/publication records change documentation only; tested runtime
+remains `5bb1360`. None of these checks authorizes a merge.
+
 ## Remaining gates
 
 Full UI01 material/brand/companion identity, editorial fixture approval, UI02
 motion, manual/platform input and screen reader, Android/phone, isolated offline
-play, performance and all original release gates remain open.
+play, performance and all original release gates remain open. Fresh local checks
+still find no same-engine Android platform receipt; adb lists no physical device.
+Installed Android Studio does not supply the missing Unreal platform.

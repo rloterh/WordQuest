@@ -34,3 +34,24 @@ Neither generated output is committed. No new layered art source is claimed.
 This is the third rejected reconstruction after the two recorded on 2026-10-02.
 Further full regeneration is deferred until a more reliable art handoff can
 preserve the reference's actual identity; UI01 and UI02 acceptance remain open.
+
+## Concrete art handoff
+
+Reconstruct the original upper-left spirit in its x82/y276, 207x185 region;
+the original gameplay PNG above remains the sole identity authority, with no
+new character design. Match the face/eye spacing and tiny smile, thin circlet,
+small gold lantern and left-flowing wisp contours at native reference size.
+Do not treat any generated candidate as the identity reference.
+
+Deliver a genuine editable layered art file under `ArtSource/Companions/G`
+(body/wisps, circlet and lantern separately editable), plus a versioned RGBA
+export retaining the full pose and transparent margins. Supply export dimensions,
+content bounds and source/export hashes; never overwrite v001. Inspect edges on
+light/dark backdrops and the G scene, with no checkerboard, opaque fringe or
+unrelated specks. No educational text or scene background belongs in the cutout.
+
+After identity/edge inspection, use genuine Unreal import for a new owned texture,
+retain the current texture fallback, contain rather than stretch its aspect in
+the reference region, and capture a frozen 884x1780 native comparison plus overlay.
+Review exact face/circlet/lantern/wisp differences before accepting the static art.
+Layer delivery supports later motion but does not pass UI02 or physical-device gates.
