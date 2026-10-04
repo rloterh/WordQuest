@@ -20,7 +20,10 @@ to the companion crop region. Missing candidate restores the prior full screen
 exactly and passes 200% text; its texture is restored byte-for-byte.
 Full Win64 packaging, all 49 payload hashes, ten inspected native packaged captures
 and both Unreal Context tests pass at clean `0d52982`. Automatic firewall coverage
-succeeds on the second bounded retry. Dedicated review remains pending.
+succeeds on the second bounded retry. Dedicated read-only review against actual
+`dev` found no actionable introduced defects. Its optional reproduction attempt
+could not read the ignored renderer dependency folder; main-session byte-exact
+reproduction passed again. Subsequent review/publication records are docs only.
 Mask edges/scene-color contamination, low source resolution
 and lack of independently movable layers are disclosed; no UI01/UI02 acceptance.
 See [source-mask evidence](../QA/UI01/G-SPIRIT-SOURCE-MASK.md).

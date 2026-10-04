@@ -129,9 +129,22 @@ contamination and independent animation source remain unaccepted.
 All three new LFS pointers match their actual source/export/Unreal hashes and sizes.
 
 Raw batch/verification/fallback/source evidence is under
-`Artifacts/QA/UI01/SpiritRetry20261004`. Dedicated read-only review against actual
-`origin/dev` remains pending. Subsequent evidence/review/publication documentation
-does not change tested runtime source `0d52982`. The owner retains merge authority.
+`Artifacts/QA/UI01/SpiritRetry20261004`.
+
+## Dedicated review
+
+Read-only review completed at `Artifacts/Reviews/20261004-143346`, actual
+`origin/dev` base `51b62411a75e8e4a1320ec6ac128d0097eb3363a`, reviewed head
+`8a6614f02f86c1874bdc579a5c24dd19d6fd44d7`. Starting worktree was clean,
+exit 0, head/worktree unchanged. No actionable introduced defects were found.
+All six original-reference checks passed independently. The review's optional
+export reproduction could not read ignored
+`Artifacts/Tools/resvg/resvg_py/__init__.py` (PermissionError); this is a review
+environment limitation, not a successful independent reproduction. No review
+permission/sandbox bypass was attempted. Main-session `--check` passed byte-exact
+again after that report. Engine builds/runtime/device checks were not independently
+rerun by the reviewer. Subsequent evidence/review/publication documentation does
+not change tested runtime source `0d52982`. The owner retains merge authority.
 
 ## Open gates
 
