@@ -24,6 +24,8 @@ actionable introduced defects; source/runtime parity, immutable references and
 whitespace checks passed independently. Subsequent review/publication records
 change documentation only. Full UI01 fidelity, UI02 motion
 and original physical-device/release gates remain open.
+Non-draft [PR #41](https://github.com/rloterh/WordQuest/pull/41) is open against
+`dev`; the owner retains the merge decision.
 See [progress-plaque material evidence](../QA/UI01/G-PROGRESS-PLAQUE-MATERIAL.md).
 
 The owner merged [PR #39](https://github.com/rloterh/WordQuest/pull/39) into `dev`

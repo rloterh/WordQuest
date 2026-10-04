@@ -125,6 +125,8 @@ original-reference integrity and whitespace checks passed independently. Unreal
 builds, runtime captures and device gates were not independently rerun. Subsequent
 review/publication records change documentation only; the tested runtime/source/art
 remains `30e09f8`. The owner retains merge authority.
+Non-draft [PR #41](https://github.com/rloterh/WordQuest/pull/41) is open against
+`dev`; publication adds documentation only after the reviewed head.
 
 ## Open gates
 
