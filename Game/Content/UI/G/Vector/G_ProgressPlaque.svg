@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="178" height="61" viewBox="0 0 178 61">
+  <defs>
+    <linearGradient id="face" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#4e439b"/>
+      <stop offset="20%" stop-color="#493f94"/>
+      <stop offset="58%" stop-color="#403787"/>
+      <stop offset="100%" stop-color="#514595"/>
+    </linearGradient>
+    <linearGradient id="edgeShade" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0b102d" stop-opacity="0.4"/>
+      <stop offset="50%" stop-color="#0b102d" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#0b102d" stop-opacity="0.4"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fff4cf"/>
+      <stop offset="14%" stop-color="#c69455"/>
+      <stop offset="45%" stop-color="#f7d5a0"/>
+      <stop offset="67%" stop-color="#ba8449"/>
+      <stop offset="92%" stop-color="#fce4b4"/>
+      <stop offset="100%" stop-color="#a2713f"/>
+    </linearGradient>
+    <linearGradient id="inner" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ba9cbb"/>
+      <stop offset="35%" stop-color="#6d5b9c"/>
+      <stop offset="75%" stop-color="#594876"/>
+      <stop offset="100%" stop-color="#b29ca9"/>
+    </linearGradient>
+  </defs>
+  <!-- Blank decorative plaque; the prototype progress stays native live text. -->
+  <path d="M3 31 C11 27 16 23 19 16 C21 10 27 12 29 3 H152 C155 12 160 10 163 16 C166 23 171 27 175 31 C168 35 166 40 163 46 C158 49 154 49 152 58 H29 C27 49 22 49 19 46 C17 39 11 35 3 31 Z" fill="url(#face)" stroke="#4f3d72" stroke-width="4.4" stroke-linejoin="round" opacity="0.7"/>
+  <path d="M3 31 C11 27 16 23 19 16 C21 10 27 12 29 3 H152 C155 12 160 10 163 16 C166 23 171 27 175 31 C168 35 166 40 163 46 C158 49 154 49 152 58 H29 C27 49 22 49 19 46 C17 39 11 35 3 31 Z" fill="url(#face)" stroke="url(#gold)" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M3 31 C11 27 16 23 19 16 C21 10 27 12 29 3 H152 C155 12 160 10 163 16 C166 23 171 27 175 31 C168 35 166 40 163 46 C158 49 154 49 152 58 H29 C27 49 22 49 19 46 C17 39 11 35 3 31 Z" fill="url(#edgeShade)"/>
+  <path d="M3 31 C11 27 16 23 19 16 C21 10 27 12 29 3 H152 C155 12 160 10 163 16 C166 23 171 27 175 31 C168 35 166 40 163 46 C158 49 154 49 152 58 H29 C27 49 22 49 19 46 C17 39 11 35 3 31 Z" transform="translate(4 3) scale(0.955 0.902)" fill="none" stroke="url(#inner)" stroke-width="1.15" opacity="0.52"/>
+  <path d="M30 3 H151 M6 30 C13 26 18 21 20 16 C22 12 27 13 29 5" fill="none" stroke="#fff7e3" stroke-width="0.75" stroke-linecap="round" opacity="0.8"/>
+</svg>

@@ -145,8 +145,9 @@ permission/sandbox bypass was attempted. Main-session `--check` passed byte-exac
 again after that report. Engine builds/runtime/device checks were not independently
 rerun by the reviewer. Subsequent evidence/review/publication documentation does
 not change tested runtime source `0d52982`. The owner retains merge authority.
-Non-draft [PR #40](https://github.com/rloterh/WordQuest/pull/40) is open against
-`dev`; publication adds documentation only after the reviewed head.
+The owner merged non-draft [PR #40](https://github.com/rloterh/WordQuest/pull/40)
+into `dev` on 2026-10-04 at 16:07:31 UTC (`d7311ae`). Publication added
+documentation only after the reviewed head.
 
 ## Open gates
 

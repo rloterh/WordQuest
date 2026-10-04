@@ -2,6 +2,21 @@
 
 ## Current stage: native static G implementation; acceptance incomplete
 
+The owner merged [PR #40](https://github.com/rloterh/WordQuest/pull/40) into `dev`
+on 2026-10-04 at 16:07:31 UTC (`d7311ae`). The original-pixel static companion is
+integrated. The next bounded UI01 correction reconstructs the progress plaque as
+an editable SVG on `feature/g-progress-plaque-material`, with softer purple shading,
+thin pale-gold bevel and reference-like shoulders. Live prototype progress, native
+placement, compact landscape visibility and the prior texture fallback are preserved.
+The six-action real Editor build and 67 existing Python checks pass; nine staged SVG
+pairs and six original reference hashes pass. Native changes stay inside the plaque;
+fixed face-color samples are closer. An initial unsupported SVG shape reuse was
+corrected to explicit paths before packaging. Missing SVG restores the prior full
+screen exactly and passes 200% text; its source is restored byte-for-byte.
+Clean packaging/native checks and dedicated review are in progress. Full UI01 fidelity, UI02 motion and original
+physical-device/release gates remain open.
+See [progress-plaque material evidence](../QA/UI01/G-PROGRESS-PLAQUE-MATERIAL.md).
+
 The owner merged [PR #39](https://github.com/rloterh/WordQuest/pull/39) into `dev`
 on 2026-10-04 at 13:18:57 UTC (`51b6241`). Badge refinement is integrated.
 The owner requested a companion retry and authorized a better alternative if the
@@ -24,8 +39,8 @@ succeeds on the second bounded retry. Dedicated read-only review against actual
 `dev` found no actionable introduced defects. Its optional reproduction attempt
 could not read the ignored renderer dependency folder; main-session byte-exact
 reproduction passed again. Subsequent review/publication records are docs only.
-Non-draft [PR #40](https://github.com/rloterh/WordQuest/pull/40) is open against
-`dev`; the owner retains merge authority.
+The owner merged non-draft [PR #40](https://github.com/rloterh/WordQuest/pull/40)
+into `dev` on 2026-10-04 at 16:07:31 UTC (`d7311ae`).
 Mask edges/scene-color contamination, low source resolution
 and lack of independently movable layers are disclosed; no UI01/UI02 acceptance.
 See [source-mask evidence](../QA/UI01/G-SPIRIT-SOURCE-MASK.md).
