@@ -108,8 +108,8 @@ most one channel level; no exact Editor/package PNG equivalence is claimed.
 The initial QA assertion expecting identical PNG hashes is retained as failed
 diagnostic evidence; the corrected comparison explicitly records this small
 bounded difference rather than ignoring it. The final package comparison crops
-and overlay were generated; native images and earlier same-composition overlay
-were inspected. Exact contours, gold/inner bevel and type metrics remain candidate.
+and overlay were generated and viewed, alongside the inspected native images and
+earlier overlay. Exact contours, gold/inner bevel and type metrics remain candidate.
 
 Raw source/fallback/package/batch/cooked/comparison evidence is retained under
 `Artifacts/QA/UI01/PlaqueMaterial20261004`. Subsequent evidence/review/publication
@@ -117,8 +117,14 @@ documentation does not change the tested runtime/source/art revision.
 
 ## Dedicated review
 
-Dedicated read-only review against the actual `origin/dev` base is pending. The
-owner retains merge authority; review does not replace native/device evidence.
+Dedicated read-only review completed at `Artifacts/Reviews/20261004-163750`,
+actual `origin/dev` base `d7311aeb53d9b87407ec4635577364729af739b9`, reviewed head
+`929806be5f82b91dc55431e7709eacab06477a0c`. Starting worktree was clean, exit 0,
+head/worktree unchanged. No actionable introduced defects were found. SVG parity,
+original-reference integrity and whitespace checks passed independently. Unreal
+builds, runtime captures and device gates were not independently rerun. Subsequent
+review/publication records change documentation only; the tested runtime/source/art
+remains `30e09f8`. The owner retains merge authority.
 
 ## Open gates
 
