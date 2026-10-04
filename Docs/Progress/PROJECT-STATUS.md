@@ -2,6 +2,30 @@
 
 ## Current stage: native static G implementation; acceptance incomplete
 
+The owner merged [PR #38](https://github.com/rloterh/WordQuest/pull/38) into `dev`
+on 2026-10-03 at 17:49:26 UTC (`04a14fb`). Answer bevel and bounded firewall
+receipt retries are integrated. A third built-in companion extraction was inspected
+and rejected for headband, face and alpha-edge differences; the current source and
+Unreal asset are preserved. Exact prompt and rejection are recorded under
+`ArtSource/Companions/G/Reconstruction/G-Spirit-Reconstruction-20261004-ATTEMPT.md`.
+The next bounded static correction refines the existing vector answer badges'
+upper fill and rim layers on `feature/g-answer-badge-softness`. The native letter,
+selection/focus cues, geometry, scoring and fallback behavior are unchanged.
+Editor compilation check passes with zero actions; all 67 Python checks, eight
+SVG pairs and six immutable reference hashes pass. Preliminary native comparison
+shows changes only inside the four badges and closer fixed interior color samples.
+The missing-SVG native fallback passes enlarged long selected-answer focus, with
+exact restoration. Full Win64 packaging, 49 payload hashes, cooked badge parity,
+all 11 inspected packaged captures and both Unreal Context tests pass at clean
+`5bb1360`. Automatic firewall coverage succeeds on its second bounded retry.
+Final native pixels match preflight. Dedicated read-only review against actual
+`dev` found no actionable introduced defects. Subsequent evidence/review/publication
+documentation does not change the tested runtime source.
+Non-draft [PR #39](https://github.com/rloterh/WordQuest/pull/39) is open against
+`dev` for owner review/merge of this bounded badge correction and art handoff.
+See [badge refinement evidence](../QA/UI01/G-ANSWER-BADGE-SOFTNESS.md).
+Full UI01 fidelity, UI02 motion and physical-device/release gates remain open.
+
 The owner merged [PR #37](https://github.com/rloterh/WordQuest/pull/37) into `dev`
 on 2026-10-03 at 14:16:49 UTC (`3c04337`). Panel material is integrated.
 The next bounded UI01 correction refines the editable answer tile's bevel,
@@ -21,9 +45,9 @@ automatic firewall coverage. All 16 inspected final native captures and 49 archi
 hashes pass at clean `e6be5eb`; the failed earlier helper record is retained.
 Native code/art are unchanged from the two Unreal tests at `caa9dd3`.
 Dedicated read-only review against actual `dev` found no actionable introduced
-defects in art integration/helpers or bounded refresh retries. Non-draft
-[PR #38](https://github.com/rloterh/WordQuest/pull/38) is open against `dev`
-for owner review/merge. Review/publication records change docs only; tested
+defects in art integration/helpers or bounded refresh retries. The owner merged
+[PR #38](https://github.com/rloterh/WordQuest/pull/38) into `dev`.
+Review/publication records change docs only; tested
 package/runtime source remains `e6be5eb`.
 See [answer bevel evidence](../QA/UI01/G-ANSWER-PEARL-BEVEL.md).
 Full UI01 fidelity, UI02 motion and physical-device/release gates remain open.

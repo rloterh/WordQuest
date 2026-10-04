@@ -68,6 +68,14 @@ there is a documented need to re-enable that plugin with local credential handli
 
 ## Android handoff, explicitly unverified
 
+For raw SVG package verification, use this installed UnrealPak's separate
+`-Extract <directory>` arguments, for example:
+`UnrealPak.exe <existing-archive.pak> -Extract <ignored-output-directory> -Filter=*G_AnswerBadge.svg`.
+Verify the archive against its manifest before invoking it and recheck the pak
+hash afterward. Do not use `-Extract=<directory>`: that form is not recognized
+as extraction here and enters pak creation instead. Record the extracted bytes'
+parity with the editable master and staged runtime copy.
+
 The local Win64 Development package has since passed bounded archive/resource and
 native checks. Reproduce with `python Tools/BuildScripts/package_g_win64.py`, then
 pass its printed run directory to `python Tools/QA/run_g_proof.py capture --package-run`.

@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-04",
+  "status": "authored_static_reconstruction_candidate_acceptance_pending",
+  "master": "ArtSource/UI/G/Vector/G-Answer-Badge-v002.svg",
+  "runtime": "Game/Content/UI/G/Vector/G_AnswerBadge.svg",
+  "sha256": "c857ad37c5ee85b8ebb0878247efbe8c47118a7cf3ffff144e93ea0d6cfc2967",
+  "prior_master": "ArtSource/UI/G/Vector/G-Answer-Badge-v001.svg",
+  "prior_sha256": "bb6b04596b5dfbdf725c9890fba888880e6e9423a8697efabc6b6ebdc062c8a8",
+  "reference": "Planning/WordQuest-UI-Realms-Addendum/references/G-Celestial-Reverie-Gameplay.png",
+  "reference_sha256": "306dae4f6352749edcf1d8edf73f26339a4ba6407b4a394ec50b5898418bedae",
+  "canvas": [70, 70],
+  "face": {"center": [35, 35], "radius": 34, "maximum_outer_radius": 34.75},
+  "method": "Hand-authored SVG gradients/circles; native FSlateVectorImageBrush rasterization at draw size/scale. No raster paintover, original-pixel extraction, imagegen or new Unreal binary asset for this badge.",
+  "limits": "Candidate only. Rim softness, geometry/letterform, overall reference fidelity and manual/device accessibility remain unaccepted.",
+  "qa": "Docs/QA/UI01/G-ANSWER-BADGE-SOFTNESS.md"
+}
