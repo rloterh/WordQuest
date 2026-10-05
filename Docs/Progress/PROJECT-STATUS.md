@@ -15,7 +15,8 @@ match the original; second clue line remains one pixel high. Both fallback
 captures match the prior PNGs exactly; 82 Python checks and references/SVG parity
 pass. Clean Win64 archive, all 14 inspected packaged captures and both Unreal
 tests pass at `6fe265c`; exactly 16,348 clue/prompt-region pixels change versus
-the prior package, zero outside. Dedicated review and PR publication are pending. See
+the prior package, zero outside. Dedicated review against actual `dev` completes
+with no actionable introduced defects; PR publication is pending. See
 [reading text alignment](../QA/UI01/G-READING-TEXT-ALIGNMENT.md).
 
 The owner merged [PR #45](https://github.com/rloterh/WordQuest/pull/45) into `dev`
