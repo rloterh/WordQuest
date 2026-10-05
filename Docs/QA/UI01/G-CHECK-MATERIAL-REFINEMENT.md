@@ -39,7 +39,7 @@ remain intact. Raw diagnostic samples, crops and 50% overlay are under
 `Artifacts/QA/UI01/CheckRefinement20261005/`; diagnostics do not become product art.
 All 82 Python QA checks, six immutable references, ten staged SVG pairs and both
 v001/v002 byte-identical export reproductions pass. Synthetic tests do not replace
-native checks. Clean package and dedicated review are pending.
+native checks. Final clean package and dedicated review are recorded below.
 
 ## Missing-art checks
 
@@ -126,7 +126,19 @@ texture/type fidelity or acceptance of existing differences. V001 SVG/PNG/asset
 and generated fallback hashes remain intact. No supplied reference changed.
 
 Evidence/review/publication updates are documentation only; tested runtime remains
-`31e4b5d`. Dedicated read-only review against actual `origin/dev` is pending.
+`31e4b5d`.
+
+## Internal review
+
+Dedicated read-only Codex review in `Artifacts/Reviews/20261005-015202` completes
+with exit zero against actual `origin/dev` base
+`8f51a158a86f136999223d4340591ba21a3e8133`, clean reviewed head
+`b6234d0f6d63f2a5b683d203f40afd091874156d`. Head/worktree remain unchanged during
+review. No actionable introduced defects were found. The reviewer confirms the
+fallback/cooking support, provenance hashes, LFS attributes, reference integrity
+and diff whitespace; Unreal builds, runtime/device checks were not independently
+rerun. Review does not accept material differences or authorize an owner merge.
+Subsequent review/publication commits are docs only.
 
 Full UI01 art/type/material fidelity, UI02 motion, manual/platform accessibility,
 draft-content editorial approval, Android/phone, isolated offline, performance
