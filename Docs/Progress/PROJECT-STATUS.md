@@ -2,6 +2,30 @@
 
 ## Current stage: native static G implementation; acceptance incomplete
 
+The owner merged [PR #43](https://github.com/rloterh/WordQuest/pull/43) into `dev`
+on 2026-10-04 at 21:34:53 UTC (`baa03aa`). Merging does not accept full UI01
+fidelity or the recorded Check material differences.
+
+The bounded UI01 increment on `feature/g-pointer-proof` adds Development-only
+virtual Slate pointer evidence: hover, held press, release activation, disabled
+actions, assisted feedback and the Pause barrier. It hit-tests rendered controls,
+uses explicit scroll setup without keyboard-focus setup and routes events through
+Slate rather than directly calling gameplay handlers. The desktop cursor is not
+moved. Ordered state, hit/clip, hover/press/capture, screenshot and cleanup evidence
+all pass at clean source `e7a343e`. Real Editor builds, 82 Python QA checks, a clean
+Win64 Development archive, thirteen inspected packaged captures and both Unreal
+Context tests pass. All 49 payload hashes and automatic scoped firewall coverage
+verify; the initial screen matches PR #43's packaged baseline exactly in RGB.
+The new harness's cooked event-case validation and incorrect fixed-Pause setup
+were corrected and rerun, including 260x640 at 200% text. Art, production handlers
+and learning rules are unchanged. Dedicated read-only review against actual `dev`
+at `baa03aa`, reviewed head `dda891c`, found no actionable introduced defects;
+review head/worktree remained unchanged. Review/publication changes are docs only.
+No UI01/UI02/manual-pointer/device/release gate is marked passed.
+See [pointer proof](../QA/UI01/G-POINTER-ROUTING.md).
+Non-draft [PR #44](https://github.com/rloterh/WordQuest/pull/44) is open against
+`dev` for owner review/merge; merging will not accept the remaining gates.
+
 The owner merged [PR #42](https://github.com/rloterh/WordQuest/pull/42) into `dev`
 on 2026-10-04 at 18:30:42 UTC (`39d757f`). The editable Pause surface and package
 failure diagnostics are integrated. Its clean package at `e8dd2fb`, twelve inspected
@@ -9,7 +33,7 @@ captures, 68 Python checks, two Unreal tests and read-only review are recorded i
 [Pause material evidence](../QA/UI01/G-PAUSE-PEARL-RIM.md). The intermittent protected
 task failure's cause remains unverified; its diagnostic loss was corrected.
 
-The next bounded UI01 refinement on `feature/g-check-surface-pearl` reconstructs
+The merged UI01 refinement on `feature/g-check-surface-pearl` reconstructs
 the Check surface with an editable violet/pale-gold SVG and genuine imported
 texture. The label, separate star, native focus/input, responsive nine-slice layout
 and generated texture fallback remain. The real Editor build, 68 Python checks,
@@ -24,8 +48,7 @@ no actionable introduced defects; original reference integrity passed independen
 Review/publication updates are docs only; tested source/art remains `905b475`. See
 [Check surface evidence](../QA/UI01/G-CHECK-SURFACE.md).
 No UI01/UI02/device/release gate is marked passed.
-Non-draft [PR #43](https://github.com/rloterh/WordQuest/pull/43) is open against
-`dev` for owner review/merge consideration, with material tradeoffs disclosed.
+PR #43 was merged with material tradeoffs disclosed; those visual gates remain open.
 
 The owner merged [PR #40](https://github.com/rloterh/WordQuest/pull/40) into `dev`
 on 2026-10-04 at 16:07:31 UTC (`d7311ae`). The original-pixel static companion is

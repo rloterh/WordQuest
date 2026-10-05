@@ -11,6 +11,8 @@
 #include "TimerManager.h"
 #if !UE_BUILD_SHIPPING
 #include "Framework/Application/SlateApplication.h"
+#include "Framework/Application/SlateUser.h"
+#include "Components/Button.h"
 #include "Input/Events.h"
 #include "InputCoreTypes.h"
 #endif
@@ -42,6 +44,108 @@ void APrototypeController::BeginPlay()
 }
 
 #if !UE_BUILD_SHIPPING
+void APrototypeController::EndPlay(const EEndPlayReason::Type EndPlayReason)
+{
+    GetWorldTimerManager().ClearTimer(PointerTimer);
+    if (PointerUser && FSlateApplication::IsInitialized())
+    {
+        if (auto User = FSlateApplication::Get().GetUser(PointerUser->GetUserIndex()))
+            User->ReleaseAllCapture(); // Cancel held presses without a click on teardown.
+        if (Screen && !PointerSteps.IsEmpty())
+        {
+            const auto& A = Screen->GetAttempt();
+            auto* Target = Screen->GetProofPointerButton(PointerSteps.Last().Value);
+            UE_LOG(LogTemp, Display, TEXT("WQ_POINTER_CLEANUP proof=%s pressed=%d captured=%d selected=%d submitted=%d correct=%d hint=%d paused=%d evaluations=%d"),
+                *ProofName, Target && Target->IsPressed(),
+                FSlateApplication::Get().GetUser(PointerUser->GetUserIndex())->HasCapture(0),
+                A.SelectedIndex, A.bSubmitted, A.bCorrect, A.bHintUsed, A.bPaused, A.EvaluationCount);
+        }
+        PointerButtons.Empty();
+        PointerUser.Reset();
+    }
+    Super::EndPlay(EndPlayReason);
+}
+
+void APrototypeController::RunPointerProof()
+{
+    PointerUser = FSlateApplication::Get().FindOrCreateVirtualUser(0);
+    auto Add = [this](const TCHAR* Event, const TCHAR* Target)
+    {
+        PointerSteps.Emplace(FName(Event), FName(Target));
+    };
+    auto Click = [&Add](const TCHAR* Target)
+    {
+        Add(TEXT("move"), Target); Add(TEXT("down"), Target); Add(TEXT("up"), Target);
+    };
+    if (ProofName == TEXT("pointerhover"))
+    {
+        for (const auto* Target : {TEXT("Answer0"), TEXT("Hint"), TEXT("Submit"), TEXT("Pause"), TEXT("Submit")})
+            Add(TEXT("move"), Target);
+    }
+    else if (ProofName.EndsWith(TEXT("press")))
+    {
+        const auto* Target = ProofName == TEXT("pointerhintpress") ? TEXT("Hint")
+            : ProofName == TEXT("pointeranswerpress") ? TEXT("Answer0")
+            : ProofName == TEXT("pointerpausepress") ? TEXT("Pause") : TEXT("Submit");
+        Add(TEXT("move"), Target); Add(TEXT("down"), Target);
+    }
+    else if (ProofName == TEXT("pointerclick"))
+    {
+        Click(TEXT("Submit")); Click(TEXT("Answer1")); Click(TEXT("Submit"));
+        Click(TEXT("Submit")); Click(TEXT("Answer0"));
+    }
+    else if (ProofName == TEXT("pointerhint"))
+    {
+        Click(TEXT("Hint")); Click(TEXT("Answer0")); Click(TEXT("Submit")); Click(TEXT("Hint"));
+    }
+    else if (ProofName == TEXT("pointerpaused") || ProofName == TEXT("pointerresumed"))
+    {
+        Click(TEXT("Answer1")); Click(TEXT("Pause")); Click(TEXT("Answer0")); Click(TEXT("Hint"));
+        if (ProofName == TEXT("pointerresumed")) Click(TEXT("Resume"));
+    }
+    GetWorldTimerManager().SetTimer(PointerTimer, this, &APrototypeController::TracePointerProof, .2f, true);
+}
+
+void APrototypeController::TracePointerProof()
+{
+    if (!PointerSteps.IsValidIndex(PointerStep))
+    {
+        GetWorldTimerManager().ClearTimer(PointerTimer);
+        if (!CapturePath.IsEmpty())
+            GetWorldTimerManager().SetTimer(ProofTimer, this, &APrototypeController::CaptureProof, .3f, false);
+        return;
+    }
+    const auto& Step = PointerSteps[PointerStep];
+    if (!bPointerTargetPrepared && Step.Key == TEXT("move"))
+    {
+        Screen->PrepareProofPointerTarget(Step.Value);
+        bPointerTargetPrepared = true;
+        return; // Let layout/scroll settle before hit testing on a later frame.
+    }
+    bPointerTargetPrepared = false;
+    auto* Target = Screen->GetProofPointerButton(Step.Value);
+    FVector2D Point = LastPointerPosition;
+    const bool Inside = Screen->GetProofPointerPoint(Step.Value, Point);
+    auto& Slate = FSlateApplication::Get();
+    const FWidgetPath Path = Inside ? Slate.LocateWindowUnderMouse(Point,
+        Slate.GetInteractiveTopLevelWindows(), false, PointerUser->GetUserIndex()) : FWidgetPath();
+    const bool Hit = Target && Target->GetCachedWidget() && Path.ContainsWidget(Target->GetCachedWidget().Get());
+    const bool Down = Step.Key == TEXT("down"), Up = Step.Key == TEXT("up");
+    if (Down) PointerButtons.Add(EKeys::LeftMouseButton);
+    if (Up) PointerButtons.Remove(EKeys::LeftMouseButton);
+    const FPointerEvent Event(uint32(PointerUser->GetUserIndex()), uint32(0), Point,
+        LastPointerPosition, PointerButtons, Down || Up ? EKeys::LeftMouseButton : FKey(), 0, FModifierKeysState());
+    const bool Handled = Inside && (Down ? Slate.RoutePointerDownEvent(Path, Event).IsEventHandled()
+        : Up ? Slate.RoutePointerUpEvent(Path, Event).IsEventHandled() : Slate.RoutePointerMoveEvent(Path, Event, false));
+    LastPointerPosition = Point;
+    const auto& A = Screen->GetAttempt();
+    UE_LOG(LogTemp, Display, TEXT("WQ_POINTER_STEP proof=%s step=%d event=%s target=%s hit=%d inside=%d handled=%d enabled=%d hovered=%d pressed=%d captured=%d selected=%d submitted=%d correct=%d hint=%d paused=%d evaluations=%d"),
+        *ProofName, ++PointerStep, *Step.Key.ToString(), *Step.Value.ToString(), Hit, Inside, Handled,
+        Target && Target->GetIsEnabled(), Target && Target->IsHovered(), Target && Target->IsPressed(),
+        Slate.GetUser(PointerUser->GetUserIndex())->HasCapture(0), A.SelectedIndex,
+        A.bSubmitted, A.bCorrect, A.bHintUsed, A.bPaused, A.EvaluationCount);
+}
+
 void APrototypeController::RunKeyboardProof()
 {
     int32 Step = 0;
@@ -250,6 +354,7 @@ void APrototypeController::TraceModalProof()
 void APrototypeController::RunProof()
 {
     if (FParse::Param(FCommandLine::Get(), TEXT("WQLargeText"))) Screen->SetProofTextScale(2);
+    if (ProofName.StartsWith(TEXT("pointer"))) { RunPointerProof(); return; }
     if (ProofName.StartsWith(TEXT("key"))) RunKeyboardProof();
     else if (ProofName.StartsWith(TEXT("scroll"))) RunScrollProof();
     else if (ProofName.StartsWith(TEXT("modal"))) RunModalProof();
@@ -296,6 +401,17 @@ void APrototypeController::RunProof()
 
 void APrototypeController::CaptureProof()
 {
+    if (PointerUser && !PointerSteps.IsEmpty())
+    {
+        const auto& A = Screen->GetAttempt();
+        UE_LOG(LogTemp, Display, TEXT("WQ_STATE proof=%s selected=%d submitted=%d correct=%d hint=%d paused=%d evaluations=%d"),
+            *ProofName, A.SelectedIndex, A.bSubmitted, A.bCorrect, A.bHintUsed, A.bPaused, A.EvaluationCount);
+        auto* Target = Screen->GetProofPointerButton(PointerSteps.Last().Value);
+        UE_LOG(LogTemp, Display, TEXT("WQ_POINTER_CAPTURE proof=%s target=%s enabled=%d hovered=%d pressed=%d captured=%d"),
+            *ProofName, *PointerSteps.Last().Value.ToString(), Target && Target->GetIsEnabled(),
+            Target && Target->IsHovered(), Target && Target->IsPressed(),
+            FSlateApplication::Get().GetUser(PointerUser->GetUserIndex())->HasCapture(0));
+    }
     UE_LOG(LogTemp, Display, TEXT("WQ_TEXT_CAPTURE proof=%s textpercent=%d"),
         *ProofName, Screen->GetProofTextPercent());
     UE_LOG(LogTemp, Display, TEXT("WQ_TYPE_CAPTURE proof=%s %s"), *ProofName, *Screen->GetProofTextSizes());
