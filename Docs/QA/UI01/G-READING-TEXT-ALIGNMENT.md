@@ -59,8 +59,63 @@ at SHA-256 `ddb17ec624e8c6e8d68b607cbbd14e5302111b07e158074cc101e69de0a78715`.
 This is an Editor omission test, not corrupt-package or physical-device evidence.
 
 Existing 82 Python QA tests, six supplied-reference hash/dimension checks and ten
-source/runtime SVG parity checks pass. Clean package/matrix, Unreal automation
-and dedicated read-only review are pending. No binaries are committed.
+source/runtime SVG parity checks pass. No binaries are committed.
+
+## Clean package and native matrix
+
+Clean source `6fe265c41dc83352c9ee88ef42a487f7a6295303` builds/cooks successfully
+in 157.26s, with 521 cooked packages and zero cook errors/warnings. Archive
+`Artifacts/Packages/Win64/20261005-031044-154956/` has complete evidence and
+unchanged source head/worktree/inputs. Manifest SHA-256:
+`53333ecab95906e58741037ae7cc295eecbd64969db35ed9b758c63760c9372e`.
+All 49 archived payload hashes/sizes are verified before each native launch.
+Existing scoped LocalSubnet firewall refresh succeeds automatically on attempt
+one at 03:13:45.1476712 UTC. No permission/task/ACL policy changes are made.
+
+All 14 packaged captures complete with native/helper exit zero, matching clean
+source/package provenance and dimensions, and all applicable native layout, state,
+text-size, focus, pointer and reading-scroll predicates true. No native Error/Fatal
+lines occur. Every final PNG was inspected; the 1768x3560 full-screen view was
+resized by the viewer to 1017x2048. Narrow/enlarged text uses existing measured
+wrapping and scrolling. These are Windows offscreen/synthetic checks, not manual
+input, platform accessibility or physical-phone evidence. Raw folders are under
+`Artifacts/QA/UI01/`.
+
+| Capture run | Case | Dimensions / text |
+|---|---|---|
+| `20261005-031351-packaged-capture-initial` | Initial reference size | 884x1780 / 100% |
+| `20261005-031405-packaged-capture-initial` | Initial double size | 1768x3560 / 100% |
+| `20261005-031417-packaged-capture-initial` | Initial phone-shaped | 390x844 / 100% |
+| `20261005-031428-packaged-capture-initial` | Initial enlarged | 390x844 / 200% |
+| `20261005-031438-packaged-capture-initial` | Initial narrow enlarged | 260x640 / 200% |
+| `20261005-031449-packaged-capture-pointerpress` | Held virtual pointer | 260x640 / 200% |
+| `20261005-031500-packaged-capture-pointerclick` | Virtual answer/check | 390x844 / 100% |
+| `20261005-031515-packaged-capture-pointerresumed` | Virtual pause/resume | 260x640 / 200% |
+| `20261005-031530-packaged-capture-longfocus` | Long answer focused | 390x844 / 200% |
+| `20261005-031541-packaged-capture-longselectedfocus` | Long selected answer focused | 260x640 / 200% |
+| `20261005-031552-packaged-capture-correct` | Correct feedback | 884x1780 / 100% |
+| `20261005-031604-packaged-capture-wrong` | Wrong feedback | 390x844 / 200% |
+| `20261005-031615-packaged-capture-hint` | Assisted feedback | 390x844 / 200% |
+| `20261005-031627-packaged-capture-scrollfeedback` | Reading feedback scroll | 844x390 / 200% |
+
+Safe-zone is 1 for reference/double-size and 0.9 for other cases; tooltips are
+disabled. Long/scroll modes intrinsically use 200% text. The initial packaged
+PNG SHA-256 is `b26befb07b156490709ba38e1cce643c1870e7ec095c9f926c73f077c9d8b8fe`.
+Final packaged reading glyph bounds equal the final preflight table above.
+Exactly 16,348 pixels change in the two reading diagnostic regions, zero outside,
+versus PR #46's package. Word, answer A and mode extents remain unchanged. The
+Editor/package comparison differs only at 964 known Pause/plaque pixels in
+[362,38,855,198), maximum channel delta one. Original reference SHA remains
+`306dae4f6352749edcf1d8edf73f26339a4ba6407b4a394ec50b5898418bedae`.
+The inspected half-opacity comparison still reveals text-shape/art differences;
+it does not accept complete fidelity. Raw verification, hashes and metrics live
+in `Artifacts/QA/UI01/ReadingAnchors20261005/verification.json`.
+
+Both Unreal Context automation tests pass with complete evidence in
+`20261005-031645-automation-initial`, at the same clean source commit. Python,
+reference and SVG check logs are recorded in the earlier evidence folder and
+`Artifacts/Logs/UI01/reading-anchors-python-checks.log`. Dedicated read-only
+review against actual `origin/dev` is pending.
 
 Full static type/art/material fidelity, UI02 motion, manual/platform accessibility,
 draft fixture editorial approval, Android/phone, isolated offline, performance and

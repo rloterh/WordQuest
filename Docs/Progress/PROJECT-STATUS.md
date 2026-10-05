@@ -13,7 +13,9 @@ wrapping, downstream flow and fallback anchors remain. Real build and native
 preflight pass: clue first-line vertical center 810 and prompt center (443,946)
 match the original; second clue line remains one pixel high. Both fallback
 captures match the prior PNGs exactly; 82 Python checks and references/SVG parity
-pass. Clean archive, native matrix, Unreal automation and review are in progress. See
+pass. Clean Win64 archive, all 14 inspected packaged captures and both Unreal
+tests pass at `6fe265c`; exactly 16,348 clue/prompt-region pixels change versus
+the prior package, zero outside. Dedicated review and PR publication are pending. See
 [reading text alignment](../QA/UI01/G-READING-TEXT-ALIGNMENT.md).
 
 The owner merged [PR #45](https://github.com/rloterh/WordQuest/pull/45) into `dev`
