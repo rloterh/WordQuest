@@ -139,6 +139,8 @@ fallback/cooking support, provenance hashes, LFS attributes, reference integrity
 and diff whitespace; Unreal builds, runtime/device checks were not independently
 rerun. Review does not accept material differences or authorize an owner merge.
 Subsequent review/publication commits are docs only.
+Non-draft [PR #45](https://github.com/rloterh/WordQuest/pull/45) is published against
+`dev`. The owner retains the merge decision; publication does not pass open gates.
 
 Full UI01 art/type/material fidelity, UI02 motion, manual/platform accessibility,
 draft-content editorial approval, Android/phone, isolated offline, performance

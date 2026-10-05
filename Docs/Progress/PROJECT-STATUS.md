@@ -21,6 +21,8 @@ review against actual `dev` at `8f51a15`, reviewed head `b6234d0`, found no acti
 introduced defects. Head/worktree remained unchanged; later records are docs only.
 No full fidelity or physical-device gate is passed. See
 [Check refinement](../QA/UI01/G-CHECK-MATERIAL-REFINEMENT.md).
+Non-draft [PR #45](https://github.com/rloterh/WordQuest/pull/45) is open against
+`dev` for owner review/merge; material and original device/release gates stay open.
 
 The owner merged [PR #43](https://github.com/rloterh/WordQuest/pull/43) into `dev`
 on 2026-10-04 at 21:34:53 UTC (`baa03aa`). Merging does not accept full UI01
