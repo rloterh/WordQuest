@@ -13,7 +13,8 @@ left of the original's 450x71 bounds. Real build and aligned preflight pass:
 fallback checks pass, with a disclosed historical edge-mask mismatch. Clean
 Win64 package, all 14 native captures, 82 Python QA tests and both Unreal tests
 pass; only 5,657 word-region pixels change versus the prior package, zero outside.
-Dedicated review and PR publication are pending. Source art,
+Dedicated review against actual `dev` completes with no actionable introduced
+defects; PR publication is pending. Source art,
 fonts, fixtures, learning rules and controls remain unchanged. No gate is passed
 on source changes alone. See [headword alignment](../QA/UI01/G-HEADWORD-ALIGNMENT.md).
 

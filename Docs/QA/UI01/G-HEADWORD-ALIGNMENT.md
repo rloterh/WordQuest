@@ -105,10 +105,21 @@ Raw verified metrics, hashes and case predicates are in
 half-opacity comparison are QA output, never product assets.
 
 Existing 82 Python QA tests pass (`headword-type-python-checks.log`); both Unreal
-automation tests pass with complete evidence (`WordType20261005/automation-helper.log`).
+automation tests pass with complete evidence (`20261005-024050-automation-initial`;
+`WordType20261005/automation-helper.log`).
 The supplied six reference hash/dimension checks and ten source/runtime SVG parity
 checks pass. Source code is the only runtime change; no binaries are committed.
-Dedicated read-only review against actual base `origin/dev` is pending.
+
+## Dedicated review
+
+`python Tools/Review/review_pr.py --base origin/dev` completes with exit zero in
+`Artifacts/Reviews/20261005-024255/`. It reviews clean head `d64ebc9` against
+actual base `b0d3b24`; head and worktree remain unchanged. The report finds no
+actionable introduced defects and confirms the disclosed fallback/layout and
+acceptance limits. It does not independently rerun builds/runtime checks. Connector
+startup/shutdown warnings remain in diagnostics; the dedicated review completes
+normally. Subsequent documentation records evidence/publication only. The owner
+retains the merge decision; review does not accept any outstanding gate.
 
 Full static type/art/material fidelity, UI02 motion, manual/platform accessibility,
 draft fixture editorial approval, Android/phone, isolated offline, performance and
