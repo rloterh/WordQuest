@@ -12,8 +12,12 @@ The prior v001 source/export/texture and generated fallback are preserved. Genui
 Unreal import, real Editor build, 82 Python checks, export reproduction and six
 inspected missing-art checks pass. The same eight opaque-face samples improve
 from 9.88 to 7.88; individual points do not all improve and bevel/texture remain
-simpler than the original. Clean archive/matrix and review are pending. No full
-fidelity or physical-device gate is passed. See
+simpler than the original. Clean Win64 Development archive at `31e4b5d`, fourteen
+inspected packaged captures, 49 payload hashes, ten cooked SVGs, cooked v002 texture
+and both Unreal Context tests pass. Automatic scoped firewall coverage passes on
+attempt one. Exactly 39,116 pixels change inside Check and none elsewhere versus
+the PR #44 package; prior assets/references are unchanged. Dedicated read-only
+review is pending. No full fidelity or physical-device gate is passed. See
 [Check refinement](../QA/UI01/G-CHECK-MATERIAL-REFINEMENT.md).
 
 The owner merged [PR #43](https://github.com/rloterh/WordQuest/pull/43) into `dev`

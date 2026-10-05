@@ -61,6 +61,73 @@ captures (`20261004-205213` and `20261004-174307` respectively). The native fill
 retains live label/star, held-press feedback and zero submission/evaluation.
 Records are `Artifacts/QA/UI01/CheckRefinement20261005/fallback.json` and raw runs.
 
+## Final clean Win64 evidence
+
+Clean runtime source/art is `31e4b5d72cd8c0f36573874c133d5f26755ff164`. The complete
+Win64 Development archive is `Artifacts/Packages/Win64/20261005-014044-332374`,
+manifest SHA-256
+`8bdc092738ee6a0dc9083ae5b3eafc3e1f1399ee23a5a316a8788d2c970990b9`.
+BuildCookRun passes in 159.43s, with full cook 521 packages, zero errors/warnings,
+all stages exit zero and unchanged clean head/worktree/inputs. All 49 archived
+payload sizes/hashes verify before every native launch. Automatic exact archived
+executable firewall coverage passes on attempt one at 01:43:48.1168607 UTC,
+2026-10-05, Private/Public LocalSubnet. No policy, ACL or task configuration changes.
+
+All fourteen captures below have native/helper exit zero, complete evidence,
+matching clean source/package identity, verified manifest/payload hashes and
+expected dimensions. Every applicable state, cue, feedback, keyboard/focus,
+pointer/held-capture/cleanup, text-size and action-content check passes. No native
+Error/Fatal lines were found. Every PNG was inspected; the 1768x3560 full-screen
+preview was displayed at reduced resolution, while the recorded PNG dimensions
+and hash retain the original capture. Runs below live under `Artifacts/QA/UI01/`
+and end in `-packaged-capture-<mode>`, with `native.png`, raw log and `run.json`.
+
+| Run prefix | Mode | Viewport / adaptation |
+|---|---|---|
+| `20261005-014353` | initial | 884x1780, safe 1 |
+| `20261005-014406` | initial | 1768x3560, safe 1 |
+| `20261005-014418` | initial | 390x844, safe .9 |
+| `20261005-014429` | initial | 390x844, safe .9, 200% |
+| `20261005-014439` | pointerpress | 260x640, safe .9, 200% |
+| `20261005-014450` | pointerhover | 390x844, safe .9 |
+| `20261005-014503` | initial | 844x390, safe .9 |
+| `20261005-014514` | correct | 884x1780, safe 1 |
+| `20261005-014526` | wrong | 390x844, safe .9 |
+| `20261005-014537` | hint / assisted correct | 390x844, safe .9 |
+| `20261005-014548` | empty Check | 884x1780, safe 1 |
+| `20261005-014600` | keydisabled | 390x844, safe .9 |
+| `20261005-014611` | pointerclick | 390x844, safe .9 |
+| `20261005-014627` | pointerresumed | 260x640, safe .9, 200% |
+
+Held Check retains its live label/star and navy press outline without submission;
+hover retains the gold outline. Wrong/assisted-correct feedback keeps non-color
+markers and disabled controls, and native routed release evaluates once. Pause
+blocks underlying pointer input and Resume preserves the unsubmitted choice.
+At enlarged/narrow/landscape sizes, reading still requires scrolling and some
+words wrap; no claim is made that every control/text is visible in initial PNGs.
+These are synthetic desktop checks, not manual/touch/platform accessibility.
+
+IoStore lists the genuine cooked `/Game/UI/G/G_CheckReverieV2.uasset`. All ten
+SVGs extracted from the loose-file PAK match staged bytes; the PAK/UTOC hashes
+remain unchanged by inspection. Both real Unreal Context tests pass at matching
+clean source in `20261005-014647-automation-initial`, exit zero, no failed/not-run/
+in-process tests. Python evidence is `Artifacts/Logs/UI01/check-refinement-python-checks.log`.
+The batch, package, native logs, IoStore CSV, extraction, comparison and validation
+records are under `Artifacts/QA/UI01/CheckRefinement20261005/`.
+
+Against PR #44's clean packaged baseline, 39,116 changed RGB pixels are confined
+to Check [399,1451,787,1564); zero change elsewhere. The reference-sized final
+matches the Editor Check exactly; 964 unchanged Pause/plaque backend pixels vary
+at most one channel level, so full Editor/package PNG identity is not claimed.
+The fixed eight-point face error remains 9.875 before and 7.875 after in the actual
+package. Original/baseline/final diagnostic crops and 50% overlay were inspected.
+This supports a local color improvement and bounded change, not full bevel/gold/
+texture/type fidelity or acceptance of existing differences. V001 SVG/PNG/asset
+and generated fallback hashes remain intact. No supplied reference changed.
+
+Evidence/review/publication updates are documentation only; tested runtime remains
+`31e4b5d`. Dedicated read-only review against actual `origin/dev` is pending.
+
 Full UI01 art/type/material fidelity, UI02 motion, manual/platform accessibility,
 draft-content editorial approval, Android/phone, isolated offline, performance
 and original release gates remain open. No later milestone, deployment, release
