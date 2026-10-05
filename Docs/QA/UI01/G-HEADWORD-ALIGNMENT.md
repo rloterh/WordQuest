@@ -50,8 +50,65 @@ Against historical fallback `20261003-113737-capture-initial`, glyph bounds rema
 pixels cross the navy threshold, with maximum channel difference three at those
 pixels. This is not a pixel-identical fallback claim; historical background/art
 changes also differ. Native logs confirm default Roboto loading and word size 57,
-while the source preserves the previous fallback parameters. Clean archive,
-matrix and dedicated review are pending.
+while the source preserves the previous fallback parameters.
+
+## Clean package and native matrix
+
+Source commit `474165c8119443acedfadcedf5ff15d5dd6be218` is packaged from a clean
+worktree in `Artifacts/Packages/Win64/20261005-023452-848621/`. BuildCookRun passes
+in 155.13s; 521 packages cook with zero errors/warnings. The manifest records
+unchanged head/worktree/inputs and complete evidence, SHA-256
+`b62e01f64736a0b3977a9e1fc0c71f8b3315d60acaf1b1bc1f2b4f324008676a`.
+All 49 payload hashes/sizes are verified before each launch. Existing scoped
+LocalSubnet firewall refresh succeeds automatically in one attempt at
+02:37:51.1662876 UTC; no security/task/ACL changes are made.
+
+All 14 packaged captures below complete with native/helper exit zero, matching
+clean source/package provenance, expected dimensions and all applicable native
+layout, state, text-size, focus, pointer and reading-scroll predicates true. No
+native Error/Fatal lines occur. All final PNGs were inspected; the 1768x3560 PNG
+was viewer-resized to 1017x2048 for full-screen inspection. Narrow enlarged text
+wraps per character and uses existing scrolling; these are offscreen Windows
+captures and synthetic routes, not manual input or physical-device evidence.
+Raw runs live under `Artifacts/QA/UI01/`.
+
+| Capture run | Case | Dimensions / text |
+|---|---|---|
+| `20261005-023755-packaged-capture-initial` | Initial reference size | 884x1780 / 100% |
+| `20261005-023809-packaged-capture-initial` | Initial double size | 1768x3560 / 100% |
+| `20261005-023821-packaged-capture-initial` | Initial phone-shaped | 390x844 / 100% |
+| `20261005-023831-packaged-capture-initial` | Initial enlarged | 390x844 / 200% |
+| `20261005-023842-packaged-capture-initial` | Initial narrow enlarged | 260x640 / 200% |
+| `20261005-023853-packaged-capture-pointerpress` | Held virtual pointer | 260x640 / 200% |
+| `20261005-023903-packaged-capture-pointerclick` | Virtual answer/check route | 390x844 / 100% |
+| `20261005-023919-packaged-capture-pointerresumed` | Virtual pause/resume | 260x640 / 200% |
+| `20261005-023935-packaged-capture-longfocus` | Long answer focused | 390x844 / 200% |
+| `20261005-023946-packaged-capture-longselectedfocus` | Long selected answer focused | 260x640 / 200% |
+| `20261005-023956-packaged-capture-correct` | Correct feedback | 884x1780 / 100% |
+| `20261005-024008-packaged-capture-wrong` | Wrong feedback | 390x844 / 200% |
+| `20261005-024020-packaged-capture-hint` | Assisted feedback | 390x844 / 200% |
+| `20261005-024032-packaged-capture-scrollfeedback` | Reading feedback scroll | 844x390 / 200% |
+
+Safe-zone is 1 for reference/double-size cases and 0.9 for the others; tooltips
+are disabled in every capture. The long/scroll modes intrinsically use 200% text.
+The packaged reference-size PNG SHA-256 is
+`99b0971f068499ee8377a5df7a9200144dccb4e0598fe2b5f1c1d616a15b7720`.
+Against PR #45 package `20261005-014353-packaged-capture-initial`, exactly 5,657
+pixels change inside the word diagnostic region and zero outside. Word glyph
+bounds/center equal the final preflight's 450x70/(446,732). Clue, prompt, answer A
+and mode extents remain identical to that prior package. Editor/package differs
+only at 964 Pause/plaque pixels in bounds [362,38,855,198), maximum channel delta
+one. Reference SHA remains
+`306dae4f6352749edcf1d8edf73f26339a4ba6407b4a394ec50b5898418bedae`.
+Raw verified metrics, hashes and case predicates are in
+`Artifacts/QA/UI01/WordType20261005/verification.json`; diagnostic crops and the
+half-opacity comparison are QA output, never product assets.
+
+Existing 82 Python QA tests pass (`headword-type-python-checks.log`); both Unreal
+automation tests pass with complete evidence (`WordType20261005/automation-helper.log`).
+The supplied six reference hash/dimension checks and ten source/runtime SVG parity
+checks pass. Source code is the only runtime change; no binaries are committed.
+Dedicated read-only review against actual base `origin/dev` is pending.
 
 Full static type/art/material fidelity, UI02 motion, manual/platform accessibility,
 draft fixture editorial approval, Android/phone, isolated offline, performance and
