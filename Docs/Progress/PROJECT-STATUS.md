@@ -14,7 +14,8 @@ fallback checks pass, with a disclosed historical edge-mask mismatch. Clean
 Win64 package, all 14 native captures, 82 Python QA tests and both Unreal tests
 pass; only 5,657 word-region pixels change versus the prior package, zero outside.
 Dedicated review against actual `dev` completes with no actionable introduced
-defects; PR publication is pending. Source art,
+defects. Non-draft [PR #46](https://github.com/rloterh/WordQuest/pull/46) is open
+against `dev` for owner review/merge. Source art,
 fonts, fixtures, learning rules and controls remain unchanged. No gate is passed
 on source changes alone. See [headword alignment](../QA/UI01/G-HEADWORD-ALIGNMENT.md).
 

@@ -121,6 +121,14 @@ startup/shutdown warnings remain in diagnostics; the dedicated review completes
 normally. Subsequent documentation records evidence/publication only. The owner
 retains the merge decision; review does not accept any outstanding gate.
 
+## Publication
+
+Non-draft [PR #46](https://github.com/rloterh/WordQuest/pull/46) is open against
+`dev` on `feature/g-headword-type-align`. Runtime source remains the tested
+`474165c`; following commits contain documentation only. The implementation agent
+does not merge the PR. After owner merge, continue bounded UI01 comparison of the
+remaining reading roles and art/material differences before UI02 acceptance work.
+
 Full static type/art/material fidelity, UI02 motion, manual/platform accessibility,
 draft fixture editorial approval, Android/phone, isolated offline, performance and
 original release gates remain open. No H/I/later milestone, deployment, release
