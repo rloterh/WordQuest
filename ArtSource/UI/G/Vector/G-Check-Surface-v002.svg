@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="388" height="113" viewBox="0 0 388 113">
+  <title>G Check surface v002; sculpted violet glass and warm gold, no label or icon</title>
+  <defs>
+    <linearGradient id="gold" x1="0" y1="2" x2="0" y2="110" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff5e4"/><stop offset=".12" stop-color="#e5cda9"/><stop offset=".37" stop-color="#ac7e51"/><stop offset=".6" stop-color="#b98c58"/><stop offset=".83" stop-color="#d6a867"/><stop offset=".96" stop-color="#ffda92"/><stop offset="1" stop-color="#fff3d4"/>
+    </linearGradient>
+    <linearGradient id="violet" x1="0" y1="6" x2="0" y2="106" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#9b88f6"/><stop offset=".07" stop-color="#855cfa"/><stop offset=".21" stop-color="#6245db"/><stop offset=".49" stop-color="#3525a6"/><stop offset=".66" stop-color="#30279d"/><stop offset=".85" stop-color="#3733ad"/><stop offset=".96" stop-color="#493fc6"/><stop offset="1" stop-color="#302582"/>
+    </linearGradient>
+    <linearGradient id="edgeLight" x1="0" y1="6" x2="0" y2="106" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#e0d2ff"/><stop offset=".08" stop-color="#a899ff"/><stop offset=".3" stop-color="#6a4fdc"/><stop offset=".68" stop-color="#4737b4"/><stop offset=".93" stop-color="#8370f2"/><stop offset="1" stop-color="#5440b9"/>
+    </linearGradient>
+    <radialGradient id="upperWash" cx="332" cy="24" r="67" gradientTransform="translate(0 10.8) scale(1 .55)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ad89ff" stop-opacity=".42"/><stop offset="1" stop-color="#ad88ff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="leftWash" cx="49" cy="97" r="68" gradientTransform="translate(0 19.4) scale(1 .8)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#5466ff" stop-opacity=".35"/><stop offset="1" stop-color="#5365ff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="rightWash" cx="344" cy="95" r="60" gradientTransform="translate(0 19) scale(1 .8)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#5866ec" stop-opacity=".18"/><stop offset="1" stop-color="#5866ec" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glint"><stop stop-color="#f0eaff" stop-opacity=".92"/><stop offset=".12" stop-color="#b5bcff" stop-opacity=".7"/><stop offset="1" stop-color="#8395ff" stop-opacity="0"/></radialGradient>
+    <clipPath id="face"><rect x="7" y="6" width="374" height="101" rx="50.5"/></clipPath>
+    <linearGradient id="bevel" x1="0" y1="7" x2="0" y2="105" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#eee6ff" stop-opacity=".75"/><stop offset=".05" stop-color="#c4a3ff" stop-opacity=".32"/><stop offset=".24" stop-color="#bdb4ff" stop-opacity="0"/><stop offset=".7" stop-color="#756dff" stop-opacity="0"/><stop offset=".96" stop-color="#7169fa" stop-opacity=".3"/><stop offset="1" stop-color="#4943cc" stop-opacity=".1"/>
+    </linearGradient>
+    <filter id="softEdge" x="-10%" y="-40%" width="120%" height="180%" color-interpolation-filters="sRGB"><feGaussianBlur stdDeviation="1.3"/></filter>
+    <filter id="nebulaSoft" x="-30%" y="-80%" width="160%" height="260%" color-interpolation-filters="sRGB"><feGaussianBlur stdDeviation="2.8"/></filter>
+  </defs>
+  <rect x="1.5" y="3" width="385" height="108" rx="54" fill="#584974" fill-opacity=".4"/>
+  <rect x="1.5" y="1.5" width="385" height="108" rx="54" fill="#a77b62" stroke="#5f4271" stroke-width="1.3"/>
+  <rect x="3.5" y="3.5" width="381" height="104" rx="52" fill="#33226c" stroke="url(#gold)" stroke-width="3.4"/>
+  <rect x="7" y="6" width="374" height="101" rx="50.5" fill="url(#violet)"/>
+  <g clip-path="url(#face)">
+    <rect x="7" y="6" width="374" height="101" fill="url(#upperWash)"/>
+    <rect x="7" y="6" width="374" height="101" fill="url(#leftWash)"/>
+    <rect x="7" y="6" width="374" height="101" fill="url(#rightWash)"/>
+    <path d="M16 54 Q16 22 44 12 Q52 10 59 10 M337 10 Q361 14 371 42" fill="none" stroke="#bda4ff" stroke-width="6" opacity=".42" filter="url(#softEdge)"/>
+    <path d="M18 60 Q22 92 47 101 M348 102 Q370 89 373 66" fill="none" stroke="#758aff" stroke-width="4" opacity=".45" filter="url(#softEdge)"/>
+    <circle cx="45" cy="83" r="7" fill="url(#glint)"/>
+    <circle cx="346" cy="93" r="4" fill="url(#glint)" opacity=".65"/>
+    <circle cx="80" cy="72" r="2.3" fill="url(#glint)" opacity=".55"/>
+    <circle cx="327" cy="40" r="2" fill="url(#glint)" opacity=".30"/>
+    <path d="M24 76 Q27 90 38 94 Q48 99 57 92 Q62 89 71 97 L89 101 M324 99 Q336 84 347 87 Q358 83 365 66" fill="none" stroke="#5e72fa" stroke-width="3" opacity=".16" filter="url(#nebulaSoft)"/>
+    <path d="M51 94 Q63 97 76 93 Q85 90 96 97 M324 24 Q334 29 341 20" fill="none" stroke="#af89ff" stroke-width="2" opacity=".13" filter="url(#nebulaSoft)"/>
+    <g fill="#c6b9ff" opacity=".3"><circle cx="41" cy="58" r=".6"/><circle cx="59" cy="42" r=".5"/><circle cx="29" cy="50" r=".45"/><circle cx="57" cy="76" r=".5"/><circle cx="86" cy="89" r=".55"/><circle cx="303" cy="86" r=".55"/><circle cx="349" cy="59" r=".5"/><circle cx="320" cy="35" r=".5"/></g>
+    <rect x="9.2" y="8.2" width="369.6" height="96.6" rx="48.3" fill="none" stroke="url(#bevel)" stroke-width="3.2" filter="url(#softEdge)"/>
+  </g>
+  <rect x="7" y="6" width="374" height="101" rx="50.5" fill="none" stroke="url(#edgeLight)" stroke-width="1.2"/>
+</svg>

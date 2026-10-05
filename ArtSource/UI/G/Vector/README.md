@@ -210,3 +210,13 @@ vertical bounds. Removing the Q descender otherwise changes object-bounding-box
 gradient coordinates and unintentionally reshades other letters. W and independent
 ornament retain the original local gradients. The material correction has a
 separate native preflight and is included in the final package evidence.
+
+Check revision v002 preserves v001 and adds curved edge highlights, revised
+violet/gold gradients, smaller glints and reduced grey-blue wash. Reproduce with
+`python Tools/AssetImport/render_g_check_surface.py --revision v002 --check`;
+the default remains v001 so earlier reproduction commands retain their meaning.
+Both exports use the same 388x113 canvas and 2x raster size. Unreal imports v002
+as a separate `G_CheckReverieV2` texture, preserving `G_CheckReverie` and the
+generated surface as ordered fallbacks. See the v002 provenance and
+`Docs/QA/UI01/G-CHECK-MATERIAL-REFINEMENT.md`; reference fidelity is not accepted
+on the eight-point color diagnostic alone.

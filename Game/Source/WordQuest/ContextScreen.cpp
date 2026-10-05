@@ -386,7 +386,9 @@ void UContextScreen::Build()
         PauseContentSlot->SetVerticalAlignment(VAlign_Center);
     }
     HintSkin = Picture(TEXT("HintSkin"), TEXT("/Game/UI/G/G_HintSkin.G_HintSkin"));
-    SubmitSkin = Picture(TEXT("SubmitSkin"), TEXT("/Game/UI/G/G_CheckReverie.G_CheckReverie"));
+    SubmitSkin = Picture(TEXT("SubmitSkin"), TEXT("/Game/UI/G/G_CheckReverieV2.G_CheckReverieV2"));
+    if (!SubmitSkin->GetBrush().GetResourceObject())
+        SubmitSkin = Picture(TEXT("SubmitSkinV1Fallback"), TEXT("/Game/UI/G/G_CheckReverie.G_CheckReverie"));
     const bool bAuthoredSubmitSkin = SubmitSkin->GetBrush().GetResourceObject() != nullptr;
     if (!bAuthoredSubmitSkin)
         SubmitSkin = Picture(TEXT("SubmitSkinFallback"), TEXT("/Game/UI/G/G_CheckSkin.G_CheckSkin"));

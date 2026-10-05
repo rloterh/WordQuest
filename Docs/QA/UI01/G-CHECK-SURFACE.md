@@ -168,4 +168,9 @@ gold finish, typography/icon and full UI01 fidelity, UI02 motion, draft fixture
 editorial approval, manual pointer/keyboard/hover/press, platform accessibility,
 Android/physical-phone, isolated offline, performance and original release gates
 remain open. Desktop captures and routed synthetic keys do not establish those gates.
+
+The subsequent [v002 refinement](G-CHECK-MATERIAL-REFINEMENT.md) preserves every
+v001 source/export/texture byte and selects a separate imported texture ahead of
+this candidate in the fallback chain. This document records the historical v001
+evidence; the newer evidence does not retroactively accept its material tradeoffs.
 No deployment, release or owner merge occurs.
