@@ -2,6 +2,20 @@
 
 ## Current stage: native static G implementation; acceptance incomplete
 
+The owner merged [PR #46](https://github.com/rloterh/WordQuest/pull/46) into `dev`
+on 2026-10-05 at 02:58:43 UTC (`50c0549`). Its headword improvement is integrated;
+full static fidelity and original device/release gates remain open. The next
+bounded UI01 increment on `feature/g-reading-text-align` corrects only the live
+clue and question-prompt anchors with the existing licensed reading face.
+Against the original, the prior clue center is (441.5,808) versus (442,810), and
+the prompt center is (440,942) versus (443,946). Measured sizes, font parameters,
+wrapping, downstream flow and fallback anchors remain. Real build and native
+preflight pass: clue first-line vertical center 810 and prompt center (443,946)
+match the original; second clue line remains one pixel high. Both fallback
+captures match the prior PNGs exactly; 82 Python checks and references/SVG parity
+pass. Clean archive, native matrix, Unreal automation and review are in progress. See
+[reading text alignment](../QA/UI01/G-READING-TEXT-ALIGNMENT.md).
+
 The owner merged [PR #45](https://github.com/rloterh/WordQuest/pull/45) into `dev`
 on 2026-10-05 at 02:00:45 UTC (`b0d3b24`). Check v002 is integrated with its
 earlier assets intact; the local color improvement does not accept full fidelity.
@@ -14,8 +28,8 @@ fallback checks pass, with a disclosed historical edge-mask mismatch. Clean
 Win64 package, all 14 native captures, 82 Python QA tests and both Unreal tests
 pass; only 5,657 word-region pixels change versus the prior package, zero outside.
 Dedicated review against actual `dev` completes with no actionable introduced
-defects. Non-draft [PR #46](https://github.com/rloterh/WordQuest/pull/46) is open
-against `dev` for owner review/merge. Source art,
+defects. [PR #46](https://github.com/rloterh/WordQuest/pull/46) is owner-merged at
+`50c0549`. Source art,
 fonts, fixtures, learning rules and controls remain unchanged. No gate is passed
 on source changes alone. See [headword alignment](../QA/UI01/G-HEADWORD-ALIGNMENT.md).
 

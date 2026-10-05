@@ -633,12 +633,13 @@ void UContextScreen::Layout(FVector2D Size)
     PutText(Word, (ReadingFont ? 110.f : 107.f) * S, ReadingFont ? Y - 1.5f * S : Y, 670 * S, H);
     Y += H + 14 * S;
     H = Measure(Clue, 36, 580 * S, 92 * S);
-    PutText(Clue, 152 * S, Y, 580 * S, H);
+    // Optical offsets belong to the licensed reading face; fallback keeps its anchors.
+    PutText(Clue, 152 * S, ReadingFont ? Y + 2.f * S : Y, 580 * S, H);
     Y += H + 8 * S;
     Bounds(Divider, X + 285 * S, Y - 2 * S, 314 * S, 29 * S);
     Y += 32 * S;
     H = Measure(Prompt, 32, 650 * S, 55 * S, true);
-    PutText(Prompt, 117 * S, Y, 650 * S, H);
+    PutText(Prompt, (ReadingFont ? 120.f : 117.f) * S, ReadingFont ? Y + 4.f * S : Y, 650 * S, H);
     Y += H + 12 * S;
     for (const auto& Answer : Answers)
     {
