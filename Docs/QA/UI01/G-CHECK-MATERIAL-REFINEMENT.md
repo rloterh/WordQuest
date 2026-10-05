@@ -139,8 +139,9 @@ fallback/cooking support, provenance hashes, LFS attributes, reference integrity
 and diff whitespace; Unreal builds, runtime/device checks were not independently
 rerun. Review does not accept material differences or authorize an owner merge.
 Subsequent review/publication commits are docs only.
-Non-draft [PR #45](https://github.com/rloterh/WordQuest/pull/45) is published against
-`dev`. The owner retains the merge decision; publication does not pass open gates.
+[PR #45](https://github.com/rloterh/WordQuest/pull/45) was owner-merged into `dev`
+on 2026-10-05 at 02:00:45 UTC (`b0d3b24`). The implementation/review helper did not
+merge it; merging does not pass the recorded open gates.
 
 Full UI01 art/type/material fidelity, UI02 motion, manual/platform accessibility,
 draft-content editorial approval, Android/phone, isolated offline, performance

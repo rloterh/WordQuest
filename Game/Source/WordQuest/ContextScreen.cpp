@@ -57,11 +57,12 @@ void Fill(UWidget* Widget)
     Slot->SetAnchors(FAnchors(0, 0, 1, 1));
     Slot->SetOffsets(FMargin(0));
 }
-void Font(UTextBlock* Text, float Pixels, bool Bold = false, UObject* Face = nullptr, float Enlargement = 1.f)
+void Font(UTextBlock* Text, float Pixels, bool Bold = false, UObject* Face = nullptr, float Enlargement = 1.f, int32 LetterSpacing = 0)
 {
     const int32 BaseSize = FMath::Max(1, FMath::RoundToInt(Pixels * .75f));
     auto Info = FCoreStyle::GetDefaultFontStyle(Bold ? "Bold" : "Regular", FMath::RoundToInt(BaseSize * Enlargement));
     if (Face) Info.FontObject = Face;
+    Info.LetterSpacing = LetterSpacing;
     Text->SetFont(Info);
 }
 void Accessible(UWidget* Widget, const FString& Label)
@@ -606,7 +607,8 @@ void UContextScreen::Layout(FVector2D Size)
     {
         // Enlarge the actual normal font, including its readability floor and
         // point-size rounding. Applying the floor afterwards shrinks the ratio.
-        Font(Label, FMath::Max(Pixels * S, 14.f), Bold || (Label == Mode && ReadingFont != nullptr), ReadingFont.Get(), TextScale);
+        Font(Label, FMath::Max(Pixels * S, 14.f), Bold || (Label == Mode && ReadingFont != nullptr), ReadingFont.Get(), TextScale,
+            Label == Word && ReadingFont ? -5 : 0);
         Label->SetWrapTextAt(W);
         Label->ForceLayoutPrepass();
         return FMath::Max(MinHeight, Label->GetDesiredSize().Y + 4 * S);
@@ -627,8 +629,8 @@ void UContextScreen::Layout(FVector2D Size)
     Y += H + 29 * S;
     // Keep normal reference reading anchors as the candidate face has a shorter
     // line box. Larger/longer text still expands through measured desired size.
-    H = Measure(Word, 76, 670 * S, 95 * S, true);
-    PutText(Word, 107 * S, Y, 670 * S, H);
+    H = Measure(Word, ReadingFont ? 77.f : 76.f, 670 * S, 95 * S, true);
+    PutText(Word, (ReadingFont ? 110.f : 107.f) * S, ReadingFont ? Y - 1.5f * S : Y, 670 * S, H);
     Y += H + 14 * S;
     H = Measure(Clue, 36, 580 * S, 92 * S);
     PutText(Clue, 152 * S, Y, 580 * S, H);

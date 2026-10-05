@@ -2,6 +2,23 @@
 
 ## Current stage: native static G implementation; acceptance incomplete
 
+The owner merged [PR #45](https://github.com/rloterh/WordQuest/pull/45) into `dev`
+on 2026-10-05 at 02:00:45 UTC (`b0d3b24`). Check v002 is integrated with its
+earlier assets intact; the local color improvement does not accept full fidelity.
+The next bounded UI01 correction on `feature/g-headword-type-align` adjusts only
+the live headword's size, tracking and placement using the existing licensed
+reading font. The prior native word is 445x69 with its horizontal center 2.5 pixels
+left of the original's 450x71 bounds. Real build and aligned preflight pass:
+450x70, center (446,732) versus reference (446,731.5). Native default/enlarged
+fallback checks pass, with a disclosed historical edge-mask mismatch. Clean
+Win64 package, all 14 native captures, 82 Python QA tests and both Unreal tests
+pass; only 5,657 word-region pixels change versus the prior package, zero outside.
+Dedicated review against actual `dev` completes with no actionable introduced
+defects. Non-draft [PR #46](https://github.com/rloterh/WordQuest/pull/46) is open
+against `dev` for owner review/merge. Source art,
+fonts, fixtures, learning rules and controls remain unchanged. No gate is passed
+on source changes alone. See [headword alignment](../QA/UI01/G-HEADWORD-ALIGNMENT.md).
+
 The owner merged [PR #44](https://github.com/rloterh/WordQuest/pull/44) into `dev`
 on 2026-10-05 at 01:17:57 UTC (`8f51a15`). Synthetic pointer checks are integrated;
 this does not accept manual pointer/touch, full static fidelity or phone gates.
@@ -21,8 +38,8 @@ review against actual `dev` at `8f51a15`, reviewed head `b6234d0`, found no acti
 introduced defects. Head/worktree remained unchanged; later records are docs only.
 No full fidelity or physical-device gate is passed. See
 [Check refinement](../QA/UI01/G-CHECK-MATERIAL-REFINEMENT.md).
-Non-draft [PR #45](https://github.com/rloterh/WordQuest/pull/45) is open against
-`dev` for owner review/merge; material and original device/release gates stay open.
+[PR #45](https://github.com/rloterh/WordQuest/pull/45) is owner-merged at `b0d3b24`;
+material and original device/release gates stay open.
 
 The owner merged [PR #43](https://github.com/rloterh/WordQuest/pull/43) into `dev`
 on 2026-10-04 at 21:34:53 UTC (`baa03aa`). Merging does not accept full UI01
