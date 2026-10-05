@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-05",
+  "status": "authored_static_refinement_candidate_acceptance_pending",
+  "master": "ArtSource/UI/G/Vector/G-Check-Surface-v002.svg",
+  "master_sha256": "382a1ea65f46f2dd0dbecb2cc3a034f31c23d4633fc341a95f93b64404e21cda",
+  "export": "ArtSource/UI/G/Exports/G-Check-Surface-v002.png",
+  "export_sha256": "a825f396de9b974245598d6e3925494a293faa358b5ff5fef6f645529303e4d7",
+  "export_dimensions": [776, 226],
+  "unreal_asset": "Game/Content/UI/G/G_CheckReverieV2.uasset",
+  "unreal_asset_sha256": "6e964496efeb5f4dcc3c6d6a85300afd68cbe18dd8c127e593d0734d2d2f9785",
+  "reference": "Planning/WordQuest-UI-Realms-Addendum/references/G-Celestial-Reverie-Gameplay.png",
+  "reference_sha256": "306dae4f6352749edcf1d8edf73f26339a4ba6407b4a394ec50b5898418bedae",
+  "canvas": [388, 113],
+  "method": "Hand-authored revision of v001: warmer gold, more saturated violet gradients, explicit curved edge highlights, smaller glints and reduced grey-blue wash. Development-only resvg-py 0.5.0 / resvg 0.48.1, explicit --revision v002, 2x export. Genuine Unreal sRGB UI texture import, bilinear, no mips/streaming. No imagegen or supplied-reference pixel extraction/editing.",
+  "native": "Same full export UVs, nine-slice margins .145 horizontal / .45 vertical and responsive reference slot beneath live label/star/native button. Geometry, text and production input/learning handlers unchanged.",
+  "fallback_chain": [
+    {"asset": "Game/Content/UI/G/G_CheckReverie.uasset", "sha256": "de2a907c135bc2a9bc6c6cc21751d372c17541909730342d9aec79d3b0ed0015", "provenance": "ArtSource/UI/G/Vector/G-Check-Surface-v001-PROVENANCE.json", "uv": "full"},
+    {"asset": "Game/Content/UI/G/G_CheckSkin.uasset", "sha256": "41c7f5557d14b8b3c163dec3f8d2bc20af86d74ee66d158a20342037ab37ccfd", "uv_half_open_source_pixels": [108, 151, 1876, 627], "source_dimensions": [1983, 793]},
+    {"native": "ordinary live fill/outline, label and separate star"}
+  ],
+  "limits": "Eight fixed opaque-face samples improve locally but are not a whole-material metric. Bevel/gold/gloss/texture still differ from reference. Full UI01, motion, device, manual accessibility, editorial, isolated offline, performance and release gates remain open.",
+  "qa": "Docs/QA/UI01/G-CHECK-MATERIAL-REFINEMENT.md"
+}

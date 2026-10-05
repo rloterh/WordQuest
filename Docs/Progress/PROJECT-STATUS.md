@@ -2,6 +2,28 @@
 
 ## Current stage: native static G implementation; acceptance incomplete
 
+The owner merged [PR #44](https://github.com/rloterh/WordQuest/pull/44) into `dev`
+on 2026-10-05 at 01:17:57 UTC (`8f51a15`). Synthetic pointer checks are integrated;
+this does not accept manual pointer/touch, full static fidelity or phone gates.
+The next bounded UI01 increment on `feature/g-check-material-refinement` addresses
+the recorded flatter Check bevel and violet/gold material differences. An editable
+v002 master adds curved edge lighting, warmer gold and a more saturated violet face.
+The prior v001 source/export/texture and generated fallback are preserved. Genuine
+Unreal import, real Editor build, 82 Python checks, export reproduction and six
+inspected missing-art checks pass. The same eight opaque-face samples improve
+from 9.88 to 7.88; individual points do not all improve and bevel/texture remain
+simpler than the original. Clean Win64 Development archive at `31e4b5d`, fourteen
+inspected packaged captures, 49 payload hashes, ten cooked SVGs, cooked v002 texture
+and both Unreal Context tests pass. Automatic scoped firewall coverage passes on
+attempt one. Exactly 39,116 pixels change inside Check and none elsewhere versus
+the PR #44 package; prior assets/references are unchanged. Dedicated read-only
+review against actual `dev` at `8f51a15`, reviewed head `b6234d0`, found no actionable
+introduced defects. Head/worktree remained unchanged; later records are docs only.
+No full fidelity or physical-device gate is passed. See
+[Check refinement](../QA/UI01/G-CHECK-MATERIAL-REFINEMENT.md).
+Non-draft [PR #45](https://github.com/rloterh/WordQuest/pull/45) is open against
+`dev` for owner review/merge; material and original device/release gates stay open.
+
 The owner merged [PR #43](https://github.com/rloterh/WordQuest/pull/43) into `dev`
 on 2026-10-04 at 21:34:53 UTC (`baa03aa`). Merging does not accept full UI01
 fidelity or the recorded Check material differences.
@@ -23,8 +45,8 @@ at `baa03aa`, reviewed head `dda891c`, found no actionable introduced defects;
 review head/worktree remained unchanged. Review/publication changes are docs only.
 No UI01/UI02/manual-pointer/device/release gate is marked passed.
 See [pointer proof](../QA/UI01/G-POINTER-ROUTING.md).
-Non-draft [PR #44](https://github.com/rloterh/WordQuest/pull/44) is open against
-`dev` for owner review/merge; merging will not accept the remaining gates.
+[PR #44](https://github.com/rloterh/WordQuest/pull/44) is owner-merged at `8f51a15`;
+the remaining acceptance gates stay open.
 
 The owner merged [PR #42](https://github.com/rloterh/WordQuest/pull/42) into `dev`
 on 2026-10-04 at 18:30:42 UTC (`39d757f`). The editable Pause surface and package
