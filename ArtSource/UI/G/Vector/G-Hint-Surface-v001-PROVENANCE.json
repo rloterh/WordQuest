@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-06",
+  "status": "authored_static_surface_candidate_acceptance_pending",
+  "master": "ArtSource/UI/G/Vector/G-Hint-Surface-v001.svg",
+  "master_sha256": "d0753e94fb22b924d82335df97d94cc9b6659abbeabd1cef718fa0ab56fcf5c4",
+  "export": "ArtSource/UI/G/Exports/G-Hint-Surface-v001.png",
+  "export_sha256": "78eaa7094eb2e832a0d8cdff5b19106ce140689870d9f2f6d50640a4b37e8107",
+  "export_dimensions": [574, 226],
+  "canvas": [287, 113],
+  "unreal_asset": "Game/Content/UI/G/G_HintReverie.uasset",
+  "unreal_asset_sha256": "7a21a2d116f1240313e4ab8674d0603fcec7d5910540b5115afef6dbfffa9679",
+  "reference": "Planning/WordQuest-UI-Realms-Addendum/references/G-Celestial-Reverie-Gameplay.png",
+  "reference_sha256": "306dae4f6352749edcf1d8edf73f26339a4ba6407b4a394ec50b5898418bedae",
+  "method": "Hand-authored editable SVG with pearl/lilac gradients, curved edge lighting, layered warm gold rim and restrained static reflection/glint paths. Development-only resvg-py 0.5.0 / resvg 0.48.1, 2x export. Genuine Unreal texture commandlet import, sRGB UI compression/group, bilinear, no mips/streaming. No imagegen or supplied-reference pixel extraction/editing; QA crops/samples are diagnostics only.",
+  "native": "Full export UVs and existing .195 horizontal/.45 vertical nine-slice margins. Existing responsive reference slot beneath live label/bulb/native button, enabled-state tint, hover/press overlays and focus behavior. No production geometry, text or learning/input handler change.",
+  "fallback_chain": [
+    {"asset": "Game/Content/UI/G/G_HintSkin.uasset", "sha256": "9ac5b0a5bd32f6e8ebaf18105526a011bf49f6fb8c255f0e54c3cd1acc05af67", "provenance": "ArtSource/UI/G/Reconstruction/G-ACTION-SKINS-PROVENANCE.json", "uv_half_open_source_pixels": [86, 125, 1908, 646], "source_dimensions": [1998, 787]},
+    {"native": "ordinary live fill/outline, label and separate bulb"}
+  ],
+  "fixed_face_sample_points": [[143,1479],[240,1479],[340,1479],[125,1513],[360,1513],[140,1540],[240,1540],[338,1540]],
+  "limits": "Eight opaque-face samples improve locally but do not establish whole-material fidelity. Rim/bevel, reflection detail, shadow/fringe and existing live type/placement differences remain. Full UI01, motion, device, manual accessibility, editorial, isolated offline, performance and release gates remain open.",
+  "qa": "Docs/QA/UI01/G-HINT-PEARL-SURFACE.md"
+}

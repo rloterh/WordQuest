@@ -220,3 +220,12 @@ as a separate `G_CheckReverieV2` texture, preserving `G_CheckReverie` and the
 generated surface as ordered fallbacks. See the v002 provenance and
 `Docs/QA/UI01/G-CHECK-MATERIAL-REFINEMENT.md`; reference fidelity is not accepted
 on the eight-point color diagnostic alone.
+
+Hint surface v001 is a separate editable pearl/gold SVG without baked label or
+bulb. Its 287x113 canvas exports at 2x with
+`python Tools/AssetImport/render_g_hint_surface.py --check` using the same pinned
+development-only renderer. Unreal imports `G_HintReverie` with full UVs and
+the existing responsive nine-slice slot. The original generated `G_HintSkin`
+and its UV framing remain as fallback, followed by the native live control.
+See `G-Hint-Surface-v001-PROVENANCE.json` and
+`Docs/QA/UI01/G-HINT-PEARL-SURFACE.md` for hashes, local comparison and gates.

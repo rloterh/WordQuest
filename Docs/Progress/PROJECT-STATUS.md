@@ -2,6 +2,32 @@
 
 ## Current stage: native static G implementation; acceptance incomplete
 
+The owner reports the prior PR merged, but GitHub still reports
+[PR #49](https://github.com/rloterh/WordQuest/pull/49) open and `dev` at
+`e931166` on the latest 2026-10-06 check. No merge is claimed or performed by
+the implementation agent. The next bounded UI01 increment on
+`feature/g-hint-pearl-surface` starts from tested PR #49 head `3dc14ea`; its
+dependency and actual publication/review base will remain explicit.
+An editable Hint pearl/gold surface replaces the generated candidate in the
+preferred native decoration path, preserving that texture and native fallback.
+Genuine import, real Editor build, final native preflight, four inspected
+missing-art checks, 96 Python QA tests, six references and ten SVG parity pairs
+pass. The same eight opaque-face samples improve from 11.71 to 3.08 mean absolute
+channel error; this does not accept material fidelity. A failed clean cook
+correctly reports Zen insufficient storage; lossless compression of ten old
+staging EXE/PDB pairs recovers about 4.7GB with all 20 hashes unchanged and no
+deletions. Retry archive, all 14 inspected packaged captures and both Unreal
+Context tests pass at `a877a5c`. Exactly 29,714 Hint-region pixels change and
+zero elsewhere versus PR #49's package. Dedicated review against actual
+`origin/feature/g-answer-cue-proof` at `3dc14ea` completes with no actionable
+introduced defects; references and new asset hashes verify. Independent renderer
+reproduction is blocked by reviewer filesystem permissions, while the primary
+check passes; builds/runtime/device checks are not independently rerun. Non-draft
+[PR #50](https://github.com/rloterh/WordQuest/pull/50) is open against PR #49's
+branch. Merge #49 first; retarget #50 to `dev` and recheck its actual diff/base
+before its owner merge. See
+[Hint pearl surface](../QA/UI01/G-HINT-PEARL-SURFACE.md).
+
 The owner merged [PR #48](https://github.com/rloterh/WordQuest/pull/48) into `dev`
 on 2026-10-06 at 21:08:14 UTC (`e931166`). Answer alignment is integrated; full
 static fidelity and original device/release gates remain open. The bounded UI01
