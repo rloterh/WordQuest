@@ -40,6 +40,10 @@
 /Game/Content/UI/G/Vector/G_HeaderDivider.svg text eol=lf
 /Game/Content/UI/G/Vector/G_ReadingDivider.svg text eol=lf
 
+# Preserve the revised Hint bulb master/runtime byte parity on every checkout.
+/ArtSource/UI/G/Vector/G-Hint-Bulb-v002.svg text eol=lf
+/Game/Content/UI/G/Vector/G_HintBulb.svg text eol=lf
+
 # Unreal binary assets.
 *.uasset filter=lfs diff=lfs merge=lfs -text
 *.umap filter=lfs diff=lfs merge=lfs -text
