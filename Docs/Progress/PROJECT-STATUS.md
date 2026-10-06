@@ -2,6 +2,21 @@
 
 ## Current stage: native static G implementation; acceptance incomplete
 
+The owner reports the prior PR merged, but GitHub still reports
+[PR #49](https://github.com/rloterh/WordQuest/pull/49) open and `dev` at
+`e931166` on the latest 2026-10-06 check. No merge is claimed or performed by
+the implementation agent. The next bounded UI01 increment on
+`feature/g-hint-pearl-surface` starts from tested PR #49 head `3dc14ea`; its
+dependency and actual publication/review base will remain explicit.
+An editable Hint pearl/gold surface replaces the generated candidate in the
+preferred native decoration path, preserving that texture and native fallback.
+Genuine import, real Editor build, final native preflight, four inspected
+missing-art checks, 96 Python QA tests, six references and ten SVG parity pairs
+pass. The same eight opaque-face samples improve from 11.71 to 3.08 mean absolute
+channel error; this does not accept material fidelity. Clean package/control
+captures and dedicated review remain in progress. See
+[Hint pearl surface](../QA/UI01/G-HINT-PEARL-SURFACE.md).
+
 The owner merged [PR #48](https://github.com/rloterh/WordQuest/pull/48) into `dev`
 on 2026-10-06 at 21:08:14 UTC (`e931166`). Answer alignment is integrated; full
 static fidelity and original device/release gates remain open. The bounded UI01
