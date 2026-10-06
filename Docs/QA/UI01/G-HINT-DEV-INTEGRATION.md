@@ -81,10 +81,13 @@ Unreal build/runtime/device checks are not independently rerun by the reviewer.
 Raw `review.txt` and `run.json` remain ignored. Subsequent commits record review
 and publication only; the runtime/art tree remains the tested `a877a5c` tree.
 
-## Remaining gates
+## Publication and remaining gates
 
-The integration PR targets `dev` directly and has completed dedicated read-only
-review against that actual base; the owner retains the merge decision.
+Non-draft [PR #51](https://github.com/rloterh/WordQuest/pull/51) is open on
+`integration/g-hint-pearl-dev`, directly against `dev`, and reports mergeable/clean
+at publication. It has completed dedicated read-only review against that actual
+base; the owner retains the merge decision. Merge this PR to bring the Hint changes
+into `dev`; its source/art remains identical to the tested `a877a5c` tree.
 Full UI01 material/type/art fidelity, UI02 motion, manual/platform accessibility,
 editorial approval of draft fixtures, Android/physical-phone, isolated offline,
 performance and original release gates remain open. No deployment, release or

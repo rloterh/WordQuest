@@ -21,7 +21,10 @@ remain. No new package cook or physical-device acceptance is claimed. Dedicated
 read-only review of clean `e271bd2` against actual `origin/dev` at `25eb382`
 completes with no actionable introduced defects; reference hashes, asset provenance
 and LFS tracking verify. Builds/runtime/device checks are not independently rerun
-by the reviewer. Publication targets `dev` directly. See
+by the reviewer. Non-draft [PR #51](https://github.com/rloterh/WordQuest/pull/51)
+is open directly against `dev` and reports mergeable/clean at publication. Merge
+this integration PR to bring the already owner-merged Hint surface into `dev`;
+full UI01 and original device/release gates remain open. See
 [Hint integration](../QA/UI01/G-HINT-DEV-INTEGRATION.md) and
 [Hint pearl surface](../QA/UI01/G-HINT-PEARL-SURFACE.md).
 
