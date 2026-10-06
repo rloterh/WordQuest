@@ -17,8 +17,9 @@ all 20 inspected packaged captures and both Unreal Context tests pass at
 identical to PR #48. Two inspected missing-font checks pass, with the original
 fallback initial PNG unchanged and the asset restored unchanged. Dedicated
 read-only review against actual `dev` completes with no actionable introduced
-defects and reruns all 14 focused cue tests successfully. PR publication follows;
-review does not accept any outstanding gate. See
+defects and reruns all 14 focused cue tests successfully. Non-draft
+[PR #49](https://github.com/rloterh/WordQuest/pull/49) is open against `dev` for
+owner review; review does not accept any outstanding gate. See
 [answer cue proof](../QA/UI01/G-ANSWER-CUE-PROOF.md).
 
 The owner merged [PR #47](https://github.com/rloterh/WordQuest/pull/47) into `dev`

@@ -159,6 +159,14 @@ and `run.json` remain ignored. Subsequent commits record review/publication only
 runtime source remains the tested `1a7a918`. Review is read-only and never
 authorizes a merge; the owner retains that decision.
 
+## Publication
+
+Non-draft [PR #49](https://github.com/rloterh/WordQuest/pull/49) is open against
+`dev` on `feature/g-answer-cue-proof`. Runtime source remains the clean tested
+`1a7a918`; following commits contain documentation only. The implementation
+agent does not merge. After owner merge, continue bounded UI01 comparison of
+remaining text-shape/art/material differences before UI02 acceptance work.
+
 Full static type/art/material fidelity, UI02 motion, manual/platform accessibility,
 draft fixture editorial approval, Android/phone, isolated offline, performance
 and original release gates remain open. Windows phone-shaped captures are not
