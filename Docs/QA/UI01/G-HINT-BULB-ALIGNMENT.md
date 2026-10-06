@@ -141,6 +141,11 @@ documentation change. Source/runtime parity and all six supplied references pass
 The reviewer does not independently rerun Unreal builds/runtime/device checks.
 Raw `review.txt` and `run.json` remain ignored; later commits record review and
 publication only. Review does not authorize a merge or accept outstanding gates.
+
+Non-draft [PR #52](https://github.com/rloterh/WordQuest/pull/52) is open on
+`feature/g-hint-bulb-alignment`, directly against `dev`, for owner review.
+Runtime/art remains the clean tested `d528389` tree; later commits update
+documentation only. The implementation agent does not merge PRs.
 Full UI01 fidelity, UI02 motion, manual/platform accessibility, draft-fixture
 editorial approval, Android/physical-phone, isolated offline, performance and
 original release gates remain open. The owner retains merge decisions; there is

@@ -21,7 +21,10 @@ zero elsewhere. Existing scoped firewall refresh succeeds on its second attempt.
 Dedicated read-only review of clean `4d0741b` against actual `origin/dev` at
 `10110a1` completes with no actionable introduced defects; all six references
 and ten SVG parity pairs verify independently. The reviewer does not independently
-rerun Unreal build/runtime/device checks. Publication targets `dev` directly. See
+rerun Unreal build/runtime/device checks. Non-draft
+[PR #52](https://github.com/rloterh/WordQuest/pull/52) is open directly against
+`dev` for owner review; source/art remains the clean tested `d528389` tree.
+Original acceptance gates remain open. See
 [Hint bulb alignment](../QA/UI01/G-HINT-BULB-ALIGNMENT.md).
 
 GitHub confirms the owner merged [PR #49](https://github.com/rloterh/WordQuest/pull/49)
