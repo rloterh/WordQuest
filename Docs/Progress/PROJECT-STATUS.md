@@ -16,7 +16,8 @@ parity pass. Clean Win64 archive, all 16 inspected packaged captures and both
 Unreal tests pass at `a9f14a4`. Only 18,064 initial label-region pixels change,
 zero elsewhere; visible enlarged selection/wrong cues fit. Offscreen chosen rows
 in some enlarged captures are not glyph-visibility evidence. Dedicated review
-and PR publication are pending. See
+against actual `dev` completes with no actionable introduced defects; PR
+publication is pending. See
 [answer label alignment](../QA/UI01/G-ANSWER-LABEL-ALIGNMENT.md).
 
 The owner merged [PR #46](https://github.com/rloterh/WordQuest/pull/46) into `dev`

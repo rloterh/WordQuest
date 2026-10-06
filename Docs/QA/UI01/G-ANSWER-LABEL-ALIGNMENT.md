@@ -84,7 +84,7 @@ layout, text-size, focus, pointer and reading-scroll checks true. No native
 Error/Fatal lines occur. Every final PNG was inspected; the 1768x3560 full-screen
 view is viewer-resized to 1017x2048. Narrow/enlarged text retains measured wrapping
 and scrolling; long row heights change as the actual available label width grows.
-Visible 200% long-selected `>` and wrong-state `x` cues fit beside the labels;
+Visible 200% long-selected `>` and wrong-state `×` cues fit beside the labels;
 normal correct-state square-root cue remains clear. Some enlarged selected/correct
 frames show initial reading or feedback with the chosen row offscreen: their native
 cue/state evidence is not a glyph-visibility proof for that offscreen row. These
@@ -127,7 +127,18 @@ Both Unreal Context automation tests pass at the same clean source in
 `20261006-142034-automation-initial`, with complete evidence. No tests are added
 for the reversible spacing adjustment; existing Python/native checks exercise
 reflow, enlarged content, state and routing. Dedicated read-only review against
-actual `origin/dev` is pending.
+actual `origin/dev` completes as recorded below.
+
+## Dedicated review
+
+`python Tools/Review/review_pr.py --base origin/dev` completes with exit zero in
+`Artifacts/Reviews/20261006-143037/`. It reviews clean head `8bb6328` against
+actual base `6bee47b`; head and worktree remain unchanged. The report identifies
+no actionable introduced defects and confirms preserved fallback behavior,
+padding-aware row measurement and explicit outstanding gates. It does not
+independently rerun builds/runtime checks. Subsequent commits record review and
+publication only; runtime source remains the tested `a9f14a4`. The owner retains
+the merge decision; review does not accept any outstanding gate.
 
 Full static type/art/material fidelity, UI02 motion, manual/platform accessibility,
 draft fixture editorial approval, Android/phone, isolated offline, performance and
