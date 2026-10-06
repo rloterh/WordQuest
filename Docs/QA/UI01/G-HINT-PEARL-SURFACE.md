@@ -184,20 +184,23 @@ does not independently rerun Unreal builds/runtime/device checks. Raw `review.tx
 and `run.json` remain ignored. Later commits record review/publication only;
 runtime source/art remains the clean packaged `a877a5c`.
 
-PR #49 still reports open, so publication uses its branch as the actual base.
+At the publication check, PR #49 still reported open, so publication used its branch as the actual base.
 The Hint diff can be reviewed independently, but PR #49 must be merged first.
 No implementation-agent merge is performed; read-only review never authorizes
 merge or accepts original outstanding gates.
 
 ## Publication
 
-Non-draft [PR #50](https://github.com/rloterh/WordQuest/pull/50) is open on
+Non-draft [PR #50](https://github.com/rloterh/WordQuest/pull/50) was published on
 `feature/g-hint-pearl-surface` against `feature/g-answer-cue-proof`, the actual
-branch for still-open PR #49. Runtime source/art remains the clean tested
-`a877a5c`; subsequent commits are documentation only. Merge PR #49 first, then
-retarget PR #50 to `dev` and recheck the actual base/diff before owner merge.
-The implementation agent does not merge either PR. Continue bounded UI01
-comparisons after these dependencies are integrated; original gates remain open.
+branch for then-open PR #49. Runtime source/art remains the clean tested
+`a877a5c`; subsequent commits are documentation only. The published sequence was
+to merge #49, retarget #50 to `dev`, and recheck its actual base/diff before merge.
+GitHub now confirms the owner merged #49 into `dev` at 22:58:22 UTC on 2026-10-06
+(`25eb382`), then #50 into its unchanged feature-branch base at 22:58:40 UTC
+(`269d6aa`). The Hint changes therefore still need integration into `dev`.
+See [dev integration evidence](G-HINT-DEV-INTEGRATION.md). The implementation agent
+does not merge PRs; original gates remain open.
 
 Full UI01 type/art/material fidelity, UI02 motion, manual/platform accessibility,
 draft fixture editorial approval, Android/phone, isolated offline, performance and
