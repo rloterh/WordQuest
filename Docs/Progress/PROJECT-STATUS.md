@@ -2,6 +2,19 @@
 
 ## Current stage: native static G implementation; acceptance incomplete
 
+The owner merged [PR #48](https://github.com/rloterh/WordQuest/pull/48) into `dev`
+on 2026-10-06 at 21:08:14 UTC (`e931166`). Answer alignment is integrated; full
+static fidelity and original device/release gates remain open. The bounded UI01
+increment on `feature/g-answer-cue-proof` directly reveals chosen answer rows
+for native selection/correct/wrong symbol checks. Its first 260px/200% capture
+correctly rejects a 29px check-mark advance in an 18px reservation. Runtime now
+reserves the widest of all three actual-font cues plus a small gap before wrapping
+labels, preserving stable width across answer states. Corrected real build,
+narrow correct and oversized-long correct preflights pass; 96 Python QA tests,
+six supplied references and ten SVG parity checks pass. Clean package, native
+cue/regression captures and dedicated review remain in progress. See
+[answer cue proof](../QA/UI01/G-ANSWER-CUE-PROOF.md).
+
 The owner merged [PR #47](https://github.com/rloterh/WordQuest/pull/47) into `dev`
 on 2026-10-05 at 08:21:35 UTC (`6bee47b`). Reading anchors are integrated; full
 static fidelity and original device/release gates remain open. The next bounded
@@ -17,8 +30,8 @@ Unreal tests pass at `a9f14a4`. Only 18,064 initial label-region pixels change,
 zero elsewhere; visible enlarged selection/wrong cues fit. Offscreen chosen rows
 in some enlarged captures are not glyph-visibility evidence. Dedicated review
 against actual `dev` completes with no actionable introduced defects.
-Non-draft [PR #48](https://github.com/rloterh/WordQuest/pull/48) is open against
-`dev` for owner review/merge. See
+Non-draft [PR #48](https://github.com/rloterh/WordQuest/pull/48) is owner-merged
+at `e931166`. See
 [answer label alignment](../QA/UI01/G-ANSWER-LABEL-ALIGNMENT.md).
 
 The owner merged [PR #46](https://github.com/rloterh/WordQuest/pull/46) into `dev`

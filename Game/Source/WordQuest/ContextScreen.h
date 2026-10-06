@@ -48,6 +48,8 @@ public:
     void FocusProofPause();
     UButton* GetProofPointerButton(FName Name) const;
     void PrepareProofPointerTarget(FName Name);
+    void PrepareProofAnswerCue(int32 Index);
+    FString GetProofAnswerCueGeometry(int32 Index) const;
     bool GetProofPointerPoint(FName Name, FVector2D& Point) const;
     int32 GetProofAnswerCueCode(int32 Index) const;
     FString GetProofAnswerAccessibleText(int32 Index) const;

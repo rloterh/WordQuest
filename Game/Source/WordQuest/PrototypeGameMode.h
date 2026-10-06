@@ -34,6 +34,8 @@ private:
     FTimerHandle ScrollTimer;
     FTimerHandle ModalTimer;
     FTimerHandle PointerTimer;
+    FTimerHandle CueTimer;
+    int32 CueProofIndex = -1;
     TSharedPtr<FSlateVirtualUserHandle> PointerUser;
     TArray<TPair<FName, FName>> PointerSteps;
     TSet<FKey> PointerButtons;

@@ -85,7 +85,7 @@ Error/Fatal lines occur. Every final PNG was inspected; the 1768x3560 full-scree
 view is viewer-resized to 1017x2048. Narrow/enlarged text retains measured wrapping
 and scrolling; long row heights change as the actual available label width grows.
 Visible 200% long-selected `>` and wrong-state `×` cues fit beside the labels;
-normal correct-state square-root cue remains clear. Some enlarged selected/correct
+normal correct-state check-mark cue remains clear. Some enlarged selected/correct
 frames show initial reading or feedback with the chosen row offscreen: their native
 cue/state evidence is not a glyph-visibility proof for that offscreen row. These
 are Windows offscreen/synthetic checks, not manual or phone acceptance.
@@ -142,11 +142,13 @@ the merge decision; review does not accept any outstanding gate.
 
 ## Publication
 
-Non-draft [PR #48](https://github.com/rloterh/WordQuest/pull/48) is open against
-`dev` on `feature/g-answer-label-align`. Following the tested runtime commit,
-commits contain documentation only. The implementation agent does not merge.
-After owner merge, continue bounded UI01 comparison of remaining text-shape and
-art/material differences before UI02 acceptance work.
+Non-draft [PR #48](https://github.com/rloterh/WordQuest/pull/48) was owner-merged
+into `dev` at `e931166378d036af9ade5e45adb8d59eb7354cb2` on 2026-10-06 at
+21:08:14 UTC. Following the tested runtime commit, commits contain documentation
+only. The implementation agent does not merge. The subsequent
+[cue proof](G-ANSWER-CUE-PROOF.md) directly checks the rows that were offscreen
+in some enlarged frames and records a narrow check-mark reservation defect.
+Continue bounded UI01 comparison before UI02 acceptance work.
 
 Full static type/art/material fidelity, UI02 motion, manual/platform accessibility,
 draft fixture editorial approval, Android/phone, isolated offline, performance and

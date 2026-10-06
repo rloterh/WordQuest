@@ -29,10 +29,8 @@
 #include "Framework/Application/SlateApplication.h"
 #include "HAL/FileManager.h"
 #include "Styling/CoreStyle.h"
-#if !UE_BUILD_SHIPPING
 #include "Fonts/FontMeasure.h"
 #include "Rendering/SlateRenderer.h"
-#endif
 
 namespace
 {
@@ -644,15 +642,24 @@ void UContextScreen::Layout(FVector2D Size)
     for (const auto& Answer : Answers)
     {
         const float BadgeDiameter = FMath::Max(70 * S * TextScale, 32.f);
-        const float MarkerWidth = FMath::Max((ReadingFont ? 33.f : 37.f) * S * TextScale, 18.f);
         // Match the reading face's baseline without moving the badge or row hit area.
         const float LabelTopPadding = ReadingFont ? 2.f * S : 0.f;
         CastChecked<UHorizontalBoxSlot>(Answer.Label->Slot)->SetPadding(FMargin(0, LabelTopPadding, 0, 0));
         Answer.BadgeSize->SetWidthOverride(BadgeDiameter);
         Answer.BadgeSize->SetHeightOverride(BadgeDiameter);
-        Answer.MarkerSize->SetWidthOverride(MarkerWidth);
         Font(Answer.Letter, FMath::Max(35 * S, 14.f), true, nullptr, TextScale);
         Font(Answer.Marker, FMath::Max(24 * S, 14.f), true, nullptr, TextScale);
+        // Font floors can exceed the scaled reservation on narrow views. Reserve
+        // every cue up front so choosing/submitting does not shift label wrapping.
+        const auto FontMeasure = FSlateApplication::Get().GetRenderer()->GetFontMeasureService();
+        const auto CueFont = Answer.Marker->GetFont();
+        const float CueWidth = FMath::Max3(
+            FontMeasure->Measure(TEXT(">"), CueFont).X,
+            FontMeasure->Measure(TEXT("\u2713"), CueFont).X,
+            FontMeasure->Measure(TEXT("\u00d7"), CueFont).X);
+        const float MarkerWidth = FMath::Max3((ReadingFont ? 33.f : 37.f) * S * TextScale,
+            18.f, CueWidth + FMath::Max(2.f * S, 1.f));
+        Answer.MarkerSize->SetWidthOverride(MarkerWidth);
         const auto SlotPadding = CastChecked<UButtonSlot>(Answer.Button->GetContent()->Slot)->GetPadding();
         const float LabelWidth = 666 * S - 48 * S - BadgeDiameter - MarkerWidth - SlotPadding.Left - SlotPadding.Right;
         H = Measure(Answer.Label, 32, LabelWidth, FMath::Max(95 * S, 48.f));
@@ -1082,6 +1089,34 @@ FString UContextScreen::GetProofTextSizes() const
 
 float UContextScreen::GetProofReadingOffset() const { return Scroll->GetScrollOffset(); }
 float UContextScreen::GetProofReadingEndOffset() const { return Scroll->GetScrollOffsetOfEnd(); }
+
+void UContextScreen::PrepareProofAnswerCue(int32 Index)
+{
+    if (!Answers.IsValidIndex(Index)) return;
+    // Capture setup only: reveal even a submitted row, without giving a disabled
+    // button keyboard focus or claiming that real input performed the scroll.
+    Scroll->ScrollWidgetIntoView(Answers[Index].Button, false, EDescendantScrollDestination::TopOrLeft);
+}
+
+FString UContextScreen::GetProofAnswerCueGeometry(int32 Index) const
+{
+    if (!Answers.IsValidIndex(Index)) return TEXT("invalid=1");
+    const auto& Answer = Answers[Index];
+    const auto& MarkerGeometry = Answer.Marker->GetCachedGeometry();
+    const auto Marker = MarkerGeometry.GetLayoutBoundingRect();
+    auto Label = Answer.Label->GetCachedGeometry().GetLayoutBoundingRect();
+    const auto Clip = Scroll->GetCachedGeometry().GetLayoutBoundingRect();
+    const auto Measure = FSlateApplication::Get().GetRenderer()->GetFontMeasureService();
+    const auto GlyphSize = Measure->Measure(Answer.Marker->GetText(), Answer.Marker->GetFont())
+        * MarkerGeometry.GetAccumulatedLayoutTransform().GetScale();
+    const float LabelLineHeight = Measure->GetMaxCharacterHeight(Answer.Label->GetFont())
+        * Answer.Label->GetCachedGeometry().GetAccumulatedLayoutTransform().GetScale();
+    Label.Bottom = Label.Top + FMath::Min(float(Label.GetSize().Y), LabelLineHeight);
+    return FString::Printf(TEXT("option=%d codepoint=%d textpercent=%d enabled=%d markerleft=%.3f markertop=%.3f markerright=%.3f markerbottom=%.3f glyphwidth=%.3f glyphheight=%.3f labelleft=%.3f labeltop=%.3f labelright=%.3f labelbottom=%.3f clipleft=%.3f cliptop=%.3f clipright=%.3f clipbottom=%.3f"),
+        Index, GetProofAnswerCueCode(Index), GetProofTextPercent(), Answer.Button->GetIsEnabled(),
+        Marker.Left, Marker.Top, Marker.Right, Marker.Bottom, GlyphSize.X, GlyphSize.Y,
+        Label.Left, Label.Top, Label.Right, Label.Bottom, Clip.Left, Clip.Top, Clip.Right, Clip.Bottom);
+}
 
 int32 UContextScreen::GetProofFeedbackVisibility(bool bEnd) const
 {
