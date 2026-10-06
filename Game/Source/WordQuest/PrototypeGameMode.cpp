@@ -47,6 +47,7 @@ void APrototypeController::BeginPlay()
 void APrototypeController::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
     GetWorldTimerManager().ClearTimer(PointerTimer);
+    GetWorldTimerManager().ClearTimer(CueTimer);
     if (PointerUser && FSlateApplication::IsInitialized())
     {
         if (auto User = FSlateApplication::Get().GetUser(PointerUser->GetUserIndex()))
@@ -355,7 +356,22 @@ void APrototypeController::RunProof()
 {
     if (FParse::Param(FCommandLine::Get(), TEXT("WQLargeText"))) Screen->SetProofTextScale(2);
     if (ProofName.StartsWith(TEXT("pointer"))) { RunPointerProof(); return; }
-    if (ProofName.StartsWith(TEXT("key"))) RunKeyboardProof();
+    if (ProofName.StartsWith(TEXT("cue")))
+    {
+        if (ProofName.StartsWith(TEXT("cuelong"))) { Screen->SetProofTextScale(2); Screen->SetProofLongText(); }
+        const bool Correct = ProofName.EndsWith(TEXT("correct"));
+        const bool Wrong = ProofName.EndsWith(TEXT("wrong"));
+        CueProofIndex = Correct ? 0 : Wrong ? 1 : 2;
+        Screen->Choose(CueProofIndex);
+        if (Correct || Wrong) Screen->Submit();
+        GetWorldTimerManager().SetTimer(CueTimer, FTimerDelegate::CreateWeakLambda(this, [this]()
+        {
+            Screen->PrepareProofAnswerCue(CueProofIndex);
+            if (!CapturePath.IsEmpty()) GetWorldTimerManager().SetTimer(ProofTimer,
+                this, &APrototypeController::CaptureProof, .5f, false);
+        }), .5f, false);
+    }
+    else if (ProofName.StartsWith(TEXT("key"))) RunKeyboardProof();
     else if (ProofName.StartsWith(TEXT("scroll"))) RunScrollProof();
     else if (ProofName.StartsWith(TEXT("modal"))) RunModalProof();
     else if (ProofName.StartsWith(TEXT("interrupt"))) RunInterruptionProof();
@@ -395,7 +411,7 @@ void APrototypeController::RunProof()
     const auto& A = Screen->GetAttempt();
     UE_LOG(LogTemp, Display, TEXT("WQ_STATE proof=%s selected=%d submitted=%d correct=%d hint=%d paused=%d evaluations=%d"),
         *ProofName, A.SelectedIndex, A.bSubmitted, A.bCorrect, A.bHintUsed, A.bPaused, A.EvaluationCount);
-    if (!CapturePath.IsEmpty()) GetWorldTimerManager().SetTimer(ProofTimer, this, &APrototypeController::CaptureProof,
+    if (!CapturePath.IsEmpty() && CueProofIndex < 0) GetWorldTimerManager().SetTimer(ProofTimer, this, &APrototypeController::CaptureProof,
         ProofName.StartsWith(TEXT("modal")) ? 3.f : ProofName.StartsWith(TEXT("scroll")) ? 2.f : 1.f, false);
 }
 
@@ -415,6 +431,8 @@ void APrototypeController::CaptureProof()
     UE_LOG(LogTemp, Display, TEXT("WQ_TEXT_CAPTURE proof=%s textpercent=%d"),
         *ProofName, Screen->GetProofTextPercent());
     UE_LOG(LogTemp, Display, TEXT("WQ_TYPE_CAPTURE proof=%s %s"), *ProofName, *Screen->GetProofTextSizes());
+    if (CueProofIndex >= 0)
+        UE_LOG(LogTemp, Display, TEXT("WQ_ANSWER_CUE_CAPTURE proof=%s %s"), *ProofName, *Screen->GetProofAnswerCueGeometry(CueProofIndex));
     UE_LOG(LogTemp, Display, TEXT("WQ_ACTION_CONTENT proof=%s fits=%d"), *ProofName, Screen->GetProofActionContentsFit());
     UE_LOG(LogTemp, Display, TEXT("WQ_FEEDBACK_CAPTURE proof=%s visibility=%d"),
         *ProofName, Screen->GetProofFeedbackVisibility(ProofName.StartsWith(TEXT("scroll"))));

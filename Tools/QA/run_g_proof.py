@@ -3,6 +3,7 @@ import argparse
 from datetime import datetime
 import hashlib
 import json
+import math
 import re
 from pathlib import Path
 import struct
@@ -43,6 +44,45 @@ KEYBOARD_STEPS = {
 
 POINTER_PROOFS = ('pointerhover', 'pointerpress', 'pointerhintpress', 'pointeranswerpress',
                   'pointerpausepress', 'pointerclick', 'pointerhint', 'pointerpaused', 'pointerresumed')
+
+CUE_PROOFS = {name: state for name, state in [
+    ('cueselected', (2, 0, 0, 0, 0, 0)), ('cuecorrect', (0, 1, 1, 0, 0, 1)),
+    ('cuewrong', (1, 1, 0, 0, 0, 1)), ('cuelongselected', (2, 0, 0, 0, 0, 0)),
+    ('cuelongcorrect', (0, 1, 1, 0, 0, 1)), ('cuelongwrong', (1, 1, 0, 0, 0, 1))]}
+
+
+def check_answer_cue_geometry(log, proof, text_percent):
+    lines = [line.split('WQ_ANSWER_CUE_CAPTURE ', 1)[1] for line in log.splitlines() if 'WQ_ANSWER_CUE_CAPTURE ' in line]
+    if len(lines) != 1 or proof not in CUE_PROOFS:
+        return False, lines
+    fields = ['proof', 'option', 'codepoint', 'textpercent', 'enabled', 'markerleft', 'markertop',
+              'markerright', 'markerbottom', 'glyphwidth', 'glyphheight', 'labelleft', 'labeltop',
+              'labelright', 'labelbottom', 'clipleft', 'cliptop', 'clipright', 'clipbottom']
+    tokens = lines[0].split()
+    if len(tokens) != len(fields) or any(not token.startswith(key + '=') for key, token in zip(fields, tokens)):
+        return False, lines
+    row = dict(token.split('=', 1) for token in tokens)
+    state = CUE_PROOFS[proof]
+    code = 10003 if state[2] else 215 if state[1] else 62
+    if [row[k] for k in fields[:5]] != [proof, str(state[0]), str(code), str(text_percent), str(1 - state[1])]:
+        return False, lines
+    try:
+        values = {key: float(row[key]) for key in fields[5:]}
+    except ValueError:
+        return False, lines
+    if not all(math.isfinite(value) for value in values.values()):
+        return False, lines
+    v = values
+    def visible(prefix):
+        left, top, right, bottom = [v[prefix + edge] for edge in ['left', 'top', 'right', 'bottom']]
+        return (right > left and bottom > top and left >= v['clipleft'] - .5 and top >= v['cliptop'] - .5
+                and right <= v['clipright'] + .5 and bottom <= v['clipbottom'] + .5)
+    passed = (v['clipright'] > v['clipleft'] and v['clipbottom'] > v['cliptop'] and visible('marker') and visible('label')
+              and v['glyphwidth'] > 0 and v['glyphheight'] > 0
+              and v['glyphwidth'] <= v['markerright'] - v['markerleft'] + .5
+              and v['glyphheight'] <= v['markerbottom'] - v['markertop'] + .5
+              and v['markerleft'] + v['glyphwidth'] <= v['labelleft'] + .5)
+    return passed, row
 
 
 def pointer_contract(proof):
@@ -297,7 +337,7 @@ def check_interruption_steps(log, proof):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('mode', choices=['automation', 'capture'])
-    parser.add_argument('--proof', default='initial', choices=['initial', 'selected', 'correct', 'wrong', 'hint', 'empty', 'paused', 'resumed', 'pausefocus', 'large', 'long', 'longfocus', 'longselectedfocus', 'focus', 'actions', 'actionfocus', *KEYBOARD_STEPS, *INTERRUPTION_PROOFS, *SCROLL_PROOFS, *MODAL_PROOFS, *POINTER_PROOFS])
+    parser.add_argument('--proof', default='initial', choices=['initial', 'selected', 'correct', 'wrong', 'hint', 'empty', 'paused', 'resumed', 'pausefocus', 'large', 'long', 'longfocus', 'longselectedfocus', 'focus', 'actions', 'actionfocus', *KEYBOARD_STEPS, *INTERRUPTION_PROOFS, *SCROLL_PROOFS, *MODAL_PROOFS, *POINTER_PROOFS, *CUE_PROOFS])
     parser.add_argument('--width', type=int, default=884)
     parser.add_argument('--height', type=int, default=1780)
     parser.add_argument('--safe-zone', type=float, default=1.0, help='Desktop simulated safe-area ratio, 0.5 to 1')
@@ -308,7 +348,9 @@ def main():
     args = parser.parse_args()
     if args.proof in POINTER_PROOFS and args.mode != 'capture':
         parser.error('Pointer proofs require capture mode.')
-    if args.large_text and (args.mode != 'capture' or args.proof not in ('initial', 'selected', 'correct', 'wrong', 'hint', 'empty', *POINTER_PROOFS)):
+    if args.proof in CUE_PROOFS and args.mode != 'capture':
+        parser.error('Answer cue proofs require capture mode.')
+    if args.large_text and (args.mode != 'capture' or args.proof not in ('initial', 'selected', 'correct', 'wrong', 'hint', 'empty', *POINTER_PROOFS, *CUE_PROOFS)):
         parser.error('--large-text supports question-state and pointer captures only.')
     if not .5 <= args.safe_zone <= 1 or args.width < 200 or args.height < 200:
         parser.error('Use safe-zone 0.5..1 and dimensions at least 200 pixels.')
@@ -394,6 +436,7 @@ def main():
             **{proof: (0, 1, 1, 1, 1, 1) for proof in MODAL_PROOFS},
             **{proof: steps[-1][1] for proof, steps in KEYBOARD_STEPS.items()},
             **{proof: pointer_contract(proof)[-1][2] for proof in POINTER_PROOFS},
+            **CUE_PROOFS,
         }.get(args.proof, (-1, 0, 0, 0, 0, 0))
         matches = re.findall(r'WQ_STATE proof=\w+ selected=(-?\d+) submitted=(\d+) correct=(\d+) hint=(\d+) paused=(\d+) evaluations=(\d+)', log)
         result['state_passed'] = len(matches) == 1 and tuple(map(int, matches[0])) == expected
@@ -402,7 +445,12 @@ def main():
         passed, rows = check_option_cues(log, args.proof, cue_state)
         result.update({'option_cues_passed': passed, 'option_cues': rows})
         result['evidence_complete'] = result['evidence_complete'] and passed
-        if args.large_text or args.proof in SCROLL_PROOFS:
+        if args.proof in CUE_PROOFS:
+            percent = 200 if args.large_text or args.proof.startswith('cuelong') else 100
+            passed, rows = check_answer_cue_geometry(log, args.proof, percent)
+            result.update({'answer_cue_geometry_passed': passed, 'answer_cue_geometry': rows})
+            result['evidence_complete'] = result['evidence_complete'] and passed
+        if args.large_text or args.proof in SCROLL_PROOFS or args.proof.startswith('cuelong'):
             passed, rows = check_large_text_capture(log, args.proof)
             result.update({'large_text_passed': passed, 'text_capture': rows})
             result['evidence_complete'] = result['evidence_complete'] and passed
