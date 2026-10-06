@@ -18,7 +18,10 @@ export reproduction pass. Hint provenance and all 49 payload hashes of the retai
 PR #50 archive verify. The new initial screen is RGB-identical to its final Editor
 trial; the known 964 one-channel Pause/plaque differences from the retained package
 remain. No new package cook or physical-device acceptance is claimed. Dedicated
-review and publication against actual `dev` are next. See
+read-only review of clean `e271bd2` against actual `origin/dev` at `25eb382`
+completes with no actionable introduced defects; reference hashes, asset provenance
+and LFS tracking verify. Builds/runtime/device checks are not independently rerun
+by the reviewer. Publication targets `dev` directly. See
 [Hint integration](../QA/UI01/G-HINT-DEV-INTEGRATION.md) and
 [Hint pearl surface](../QA/UI01/G-HINT-PEARL-SURFACE.md).
 

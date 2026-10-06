@@ -69,10 +69,22 @@ Raw integration scripts, helper logs and reports remain ignored under
 `Artifacts/QA/UI01/HintIntegration20261006/` (`verification.json`,
 `asset-verification.json`, `image-comparison.json`).
 
+## Dedicated review
+
+`python Tools/Review/review_pr.py --base origin/dev` completes with exit zero in
+`Artifacts/Reviews/20261006-232620/`. It reviews clean head
+`e271bd289210c29d97a67ac9f976ea3e02bed630` against actual base
+`25eb382151a16f4de8236c9e0363e174828ef3f5`; head and worktree remain unchanged.
+No actionable introduced defects are found. Original references verify, new
+asset hashes match provenance, and both binary assets retain LFS tracking.
+Unreal build/runtime/device checks are not independently rerun by the reviewer.
+Raw `review.txt` and `run.json` remain ignored. Subsequent commits record review
+and publication only; the runtime/art tree remains the tested `a877a5c` tree.
+
 ## Remaining gates
 
-The integration PR targets `dev` directly. Dedicated read-only review against that
-actual base must complete before publication; the owner retains the merge decision.
+The integration PR targets `dev` directly and has completed dedicated read-only
+review against that actual base; the owner retains the merge decision.
 Full UI01 material/type/art fidelity, UI02 motion, manual/platform accessibility,
 editorial approval of draft fixtures, Android/physical-phone, isolated offline,
 performance and original release gates remain open. No deployment, release or
