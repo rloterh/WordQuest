@@ -1,0 +1,28 @@
+{
+  "status": "unapproved_authored_icon_candidate",
+  "date": "2026-10-06",
+  "reference": "Planning/WordQuest-UI-Realms-Addendum/references/G-Celestial-Reverie-Gameplay.png",
+  "reference_sha256": "306dae4f6352749edcf1d8edf73f26339a4ba6407b4a394ec50b5898418bedae",
+  "master": "ArtSource/UI/G/Vector/G-Hint-Bulb-v002.svg",
+  "runtime": "Game/Content/UI/G/Vector/G_HintBulb.svg",
+  "sha256": "88a9b612b8389587b5dc1b9350483720193c3f1d543a290db62b09c70cfe4a57",
+  "preserved_master": "ArtSource/UI/G/Vector/G-Hint-Bulb-v001.svg",
+  "preserved_master_sha256": "4d191fffb3384d3ade4a9471667a9a8d176a89ecdcd0c8c270560f4f617e86da",
+  "canvas": [40, 56],
+  "changes": [
+    "Shift authored bulb silhouette down five source units inside the existing canvas",
+    "Narrow and shift head center left, retain rounded silhouette and two base bars",
+    "Increase navy outline from 2.8 to 3.4 source units",
+    "No native code, button/label geometry, text, scoring, input or fixture changes",
+    "Hand-authored SVG; no imagegen, raster editing or supplied-reference pixel extraction"
+  ],
+  "diagnostics": {
+    "region": [176, 1475, 222, 1545],
+    "navy_threshold": "R<65, G<60, B<125",
+    "reference_bounds": [182, 1487, 214, 1536],
+    "prior_bounds": [182, 1482, 216, 1530],
+    "candidate_editor_bounds": [182, 1487, 214, 1535],
+    "limits": "Threshold-dependent opaque ink bounds, not exact silhouette, clipping, contrast or whole-screen fidelity acceptance. Original 366, prior 288, candidate 382 threshold pixels. Half-pixel center and one-pixel height differences remain. Shared surface/rim and Check-star differences remain outside this change."
+  },
+  "qa": "Docs/QA/UI01/G-HINT-BULB-ALIGNMENT.md"
+}

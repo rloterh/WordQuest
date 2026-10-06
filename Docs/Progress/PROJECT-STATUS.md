@@ -2,13 +2,38 @@
 
 ## Current stage: native static G implementation; acceptance incomplete
 
+The owner merged [PR #51](https://github.com/rloterh/WordQuest/pull/51) into `dev`
+on 2026-10-06 at 23:31:36 UTC (`10110a1`), integrating the Hint pearl surface.
+The next bounded UI01 correction on `feature/g-hint-bulb-alignment` refines only
+the separate editable Hint bulb. Matched native/reference measurements place the
+existing live label centers within one pixel; the bulb center is 5.5px high and
+its ink two pixels wide. V002 keeps its 40x56 canvas and native layout, narrows
+and lowers the authored outline and strengthens its stroke. Real Editor build,
+inspected native initial preflight, two inspected missing-icon checks, 96 Python
+QA tests, six original references and ten source/runtime SVG parity pairs pass.
+The bulb's threshold center is now half a pixel from the reference and its width
+matches; this does not accept silhouette/material fidelity. Only bulb-region
+pixels change in the initial Editor comparison. No binary asset or native code
+changes. Clean Win64 archive at `d528389`, all nine inspected packaged captures,
+both Unreal Context tests and all 49 payload hashes pass. The cooked SVG extracts
+byte-identically; exactly 813 initial packaged pixels change inside the bulb region,
+zero elsewhere. Existing scoped firewall refresh succeeds on its second attempt.
+Dedicated read-only review of clean `4d0741b` against actual `origin/dev` at
+`10110a1` completes with no actionable introduced defects; all six references
+and ten SVG parity pairs verify independently. The reviewer does not independently
+rerun Unreal build/runtime/device checks. Non-draft
+[PR #52](https://github.com/rloterh/WordQuest/pull/52) is open directly against
+`dev` for owner review; source/art remains the clean tested `d528389` tree.
+Original acceptance gates remain open. See
+[Hint bulb alignment](../QA/UI01/G-HINT-BULB-ALIGNMENT.md).
+
 GitHub confirms the owner merged [PR #49](https://github.com/rloterh/WordQuest/pull/49)
 into `dev` at 22:58:22 UTC on 2026-10-06 (`25eb382`). The owner then merged
 [PR #50](https://github.com/rloterh/WordQuest/pull/50) at 22:58:40 UTC (`269d6aa`)
-into `feature/g-answer-cue-proof`, its actual stacked base. That later merge is
-not yet in `dev`. The bounded integration branch `integration/g-hint-pearl-dev`
-joins those histories without additional runtime/art changes; its PR will target
-`dev` directly. The implementation agent does not merge PRs.
+into `feature/g-answer-cue-proof`, its actual stacked base. That later merge
+initially remained outside `dev`; the now owner-merged integration PR #51 joins
+those histories without additional runtime/art changes. The implementation agent
+does not merge PRs.
 
 Clean integration head `3c7b20f` has exactly the runtime, art, tooling and reference
 tree of tested PR #50 source `a877a5c`; only documentation differs. Real Editor
@@ -22,8 +47,7 @@ read-only review of clean `e271bd2` against actual `origin/dev` at `25eb382`
 completes with no actionable introduced defects; reference hashes, asset provenance
 and LFS tracking verify. Builds/runtime/device checks are not independently rerun
 by the reviewer. Non-draft [PR #51](https://github.com/rloterh/WordQuest/pull/51)
-is open directly against `dev` and reports mergeable/clean at publication. Merge
-this integration PR to bring the already owner-merged Hint surface into `dev`;
+was published directly against `dev` and is now owner-merged as recorded above;
 full UI01 and original device/release gates remain open. See
 [Hint integration](../QA/UI01/G-HINT-DEV-INTEGRATION.md) and
 [Hint pearl surface](../QA/UI01/G-HINT-PEARL-SURFACE.md).

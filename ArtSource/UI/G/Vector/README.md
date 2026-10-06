@@ -76,7 +76,7 @@ targets; shape, faceting and lighting still require visual acceptance.
 
 | Editable master | Runtime resource | Geometry |
 | --- | --- | --- |
-| `G-Hint-Bulb-v001.svg` | `Game/Content/UI/G/Vector/G_HintBulb.svg` | 40x56 viewBox; rounded navy bulb outline and two base bars |
+| `G-Hint-Bulb-v002.svg` | `Game/Content/UI/G/Vector/G_HintBulb.svg` | 40x56 viewBox; revised optical position, narrower rounded navy outline and two base bars; v001 preserved |
 | `G-Check-Star-v001.svg` | `Game/Content/UI/G/Vector/G_CheckStar.svg` | 48x48 viewBox; curved four-point gold star with white/lilac facets |
 | `G-Header-Divider-v002.svg` | `Game/Content/UI/G/Vector/G_HeaderDivider.svg` | 214x29 viewBox; preserved tapered lines/terminals/star with gold gradients and ivory facets |
 | `G-Reading-Divider-v002.svg` | `Game/Content/UI/G/Vector/G_ReadingDivider.svg` | 314x29 viewBox; matching long divider with the same material treatment |
