@@ -644,7 +644,10 @@ void UContextScreen::Layout(FVector2D Size)
     for (const auto& Answer : Answers)
     {
         const float BadgeDiameter = FMath::Max(70 * S * TextScale, 32.f);
-        const float MarkerWidth = FMath::Max(37 * S * TextScale, 18.f);
+        const float MarkerWidth = FMath::Max((ReadingFont ? 33.f : 37.f) * S * TextScale, 18.f);
+        // Match the reading face's baseline without moving the badge or row hit area.
+        const float LabelTopPadding = ReadingFont ? 2.f * S : 0.f;
+        CastChecked<UHorizontalBoxSlot>(Answer.Label->Slot)->SetPadding(FMargin(0, LabelTopPadding, 0, 0));
         Answer.BadgeSize->SetWidthOverride(BadgeDiameter);
         Answer.BadgeSize->SetHeightOverride(BadgeDiameter);
         Answer.MarkerSize->SetWidthOverride(MarkerWidth);
@@ -653,7 +656,7 @@ void UContextScreen::Layout(FVector2D Size)
         const auto SlotPadding = CastChecked<UButtonSlot>(Answer.Button->GetContent()->Slot)->GetPadding();
         const float LabelWidth = 666 * S - 48 * S - BadgeDiameter - MarkerWidth - SlotPadding.Left - SlotPadding.Right;
         H = Measure(Answer.Label, 32, LabelWidth, FMath::Max(95 * S, 48.f));
-        H = FMath::Max3(H, float(Answer.Label->GetDesiredSize().Y) + 30 * S, BadgeDiameter + 12 * S);
+        H = FMath::Max3(H, float(Answer.Label->GetDesiredSize().Y) + LabelTopPadding + 30 * S, BadgeDiameter + 12 * S);
         // An oversized row starts with its option identity beside the first lines.
         // Centered identifiers can otherwise be outside the initial reading view.
         const auto IdentifierAlignment = H > Size.Y ? VAlign_Top : VAlign_Center;

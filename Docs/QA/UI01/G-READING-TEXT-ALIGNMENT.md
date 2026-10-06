@@ -130,10 +130,10 @@ retains the merge decision, and review does not accept any outstanding gate.
 
 ## Publication
 
-Non-draft [PR #47](https://github.com/rloterh/WordQuest/pull/47) is open against
-`dev` on `feature/g-reading-text-align`. Following the tested source commit,
-commits contain documentation only. The implementation agent does not merge.
-After owner merge, continue bounded UI01 comparison of the remaining reading
+The owner merged [PR #47](https://github.com/rloterh/WordQuest/pull/47) into `dev`
+on 2026-10-05 at 08:21:35 UTC (`6bee47b`). Following the tested source commit,
+commits contain documentation only. The implementation agent did not merge.
+Continue bounded UI01 comparison of the remaining reading
 roles and art/material differences before UI02 acceptance work.
 
 Full static type/art/material fidelity, UI02 motion, manual/platform accessibility,
