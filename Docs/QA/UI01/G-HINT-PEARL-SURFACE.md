@@ -88,8 +88,7 @@ Generated initial is exactly RGB-identical to prior Editor baseline
 Hint label and interactive press outline. Raw summary is
 `Artifacts/QA/UI01/HintSurface20261006/fallback.json`. These dirty-source missing-
 optional-art tests are not corrupt-package or phone evidence. Clean Win64 package,
-native control states and Unreal automation are recorded below; dedicated review
-remains in progress.
+native control states, Unreal automation and dedicated review are recorded below.
 
 ## Storage failure and recovery
 
@@ -169,7 +168,26 @@ Safe-zone is 1 for reference/double-size and 0.9 otherwise; tooltips are disable
 Actions/scroll modes intrinsically use 200%; actionfocus uses actual 100%.
 Both Unreal Context tests pass with complete clean-source evidence in
 `20261006-223055-automation-initial`: two succeeded, zero failed/not-run/in-progress.
-Dedicated read-only review against the dependency branch remains in progress.
+Dedicated read-only review against the dependency branch is recorded below.
+
+## Dedicated review and dependency
+
+`python Tools/Review/review_pr.py --base origin/feature/g-answer-cue-proof`
+completes with exit zero in `Artifacts/Reviews/20261006-223449/`. It reviews clean
+head `c92c4a514e6de166b05c8f8862a68adfb078d9db` against actual dependency base
+`3dc14ea084a13611b83a535b4315030794f4b1ba`; head and worktree remain unchanged.
+The report identifies no actionable introduced defects. Original-reference
+verification passes, and all new asset hashes match provenance. The reviewer
+cannot independently run renderer reproduction due to local filesystem permissions;
+the primary byte-identical reproduction passes as recorded above. The reviewer
+does not independently rerun Unreal builds/runtime/device checks. Raw `review.txt`
+and `run.json` remain ignored. Later commits record review/publication only;
+runtime source/art remains the clean packaged `a877a5c`.
+
+PR #49 still reports open, so publication uses its branch as the actual base.
+The Hint diff can be reviewed independently, but PR #49 must be merged first.
+No implementation-agent merge is performed; read-only review never authorizes
+merge or accepts original outstanding gates.
 
 Full UI01 type/art/material fidelity, UI02 motion, manual/platform accessibility,
 draft fixture editorial approval, Android/phone, isolated offline, performance and

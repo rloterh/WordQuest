@@ -18,8 +18,12 @@ correctly reports Zen insufficient storage; lossless compression of ten old
 staging EXE/PDB pairs recovers about 4.7GB with all 20 hashes unchanged and no
 deletions. Retry archive, all 14 inspected packaged captures and both Unreal
 Context tests pass at `a877a5c`. Exactly 29,714 Hint-region pixels change and
-zero elsewhere versus PR #49's package. Dedicated review against the actual
-dependency base remains in progress. See
+zero elsewhere versus PR #49's package. Dedicated review against actual
+`origin/feature/g-answer-cue-proof` at `3dc14ea` completes with no actionable
+introduced defects; references and new asset hashes verify. Independent renderer
+reproduction is blocked by reviewer filesystem permissions, while the primary
+check passes; builds/runtime/device checks are not independently rerun. PR
+publication follows with the dependency explicit. See
 [Hint pearl surface](../QA/UI01/G-HINT-PEARL-SURFACE.md).
 
 The owner merged [PR #48](https://github.com/rloterh/WordQuest/pull/48) into `dev`
