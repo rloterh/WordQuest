@@ -88,7 +88,88 @@ Generated initial is exactly RGB-identical to prior Editor baseline
 Hint label and interactive press outline. Raw summary is
 `Artifacts/QA/UI01/HintSurface20261006/fallback.json`. These dirty-source missing-
 optional-art tests are not corrupt-package or phone evidence. Clean Win64 package,
-native control states, Unreal automation and dedicated review remain in progress.
+native control states and Unreal automation are recorded below; dedicated review
+remains in progress.
+
+## Storage failure and recovery
+
+Clean source `a877a5c5479cbb2b7193f019267f744a315a980e` first attempts archive
+`20261006-220235-677524`. C++ build passes, but cook fails with Zen oplog creation
+HTTP 507 Insufficient Storage and UAT exit 25. Its retained manifest correctly
+marks evidence incomplete; no package/runtime acceptance is claimed for it.
+C: has about 2.1GB free during diagnosis, near/below Zen's existing low-space
+threshold. The failure log/manifest remain in that run; copied helper output
+is `failed-first-package-helper.log` in the ignored Hint evidence folder.
+
+Automatic approval review rejects removing ten redundant staging directories,
+with the message "blocked by policy" and no more detailed reason. No directory
+is deleted. Instead native `compact.exe /C /EXE:LZX` losslessly compresses only
+the EXE/PDB pairs in ten older successful staging copies. Exact workspace paths
+and both staged/archived binaries are checked against recorded manifests before
+compression; all 20 staged hashes remain identical afterward. Archived builds,
+manifests, captures, source assets and machine security policy are preserved.
+Free space rises from 2,303,156,224 to 7,005,872,128 bytes, about 4.7GB recovered.
+Raw file paths/hashes are in `stage-compression.json` in the ignored evidence
+folder. This scoped local recovery is not a new repository cleanup policy.
+Retry uses the same clean commit without runtime/source/config changes.
+
+## Clean packaged verification
+
+Archive `Artifacts/Packages/Win64/20261006-222520-298494/` passes Win64 Development
+BuildCookRun in 144.92s, full cook 522 packages with zero errors/warnings.
+Its complete manifest records tested head `a877a5c`, clean starting worktree,
+unchanged head/worktree/inputs and SHA-256
+`252e524a9942bde70f441e20944c1bceb067575b55a0ca1d834b702eaf7d68db`.
+All 49 payload hashes/sizes verify before each launch. Existing scoped Private/
+Public LocalSubnet firewall refresh succeeds automatically on attempt one at
+22:28:05.7505994 UTC; no permission/task/ACL changes.
+
+All 14 packaged captures complete with native/helper exit zero, matching clean
+source/package provenance, requested dimensions and all applicable state, cue,
+layout, actual text size, action-content, keyboard, focus, pointer and reading-
+scroll predicates true. No native Error/Fatal lines occur. All final PNGs were
+inspected; the 1768x3560 whole-screen view is viewer-resized to 1017x2048.
+Enlarged action frames expose both stacked controls. Held Hint has visible native
+press/focus feedback without consuming a hint/evaluating; actual routed pointer
+and keyboard Hint routes produce one assisted evaluation and disabled live
+controls. Some result-reading frames leave controls partly/wholly offscreen;
+their state evidence does not claim control visibility in those frames. These
+are Windows offscreen/synthetic checks, not manual pointer/touch or phone evidence.
+
+The final reference-size comparison has exactly 29,714 changed Hint-region
+pixels and zero outside versus PR #49's packaged baseline. Eight-point error and
+candidate sample RGBs equal the final Editor trial (3.0833). Other controls, live
+reading text, wordmark, companion and background are pixel-identical in this
+comparison. Current initial PNG SHA-256:
+`5c50d4514ac23912f6b6010eacbf50064a8cdfb8ec9ecdd63683a730fe298daf`.
+Editor/package differs only at known 964 Pause/plaque pixels in
+[362,38,855,198), maximum channel delta one. Raw hashes, protocols and comparison:
+`Artifacts/QA/UI01/HintSurface20261006/verification.json` and adjacent scripts.
+
+Capture folders under `Artifacts/QA/UI01/`:
+
+| Run | Case | Dimensions / text |
+|---|---|---|
+| `20261006-222810-packaged-capture-initial` | Initial comparison | 884x1780 / 100% |
+| `20261006-222823-packaged-capture-initial` | Initial double-size | 1768x3560 / 100% |
+| `20261006-222833-packaged-capture-initial` | Phone-shaped initial | 390x844 / 100% |
+| `20261006-222843-packaged-capture-actions` | Enlarged stacked actions | 390x844 / 200% |
+| `20261006-222853-packaged-capture-actions` | Narrow enlarged actions | 260x640 / 200% |
+| `20261006-222904-packaged-capture-actionfocus` | Narrow Check focus | 260x640 / 100% |
+| `20261006-222915-packaged-capture-pointerhintpress` | Held virtual Hint | 260x640 / 200% |
+| `20261006-222926-packaged-capture-pointerhint` | Virtual assisted submit | 390x844 / 200% |
+| `20261006-222940-packaged-capture-pointerclick` | Virtual answer/check regression | 260x640 / 200% |
+| `20261006-222954-packaged-capture-hint` | Hint-used feedback | 260x640 / 200% |
+| `20261006-223005-packaged-capture-correct` | Disabled Hint after correct submit | 390x844 / 200% |
+| `20261006-223016-packaged-capture-keyhint` | Routed keyboard Hint/submit | 884x1780 / 100% |
+| `20261006-223028-packaged-capture-keytab` | Routed Hint focus | 390x844 / 100% |
+| `20261006-223040-packaged-capture-scrollfeedback` | Feedback reading end | 844x390 / 200% |
+
+Safe-zone is 1 for reference/double-size and 0.9 otherwise; tooltips are disabled.
+Actions/scroll modes intrinsically use 200%; actionfocus uses actual 100%.
+Both Unreal Context tests pass with complete clean-source evidence in
+`20261006-223055-automation-initial`: two succeeded, zero failed/not-run/in-progress.
+Dedicated read-only review against the dependency branch remains in progress.
 
 Full UI01 type/art/material fidelity, UI02 motion, manual/platform accessibility,
 draft fixture editorial approval, Android/phone, isolated offline, performance and

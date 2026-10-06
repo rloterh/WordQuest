@@ -13,8 +13,13 @@ preferred native decoration path, preserving that texture and native fallback.
 Genuine import, real Editor build, final native preflight, four inspected
 missing-art checks, 96 Python QA tests, six references and ten SVG parity pairs
 pass. The same eight opaque-face samples improve from 11.71 to 3.08 mean absolute
-channel error; this does not accept material fidelity. Clean package/control
-captures and dedicated review remain in progress. See
+channel error; this does not accept material fidelity. A failed clean cook
+correctly reports Zen insufficient storage; lossless compression of ten old
+staging EXE/PDB pairs recovers about 4.7GB with all 20 hashes unchanged and no
+deletions. Retry archive, all 14 inspected packaged captures and both Unreal
+Context tests pass at `a877a5c`. Exactly 29,714 Hint-region pixels change and
+zero elsewhere versus PR #49's package. Dedicated review against the actual
+dependency base remains in progress. See
 [Hint pearl surface](../QA/UI01/G-HINT-PEARL-SURFACE.md).
 
 The owner merged [PR #48](https://github.com/rloterh/WordQuest/pull/48) into `dev`
