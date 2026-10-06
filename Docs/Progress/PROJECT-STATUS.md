@@ -11,8 +11,12 @@ correctly rejects a 29px check-mark advance in an 18px reservation. Runtime now
 reserves the widest of all three actual-font cues plus a small gap before wrapping
 labels, preserving stable width across answer states. Corrected real build,
 narrow correct and oversized-long correct preflights pass; 96 Python QA tests,
-six supplied references and ten SVG parity checks pass. Clean package, native
-cue/regression captures and dedicated review remain in progress. See
+six supplied references and ten SVG parity checks pass. Clean Win64 archive,
+all 20 inspected packaged captures and both Unreal Context tests pass at
+`1a7a918`; all 15 focused cue geometries pass. Initial reference-size PNG is
+identical to PR #48. Two inspected missing-font checks pass, with the original
+fallback initial PNG unchanged and the asset restored unchanged. Dedicated
+read-only review against actual `dev` remains in progress. See
 [answer cue proof](../QA/UI01/G-ANSWER-CUE-PROOF.md).
 
 The owner merged [PR #47](https://github.com/rloterh/WordQuest/pull/47) into `dev`
