@@ -140,6 +140,14 @@ independently rerun builds/runtime checks. Subsequent commits record review and
 publication only; runtime source remains the tested `a9f14a4`. The owner retains
 the merge decision; review does not accept any outstanding gate.
 
+## Publication
+
+Non-draft [PR #48](https://github.com/rloterh/WordQuest/pull/48) is open against
+`dev` on `feature/g-answer-label-align`. Following the tested runtime commit,
+commits contain documentation only. The implementation agent does not merge.
+After owner merge, continue bounded UI01 comparison of remaining text-shape and
+art/material differences before UI02 acceptance work.
+
 Full static type/art/material fidelity, UI02 motion, manual/platform accessibility,
 draft fixture editorial approval, Android/phone, isolated offline, performance and
 original release gates remain open. No later milestone, deployment or release;

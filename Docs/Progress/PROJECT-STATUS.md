@@ -17,7 +17,8 @@ Unreal tests pass at `a9f14a4`. Only 18,064 initial label-region pixels change,
 zero elsewhere; visible enlarged selection/wrong cues fit. Offscreen chosen rows
 in some enlarged captures are not glyph-visibility evidence. Dedicated review
 against actual `dev` completes with no actionable introduced defects; PR
-publication is pending. See
+non-draft [PR #48](https://github.com/rloterh/WordQuest/pull/48) is open against
+`dev` for owner review/merge. See
 [answer label alignment](../QA/UI01/G-ANSWER-LABEL-ALIGNMENT.md).
 
 The owner merged [PR #46](https://github.com/rloterh/WordQuest/pull/46) into `dev`
