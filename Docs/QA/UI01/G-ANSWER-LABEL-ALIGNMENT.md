@@ -63,8 +63,71 @@ Existing 82 Python QA tests, six supplied-reference hash/dimension checks and te
 source/runtime SVG parity checks pass. Raw metrics/hashes and ignored comparison
 scripts live in `Artifacts/QA/UI01/AnswerLabels20261006/`; Python log is
 `Artifacts/Logs/UI01/answer-label-python-checks.log`. Clean package, enlarged
-symbols/wrapped rows, Unreal automation and dedicated review are pending.
+symbols/wrapped rows, Unreal automation and dedicated review are recorded below.
 No binary assets are committed.
+
+## Clean package and native verification
+
+Clean source `a9f14a4b32423ea848e0dad57d56134d6f098f48` passes Win64 BuildCookRun
+in 219.09s; 521 packages cook with zero errors/warnings. Archive
+`Artifacts/Packages/Win64/20261006-141120-420075/` records complete evidence and
+unchanged head/worktree/inputs. Manifest SHA-256:
+`217e37ec784cb48cc8ca5544570a8ce87b6ed0c1c374a1dc208a5bddcb059429`.
+All 49 payload hashes/sizes verify before every launch. Existing scoped
+LocalSubnet firewall refresh succeeds automatically on attempt two at
+14:16:02.5752884 UTC; existing retry/diagnostic handling is used without changing
+permission, task or ACL policy.
+
+All 16 packaged captures complete with native/helper exit zero, matching clean
+source/package provenance and dimensions, and all applicable native state, cue,
+layout, text-size, focus, pointer and reading-scroll checks true. No native
+Error/Fatal lines occur. Every final PNG was inspected; the 1768x3560 full-screen
+view is viewer-resized to 1017x2048. Narrow/enlarged text retains measured wrapping
+and scrolling; long row heights change as the actual available label width grows.
+Visible 200% long-selected `>` and wrong-state `x` cues fit beside the labels;
+normal correct-state square-root cue remains clear. Some enlarged selected/correct
+frames show initial reading or feedback with the chosen row offscreen: their native
+cue/state evidence is not a glyph-visibility proof for that offscreen row. These
+are Windows offscreen/synthetic checks, not manual or phone acceptance.
+Raw folders live under `Artifacts/QA/UI01/`.
+
+| Capture run | Case | Dimensions / text |
+|---|---|---|
+| `20261006-141609-packaged-capture-initial` | Initial reference size | 884x1780 / 100% |
+| `20261006-141625-packaged-capture-initial` | Initial double size | 1768x3560 / 100% |
+| `20261006-141638-packaged-capture-initial` | Initial phone-shaped | 390x844 / 100% |
+| `20261006-141651-packaged-capture-initial` | Initial enlarged | 390x844 / 200% |
+| `20261006-141703-packaged-capture-initial` | Initial narrow enlarged | 260x640 / 200% |
+| `20261006-141716-packaged-capture-selected` | Selected state | 390x844 / 200% |
+| `20261006-141741-packaged-capture-correct` | Narrow correct feedback | 260x640 / 200% |
+| `20261006-141805-packaged-capture-pointerpress` | Held virtual pointer | 260x640 / 200% |
+| `20261006-141829-packaged-capture-pointerclick` | Virtual answer/check | 390x844 / 100% |
+| `20261006-141851-packaged-capture-pointerresumed` | Virtual pause/resume | 260x640 / 200% |
+| `20261006-141909-packaged-capture-longfocus` | Long answer focused | 390x844 / 200% |
+| `20261006-141923-packaged-capture-longselectedfocus` | Long selected answer focused | 260x640 / 200% |
+| `20261006-141938-packaged-capture-correct` | Correct feedback | 884x1780 / 100% |
+| `20261006-141950-packaged-capture-wrong` | Wrong feedback | 390x844 / 200% |
+| `20261006-142002-packaged-capture-hint` | Assisted feedback | 390x844 / 200% |
+| `20261006-142015-packaged-capture-scrollfeedback` | Reading feedback scroll | 844x390 / 200% |
+
+Safe-zone is 1 for reference/double-size and 0.9 otherwise. Tooltips are disabled;
+long/scroll modes intrinsically use 200% text. Initial packaged PNG SHA-256:
+`b323f60730f9627a2458bd664c1373117aabc7cf10da69ed99ce870d15ca321d`.
+Final packaged label bounds equal the final preflight bounds above. Exactly
+18,064 pixels change inside the four label diagnostic regions and zero outside,
+versus PR #47's packaged baseline. Other reading roles, badges, skins and control
+positions remain pixel-identical in this reference-size initial comparison.
+Editor/package differs only at the known 964 Pause/plaque pixels in
+[362,38,855,198), maximum channel delta one. The original reference hash remains
+`306dae4f6352749edcf1d8edf73f26339a4ba6407b4a394ec50b5898418bedae`.
+Raw verification/metrics/hashes live in
+`Artifacts/QA/UI01/AnswerLabels20261006/verification.json`.
+
+Both Unreal Context automation tests pass at the same clean source in
+`20261006-142034-automation-initial`, with complete evidence. No tests are added
+for the reversible spacing adjustment; existing Python/native checks exercise
+reflow, enlarged content, state and routing. Dedicated read-only review against
+actual `origin/dev` is pending.
 
 Full static type/art/material fidelity, UI02 motion, manual/platform accessibility,
 draft fixture editorial approval, Android/phone, isolated offline, performance and
