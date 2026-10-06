@@ -22,8 +22,10 @@ zero elsewhere versus PR #49's package. Dedicated review against actual
 `origin/feature/g-answer-cue-proof` at `3dc14ea` completes with no actionable
 introduced defects; references and new asset hashes verify. Independent renderer
 reproduction is blocked by reviewer filesystem permissions, while the primary
-check passes; builds/runtime/device checks are not independently rerun. PR
-publication follows with the dependency explicit. See
+check passes; builds/runtime/device checks are not independently rerun. Non-draft
+[PR #50](https://github.com/rloterh/WordQuest/pull/50) is open against PR #49's
+branch. Merge #49 first; retarget #50 to `dev` and recheck its actual diff/base
+before its owner merge. See
 [Hint pearl surface](../QA/UI01/G-HINT-PEARL-SURFACE.md).
 
 The owner merged [PR #48](https://github.com/rloterh/WordQuest/pull/48) into `dev`

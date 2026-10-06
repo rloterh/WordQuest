@@ -189,6 +189,16 @@ The Hint diff can be reviewed independently, but PR #49 must be merged first.
 No implementation-agent merge is performed; read-only review never authorizes
 merge or accepts original outstanding gates.
 
+## Publication
+
+Non-draft [PR #50](https://github.com/rloterh/WordQuest/pull/50) is open on
+`feature/g-hint-pearl-surface` against `feature/g-answer-cue-proof`, the actual
+branch for still-open PR #49. Runtime source/art remains the clean tested
+`a877a5c`; subsequent commits are documentation only. Merge PR #49 first, then
+retarget PR #50 to `dev` and recheck the actual base/diff before owner merge.
+The implementation agent does not merge either PR. Continue bounded UI01
+comparisons after these dependencies are integrated; original gates remain open.
+
 Full UI01 type/art/material fidelity, UI02 motion, manual/platform accessibility,
 draft fixture editorial approval, Android/phone, isolated offline, performance and
 original release gates remain open. No later milestone, deployment or release;
