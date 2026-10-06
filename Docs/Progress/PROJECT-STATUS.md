@@ -14,7 +14,11 @@ QA tests, six original references and ten source/runtime SVG parity pairs pass.
 The bulb's threshold center is now half a pixel from the reference and its width
 matches; this does not accept silhouette/material fidelity. Only bulb-region
 pixels change in the initial Editor comparison. No binary asset or native code
-changes. Clean package and dedicated actual-dev review are next. See
+changes. Clean Win64 archive at `d528389`, all nine inspected packaged captures,
+both Unreal Context tests and all 49 payload hashes pass. The cooked SVG extracts
+byte-identically; exactly 813 initial packaged pixels change inside the bulb region,
+zero elsewhere. Existing scoped firewall refresh succeeds on its second attempt.
+Dedicated review against actual `dev` is next. See
 [Hint bulb alignment](../QA/UI01/G-HINT-BULB-ALIGNMENT.md).
 
 GitHub confirms the owner merged [PR #49](https://github.com/rloterh/WordQuest/pull/49)

@@ -83,11 +83,12 @@ and publication only; the runtime/art tree remains the tested `a877a5c` tree.
 
 ## Publication and remaining gates
 
-Non-draft [PR #51](https://github.com/rloterh/WordQuest/pull/51) is open on
-`integration/g-hint-pearl-dev`, directly against `dev`, and reports mergeable/clean
-at publication. It has completed dedicated read-only review against that actual
-base; the owner retains the merge decision. Merge this PR to bring the Hint changes
-into `dev`; its source/art remains identical to the tested `a877a5c` tree.
+Non-draft [PR #51](https://github.com/rloterh/WordQuest/pull/51) was published on
+`integration/g-hint-pearl-dev`, directly against `dev`, and reported mergeable/clean
+at publication. It completed dedicated read-only review against that actual base.
+GitHub confirms the owner merged it into `dev` at 2026-10-06 23:31:36 UTC,
+`10110a1c4e420d08d7bd1e30d18f38ab5ee504fa`. The Hint changes are integrated;
+that merge's source/art remains identical to the tested `a877a5c` tree.
 Full UI01 material/type/art fidelity, UI02 motion, manual/platform accessibility,
 editorial approval of draft fixtures, Android/physical-phone, isolated offline,
 performance and original release gates remain open. No deployment, release or
