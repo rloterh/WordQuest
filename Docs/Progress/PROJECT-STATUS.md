@@ -2,6 +2,32 @@
 
 ## Current stage: native static G implementation; acceptance incomplete
 
+GitHub confirms the owner merged [PR #49](https://github.com/rloterh/WordQuest/pull/49)
+into `dev` at 22:58:22 UTC on 2026-10-06 (`25eb382`). The owner then merged
+[PR #50](https://github.com/rloterh/WordQuest/pull/50) at 22:58:40 UTC (`269d6aa`)
+into `feature/g-answer-cue-proof`, its actual stacked base. That later merge is
+not yet in `dev`. The bounded integration branch `integration/g-hint-pearl-dev`
+joins those histories without additional runtime/art changes; its PR will target
+`dev` directly. The implementation agent does not merge PRs.
+
+Clean integration head `3c7b20f` has exactly the runtime, art, tooling and reference
+tree of tested PR #50 source `a877a5c`; only documentation differs. Real Editor
+build, three inspected native captures, both Unreal Context tests, 96 Python QA
+tests, six original references, ten SVG parity pairs and byte-identical Hint
+export reproduction pass. Hint provenance and all 49 payload hashes of the retained
+PR #50 archive verify. The new initial screen is RGB-identical to its final Editor
+trial; the known 964 one-channel Pause/plaque differences from the retained package
+remain. No new package cook or physical-device acceptance is claimed. Dedicated
+read-only review of clean `e271bd2` against actual `origin/dev` at `25eb382`
+completes with no actionable introduced defects; reference hashes, asset provenance
+and LFS tracking verify. Builds/runtime/device checks are not independently rerun
+by the reviewer. Non-draft [PR #51](https://github.com/rloterh/WordQuest/pull/51)
+is open directly against `dev` and reports mergeable/clean at publication. Merge
+this integration PR to bring the already owner-merged Hint surface into `dev`;
+full UI01 and original device/release gates remain open. See
+[Hint integration](../QA/UI01/G-HINT-DEV-INTEGRATION.md) and
+[Hint pearl surface](../QA/UI01/G-HINT-PEARL-SURFACE.md).
+
 The owner merged [PR #48](https://github.com/rloterh/WordQuest/pull/48) into `dev`
 on 2026-10-06 at 21:08:14 UTC (`e931166`). Answer alignment is integrated; full
 static fidelity and original device/release gates remain open. The bounded UI01
@@ -18,8 +44,8 @@ identical to PR #48. Two inspected missing-font checks pass, with the original
 fallback initial PNG unchanged and the asset restored unchanged. Dedicated
 read-only review against actual `dev` completes with no actionable introduced
 defects and reruns all 14 focused cue tests successfully. Non-draft
-[PR #49](https://github.com/rloterh/WordQuest/pull/49) is open against `dev` for
-owner review; review does not accept any outstanding gate. See
+[PR #49](https://github.com/rloterh/WordQuest/pull/49) was published against `dev`
+and is now owner-merged as recorded above; review does not accept any outstanding gate. See
 [answer cue proof](../QA/UI01/G-ANSWER-CUE-PROOF.md).
 
 The owner merged [PR #47](https://github.com/rloterh/WordQuest/pull/47) into `dev`

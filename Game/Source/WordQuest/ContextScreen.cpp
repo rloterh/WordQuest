@@ -384,7 +384,10 @@ void UContextScreen::Build()
         PauseContentSlot->SetHorizontalAlignment(HAlign_Center);
         PauseContentSlot->SetVerticalAlignment(VAlign_Center);
     }
-    HintSkin = Picture(TEXT("HintSkin"), TEXT("/Game/UI/G/G_HintSkin.G_HintSkin"));
+    HintSkin = Picture(TEXT("HintSkin"), TEXT("/Game/UI/G/G_HintReverie.G_HintReverie"));
+    const bool bAuthoredHintSkin = HintSkin->GetBrush().GetResourceObject() != nullptr;
+    if (!bAuthoredHintSkin)
+        HintSkin = Picture(TEXT("HintSkinFallback"), TEXT("/Game/UI/G/G_HintSkin.G_HintSkin"));
     SubmitSkin = Picture(TEXT("SubmitSkin"), TEXT("/Game/UI/G/G_CheckReverieV2.G_CheckReverieV2"));
     if (!SubmitSkin->GetBrush().GetResourceObject())
         SubmitSkin = Picture(TEXT("SubmitSkinV1Fallback"), TEXT("/Game/UI/G/G_CheckReverie.G_CheckReverie"));
@@ -412,7 +415,8 @@ void UContextScreen::Build()
         Image->SetBrush(Brush);
     };
     // Runtime framing excludes export padding; unchanged masters/provenance live in ArtSource.
-    FrameSkin(HintSkin, FVector2f(86.f / 1998, 125.f / 787), FVector2f(1908.f / 1998, 646.f / 787));
+    if (!bAuthoredHintSkin)
+        FrameSkin(HintSkin, FVector2f(86.f / 1998, 125.f / 787), FVector2f(1908.f / 1998, 646.f / 787));
     if (!bAuthoredSubmitSkin)
         FrameSkin(SubmitSkin, FVector2f(108.f / 1983, 151.f / 793), FVector2f(1876.f / 1983, 627.f / 793));
     if (!bVectorPauseSkin)

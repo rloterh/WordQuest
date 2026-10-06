@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="287" height="113" viewBox="0 0 287 113">
+  <title>G Hint pearl surface candidate; warm gold and curved lilac glass, no label or bulb</title>
+  <defs>
+    <linearGradient id="gold" x1="0" y1="2" x2="0" y2="110" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff0de"/><stop offset=".15" stop-color="#e5c7ac"/><stop offset=".38" stop-color="#b8977a"/><stop offset=".62" stop-color="#97745a"/><stop offset=".85" stop-color="#d7b69a"/><stop offset="1" stop-color="#ffe5b2"/>
+    </linearGradient>
+    <linearGradient id="pearl" x1="0" y1="6" x2="0" y2="106" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#eadcfb"/><stop offset=".24" stop-color="#d3c8fc"/><stop offset=".5" stop-color="#bfb3f4"/><stop offset=".75" stop-color="#ada6e9"/><stop offset=".94" stop-color="#a195e3"/><stop offset="1" stop-color="#bcb2f3"/>
+    </linearGradient>
+    <radialGradient id="faceLight" cx="144" cy="26" r="132" gradientTransform="translate(0 8) scale(1 .7)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ffffff" stop-opacity=".4"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="lowerLight" cx="150" cy="84" r="131" gradientTransform="translate(0 33.6) scale(1 .6)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#e7deff" stop-opacity=".22"/><stop offset="1" stop-color="#e7deff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="edgeLight" x1="0" y1="6" x2="0" y2="106" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ffffff"/><stop offset=".17" stop-color="#f5eeff"/><stop offset=".48" stop-color="#d1c1e9"/><stop offset=".8" stop-color="#e6d9fa"/><stop offset="1" stop-color="#fff5ff"/>
+    </linearGradient>
+    <linearGradient id="rimCrest" x1="0" y1="3" x2="0" y2="109" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fffaf2"/><stop offset=".18" stop-color="#fff2dd"/><stop offset=".5" stop-color="#d8b399"/><stop offset=".85" stop-color="#f0cfad"/><stop offset="1" stop-color="#fff3d3"/>
+    </linearGradient>
+    <linearGradient id="bevel" x1="0" y1="9" x2="0" y2="103" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ffffff" stop-opacity=".85"/><stop offset=".18" stop-color="#faf3ff" stop-opacity=".1"/><stop offset=".5" stop-color="#b2a0d2" stop-opacity="0"/><stop offset=".84" stop-color="#e4d9ff" stop-opacity=".15"/><stop offset="1" stop-color="#f6eaff" stop-opacity=".7"/>
+    </linearGradient>
+    <radialGradient id="glint"><stop stop-color="#fff6ff" stop-opacity=".75"/><stop offset="1" stop-color="#f7e8ff" stop-opacity="0"/></radialGradient>
+    <clipPath id="face"><rect x="7" y="6" width="273" height="101" rx="50.5"/></clipPath>
+    <filter id="edge" x="-10%" y="-40%" width="120%" height="180%" color-interpolation-filters="sRGB"><feGaussianBlur stdDeviation="1.1"/></filter>
+    <filter id="cloud" x="-30%" y="-70%" width="160%" height="240%" color-interpolation-filters="sRGB"><feGaussianBlur stdDeviation="2.3"/></filter>
+  </defs>
+  <rect x="1.5" y="3" width="284" height="108" rx="54" fill="#725685" fill-opacity=".4"/>
+  <rect x="1.5" y="1.5" width="284" height="108" rx="54" fill="#b38b6d" stroke="#a17c69" stroke-width="1.3"/>
+  <rect x="3.5" y="3.5" width="280" height="104" rx="52" fill="#ac98ca" stroke="url(#gold)" stroke-width="3.4"/>
+  <rect x="3.5" y="3.5" width="280" height="104" rx="52" fill="none" stroke="url(#rimCrest)" stroke-width=".9"/>
+  <rect x="5.5" y="5" width="276" height="103" rx="51.5" fill="#f9f1ff"/>
+  <rect x="7" y="6" width="273" height="101" rx="50.5" fill="url(#pearl)"/>
+  <g clip-path="url(#face)">
+    <rect x="7" y="6" width="273" height="101" fill="url(#faceLight)"/>
+    <rect x="7" y="6" width="273" height="101" fill="url(#lowerLight)"/>
+    <path d="M16 52 Q16 24 42 13 Q49 11 57 11 M231 11 Q257 15 268 39" fill="none" stroke="#fff6ff" stroke-width="5" opacity=".55" filter="url(#edge)"/>
+    <path d="M18 66 Q25 94 47 101 M239 102 Q260 94 270 72" fill="none" stroke="#d6ccfa" stroke-width="4" opacity=".5" filter="url(#edge)"/>
+    <path d="M22 77 Q30 82 32 89 Q40 97 51 91 Q59 86 68 98 M215 94 Q225 86 234 91 Q245 92 258 74" fill="none" stroke="#e3d6ff" stroke-width="2" opacity=".25" filter="url(#cloud)"/>
+    <path d="M43 92 Q51 97 57 98 M237 37 Q244 47 247 56" fill="none" stroke="#f5e8ff" stroke-width="1.2" opacity=".4" filter="url(#edge)"/>
+    <circle cx="40" cy="75" r="2.5" fill="url(#glint)"/>
+    <circle cx="244" cy="85" r="2" fill="url(#glint)" opacity=".55"/>
+    <g fill="#f8efff" opacity=".4"><circle cx="36" cy="70" r=".5"/><circle cx="50" cy="82" r=".45"/><circle cx="254" cy="60" r=".5"/></g>
+    <rect x="9.2" y="8.2" width="268.6" height="96.6" rx="48.3" fill="none" stroke="url(#bevel)" stroke-width="3.2" filter="url(#edge)"/>
+  </g>
+  <rect x="7" y="6" width="273" height="101" rx="50.5" fill="none" stroke="url(#edgeLight)" stroke-width="1.2"/>
+</svg>
