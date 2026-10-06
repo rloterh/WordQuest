@@ -2,6 +2,25 @@
 
 ## Current stage: native static G implementation; acceptance incomplete
 
+The owner merged [PR #47](https://github.com/rloterh/WordQuest/pull/47) into `dev`
+on 2026-10-05 at 08:21:35 UTC (`6bee47b`). Reading anchors are integrated; full
+static fidelity and original device/release gates remain open. The next bounded
+UI01 increment on `feature/g-answer-label-align` corrects the licensed reading
+face's answer-label gap and baseline. The prior four native label left edges are four
+pixels right of the original; native baselines are two/three pixels high.
+Font files/parameters, art, fixtures and learning/control handlers remain.
+Real build and corrected preflight pass: all four label left edges match the
+original, A-C vertical bounds match and D stays one pixel high. Both missing-font
+fallback PNGs match prior captures exactly; 82 Python checks, references/SVG
+parity pass. Clean Win64 archive, all 16 inspected packaged captures and both
+Unreal tests pass at `a9f14a4`. Only 18,064 initial label-region pixels change,
+zero elsewhere; visible enlarged selection/wrong cues fit. Offscreen chosen rows
+in some enlarged captures are not glyph-visibility evidence. Dedicated review
+against actual `dev` completes with no actionable introduced defects.
+Non-draft [PR #48](https://github.com/rloterh/WordQuest/pull/48) is open against
+`dev` for owner review/merge. See
+[answer label alignment](../QA/UI01/G-ANSWER-LABEL-ALIGNMENT.md).
+
 The owner merged [PR #46](https://github.com/rloterh/WordQuest/pull/46) into `dev`
 on 2026-10-05 at 02:58:43 UTC (`50c0549`). Its headword improvement is integrated;
 full static fidelity and original device/release gates remain open. The next
@@ -17,8 +36,8 @@ pass. Clean Win64 archive, all 14 inspected packaged captures and both Unreal
 tests pass at `6fe265c`; exactly 16,348 clue/prompt-region pixels change versus
 the prior package, zero outside. Dedicated review against actual `dev` completes
 with no actionable introduced defects. Non-draft
-[PR #47](https://github.com/rloterh/WordQuest/pull/47) is open against `dev` for
-owner review/merge. See
+[PR #47](https://github.com/rloterh/WordQuest/pull/47) is owner-merged at `6bee47b`.
+See
 [reading text alignment](../QA/UI01/G-READING-TEXT-ALIGNMENT.md).
 
 The owner merged [PR #45](https://github.com/rloterh/WordQuest/pull/45) into `dev`
