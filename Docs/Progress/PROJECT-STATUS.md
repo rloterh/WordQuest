@@ -16,7 +16,11 @@ accept fidelity or motion. Clean Win64 archive at `4f20509`, all nine inspected
 packaged captures, both Unreal Context tests and all 49 payload hashes pass.
 The cooked star SVG extracts byte-identically; exactly 1,449 initial packaged
 pixels change inside the star region and zero elsewhere. Existing scoped firewall
-refresh succeeds on its second attempt. Dedicated actual-dev review is next. See
+refresh succeeds on its second attempt. Dedicated read-only review of clean
+`3cac807` against actual `origin/dev` at `ea8fb8e` completes with no actionable
+introduced defects. All ten SVG pairs and six original references verify
+independently; Unreal build/runtime/device checks are not independently rerun.
+Publication targets `dev` directly. See
 [Check star facets](../QA/UI01/G-CHECK-STAR-FACETS.md).
 
 The owner merged [PR #51](https://github.com/rloterh/WordQuest/pull/51) into `dev`

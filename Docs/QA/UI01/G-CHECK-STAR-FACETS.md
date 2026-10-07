@@ -134,7 +134,15 @@ Source/art remains the clean tested `4f20509` tree; later commits update documen
 
 ## Review and remaining gates
 
-Dedicated read-only review against actual `dev` follows before publication.
+`python Tools/Review/review_pr.py --base origin/dev` completes with exit zero in
+`Artifacts/Reviews/20261007-002308/`. It reviews clean head
+`3cac8072625529baa99f73341c39308930bb174b` against actual base
+`ea8fb8edcd9fdaec3c7cfed487e82cc5ebc7f0cd`; head/worktree remain unchanged.
+No actionable introduced defects are found. All ten SVG source/runtime pairs and
+six immutable references pass independently; documentation preserves open gates.
+Unreal build/rendering/device checks are not independently rerun by the reviewer.
+Raw `review.txt` and `run.json` remain ignored; later commits record review and
+publication only. Review never authorizes merge or replaces original acceptance.
 Full UI01 art/type/material fidelity, UI02 motion, manual/platform accessibility,
 draft-fixture editorial approval, Android/physical-phone, isolated offline,
 performance and original release gates remain open. The owner retains merge
