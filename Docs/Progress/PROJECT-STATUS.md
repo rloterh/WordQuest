@@ -20,7 +20,9 @@ refresh succeeds on its second attempt. Dedicated read-only review of clean
 `3cac807` against actual `origin/dev` at `ea8fb8e` completes with no actionable
 introduced defects. All ten SVG pairs and six original references verify
 independently; Unreal build/runtime/device checks are not independently rerun.
-Publication targets `dev` directly. See
+Non-draft [PR #53](https://github.com/rloterh/WordQuest/pull/53) is open directly
+against `dev` for owner review; source/art remains the clean tested `4f20509` tree.
+Original acceptance gates remain open. See
 [Check star facets](../QA/UI01/G-CHECK-STAR-FACETS.md).
 
 The owner merged [PR #51](https://github.com/rloterh/WordQuest/pull/51) into `dev`

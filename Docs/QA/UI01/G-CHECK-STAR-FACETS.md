@@ -143,6 +143,11 @@ six immutable references pass independently; documentation preserves open gates.
 Unreal build/rendering/device checks are not independently rerun by the reviewer.
 Raw `review.txt` and `run.json` remain ignored; later commits record review and
 publication only. Review never authorizes merge or replaces original acceptance.
+
+Non-draft [PR #53](https://github.com/rloterh/WordQuest/pull/53) is open on
+`feature/g-check-star-facets`, directly against `dev`, for owner review.
+Source/art remains the clean tested `4f20509` tree; later commits are documentation
+only. The implementation agent does not merge PRs.
 Full UI01 art/type/material fidelity, UI02 motion, manual/platform accessibility,
 draft-fixture editorial approval, Android/physical-phone, isolated offline,
 performance and original release gates remain open. The owner retains merge
