@@ -12,7 +12,11 @@ are unchanged. Real Editor build, final inspected native preflight, two inspecte
 missing-icon checks, 96 Python QA tests, six original references and ten SVG parity
 pairs pass. White threshold coverage approaches the reference and its center is
 within half a pixel, while contour/color/glow differences remain. This does not
-accept fidelity or motion. Clean package and actual-dev review are next. See
+accept fidelity or motion. Clean Win64 archive at `4f20509`, all nine inspected
+packaged captures, both Unreal Context tests and all 49 payload hashes pass.
+The cooked star SVG extracts byte-identically; exactly 1,449 initial packaged
+pixels change inside the star region and zero elsewhere. Existing scoped firewall
+refresh succeeds on its second attempt. Dedicated actual-dev review is next. See
 [Check star facets](../QA/UI01/G-CHECK-STAR-FACETS.md).
 
 The owner merged [PR #51](https://github.com/rloterh/WordQuest/pull/51) into `dev`

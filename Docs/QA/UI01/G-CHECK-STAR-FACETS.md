@@ -75,11 +75,66 @@ verify before compression; all staged hashes verify afterward. Free bytes rise
 from 2,878,476,288 to 5,699,891,200. Archives are unchanged; no file deletion/move or
 machine policy change occurs. Raw report: `CheckStar20261007/stage-compression.json`.
 
-## Final verification and gates
+## Clean packaged verification
 
-Clean package/runtime verification and dedicated read-only review against actual
-`dev` follow before publication. Raw scripts, logs, crops, metrics and overlays
-remain ignored under `Artifacts/QA/UI01/CheckStar20261007/`.
+Clean source/art head `4f20509567a360d798e4859b850ddf22e16d9158` produces real
+Win64 Development archive `Artifacts/Packages/Win64/20261007-001643-063157`.
+BuildCookRun succeeds in 83.50 seconds, 522 cooked packages, zero errors/warnings;
+native/helper exits zero. Complete manifest records unchanged head/worktree/inputs.
+All 49 payload size/hash pairs verify before every packaged launch and again at
+completion. Manifest SHA-256:
+`1116b6bc9ff1810fed637c73bc31fd6aee9c08cf14d2324f19997cbd7817022d`.
+Existing owner-scoped firewall refresh succeeds on attempt two at
+00:18:39.0278353 UTC, Private/Public LocalSubnet; policy/task permissions are unchanged.
+
+All nine packaged captures have native/helper exit zero, matching clean source/
+package provenance, requested dimensions and all applicable state/cue/layout,
+actual text size, action-content, pointer, keyboard and scroll predicates true.
+No native Error/Fatal lines occur. All full PNGs are inspected; the 1768x3560
+whole-screen view is viewer-resized to 1017x2048.
+
+| Run under `Artifacts/QA/UI01/` | Case | Dimensions / text |
+|---|---|---|
+| `20261007-001844-packaged-capture-initial` | Frozen comparison | 884x1780 / 100% |
+| `20261007-001859-packaged-capture-initial` | Double-size | 1768x3560 / 100% |
+| `20261007-001911-packaged-capture-initial` | Phone-shaped initial | 390x844 / 100% |
+| `20261007-001922-packaged-capture-actions` | Enlarged stacked controls | 390x844 / intrinsic 200% |
+| `20261007-001933-packaged-capture-actions` | Narrow stacked controls | 260x640 / intrinsic 200% |
+| `20261007-001945-packaged-capture-pointerpress` | Held virtual Check | 260x640 / 200% |
+| `20261007-001956-packaged-capture-pointerclick` | Routed wrong submission/disabled barriers | 390x844 / 200% |
+| `20261007-002012-packaged-capture-keysubmit` | Routed keyboard correct submission | 884x1780 / 100% |
+| `20261007-002023-packaged-capture-scrollfeedback` | Feedback reading end | 844x390 / intrinsic 200% |
+
+Safe-zone is 1 for reference/double-size/keyboard and 0.9 otherwise; tooltips are
+disabled. Stacked action frames expose both full controls. Held Check has native
+press/focus feedback without evaluating. Routed pointer/keyboard submit produces
+one evaluation and disabled controls; pointer barriers prevent repeated evaluation.
+Some reading/held frames leave controls or part of the feedback offscreen; they
+do not establish simultaneous visibility of all content. These are Windows
+offscreen/synthetic checks, not manual input, platform accessibility or phone evidence.
+
+Both Unreal Context tests succeed with complete clean-source evidence in
+`20261007-002035-automation-initial`, zero failed/not-run/in-progress.
+The installed UnrealPak's separate `-Extract <directory>` arguments extract only
+`G_CheckStar.svg`. Its bytes/hash equal the v002 master and runtime copy, and the
+pak manifest hash remains unchanged afterward.
+
+The final reference-size comparison against #52's package changes exactly 1,449
+pixels inside the star region and zero elsewhere, bounds [470,1487,513,1532).
+Live labels, Hint bulb, both control surfaces, reading layout, wordmark, companion
+and background are pixel-identical in this comparison. Initial PNG SHA-256:
+`731e01cdaba8178994d441bef3d5c37a1d5052a0820d35cff3d8e55d3dfd1bf7`.
+Editor/package differs only at the known 964 Pause/plaque pixels in
+[362,38,855,198), maximum channel delta one. Star metrics equal the Editor trial.
+
+Raw scripts/logs/crops/overlays/metrics remain ignored under
+`Artifacts/QA/UI01/CheckStar20261007/`: `assessment.json`, `fallback.json`,
+`verification.json`, `final-comparison.json`, helper logs and extracted SVG.
+Source/art remains the clean tested `4f20509` tree; later commits update documentation.
+
+## Review and remaining gates
+
+Dedicated read-only review against actual `dev` follows before publication.
 Full UI01 art/type/material fidelity, UI02 motion, manual/platform accessibility,
 draft-fixture editorial approval, Android/physical-phone, isolated offline,
 performance and original release gates remain open. The owner retains merge
