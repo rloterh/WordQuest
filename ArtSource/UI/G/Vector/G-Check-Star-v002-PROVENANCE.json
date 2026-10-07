@@ -1,0 +1,27 @@
+{
+  "status": "unapproved_authored_icon_candidate",
+  "date": "2026-10-07",
+  "reference": "Planning/WordQuest-UI-Realms-Addendum/references/G-Celestial-Reverie-Gameplay.png",
+  "reference_sha256": "306dae4f6352749edcf1d8edf73f26339a4ba6407b4a394ec50b5898418bedae",
+  "master": "ArtSource/UI/G/Vector/G-Check-Star-v002.svg",
+  "runtime": "Game/Content/UI/G/Vector/G_CheckStar.svg",
+  "sha256": "4719f4794d3a2a7b5282cf3e11aaca1e7f5f0e5aa74524258301ab79dd7e5e8e",
+  "preserved_master": "ArtSource/UI/G/Vector/G-Check-Star-v001.svg",
+  "preserved_master_sha256": "1a682d7450e9ba5ce22920f279d6ab8d27f6710756446359c3731b1dfc65c285",
+  "canvas": [48, 48],
+  "changes": [
+    "Taller authored four-point silhouette centered at (23,26) inside the existing canvas",
+    "Separate white/lilac upper faces, lilac lower-left face and warm-gold lower-right face",
+    "Violet diamond center and pale edge highlights replace the broad continuous pale cross",
+    "Restrained static halo and four small static glints; no animation",
+    "No native code, button/label geometry, text, scoring, input or fixture changes",
+    "Hand-authored SVG; no imagegen, raster editing or supplied-reference pixel extraction"
+  ],
+  "limits": [
+    "Exact silhouette, antialiased edges, facet colors and glow remain unapproved",
+    "Threshold-dependent white/warm bounds are diagnostics, not global fidelity or contrast acceptance",
+    "Native and packaged rendering, missing-icon behavior and SVG byte parity are verified separately",
+    "Shared surface/rim and live typography differences remain outside this correction"
+  ],
+  "qa": "Docs/QA/UI01/G-CHECK-STAR-FACETS.md"
+}

@@ -142,8 +142,9 @@ The reviewer does not independently rerun Unreal builds/runtime/device checks.
 Raw `review.txt` and `run.json` remain ignored; later commits record review and
 publication only. Review does not authorize a merge or accept outstanding gates.
 
-Non-draft [PR #52](https://github.com/rloterh/WordQuest/pull/52) is open on
-`feature/g-hint-bulb-alignment`, directly against `dev`, for owner review.
+Non-draft [PR #52](https://github.com/rloterh/WordQuest/pull/52) was published on
+`feature/g-hint-bulb-alignment`, directly against `dev`. GitHub confirms owner merge
+at 2026-10-06 23:59:23 UTC (`ea8fb8edcd9fdaec3c7cfed487e82cc5ebc7f0cd`).
 Runtime/art remains the clean tested `d528389` tree; later commits update
 documentation only. The implementation agent does not merge PRs.
 Full UI01 fidelity, UI02 motion, manual/platform accessibility, draft-fixture

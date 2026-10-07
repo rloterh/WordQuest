@@ -2,6 +2,19 @@
 
 ## Current stage: native static G implementation; acceptance incomplete
 
+The owner merged [PR #52](https://github.com/rloterh/WordQuest/pull/52) into `dev`
+on 2026-10-06 at 23:59:23 UTC (`ea8fb8e`), integrating Hint bulb alignment.
+The next bounded UI01 correction on `feature/g-check-star-facets` refines the
+separate Check star SVG. Its existing continuous pale fill becomes directional
+white/lilac/gold faces, a violet center and restrained static halo/glints, inside
+the same 48x48 canvas. V001 remains unchanged; native code, layout and live text
+are unchanged. Real Editor build, final inspected native preflight, two inspected
+missing-icon checks, 96 Python QA tests, six original references and ten SVG parity
+pairs pass. White threshold coverage approaches the reference and its center is
+within half a pixel, while contour/color/glow differences remain. This does not
+accept fidelity or motion. Clean package and actual-dev review are next. See
+[Check star facets](../QA/UI01/G-CHECK-STAR-FACETS.md).
+
 The owner merged [PR #51](https://github.com/rloterh/WordQuest/pull/51) into `dev`
 on 2026-10-06 at 23:31:36 UTC (`10110a1`), integrating the Hint pearl surface.
 The next bounded UI01 correction on `feature/g-hint-bulb-alignment` refines only
@@ -22,8 +35,8 @@ Dedicated read-only review of clean `4d0741b` against actual `origin/dev` at
 `10110a1` completes with no actionable introduced defects; all six references
 and ten SVG parity pairs verify independently. The reviewer does not independently
 rerun Unreal build/runtime/device checks. Non-draft
-[PR #52](https://github.com/rloterh/WordQuest/pull/52) is open directly against
-`dev` for owner review; source/art remains the clean tested `d528389` tree.
+[PR #52](https://github.com/rloterh/WordQuest/pull/52) was published directly against
+`dev` and is now owner-merged as recorded above; its source/art remains the clean tested `d528389` tree.
 Original acceptance gates remain open. See
 [Hint bulb alignment](../QA/UI01/G-HINT-BULB-ALIGNMENT.md).
 
